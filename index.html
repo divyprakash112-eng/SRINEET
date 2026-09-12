@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -20,26 +21,45 @@
 
   <title>SRINEET | Complete NEET Preparation</title>
 
-  <!-- Google Fonts -->
+
+  <!-- =====================================================
+       GOOGLE FONTS
+  ====================================================== -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="style.css">
+
+  <!-- =====================================================
+       MAIN CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 
 <body>
 
   <!-- =====================================================
-       PAGE
+       SITE WRAPPER
   ====================================================== -->
 
   <div class="site">
+
 
     <!-- ===================================================
          HEADER
@@ -49,34 +69,46 @@
 
       <div class="header-inner">
 
-        <!-- Hamburger -->
+
+        <!-- Hamburger Menu -->
+
         <button
           class="menu-button"
           id="menuButton"
           type="button"
           aria-label="Open study menu"
           aria-expanded="false"
+          aria-controls="studyMenu"
         >
+
           <span></span>
           <span></span>
           <span></span>
+
         </button>
 
 
-        <!-- Brand -->
+        <!-- SRINEET BRAND -->
+
         <a
           href="index.html"
           class="brand"
           aria-label="SRINEET Home"
         >
 
-          <span class="brand-logo">
+          <span
+            class="brand-logo"
+            aria-hidden="true"
+          >
             S
           </span>
 
+
           <span class="brand-text">
 
-            <strong>SRINEET</strong>
+            <strong>
+              SRINEET
+            </strong>
 
             <small>
               COMPLETE NEET PREPARATION
@@ -87,13 +119,21 @@
         </a>
 
 
-        <!-- Right icon -->
+        <!-- Medical Icon -->
+
         <button
           class="medical-button"
           type="button"
-          aria-label="SRINEET"
+          aria-label="SRINEET Medical"
         >
-          <span class="medical-cross">+</span>
+
+          <span
+            class="medical-cross"
+            aria-hidden="true"
+          >
+            +
+          </span>
+
         </button>
 
       </div>
@@ -101,20 +141,31 @@
     </header>
 
 
+
     <!-- ===================================================
-         MOBILE STUDY MENU
+         MENU OVERLAY
     ==================================================== -->
 
     <div
       class="menu-overlay"
       id="menuOverlay"
+      aria-hidden="true"
     ></div>
+
+
+
+    <!-- ===================================================
+         STUDY MENU
+    ==================================================== -->
 
     <aside
       class="study-menu"
       id="studyMenu"
       aria-hidden="true"
     >
+
+
+      <!-- Menu Header -->
 
       <div class="study-menu-header">
 
@@ -129,6 +180,7 @@
           </h2>
 
         </div>
+
 
         <button
           class="menu-close"
@@ -145,54 +197,128 @@
       <div class="menu-line"></div>
 
 
-      <nav class="menu-nav">
+
+      <!-- Navigation -->
+
+      <nav
+        class="menu-nav"
+        aria-label="Study navigation"
+      >
+
+
+        <!-- HOME -->
 
         <a
           href="index.html"
           class="menu-link active"
         >
-          <span class="menu-link-icon">⌂</span>
-          <span>Home</span>
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            ⌂
+          </span>
+
+          <span>
+            Home
+          </span>
+
         </a>
 
+
+
+        <!-- TEST SERIES -->
 
         <a
           href="test-series.html"
           class="menu-link"
         >
-          <span class="menu-link-icon">□</span>
-          <span>Test Series</span>
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            □
+          </span>
+
+          <span>
+            Test Series
+          </span>
+
         </a>
 
+
+
+        <!-- PYQ -->
 
         <a
           href="pyq.html"
           class="menu-link"
         >
-          <span class="menu-link-icon">◇</span>
-          <span>PYQ Chapterwise</span>
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            ◇
+          </span>
+
+          <span>
+            PYQ Chapterwise
+          </span>
+
         </a>
 
+
+
+        <!-- NOTES -->
 
         <a
           href="notes.html"
           class="menu-link"
         >
-          <span class="menu-link-icon">▤</span>
-          <span>Notes</span>
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            ▤
+          </span>
+
+          <span>
+            Notes
+          </span>
+
         </a>
 
+
+
+        <!-- PRACTICE -->
 
         <a
           href="practice.html"
           class="menu-link"
         >
-          <span class="menu-link-icon">✓</span>
-          <span>Chapterwise Practice</span>
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            ✓
+          </span>
+
+          <span>
+            Chapterwise Practice
+          </span>
+
         </a>
 
       </nav>
 
+
+
+      <!-- Menu Bottom -->
 
       <div class="menu-bottom">
 
@@ -209,43 +335,62 @@
     </aside>
 
 
+
     <!-- ===================================================
-         MAIN
+         MAIN CONTENT
     ==================================================== -->
 
     <main>
 
 
       <!-- =================================================
-           HERO COUNTDOWN
+           HERO / COUNTDOWN
       ================================================== -->
 
-      <section class="hero">
+      <section
+        class="hero"
+        aria-label="NEET 2027 countdown"
+      >
 
-        <div class="hero-glow hero-glow-left"></div>
-        <div class="hero-glow hero-glow-right"></div>
+        <div
+          class="hero-glow hero-glow-left"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="hero-glow hero-glow-right"
+          aria-hidden="true"
+        ></div>
 
 
         <div class="hero-inner">
 
 
-          <!-- Hero text -->
+          <!-- HERO COPY -->
 
           <div class="hero-copy">
 
+
             <div class="hero-kicker">
 
-              <span></span>
+              <span aria-hidden="true"></span>
 
               NEET 2027
 
             </div>
 
 
+
             <h1>
+
               Time is your
-              <span>advantage.</span>
+
+              <span>
+                advantage.
+              </span>
+
             </h1>
+
 
 
             <p>
@@ -253,15 +398,19 @@
             </p>
 
 
+
             <div class="hero-status">
 
-              <span class="status-dot"></span>
+              <span
+                class="status-dot"
+                aria-hidden="true"
+              ></span>
 
               <span id="secondsText">
                 09 seconds remaining
               </span>
 
-              <i></i>
+              <i aria-hidden="true"></i>
 
               <span>
                 Keep going.
@@ -272,16 +421,25 @@
           </div>
 
 
-          <!-- Countdown -->
+
+          <!-- COUNTDOWN -->
 
           <div class="countdown-area">
+
 
             <div class="exam-date">
               02 MAY 2027
             </div>
 
 
-            <div class="countdown">
+
+            <div
+              class="countdown"
+              aria-label="Time remaining until NEET 2027"
+            >
+
+
+              <!-- DAYS -->
 
               <div class="count-box">
 
@@ -296,10 +454,17 @@
               </div>
 
 
-              <div class="count-separator">
+
+              <div
+                class="count-separator"
+                aria-hidden="true"
+              >
                 :
               </div>
 
+
+
+              <!-- HOURS -->
 
               <div class="count-box">
 
@@ -314,10 +479,17 @@
               </div>
 
 
-              <div class="count-separator">
+
+              <div
+                class="count-separator"
+                aria-hidden="true"
+              >
                 :
               </div>
 
+
+
+              <!-- MINUTES -->
 
               <div class="count-box">
 
@@ -342,37 +514,74 @@
 
 
       <!-- =================================================
-           SRISHTI BANNER
+           SRISHTI MEDICAL BANNER
       ================================================== -->
 
-      <section class="banner-section">
+      <section
+        class="banner-section"
+        aria-label="SRISHTI medical banner"
+      >
 
         <div class="srishti-banner">
 
 
-          <!-- decorative background -->
+          <!-- Background Grid -->
 
-          <div class="banner-grid"></div>
-
-          <div class="banner-orbit orbit-a"></div>
-          <div class="banner-orbit orbit-b"></div>
-          <div class="banner-orbit orbit-c"></div>
-
-
-          <!-- small medical crosses -->
-
-          <span class="banner-plus plus-a">+</span>
-          <span class="banner-plus plus-b">+</span>
+          <div
+            class="banner-grid"
+            aria-hidden="true"
+          ></div>
 
 
-          <!-- left content -->
+          <!-- Decorative Orbits -->
+
+          <div
+            class="banner-orbit orbit-a"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="banner-orbit orbit-b"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="banner-orbit orbit-c"
+            aria-hidden="true"
+          ></div>
+
+
+          <!-- Medical Plus Symbols -->
+
+          <span
+            class="banner-plus plus-a"
+            aria-hidden="true"
+          >
+            +
+          </span>
+
+          <span
+            class="banner-plus plus-b"
+            aria-hidden="true"
+          >
+            +
+          </span>
+
+
+
+          <!-- Banner Content -->
 
           <div class="banner-content">
 
+
             <div class="banner-label">
-              <span></span>
+
+              <span aria-hidden="true"></span>
+
               MEDICAL EXCELLENCE
+
             </div>
+
 
 
             <div class="banner-small-title">
@@ -380,13 +589,23 @@
             </div>
 
 
+
             <div class="doctor-name">
-              <small>DR</small>
-              <strong>SRISHTI</strong>
+
+              <small>
+                DR
+              </small>
+
+              <strong>
+                SRISHTI
+              </strong>
+
             </div>
 
 
+
             <div class="banner-line"></div>
+
 
 
             <p>
@@ -397,16 +616,19 @@
           </div>
 
 
-          <!-- ECG -->
 
-          <div class="ecg-area">
+          <!-- ECG GRAPHIC -->
+
+          <div
+            class="ecg-area"
+            aria-hidden="true"
+          >
 
             <svg
               class="ecg"
               viewBox="0 0 500 180"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
             >
 
               <path
@@ -426,32 +648,48 @@
             </svg>
 
 
+
             <div class="ecg-plus">
               +
             </div>
 
 
+
             <div class="ecg-node node-one"></div>
+
             <div class="ecg-node node-two"></div>
 
           </div>
 
 
-          <!-- focus badge -->
+
+          <!-- FOCUS BADGE -->
 
           <div class="focus-badge">
 
-            <span class="focus-dot"></span>
+            <span
+              class="focus-dot"
+              aria-hidden="true"
+            ></span>
+
 
             <div>
-              <strong>FOCUS</strong>
-              <small>ON YOUR DREAM</small>
+
+              <strong>
+                FOCUS
+              </strong>
+
+              <small>
+                ON YOUR DREAM
+              </small>
+
             </div>
 
           </div>
 
 
-          <!-- bottom labels -->
+
+          <!-- BANNER FOOTER -->
 
           <div class="banner-footer-left">
             SRINEET
@@ -471,7 +709,13 @@
            PREPARATION HUB
       ================================================== -->
 
-      <section class="hub-section">
+      <section
+        class="hub-section"
+        aria-label="SRINEET preparation resources"
+      >
+
+
+        <!-- Heading -->
 
         <div class="hub-heading">
 
@@ -481,15 +725,25 @@
 
 
           <h2>
+
             Everything you need.
-            <span>Nothing you don't.</span>
+
+            <span>
+              Nothing you don't.
+            </span>
+
           </h2>
 
 
-          <div class="heading-decoration">
+          <div
+            class="heading-decoration"
+            aria-hidden="true"
+          >
 
             <span></span>
+
             <i></i>
+
             <b></b>
 
           </div>
@@ -498,29 +752,41 @@
 
 
 
-        <!-- Four cards -->
+        <!-- =================================================
+             FEATURE CARDS
+        ================================================== -->
 
         <div class="feature-grid">
 
 
-          <!-- TEST SERIES -->
+          <!-- =================================================
+               CARD 01 — TEST SERIES
+          ================================================== -->
 
           <a
             href="test-series.html"
             class="feature-card card-test"
+            aria-label="Open Test Series"
           >
+
 
             <div class="card-number">
               01
             </div>
 
 
-            <div class="card-arrow">
+            <div
+              class="card-arrow"
+              aria-hidden="true"
+            >
               ↗
             </div>
 
 
-            <div class="feature-icon">
+            <div
+              class="feature-icon"
+              aria-hidden="true"
+            >
               ▤
             </div>
 
@@ -531,11 +797,13 @@
                 EXAM PRACTICE
               </span>
 
+
               <h3>
                 Test
                 <br>
                 Series
               </h3>
+
 
               <p>
                 Premium CBT-style tests
@@ -551,7 +819,7 @@
                 START TESTING
               </span>
 
-              <strong>
+              <strong aria-hidden="true">
                 →
               </strong>
 
@@ -561,24 +829,34 @@
 
 
 
-          <!-- PYQ -->
+          <!-- =================================================
+               CARD 02 — PYQ
+          ================================================== -->
 
           <a
             href="pyq.html"
             class="feature-card card-pyq"
+            aria-label="Open PYQ Chapterwise"
           >
+
 
             <div class="card-number">
               02
             </div>
 
 
-            <div class="card-arrow">
+            <div
+              class="card-arrow"
+              aria-hidden="true"
+            >
               ↗
             </div>
 
 
-            <div class="feature-icon question-icon">
+            <div
+              class="feature-icon question-icon"
+              aria-hidden="true"
+            >
               ?
             </div>
 
@@ -589,11 +867,13 @@
                 PREVIOUS YEARS
               </span>
 
+
               <h3>
                 PYQ
                 <br>
                 Chapterwise
               </h3>
+
 
               <p>
                 Learn from the questions
@@ -609,7 +889,7 @@
                 EXPLORE PYQs
               </span>
 
-              <strong>
+              <strong aria-hidden="true">
                 →
               </strong>
 
@@ -619,24 +899,34 @@
 
 
 
-          <!-- NOTES -->
+          <!-- =================================================
+               CARD 03 — SMART NOTES
+          ================================================== -->
 
           <a
             href="notes.html"
             class="feature-card card-notes"
+            aria-label="Open Smart Notes"
           >
+
 
             <div class="card-number">
               03
             </div>
 
 
-            <div class="card-arrow">
+            <div
+              class="card-arrow"
+              aria-hidden="true"
+            >
               ↗
             </div>
 
 
-            <div class="feature-icon notes-icon">
+            <div
+              class="feature-icon notes-icon"
+              aria-hidden="true"
+            >
               ▤
             </div>
 
@@ -647,11 +937,13 @@
                 REVISION MATERIAL
               </span>
 
+
               <h3>
                 Smart
                 <br>
                 Notes
               </h3>
+
 
               <p>
                 Keep your important concepts
@@ -667,7 +959,7 @@
                 OPEN NOTES
               </span>
 
-              <strong>
+              <strong aria-hidden="true">
                 →
               </strong>
 
@@ -677,24 +969,34 @@
 
 
 
-          <!-- PRACTICE -->
+          <!-- =================================================
+               CARD 04 — PRACTICE ZONE
+          ================================================== -->
 
           <a
             href="practice.html"
             class="feature-card card-practice"
+            aria-label="Open Chapterwise Practice"
           >
+
 
             <div class="card-number">
               04
             </div>
 
 
-            <div class="card-arrow">
+            <div
+              class="card-arrow"
+              aria-hidden="true"
+            >
               ↗
             </div>
 
 
-            <div class="feature-icon check-icon">
+            <div
+              class="feature-icon check-icon"
+              aria-hidden="true"
+            >
               ✓
             </div>
 
@@ -705,11 +1007,13 @@
                 CHAPTERWISE
               </span>
 
+
               <h3>
                 Practice
                 <br>
                 Zone
               </h3>
+
 
               <p>
                 Build accuracy chapter
@@ -725,14 +1029,13 @@
                 PRACTICE NOW
               </span>
 
-              <strong>
+              <strong aria-hidden="true">
                 →
               </strong>
 
             </div>
 
           </a>
-
 
         </div>
 
@@ -744,9 +1047,15 @@
            WHY SRINEET
       ================================================== -->
 
-      <section class="why-section">
+      <section
+        class="why-section"
+        aria-label="Why choose SRINEET"
+      >
 
         <div class="why-card">
+
+
+          <!-- Heading -->
 
           <div class="why-heading">
 
@@ -761,16 +1070,26 @@
           </div>
 
 
+
+          <!-- Benefits -->
+
           <div class="why-list">
 
 
+            <!-- Focused -->
+
             <div class="why-item">
 
-              <div class="why-icon">
+              <div
+                class="why-icon"
+                aria-hidden="true"
+              >
                 ✓
               </div>
 
+
               <div>
+
                 <strong>
                   Focused
                 </strong>
@@ -778,18 +1097,27 @@
                 <small>
                   No unnecessary clutter
                 </small>
+
               </div>
 
             </div>
 
 
+
+            <!-- Organised -->
+
             <div class="why-item">
 
-              <div class="why-icon">
+              <div
+                class="why-icon"
+                aria-hidden="true"
+              >
                 ◇
               </div>
 
+
               <div>
+
                 <strong>
                   Organised
                 </strong>
@@ -797,18 +1125,27 @@
                 <small>
                   Resources in one place
                 </small>
+
               </div>
 
             </div>
 
 
+
+            <!-- Fast -->
+
             <div class="why-item">
 
-              <div class="why-icon">
+              <div
+                class="why-icon"
+                aria-hidden="true"
+              >
                 ⚡
               </div>
 
+
               <div>
+
                 <strong>
                   Fast
                 </strong>
@@ -816,10 +1153,10 @@
                 <small>
                   Made for mobile learning
                 </small>
+
               </div>
 
             </div>
-
 
           </div>
 
@@ -837,16 +1174,26 @@
 
     <footer class="site-footer">
 
+
       <div class="footer-inner">
 
 
+        <!-- Footer Main -->
+
         <div class="footer-main">
+
+
+          <!-- Footer Brand -->
 
           <div class="footer-brand">
 
-            <span class="footer-logo">
+            <span
+              class="footer-logo"
+              aria-hidden="true"
+            >
               S
             </span>
+
 
             <div>
 
@@ -863,12 +1210,18 @@
           </div>
 
 
+
+          <!-- Description -->
+
           <p>
             SRINEET is designed to bring essential NEET
             preparation resources together in a simple,
             focused and student-friendly experience.
           </p>
 
+
+
+          <!-- Footer Pills -->
 
           <div class="footer-pills">
 
@@ -889,6 +1242,9 @@
         </div>
 
 
+
+        <!-- Footer Message -->
+
         <div class="footer-message">
 
           <strong>
@@ -903,6 +1259,9 @@
 
       </div>
 
+
+
+      <!-- Footer Bottom -->
 
       <div class="footer-bottom">
 
@@ -921,7 +1280,11 @@
   </div>
 
 
-  <!-- Main JavaScript -->
+
+  <!-- =====================================================
+       MAIN JAVASCRIPT
+  ====================================================== -->
+
   <script src="main.js"></script>
 
 </body>
