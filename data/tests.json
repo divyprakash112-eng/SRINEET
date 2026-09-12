@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "pw-yakeen-1-0-test-01",
+    "instituteId": "pw",
+    "batchId": "pw-yakeen-1-0",
+    "number": 1,
+    "title": "Test 01",
+    "questions": 180,
+    "duration": 180,
+    "category": "full",
+    "status": "available",
+    "file": "tests/pw/yakeen-1-0/test-01.html"
+  }
+]
