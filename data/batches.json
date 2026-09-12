@@ -1,0 +1,242 @@
+[
+  {
+    "id": "pw-neet-dropper",
+    "instituteId": "pw",
+    "name": "NEET Dropper",
+    "subtitle": "Complete dropper test practice",
+    "year": "NEET 2027",
+    "testCount": 12,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "pw-yakeen-2-0",
+    "instituteId": "pw",
+    "name": "Yakeen 2.0",
+    "subtitle": "Structured NEET preparation tests",
+    "year": "NEET 2027",
+    "testCount": 15,
+    "status": "ACTIVE",
+    "type": "MIXED TESTS"
+  },
+  {
+    "id": "pw-yakeen-1-0",
+    "instituteId": "pw",
+    "name": "Yakeen 1.0",
+    "subtitle": "Focused exam-style practice",
+    "year": "NEET 2027",
+    "testCount": 20,
+    "status": "ACTIVE",
+    "type": "TEST SERIES"
+  },
+  {
+    "id": "pw-marks-improvement",
+    "instituteId": "pw",
+    "name": "Marks Improvement Test",
+    "subtitle": "Improve speed and accuracy",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "PRACTICE"
+  },
+  {
+    "id": "pw-major-tests",
+    "instituteId": "pw",
+    "name": "Major Test Series",
+    "subtitle": "High-level exam simulation",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "allen-major",
+    "instituteId": "allen",
+    "name": "Major Test Series",
+    "subtitle": "Full syllabus NEET practice",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "allen-minor",
+    "instituteId": "allen",
+    "name": "Minor Test Series",
+    "subtitle": "Focused chapter-wise testing",
+    "year": "NEET 2027",
+    "testCount": 12,
+    "status": "ACTIVE",
+    "type": "CHAPTER TESTS"
+  },
+  {
+    "id": "allen-full-syllabus",
+    "instituteId": "allen",
+    "name": "Full Syllabus Tests",
+    "subtitle": "Complete NEET exam practice",
+    "year": "NEET 2027",
+    "testCount": 8,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "aakash-aiats",
+    "instituteId": "aakash",
+    "name": "Full Syllabus Tests",
+    "subtitle": "Complete NEET practice collection",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "aakash-chapter",
+    "instituteId": "aakash",
+    "name": "Chapter Tests",
+    "subtitle": "Chapter-focused preparation",
+    "year": "NEET 2027",
+    "testCount": 15,
+    "status": "ACTIVE",
+    "type": "CHAPTER TESTS"
+  },
+  {
+    "id": "narayana-major",
+    "instituteId": "narayana",
+    "name": "Major Tests",
+    "subtitle": "Exam-style full preparation",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "narayana-chapter",
+    "instituteId": "narayana",
+    "name": "Chapter Practice",
+    "subtitle": "Focused chapter testing",
+    "year": "NEET 2027",
+    "testCount": 14,
+    "status": "ACTIVE",
+    "type": "CHAPTER TESTS"
+  },
+  {
+    "id": "unacademy-full",
+    "instituteId": "unacademy",
+    "name": "Full Syllabus Series",
+    "subtitle": "Complete exam simulation",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "unacademy-chapter",
+    "instituteId": "unacademy",
+    "name": "Chapter Tests",
+    "subtitle": "Build accuracy chapter by chapter",
+    "year": "NEET 2027",
+    "testCount": 20,
+    "status": "ACTIVE",
+    "type": "CHAPTER TESTS"
+  },
+  {
+    "id": "motion-major",
+    "instituteId": "motion",
+    "name": "Major Test Series",
+    "subtitle": "Complete NEET practice",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "motion-minor",
+    "instituteId": "motion",
+    "name": "Minor Test Series",
+    "subtitle": "Topic-focused testing",
+    "year": "NEET 2027",
+    "testCount": 16,
+    "status": "ACTIVE",
+    "type": "CHAPTER TESTS"
+  },
+  {
+    "id": "resonance-major",
+    "instituteId": "resonance",
+    "name": "Major Tests",
+    "subtitle": "Full exam practice",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "resonance-chapter",
+    "instituteId": "resonance",
+    "name": "Chapter Tests",
+    "subtitle": "Focused concept testing",
+    "year": "NEET 2027",
+    "testCount": 18,
+    "status": "ACTIVE",
+    "type": "CHAPTER TESTS"
+  },
+  {
+    "id": "vedantu-full",
+    "instituteId": "vedantu",
+    "name": "NEET Full Tests",
+    "subtitle": "Complete exam-style practice",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "vedantu-chapter",
+    "instituteId": "vedantu",
+    "name": "Chapter Practice",
+    "subtitle": "Improve chapter accuracy",
+    "year": "NEET 2027",
+    "testCount": 15,
+    "status": "ACTIVE",
+    "type": "CHAPTER TESTS"
+  },
+  {
+    "id": "sri-chaitanya-major",
+    "instituteId": "sri-chaitanya",
+    "name": "Major Test Series",
+    "subtitle": "Structured NEET practice",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "sri-chaitanya-chapter",
+    "instituteId": "sri-chaitanya",
+    "name": "Chapter Tests",
+    "subtitle": "Chapter-wise preparation",
+    "year": "NEET 2027",
+    "testCount": 15,
+    "status": "ACTIVE",
+    "type": "CHAPTER TESTS"
+  },
+  {
+    "id": "career-point-major",
+    "instituteId": "career-point",
+    "name": "Major Test Series",
+    "subtitle": "Complete NEET practice",
+    "year": "NEET 2027",
+    "testCount": 10,
+    "status": "ACTIVE",
+    "type": "FULL SYLLABUS"
+  },
+  {
+    "id": "career-point-chapter",
+    "instituteId": "career-point",
+    "name": "Chapter Tests",
+    "subtitle": "Focused practice sessions",
+    "year": "NEET 2027",
+    "testCount": 15,
+    "status": "ACTIVE",
+    "type": "CHAPTER TESTS"
+  }
+]
