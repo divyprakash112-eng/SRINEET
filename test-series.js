@@ -1,88 +1,113 @@
+/* =========================================================
+   SRINEET TEST SERIES
+========================================================= */
+
+"use strict";
+
+
+/* =========================================================
+   INSTITUTE DATA
+========================================================= */
+
 const institutes = [
+
   {
     id: "pw",
     name: "Physics Wallah",
     short: "PW",
-    description: "NEET preparation & test series",
-    logo: "assets/logos/pw.png"
+    logo: "assets/logos/pw.webp",
+    description: "NEET test series"
   },
 
   {
     id: "aakash",
     name: "Aakash Institute",
-    short: "A",
-    description: "NEET preparation & assessment",
-    logo: "assets/logos/aakash.png"
+    short: "AAKASH",
+    logo: "assets/logos/aakash.webp",
+    description: "NEET test series"
   },
 
   {
     id: "allen",
     name: "ALLEN",
     short: "ALLEN",
-    description: "NEET test series & practice",
-    logo: "assets/logos/allen.png"
+    logo: "assets/logos/allen.webp",
+    description: "NEET test series"
   },
 
   {
     id: "narayana",
     name: "Narayana",
-    short: "N",
-    description: "NEET test series",
-    logo: "assets/logos/narayana.png"
+    short: "NARAYANA",
+    logo: "assets/logos/narayana.webp",
+    description: "NEET test series"
   },
 
   {
     id: "unacademy",
     name: "Unacademy",
-    short: "U",
-    description: "NEET mock tests & preparation",
-    logo: "assets/logos/unacademy.png"
+    short: "UNACADEMY",
+    logo: "assets/logos/unacademy.webp",
+    description: "NEET test series"
   },
 
   {
     id: "motion",
     name: "Motion Education",
-    short: "M",
-    description: "NEET mock tests",
-    logo: "assets/logos/motion.png"
+    short: "MOTION",
+    logo: "assets/logos/motion.webp",
+    description: "NEET test series"
   },
 
   {
     id: "resonance",
     name: "Resonance",
-    short: "R",
-    description: "NEET test papers",
-    logo: "assets/logos/resonance.png"
+    short: "RESONANCE",
+    logo: "assets/logos/resonance.webp",
+    description: "NEET test series"
   },
 
   {
     id: "vedantu",
     name: "Vedantu",
-    short: "V",
-    description: "NEET mock tests & practice",
-    logo: "assets/logos/vedantu.png"
+    short: "VEDANTU",
+    logo: "assets/logos/vedantu.webp",
+    description: "NEET test series"
   },
 
   {
     id: "sri-chaitanya",
     name: "Sri Chaitanya",
-    short: "SC",
-    description: "NEET preparation tests",
-    logo: "assets/logos/sri-chaitanya.png"
+    short: "SRI CHAITANYA",
+    logo: "assets/logos/sri-chaitanya.webp",
+    description: "NEET test series"
   },
 
   {
     id: "career-point",
     name: "Career Point",
-    short: "CP",
-    description: "NEET test series",
-    logo: "assets/logos/career-point.png"
+    short: "CAREER POINT",
+    logo: "assets/logos/career-point.webp",
+    description: "NEET test series"
   }
+
 ];
 
 
-const instituteGrid = document.getElementById("instituteGrid");
+/* =========================================================
+   DOM
+========================================================= */
 
+const instituteGrid =
+  document.getElementById("instituteGrid");
+
+const instituteCount =
+  document.getElementById("instituteCount");
+
+
+/* =========================================================
+   CREATE CARD
+========================================================= */
 
 function createInstituteCard(institute, index) {
 
@@ -90,26 +115,29 @@ function createInstituteCard(institute, index) {
 
   card.className = "institute-card";
 
-  /*
-    IMPORTANT:
-    Abhi batch page nahi banaya hai.
-    Isliye temporarily institute path ban raha hai.
+  card.href =
+    `institute.html?id=${encodeURIComponent(institute.id)}`;
 
-    Future:
-    institute.html?id=pw
-  */
+  card.setAttribute(
+    "aria-label",
+    `Open ${institute.name} test series`
+  );
 
-  card.href = `institute.html?id=${encodeURIComponent(institute.id)}`;
 
   card.innerHTML = `
-    
-    <div class="institute-number">
-      ${String(index + 1).padStart(2, "0")}
+
+    <div class="card-top">
+
+      <span class="institute-number">
+        ${String(index + 1).padStart(2, "0")}
+      </span>
+
+      <span class="card-arrow">
+        →
+      </span>
+
     </div>
 
-    <div class="institute-arrow">
-      ↗
-    </div>
 
     <div class="logo-box">
 
@@ -117,70 +145,188 @@ function createInstituteCard(institute, index) {
         src="${institute.logo}"
         alt="${institute.name} logo"
         loading="lazy"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
       >
 
-      <span
-        class="logo-fallback"
-        style="display:none;"
-      >
-        ${institute.short}
-      </span>
+      <div class="logo-fallback">
+        ${escapeHTML(institute.short)}
+        <small>NEET</small>
+      </div>
 
     </div>
 
-    <h3>${institute.name}</h3>
 
-    <p>${institute.description}</p>
+    <div class="card-bottom">
 
-    <div class="open-label">
-      EXPLORE TESTS
+      <h3>
+        ${escapeHTML(institute.name)}
+      </h3>
+
+      <p>
+        ${escapeHTML(institute.description)}
+      </p>
+
     </div>
 
   `;
 
-  instituteGrid.appendChild(card);
+
+  const image =
+    card.querySelector("img");
+
+  const fallback =
+    card.querySelector(".logo-fallback");
+
+
+  /*
+    Logo exists:
+    show image
+
+    Logo missing:
+    show fallback
+  */
+
+  fallback.style.display = "none";
+
+  image.addEventListener("error", () => {
+
+    image.style.display = "none";
+    fallback.style.display = "block";
+
+  });
+
+
+  return card;
 }
 
 
-institutes.forEach(createInstituteCard);
+/* =========================================================
+   RENDER
+========================================================= */
+
+function renderInstitutes() {
+
+  if (!instituteGrid) return;
+
+  instituteGrid.innerHTML = "";
+
+  institutes.forEach((institute, index) => {
+
+    instituteGrid.appendChild(
+      createInstituteCard(institute, index)
+    );
+
+  });
+
+  if (instituteCount) {
+    instituteCount.textContent = institutes.length;
+  }
+
+}
 
 
-/* =========================
+/* =========================================================
    DRAWER
-========================= */
+========================================================= */
 
-const menuBtn = document.getElementById("menuBtn");
-const closeDrawer = document.getElementById("closeDrawer");
-const drawer = document.getElementById("drawer");
-const drawerOverlay = document.getElementById("drawerOverlay");
+const menuBtn =
+  document.getElementById("menuBtn");
+
+const drawer =
+  document.getElementById("sideDrawer");
+
+const drawerOverlay =
+  document.getElementById("drawerOverlay");
+
+const drawerClose =
+  document.getElementById("drawerClose");
 
 
 function openDrawer() {
-  drawer.classList.add("show");
-  drawerOverlay.classList.add("show");
+
+  drawer?.classList.add("open");
+  drawerOverlay?.classList.add("show");
+
   document.body.style.overflow = "hidden";
+
 }
 
 
-function closeMenu() {
-  drawer.classList.remove("show");
-  drawerOverlay.classList.remove("show");
+function closeDrawer() {
+
+  drawer?.classList.remove("open");
+  drawerOverlay?.classList.remove("show");
+
   document.body.style.overflow = "";
+
 }
 
 
-menuBtn.addEventListener("click", openDrawer);
-closeDrawer.addEventListener("click", closeMenu);
-drawerOverlay.addEventListener("click", closeMenu);
+menuBtn?.addEventListener(
+  "click",
+  openDrawer
+);
+
+drawerClose?.addEventListener(
+  "click",
+  closeDrawer
+);
+
+drawerOverlay?.addEventListener(
+  "click",
+  closeDrawer
+);
 
 
-/* ESC key */
+/* ESC */
 
 document.addEventListener("keydown", (event) => {
 
   if (event.key === "Escape") {
-    closeMenu();
+    closeDrawer();
+  }
+
+});
+
+
+/* =========================================================
+   SAFE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   TELEGRAM POPUP
+   Trigger when Test Series itself opens.
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  renderInstitutes();
+
+  /*
+    Popup component controls frequency.
+    Test Series = first-level section.
+  */
+
+  if (window.SRINEETTelegramPopup) {
+
+    window.SRINEETTelegramPopup.show({
+      key: "test-series",
+      title: "Join the SRINEET Community",
+      message:
+        "Get test updates, important announcements and NEET preparation resources directly on Telegram."
+    });
+
   }
 
 });
