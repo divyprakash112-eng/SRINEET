@@ -6,12 +6,12 @@
 
   <meta
     name="description"
-    content="SRINEET Test Series — Practice like the real exam."
+    content="SRINEET Test Papers"
   >
 
   <meta name="theme-color" content="#071f55">
 
-  <title>Test Series | SRINEET</title>
+  <title>Test Papers | SRINEET</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,69 +21,134 @@
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="test-series.css">
+  <link rel="stylesheet" href="test-paper.css">
 </head>
 
 <body>
 
-<div class="test-series-page">
+<div class="test-paper-page">
 
   <!-- HEADER -->
-  <header class="series-header">
-    <div class="series-header-inner">
+  <header class="paper-header">
+
+    <div class="paper-header-inner">
 
       <a
-        href="index.html"
+        href="javascript:history.back()"
         class="back-button"
-        aria-label="Back to SRINEET home"
+        aria-label="Go back"
       >
         ←
       </a>
 
       <a
         href="index.html"
-        class="series-brand"
+        class="paper-brand"
         aria-label="SRINEET Home"
       >
-        <span class="series-logo">S</span>
 
-        <span>
+        <span class="brand-logo">S</span>
+
+        <span class="brand-text">
           <strong>SRINEET</strong>
           <small>COMPLETE NEET PREPARATION</small>
         </span>
+
       </a>
 
-      <div class="header-spacer"></div>
+      <div class="header-right">
+
+        <span class="header-label">
+          TEST PAPERS
+        </span>
+
+      </div>
 
     </div>
+
   </header>
 
 
-  <!-- HERO -->
+  <!-- MAIN -->
   <main>
 
-    <section class="series-hero">
+    <!-- HERO -->
+    <section class="paper-hero">
 
-      <div class="series-hero-glow"></div>
+      <div class="paper-hero-grid"></div>
 
-      <div class="series-hero-content">
+      <div class="paper-glow glow-one"></div>
+      <div class="paper-glow glow-two"></div>
 
-        <span class="series-kicker">
-          SRINEET • EXAM PRACTICE
-        </span>
+      <div class="paper-hero-inner">
 
-        <h1>
-          Test <span>Series</span>
-        </h1>
+        <div class="paper-hero-copy">
 
-        <p>
-          Practice like the real exam.
-        </p>
+          <span class="paper-kicker">
+            SRINEET • CBT PRACTICE
+          </span>
 
-        <div class="series-meta">
-          <span>10 Leading NEET Coaching Institutes</span>
-          <i></i>
-          <span>CBT Practice</span>
+          <div class="title-row">
+
+            <div
+              class="batch-mark"
+              id="batchMark"
+            >
+              TS
+            </div>
+
+            <div>
+
+              <span
+                class="institute-label"
+                id="instituteLabel"
+              >
+                TEST SERIES
+              </span>
+
+              <h1 id="batchName">
+                Loading...
+              </h1>
+
+            </div>
+
+          </div>
+
+          <p id="batchDescription">
+            Select a test and start your exam practice.
+          </p>
+
+        </div>
+
+
+        <div class="paper-summary">
+
+          <div class="summary-item">
+
+            <span>
+              TESTS
+            </span>
+
+            <strong id="totalTests">
+              00
+            </strong>
+
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-item">
+
+            <span>
+              MODE
+            </span>
+
+            <strong>
+              CBT
+            </strong>
+
+          </div>
+
         </div>
 
       </div>
@@ -91,42 +156,108 @@
     </section>
 
 
-    <!-- INSTITUTES -->
-    <section class="institutes-section">
+    <!-- TEST LIST -->
+    <section class="papers-section">
 
-      <div class="section-heading">
+      <div class="papers-heading">
 
         <div>
-          <span>TEST SERIES LIBRARY</span>
+
+          <span class="section-kicker">
+            TEST LIBRARY
+          </span>
 
           <h2>
-            Choose your <strong>institute.</strong>
+            Select your <strong>test.</strong>
           </h2>
+
         </div>
 
-        <p>
-          Select an institute to explore its available test batches.
+        <p id="batchMeta">
+          NEET 2027 • Exam-style practice
         </p>
 
       </div>
 
 
-      <!-- INSTITUTE CARDS -->
+      <!-- FILTER -->
+      <div class="test-filter">
+
+        <button
+          class="filter-button active"
+          type="button"
+          data-filter="all"
+        >
+          All Tests
+        </button>
+
+        <button
+          class="filter-button"
+          type="button"
+          data-filter="full"
+        >
+          Full Tests
+        </button>
+
+        <button
+          class="filter-button"
+          type="button"
+          data-filter="chapter"
+        >
+          Chapter Tests
+        </button>
+
+      </div>
+
+
+      <!-- TEST CARDS -->
       <div
-        class="institute-grid"
-        id="instituteGrid"
-        aria-live="polite"
+        class="test-list"
+        id="testList"
       ></div>
 
 
-      <!-- ERROR ONLY -->
+      <!-- EMPTY -->
       <div
-        class="series-error"
-        id="seriesError"
+        class="test-empty"
+        id="testEmpty"
         hidden
       >
-        <strong>Unable to load test series.</strong>
-        <span>Please refresh the page and try again.</span>
+
+        <div class="empty-icon">
+          !
+        </div>
+
+        <h3>
+          No tests available
+        </h3>
+
+        <p>
+          Tests for this batch will appear here.
+        </p>
+
+      </div>
+
+
+      <!-- ERROR -->
+      <div
+        class="paper-error"
+        id="paperError"
+        hidden
+      >
+
+        <strong>
+          Test series not found.
+        </strong>
+
+        <p>
+          Please return and select a valid batch.
+        </p>
+
+        <a href="test-series.html">
+          ← Back to Test Series
+        </a>
+
       </div>
 
     </section>
@@ -135,9 +266,9 @@
 
 
   <!-- FOOTER -->
-  <footer class="series-footer">
+  <footer class="paper-footer">
 
-    <div class="series-footer-inner">
+    <div class="footer-inner">
 
       <div class="footer-brand">
 
@@ -146,8 +277,15 @@
         </span>
 
         <div>
-          <strong>SRINEET</strong>
-          <small>Complete NEET Preparation</small>
+
+          <strong>
+            SRINEET
+          </strong>
+
+          <small>
+            Complete NEET Preparation
+          </small>
+
         </div>
 
       </div>
@@ -167,7 +305,7 @@
 </div>
 
 
-<script src="test-series.js"></script>
+<script src="test-paper.js"></script>
 
 </body>
 </html>
