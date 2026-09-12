@@ -1,49 +1,161 @@
 /* =========================================
    SRINEET — TELEGRAM POPUP
+   PAGE-WISE VERSION
    ========================================= */
 
 (function () {
 
-  const TELEGRAM_URL = "https://t.me/srineetofficial";
+  "use strict";
+
+
+  /* =========================================
+     TELEGRAM URL
+     ========================================= */
+
+  const TELEGRAM_URL =
+    "https://t.me/srineetofficial";
+
+
+  /* =========================================
+     ALLOWED PAGES
+     
+     Popup sirf in 3 pages par chalega:
+     1. test-series.html
+     2. institute.html
+     3. test-paper.html
+
+     CBT test pages par nahi chalega.
+     ========================================= */
+
+  const allowedPages = [
+    "test-series.html",
+    "institute.html",
+    "test-paper.html"
+  ];
+
+
+  const currentPage =
+    window.location.pathname
+      .split("/")
+      .pop()
+      .toLowerCase();
+
+
+  if (!allowedPages.includes(currentPage)) {
+    return;
+  }
+
+
+  /* =========================================
+     PAGE-SPECIFIC STORAGE KEY
+
+     Har page ka popup alag remember hoga.
+
+     Example:
+
+     test-series.html
+     institute.html?institute=pw
+     test-paper.html?institute=pw&batch=yakeen-1-0
+
+     Sabka alag popup state hoga.
+     ========================================= */
+
+  const pageIdentifier =
+    currentPage +
+    window.location.search;
+
+
+  const storageKey =
+    "srineetTelegramPopupClosed:" +
+    pageIdentifier;
+
+
+  /* =========================================
+     POPUP HTML
+     ========================================= */
 
   const popupHTML = `
-    <div class="telegram-popup" id="telegramPopup">
+
+    <div
+      class="telegram-popup"
+      id="telegramPopup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="telegramPopupTitle"
+    >
 
       <div class="telegram-popup-card">
 
+
+        <!-- CLOSE BUTTON -->
+
         <button
+          type="button"
           class="telegram-popup-close"
           id="telegramPopupClose"
-          aria-label="Close">
+          aria-label="Close Telegram popup"
+        >
           ×
         </button>
 
-        <div class="telegram-popup-icon">
+
+        <!-- TELEGRAM ICON -->
+
+        <div
+          class="telegram-popup-icon"
+          aria-hidden="true"
+        >
           ✈
         </div>
+
+
+        <!-- EYEBROW -->
 
         <div class="telegram-popup-eyebrow">
           SRINEET OFFICIAL
         </div>
 
-        <h2 class="telegram-popup-title">
+
+        <!-- TITLE -->
+
+        <h2
+          class="telegram-popup-title"
+          id="telegramPopupTitle"
+        >
           Telegram se jud jao! 🚀
         </h2>
 
+
+        <!-- MESSAGE -->
+
         <p class="telegram-popup-message">
-          <strong>New Tests, Notes, PYQs & important updates</strong>
-          — sabse pehle yahin. Website par naya link aane se pehle
+
+          <strong>
+            New Tests, Notes, PYQs & important updates
+          </strong>
+
+          — sabse pehle yahin.
+
+          Website par naya link aane se pehle
           Telegram check kar lena! 🔥
+
         </p>
+
+
+        <!-- JOIN BUTTON -->
 
         <a
           class="telegram-popup-join"
           href="${TELEGRAM_URL}"
           target="_blank"
           rel="noopener noreferrer"
-          id="telegramJoinButton">
+          id="telegramJoinButton"
+        >
           JOIN TELEGRAM →
         </a>
+
+
+        <!-- FOOTER NOTE -->
 
         <p class="telegram-popup-note">
           Stay updated • Stay ahead • Prepare smarter
@@ -52,10 +164,13 @@
       </div>
 
     </div>
+
   `;
 
 
-  /* Create popup */
+  /* =========================================
+     CREATE POPUP
+     ========================================= */
 
   document.body.insertAdjacentHTML(
     "beforeend",
@@ -63,14 +178,39 @@
   );
 
 
+  /* =========================================
+     GET ELEMENTS
+     ========================================= */
+
   const popup =
-    document.getElementById("telegramPopup");
+    document.getElementById(
+      "telegramPopup"
+    );
+
 
   const closeButton =
-    document.getElementById("telegramPopupClose");
+    document.getElementById(
+      "telegramPopupClose"
+    );
+
 
   const joinButton =
-    document.getElementById("telegramJoinButton");
+    document.getElementById(
+      "telegramJoinButton"
+    );
+
+
+  /* =========================================
+     SAFETY CHECK
+     ========================================= */
+
+  if (
+    !popup ||
+    !closeButton ||
+    !joinButton
+  ) {
+    return;
+  }
 
 
   /* =========================================
@@ -81,7 +221,19 @@
 
     popup.classList.add("active");
 
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow =
+      "hidden";
+
+
+    /* Focus close button for keyboard
+       accessibility */
+
+    setTimeout(function () {
+
+      closeButton.focus();
+
+    }, 100);
+
   }
 
 
@@ -95,10 +247,28 @@
 
     document.body.style.overflow = "";
 
-    localStorage.setItem(
-      "srineetTelegramPopupClosed",
-      Date.now().toString()
-    );
+
+    /*
+      Save close time ONLY for the
+      CURRENT PAGE.
+    */
+
+    try {
+
+      localStorage.setItem(
+        storageKey,
+        Date.now().toString()
+      );
+
+    } catch (error) {
+
+      console.warn(
+        "SRINEET popup storage unavailable.",
+        error
+      );
+
+    }
+
   }
 
 
@@ -113,15 +283,19 @@
 
 
   /* =========================================
-     CLICK BACKDROP TO CLOSE
+     BACKDROP CLICK
      ========================================= */
 
   popup.addEventListener(
     "click",
     function (event) {
 
-      if (event.target === popup) {
+      if (
+        event.target === popup
+      ) {
+
         closePopup();
+
       }
 
     }
@@ -129,17 +303,33 @@
 
 
   /* =========================================
-     JOIN BUTTON
+     JOIN TELEGRAM
      ========================================= */
 
   joinButton.addEventListener(
     "click",
     function () {
 
-      localStorage.setItem(
-        "srineetTelegramJoined",
-        "true"
-      );
+      /*
+        Remember that user clicked
+        Telegram button.
+      */
+
+      try {
+
+        localStorage.setItem(
+          "srineetTelegramJoined",
+          "true"
+        );
+
+      } catch (error) {
+
+        console.warn(
+          "SRINEET Telegram state could not be saved.",
+          error
+        );
+
+      }
 
     }
   );
@@ -153,8 +343,13 @@
     "keydown",
     function (event) {
 
-      if (event.key === "Escape") {
+      if (
+        event.key === "Escape" &&
+        popup.classList.contains("active")
+      ) {
+
         closePopup();
+
       }
 
     }
@@ -162,32 +357,63 @@
 
 
   /* =========================================
-     POPUP TIMING
-     Show again after 24 hours
+     CHECK LAST CLOSED TIME
+     
+     Popup 24 hours ke baad
+     same page par dobara show hoga.
      ========================================= */
 
-  const lastClosed =
-    localStorage.getItem(
-      "srineetTelegramPopupClosed"
+  let lastClosed = null;
+
+
+  try {
+
+    lastClosed =
+      localStorage.getItem(
+        storageKey
+      );
+
+  } catch (error) {
+
+    console.warn(
+      "SRINEET popup storage unavailable.",
+      error
     );
+
+  }
+
 
   const twentyFourHours =
     24 * 60 * 60 * 1000;
 
 
+  const now =
+    Date.now();
+
+
+  const lastClosedTime =
+    Number(lastClosed);
+
+
   const shouldShow =
     !lastClosed ||
-    Date.now() - Number(lastClosed) >
+    !Number.isFinite(lastClosedTime) ||
+    now - lastClosedTime >
     twentyFourHours;
 
 
+  /* =========================================
+     SHOW AFTER 1.2 SECONDS
+     ========================================= */
+
   if (shouldShow) {
 
-    setTimeout(
+    window.setTimeout(
       showPopup,
       1200
     );
 
   }
+
 
 })();
