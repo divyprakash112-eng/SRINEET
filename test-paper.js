@@ -1,8 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
 
-  const instituteId = params.get("institute") || "pw";
-  const batchId = params.get("batch") || "yakeen-1-0";
+  const instituteId = params.get("institute");
+  const batchId = params.get("batch");
+
+  /*
+   * IMPORTANT:
+   * Test Papers page can only open when a valid batch is selected.
+   * If user comes here directly or without a batch,
+   * send them back to Test Series.
+   */
+
+  if (!instituteId || !batchId) {
+    window.location.replace("test-series.html");
+    return;
+  }
 
   const batchMark = document.getElementById("batchMark");
   const instituteLabel = document.getElementById("instituteLabel");
@@ -33,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "pw-yakeen-1-0": {
       instituteId: "pw",
       name: "Yakeen 1.0",
-      subtitle: "NEET 2027 Complete Test Series",
       year: "2027",
       description:
         "Complete NEET preparation with exam-style full syllabus and chapter-wise tests.",
@@ -135,132 +146,78 @@ document.addEventListener("DOMContentLoaded", () => {
           type: "chapter"
         }
       ]
-    },
-
-    "pw-yakeen-2-0": {
-      instituteId: "pw",
-      name: "Yakeen 2.0",
-      subtitle: "NEET 2027 Test Series",
-      year: "2027",
-      description: "NEET 2027 exam-style practice tests.",
-      tests: []
-    },
-
-    "pw-neet-dropper": {
-      instituteId: "pw",
-      name: "NEET Dropper",
-      subtitle: "NEET 2027 Dropper Test Series",
-      year: "2027",
-      description: "Focused test practice for NEET droppers.",
-      tests: []
-    },
-
-    "pw-real-test": {
-      instituteId: "pw",
-      name: "Real Test",
-      subtitle: "NEET Real Exam Practice",
-      year: "2027",
-      description: "Practice under real NEET examination conditions.",
-      tests: []
     }
   };
 
-  function showError(message) {
-    if (!paperError) return;
+  const batch = batches[batchId];
 
-    paperError.textContent = message;
-    paperError.style.display = "block";
+  /*
+   * Unknown batch:
+   * Never show a fake Test Series page.
+   */
+  if (!batch) {
+    window.location.replace("test-series.html");
+    return;
   }
 
-  function hideError() {
-    if (!paperError) return;
+  const instituteName =
+    institutes[batch.instituteId] || "Institute";
 
-    paperError.style.display = "none";
+  if (batchMark) {
+    batchMark.textContent =
+      batch.instituteId === "pw" ? "PW" : "TS";
   }
 
-  function getStorageKey(testId) {
-    return `srineet_test_${testId}_completed`;
+  if (instituteLabel) {
+    instituteLabel.textContent = instituteName;
+  }
+
+  if (batchName) {
+    batchName.textContent = batch.name;
+  }
+
+  if (batchDescription) {
+    batchDescription.textContent = batch.description;
+  }
+
+  if (totalTests) {
+    totalTests.textContent =
+      String(batch.tests.length).padStart(2, "0");
+  }
+
+  if (batchMeta) {
+    batchMeta.textContent =
+      `NEET ${batch.year} • CBT Practice`;
   }
 
   function isCompleted(testId) {
-    return localStorage.getItem(getStorageKey(testId)) === "true";
+    return (
+      localStorage.getItem(
+        `srineet_test_${testId}_completed`
+      ) === "true"
+    );
   }
 
-  function renderTest(test) {
-    const completed = isCompleted(test.id);
-
-    const card = document.createElement("article");
-    card.className = "test-card";
-
-    const number = document.createElement("div");
-    number.className = "test-number";
-    number.textContent = String(test.number).padStart(2, "0");
-
-    const content = document.createElement("div");
-    content.className = "test-content";
-
-    const title = document.createElement("h3");
-    title.className = "test-title";
-    title.textContent = test.title;
-
-    const info = document.createElement("div");
-    info.className = "test-info";
-
-    info.innerHTML = `
-      <span>${test.questions} Questions</span>
-      <span>${test.duration} Minutes</span>
-      <span>${test.type === "full" ? "Full Test" : "Chapter Test"}</span>
-    `;
-
-    content.appendChild(title);
-    content.appendChild(info);
-
-    const action = document.createElement("div");
-    action.className = "test-action";
-
-    if (completed) {
-      const badge = document.createElement("span");
-      badge.className = "completed-badge";
-      badge.textContent = "Completed";
-      action.appendChild(badge);
-    }
-
-    const button = document.createElement("a");
-    button.className = "start-button";
-
-    button.href =
-      `tests/pw/yakeen-1-0/test-${String(test.number).padStart(2, "0")}.html`;
-
-    button.textContent = completed ? "Review Test" : "Start Test";
-
-    action.appendChild(button);
-
-    card.appendChild(number);
-    card.appendChild(content);
-    card.appendChild(action);
-
-    return card;
-  }
-
-  function renderTests(tests, filter = "all") {
+  function renderTests(filter = "all") {
     if (!testList) return;
 
     testList.innerHTML = "";
 
-    let filteredTests = tests;
+    let tests = batch.tests;
 
     if (filter === "full") {
-      filteredTests = tests.filter(test => test.type === "full");
+      tests = tests.filter(test => test.type === "full");
     }
 
     if (filter === "chapter") {
-      filteredTests = tests.filter(test => test.type === "chapter");
+      tests = tests.filter(test => test.type === "chapter");
     }
 
-    if (filteredTests.length === 0) {
+    if (tests.length === 0) {
       if (testEmpty) {
         testEmpty.style.display = "block";
-        testEmpty.textContent = "No tests available in this category yet.";
+        testEmpty.textContent =
+          "No tests available in this category yet.";
       }
 
       return;
@@ -270,106 +227,84 @@ document.addEventListener("DOMContentLoaded", () => {
       testEmpty.style.display = "none";
     }
 
-    filteredTests.forEach(test => {
-      testList.appendChild(renderTest(test));
+    tests.forEach(test => {
+      const card = document.createElement("article");
+      card.className = "test-card";
+
+      const number = document.createElement("div");
+      number.className = "test-number";
+      number.textContent =
+        String(test.number).padStart(2, "0");
+
+      const content = document.createElement("div");
+      content.className = "test-content";
+
+      const title = document.createElement("h3");
+      title.className = "test-title";
+      title.textContent = test.title;
+
+      const info = document.createElement("div");
+      info.className = "test-info";
+
+      info.innerHTML = `
+        <span>${test.questions} Questions</span>
+        <span>${test.duration} Minutes</span>
+        <span>${test.type === "full" ? "Full Test" : "Chapter Test"}</span>
+      `;
+
+      content.appendChild(title);
+      content.appendChild(info);
+
+      const action = document.createElement("div");
+      action.className = "test-action";
+
+      if (isCompleted(test.id)) {
+        const completed = document.createElement("span");
+        completed.className = "completed-badge";
+        completed.textContent = "Completed";
+        action.appendChild(completed);
+      }
+
+      const button = document.createElement("a");
+      button.className = "start-button";
+
+      button.href =
+        `tests/${batch.instituteId}/${batchId}/test-${String(
+          test.number
+        ).padStart(2, "0")}.html`;
+
+      button.textContent =
+        isCompleted(test.id)
+          ? "Review Test"
+          : "Start Test";
+
+      action.appendChild(button);
+
+      card.appendChild(number);
+      card.appendChild(content);
+      card.appendChild(action);
+
+      testList.appendChild(card);
     });
   }
 
-  function initialize() {
-    hideError();
-
-    const instituteName =
-      institutes[instituteId] || "Physics Wallah";
-
-    const batch =
-      batches[batchId];
-
-    if (!batch) {
-      if (batchName) {
-        batchName.textContent = "Test Series";
-      }
-
-      if (instituteLabel) {
-        instituteLabel.textContent = instituteName;
-      }
-
-      if (batchMark) {
-        batchMark.textContent = "TS";
-      }
-
-      if (totalTests) {
-        totalTests.textContent = "00";
-      }
-
-      if (batchMeta) {
-        batchMeta.textContent = "NEET 2027 • CBT Practice";
-      }
-
-      if (batchDescription) {
-        batchDescription.textContent =
-          "This test series is being prepared.";
-      }
-
-      if (testList) {
-        testList.innerHTML = "";
-      }
-
-      if (testEmpty) {
-        testEmpty.style.display = "block";
-        testEmpty.textContent =
-          "Tests for this series will be available soon.";
-      }
-
-      return;
-    }
-
-    const tests = batch.tests || [];
-
-    if (batchMark) {
-      batchMark.textContent =
-        instituteId === "pw" ? "PW" : "TS";
-    }
-
-    if (instituteLabel) {
-      instituteLabel.textContent =
-        institutes[batch.instituteId] || instituteName;
-    }
-
-    if (batchName) {
-      batchName.textContent = batch.name;
-    }
-
-    if (batchDescription) {
-      batchDescription.textContent = batch.description;
-    }
-
-    if (totalTests) {
-      totalTests.textContent =
-        String(tests.length).padStart(2, "0");
-    }
-
-    if (batchMeta) {
-      batchMeta.textContent =
-        `NEET ${batch.year} • CBT Practice`;
-    }
-
-    renderTests(tests);
-
-    filterButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        filterButtons.forEach(btn => {
-          btn.classList.remove("active");
-        });
-
-        button.classList.add("active");
-
-        const filter =
-          button.dataset.filter || "all";
-
-        renderTests(tests, filter);
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach(btn => {
+        btn.classList.remove("active");
       });
-    });
-  }
 
-  initialize();
+      button.classList.add("active");
+
+      renderTests(
+        button.dataset.filter || "all"
+      );
+    });
+  });
+
+  renderTests("all");
+
+  if (paperError) {
+    paperError.style.display = "none";
+  }
 });
