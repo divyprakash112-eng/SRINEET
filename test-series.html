@@ -2,25 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
     content="SRINEET Test Series — Practice like the real exam."
   >
 
-  <meta
-    name="theme-color"
-    content="#071f55"
-  >
+  <meta name="theme-color" content="#071f55">
 
   <title>Test Series | SRINEET</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -29,180 +21,153 @@
     rel="stylesheet"
   >
 
-  <!-- Test Series CSS -->
   <link rel="stylesheet" href="test-series.css">
 </head>
 
 <body>
 
-  <div class="test-series-page">
+<div class="test-series-page">
 
-    <!-- HEADER -->
-    <header class="series-header">
+  <!-- HEADER -->
+  <header class="series-header">
+    <div class="series-header-inner">
 
-      <div class="series-header-inner">
+      <a
+        href="index.html"
+        class="back-button"
+        aria-label="Back to SRINEET home"
+      >
+        ←
+      </a>
 
-        <a
-          href="index.html"
-          class="back-button"
-          aria-label="Back to SRINEET home"
-        >
-          ←
-        </a>
+      <a
+        href="index.html"
+        class="series-brand"
+        aria-label="SRINEET Home"
+      >
+        <span class="series-logo">S</span>
 
-        <a
-          href="index.html"
-          class="series-brand"
-          aria-label="SRINEET Home"
-        >
-          <span class="series-logo">S</span>
+        <span>
+          <strong>SRINEET</strong>
+          <small>COMPLETE NEET PREPARATION</small>
+        </span>
+      </a>
 
-          <span>
-            <strong>SRINEET</strong>
-            <small>COMPLETE NEET PREPARATION</small>
-          </span>
-        </a>
+      <div class="header-spacer"></div>
 
-        <div class="header-spacer"></div>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="series-hero">
+
+      <div class="series-hero-glow"></div>
+
+      <div class="series-hero-content">
+
+        <span class="series-kicker">
+          SRINEET • EXAM PRACTICE
+        </span>
+
+        <h1>
+          Test <span>Series</span>
+        </h1>
+
+        <p>
+          Practice like the real exam.
+        </p>
+
+        <div class="series-meta">
+          <span>10 Leading NEET Coaching Institutes</span>
+          <i></i>
+          <span>CBT Practice</span>
+        </div>
 
       </div>
 
-    </header>
+    </section>
 
 
-    <!-- MAIN -->
-    <main>
+    <!-- INSTITUTES -->
+    <section class="institutes-section">
 
-      <!-- PAGE INTRO -->
-      <section class="series-hero">
+      <div class="section-heading">
 
-        <div class="series-hero-glow"></div>
+        <div>
+          <span>TEST SERIES LIBRARY</span>
 
-        <div class="series-hero-content">
-
-          <span class="series-kicker">
-            SRINEET • EXAM PRACTICE
-          </span>
-
-          <h1>
-            Test
-            <span>Series</span>
-          </h1>
-
-          <p>
-            Practice like the real exam.
-          </p>
-
-          <div class="series-meta">
-            <span>10 Leading NEET Coaching Institutes</span>
-            <i></i>
-            <span>CBT Practice</span>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- INSTITUTES -->
-      <section class="institutes-section">
-
-        <div class="section-heading">
-
-          <div>
-            <span>TEST SERIES LIBRARY</span>
-
-            <h2>
-              Choose your
-              <strong>institute.</strong>
-            </h2>
-          </div>
-
-          <p>
-            Select an institute to explore
-            its available test batches.
-          </p>
-
-        </div>
-
-
-        <!--
-          Institute cards are generated
-          automatically by test-series.js
-        -->
-
-        <div
-          class="institute-grid"
-          id="instituteGrid"
-          aria-live="polite"
-        ></div>
-
-
-        <!-- Loading -->
-        <div
-          class="series-loading"
-          id="seriesLoading"
-        >
-          <div class="loading-spinner"></div>
-          <span>Loading test series...</span>
-        </div>
-
-
-        <!-- Error -->
-        <div
-          class="series-error"
-          id="seriesError"
-          hidden
-        >
-          <strong>
-            Unable to load test series.
-          </strong>
-
-          <span>
-            Please refresh the page and try again.
-          </span>
-        </div>
-
-      </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-    <footer class="series-footer">
-
-      <div class="series-footer-inner">
-
-        <div class="footer-brand">
-
-          <span class="footer-logo">
-            S
-          </span>
-
-          <div>
-            <strong>SRINEET</strong>
-            <small>Complete NEET Preparation</small>
-          </div>
-
+          <h2>
+            Choose your <strong>institute.</strong>
+          </h2>
         </div>
 
         <p>
-          Practice consistently. Prepare confidently.
+          Select an institute to explore its available test batches.
         </p>
-
-        <span class="footer-copy">
-          © 2026 SRINEET
-        </span>
 
       </div>
 
-    </footer>
 
-  </div>
+      <!-- INSTITUTE CARDS -->
+      <div
+        class="institute-grid"
+        id="instituteGrid"
+        aria-live="polite"
+      ></div>
 
 
-  <!-- Test Series JavaScript -->
-  <script src="test-series.js"></script>
+      <!-- ERROR ONLY -->
+      <div
+        class="series-error"
+        id="seriesError"
+        hidden
+      >
+        <strong>Unable to load test series.</strong>
+        <span>Please refresh the page and try again.</span>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="series-footer">
+
+    <div class="series-footer-inner">
+
+      <div class="footer-brand">
+
+        <span class="footer-logo">
+          S
+        </span>
+
+        <div>
+          <strong>SRINEET</strong>
+          <small>Complete NEET Preparation</small>
+        </div>
+
+      </div>
+
+      <p>
+        Practice consistently. Prepare confidently.
+      </p>
+
+      <span class="footer-copy">
+        © 2026 SRINEET
+      </span>
+
+    </div>
+
+  </footer>
+
+</div>
+
+
+<script src="test-series.js"></script>
 
 </body>
 </html>
