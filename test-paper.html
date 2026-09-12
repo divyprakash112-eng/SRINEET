@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -13,23 +14,49 @@
     content="SRINEET Test Papers - Complete NEET CBT Practice"
   >
 
+  <meta
+    name="theme-color"
+    content="#071f55"
+  >
+
   <title>Test Papers | SRINEET</title>
 
-  <link rel="stylesheet" href="test-paper.css">
 
-  <!-- SRINEET Telegram Popup -->
-  <link rel="stylesheet" href="telegram-popup.css">
+  <!-- =====================================================
+       TEST PAPER CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="test-paper.css"
+  >
+
+
+  <!-- =====================================================
+       TELEGRAM POPUP CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="telegram-popup.css"
+  >
+
 </head>
+
 
 <body>
 
-  <!-- =========================
+
+  <!-- =====================================================
        HEADER
-  ========================== -->
+  ====================================================== -->
 
   <header class="paper-header">
 
     <div class="paper-header-inner">
+
+
+      <!-- BACK TO TEST SERIES -->
 
       <a
         href="test-series.html"
@@ -39,23 +66,42 @@
         <span>←</span>
       </a>
 
-      <a href="index.html" class="paper-brand">
+
+      <!-- SRINEET BRAND -->
+
+      <a
+        href="index.html"
+        class="paper-brand"
+        aria-label="SRINEET Home"
+      >
 
         <div class="brand-logo">
           S
         </div>
 
         <div class="brand-text">
-          <strong>SRINEET</strong>
-          <span>COMPLETE NEET PREPARATION</span>
+
+          <strong>
+            SRINEET
+          </strong>
+
+          <span>
+            COMPLETE NEET PREPARATION
+          </span>
+
         </div>
 
       </a>
 
+
+      <!-- HEADER LABEL -->
+
       <div class="header-right">
+
         <span class="header-label">
           TEST PAPERS
         </span>
+
       </div>
 
     </div>
@@ -63,43 +109,85 @@
   </header>
 
 
-  <!-- =========================
-       HERO
-  ========================== -->
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
 
   <main>
 
+
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
+
     <section class="paper-hero">
 
-      <div class="paper-glow glow-one"></div>
-      <div class="paper-glow glow-two"></div>
+
+      <!-- Decorative glow -->
+
+      <div
+        class="paper-glow glow-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="paper-glow glow-two"
+        aria-hidden="true"
+      ></div>
+
 
       <div class="paper-hero-grid">
 
         <div class="paper-hero-inner">
 
+
+          <!-- HERO CONTENT -->
+
           <div class="paper-hero-copy">
 
+
+            <!-- KICKER -->
+
             <div class="paper-kicker">
+
               <span></span>
+
               SRINEET • CBT PRACTICE
+
             </div>
 
 
+
+            <!-- BATCH TITLE -->
+
             <div class="title-row">
 
-              <div class="batch-mark" id="batchMark">
+
+              <!-- Dynamic batch mark -->
+
+              <div
+                class="batch-mark"
+                id="batchMark"
+              >
                 TS
               </div>
 
+
               <div>
+
+
+                <!-- Dynamic institute -->
 
                 <div
                   class="institute-label"
                   id="instituteLabel"
                 >
-                  Physics Wallah
+                  Loading...
                 </div>
+
+
+                <!-- Dynamic batch name -->
 
                 <h1 id="batchName">
                   Loading...
@@ -110,12 +198,21 @@
             </div>
 
 
+
+            <!-- Dynamic description -->
+
             <p id="batchDescription">
               Select a test and start your exam practice.
             </p>
 
 
+
+            <!-- SUMMARY -->
+
             <div class="paper-summary">
+
+
+              <!-- TEST COUNT -->
 
               <div class="summary-item">
 
@@ -130,8 +227,13 @@
               </div>
 
 
-              <div class="summary-divider"></div>
+              <div
+                class="summary-divider"
+                aria-hidden="true"
+              ></div>
 
+
+              <!-- MODE -->
 
               <div class="summary-item">
 
@@ -146,6 +248,10 @@
               </div>
 
             </div>
+
+
+
+            <!-- ERROR -->
 
             <div
               class="paper-error"
@@ -164,24 +270,33 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- ===================================================
          TEST LIBRARY
-    ========================== -->
+    ==================================================== -->
 
     <section class="papers-section">
+
+
+      <!-- SECTION HEADER -->
 
       <div class="papers-heading">
 
         <div>
 
+
           <div class="section-kicker">
             TEST LIBRARY
           </div>
+
 
           <h2>
             Select your
             <span>test.</span>
           </h2>
+
+
+          <!-- Dynamic batch metadata -->
 
           <p id="batchMeta">
             NEET 2027 • Exam-style practice
@@ -190,9 +305,13 @@
         </div>
 
 
-        <!-- FILTERS -->
+
+        <!-- =================================================
+             FILTERS
+        ================================================== -->
 
         <div class="test-filter">
+
 
           <button
             type="button"
@@ -202,6 +321,7 @@
             All Tests
           </button>
 
+
           <button
             type="button"
             class="filter-button"
@@ -209,6 +329,7 @@
           >
             Full Tests
           </button>
+
 
           <button
             type="button"
@@ -223,15 +344,21 @@
       </div>
 
 
-      <!-- =========================
-           TEST LIST
-      ========================== -->
+
+      <!-- =================================================
+           DYNAMIC TEST LIST
+      ================================================== -->
 
       <div
         class="test-list"
         id="testList"
       ></div>
 
+
+
+      <!-- =================================================
+           EMPTY STATE
+      ================================================== -->
 
       <div
         class="test-empty"
@@ -246,19 +373,24 @@
   </main>
 
 
-  <!-- =========================
+
+  <!-- =====================================================
        FOOTER
-  ========================== -->
+  ====================================================== -->
 
   <footer class="paper-footer">
 
     <div class="footer-inner">
+
+
+      <!-- FOOTER BRAND -->
 
       <div class="footer-brand">
 
         <div class="footer-logo">
           S
         </div>
+
 
         <div>
 
@@ -275,6 +407,7 @@
       </div>
 
 
+
       <div class="footer-copy">
         Practice consistently. Prepare confidently.
       </div>
@@ -289,18 +422,21 @@
   </footer>
 
 
-  <!-- =========================
-       EXISTING JAVASCRIPT
-  ========================== -->
+
+  <!-- =====================================================
+       TEST PAPER JAVASCRIPT
+  ====================================================== -->
 
   <script src="test-paper.js"></script>
 
 
-  <!-- =========================
-       TELEGRAM POPUP
-  ========================== -->
+
+  <!-- =====================================================
+       TELEGRAM POPUP JAVASCRIPT
+  ====================================================== -->
 
   <script src="telegram-popup.js"></script>
+
 
 </body>
 </html>
