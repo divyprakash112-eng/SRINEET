@@ -1,42 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <meta
     name="description"
-    content="SRINEET Institute Test Series"
+    content="SRINEET Institute Test Series - Complete NEET Preparation"
   >
 
-  <meta name="theme-color" content="#071f55">
+  <meta
+    name="theme-color"
+    content="#071f55"
+  >
 
   <title>Institute | SRINEET</title>
 
+
+  <!-- =====================================================
+       GOOGLE FONTS
+  ====================================================== -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <!-- Institute Page CSS -->
-  <link rel="stylesheet" href="institute.css">
 
-  <!-- Telegram Popup CSS -->
-  <link rel="stylesheet" href="telegram-popup.css">
+  <!-- =====================================================
+       INSTITUTE PAGE CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="institute.css"
+  >
+
+
+  <!-- =====================================================
+       TELEGRAM POPUP CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="telegram-popup.css"
+  >
 
 </head>
+
 
 <body>
 
 <div class="institute-page">
 
-  <!-- HEADER -->
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
   <header class="institute-header">
 
     <div class="institute-header-inner">
+
+
+      <!-- BACK TO TEST SERIES -->
 
       <a
         href="test-series.html"
@@ -46,20 +85,35 @@
         ←
       </a>
 
+
+      <!-- SRINEET BRAND -->
+
       <a
         href="index.html"
         class="institute-brand"
         aria-label="SRINEET Home"
       >
 
-        <span class="brand-logo">S</span>
+        <span class="brand-logo">
+          S
+        </span>
 
         <span class="brand-text">
-          <strong>SRINEET</strong>
-          <small>COMPLETE NEET PREPARATION</small>
+
+          <strong>
+            SRINEET
+          </strong>
+
+          <small>
+            COMPLETE NEET PREPARATION
+          </small>
+
         </span>
 
       </a>
+
+
+      <!-- HEADER SPACER -->
 
       <div class="header-spacer"></div>
 
@@ -68,18 +122,43 @@
   </header>
 
 
-  <!-- MAIN -->
+
+  <!-- =====================================================
+       MAIN CONTENT
+  ====================================================== -->
+
   <main>
 
-    <!-- INSTITUTE HERO -->
+
+    <!-- ===================================================
+         INSTITUTE HERO
+    ==================================================== -->
+
     <section class="institute-hero">
 
-      <div class="hero-orbit orbit-one"></div>
-      <div class="hero-orbit orbit-two"></div>
 
-      <div class="hero-grid"></div>
+      <!-- Background decoration -->
+
+      <div
+        class="hero-orbit orbit-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="hero-orbit orbit-two"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="hero-grid"
+        aria-hidden="true"
+      ></div>
+
 
       <div class="institute-hero-inner">
+
+
+        <!-- HERO LEFT -->
 
         <div class="hero-left">
 
@@ -87,16 +166,25 @@
             SRINEET • TEST SERIES
           </span>
 
+
           <div class="institute-heading-row">
+
+
+            <!-- Dynamic Institute Logo -->
 
             <div
               class="hero-institute-logo"
               id="heroInstituteLogo"
+              aria-hidden="true"
             >
               --
             </div>
 
+
             <div>
+
+
+              <!-- Dynamic Institute Number -->
 
               <span
                 class="hero-order"
@@ -104,6 +192,9 @@
               >
                 INSTITUTE
               </span>
+
+
+              <!-- Dynamic Institute Name -->
 
               <h1 id="instituteName">
                 Loading...
@@ -113,9 +204,15 @@
 
           </div>
 
+
+          <!-- Dynamic Institute Description -->
+
           <p id="instituteDescription">
             Explore available test batches and practice like the real exam.
           </p>
+
+
+          <!-- Hero Tags -->
 
           <div class="hero-tags">
 
@@ -136,19 +233,30 @@
         </div>
 
 
+
+        <!-- HERO RIGHT -->
+
         <div class="hero-side-card">
 
-          <span>AVAILABLE</span>
+          <span>
+            AVAILABLE
+          </span>
+
+
+          <!-- Dynamic Batch Count -->
 
           <strong id="batchCount">
             00
           </strong>
 
+
           <small>
             TEST BATCHES
           </small>
 
+
           <div class="side-line"></div>
+
 
           <p>
             Select a batch to view its tests.
@@ -161,8 +269,15 @@
     </section>
 
 
-    <!-- BATCHES -->
+
+    <!-- ===================================================
+         BATCH SECTION
+    ==================================================== -->
+
     <section class="batches-section">
+
+
+      <!-- Section Heading -->
 
       <div class="batches-heading">
 
@@ -172,11 +287,13 @@
             TEST LIBRARY
           </span>
 
+
           <h2>
             Choose your <strong>batch.</strong>
           </h2>
 
         </div>
+
 
         <p>
           Explore test collections available for this institute.
@@ -185,11 +302,21 @@
       </div>
 
 
+
+      <!-- =================================================
+           DYNAMIC BATCH GRID
+      ================================================== -->
+
       <div
         class="batch-grid"
         id="batchGrid"
       ></div>
 
+
+
+      <!-- =================================================
+           EMPTY STATE
+      ================================================== -->
 
       <div
         class="batch-empty"
@@ -201,9 +328,11 @@
           !
         </div>
 
+
         <h3>
           No batches available
         </h3>
+
 
         <p>
           Test batches for this institute will appear here.
@@ -211,6 +340,11 @@
 
       </div>
 
+
+
+      <!-- =================================================
+           ERROR STATE
+      ================================================== -->
 
       <div
         class="institute-error"
@@ -222,9 +356,11 @@
           Institute not found.
         </strong>
 
+
         <p>
           Please return to Test Series and choose an institute.
         </p>
+
 
         <a href="test-series.html">
           ← Back to Test Series
@@ -237,16 +373,24 @@
   </main>
 
 
-  <!-- FOOTER -->
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
   <footer class="institute-footer">
 
     <div class="footer-inner">
+
+
+      <!-- Footer Brand -->
 
       <div class="footer-brand">
 
         <span class="footer-logo">
           S
         </span>
+
 
         <div>
 
@@ -276,21 +420,25 @@
 
   </footer>
 
+
 </div>
 
 
-<!-- =========================================
-     EXISTING INSTITUTE JAVASCRIPT
-     ========================================= -->
+
+<!-- =====================================================
+     INSTITUTE JAVASCRIPT
+====================================================== -->
 
 <script src="institute.js"></script>
 
 
-<!-- =========================================
-     SRINEET TELEGRAM POPUP
-     ========================================= -->
+
+<!-- =====================================================
+     TELEGRAM POPUP JAVASCRIPT
+====================================================== -->
 
 <script src="telegram-popup.js"></script>
+
 
 </body>
 </html>
