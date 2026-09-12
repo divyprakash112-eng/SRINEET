@@ -1,726 +1,679 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
-    <meta
-        name="description"
-        content="SRINEET — Complete NEET Preparation"
-    >
+  <meta
+    name="description"
+    content="SRINEET - Complete NEET Preparation"
+  >
 
-    <meta name="theme-color" content="#061A40">
+  <meta name="theme-color" content="#061A40">
 
-    <title>SRINEET | Complete NEET Preparation</title>
+  <title>SRINEET | Complete NEET Preparation</title>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <link
-        rel="stylesheet"
-        href="/assets/css/app.css"
-    >
-
-    <link
-        rel="manifest"
-        href="/manifest.webmanifest"
-    >
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================================
-         PAGE APP
-    ========================================== -->
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-    <div id="app">
+  <header class="site-header">
 
-        <!-- Header injected by app.js -->
-        <header id="site-header"></header>
+    <button
+      class="icon-button menu-button"
+      id="menuBtn"
+      aria-label="Open menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
+    <a href="#" class="brand" onclick="goHome(); return false;">
 
-        <!-- =====================================
-             MAIN
-        ====================================== -->
+      <div class="brand-logo">
+        <span>S</span>
+      </div>
 
-        <main>
+      <div class="brand-text">
+        <strong>SRINEET</strong>
+        <small>COMPLETE NEET PREPARATION</small>
+      </div>
 
-            <!-- =================================
-                 HERO
-            ================================== -->
+    </a>
 
-            <section class="hero">
+    <button
+      class="icon-button announcement-button"
+      id="announcementBtn"
+      aria-label="Announcements"
+    >
+      <span class="medical-icon">⚕</span>
+      <i></i>
+    </button>
 
-                <div class="hero-inner">
+  </header>
 
-                    <div class="hero-copy">
 
-                        <div class="hero-topline">
+  <!-- =========================
+       DRAWER
+  ========================== -->
 
-                            <span class="status-dot"></span>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
 
-                            <span>NEET 2027</span>
+  <aside class="drawer" id="drawer">
 
-                        </div>
+    <div class="drawer-top">
 
+      <div>
+        <span class="eyebrow">SRINEET</span>
+        <h2>Study Menu</h2>
+      </div>
 
-                        <h1>
-                            Time is your
-                            <span>advantage.</span>
-                        </h1>
-
-
-                        <p class="hero-description">
-                            Make every day count.
-                            Prepare with focus, consistency and confidence.
-                        </p>
-
-
-                        <div class="hero-meta">
-
-                            <span class="live-dot"></span>
-
-                            <strong id="countdown-status">
-                                Keep going.
-                            </strong>
-
-                            <span class="hero-separator">•</span>
-
-                            <span>
-                                Your preparation starts today.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Countdown -->
-
-                    <div class="countdown-wrapper">
-
-                        <div class="countdown-date">
-                            02 MAY 2027
-                        </div>
-
-
-                        <div class="countdown-grid">
-
-                            <div class="countdown-box">
-
-                                <strong id="days">
-                                    000
-                                </strong>
-
-                                <span>DAYS</span>
-
-                            </div>
-
-
-                            <div class="countdown-box">
-
-                                <strong id="hours">
-                                    00
-                                </strong>
-
-                                <span>HRS</span>
-
-                            </div>
-
-
-                            <div class="countdown-box">
-
-                                <strong id="minutes">
-                                    00
-                                </strong>
-
-                                <span>MIN</span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================
-                 DR SRISHTI BANNER
-            ================================== -->
-
-            <section class="container">
-
-                <div class="medical-banner">
-
-                    <div class="medical-grid"></div>
-
-
-                    <div class="medical-content">
-
-                        <div class="medical-label">
-                            <span></span>
-                            MEDICAL EXCELLENCE
-                        </div>
-
-
-                        <div class="medical-small">
-                            DREAM • DISCIPLINE • DESTINATION
-                        </div>
-
-
-                        <h2>
-                            DR
-                            <strong>SRISHTI</strong>
-                        </h2>
-
-
-                        <div class="medical-line"></div>
-
-
-                        <p>
-                            Study with purpose.<br>
-                            Prepare with confidence.
-                        </p>
-
-                    </div>
-
-
-                    <div class="ecg-art">
-
-                        <svg
-                            viewBox="0 0 520 180"
-                            role="img"
-                            aria-label="Medical ECG illustration"
-                        >
-
-                            <path
-                                d="M10 92
-                                   H145
-                                   L175 92
-                                   L205 42
-                                   L235 145
-                                   L270 92
-                                   H390
-                                   L420 60
-                                   L455 92
-                                   H510"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-
-                            <circle
-                                cx="300"
-                                cy="92"
-                                r="38"
-                                fill="currentColor"
-                                opacity=".12"
-                            />
-
-                            <rect
-                                x="275"
-                                y="67"
-                                width="55"
-                                height="55"
-                                rx="14"
-                                fill="currentColor"
-                            />
-
-                            <path
-                                d="M302 78 V111 M285 94.5 H319"
-                                stroke="white"
-                                stroke-width="5"
-                                stroke-linecap="round"
-                            />
-
-                        </svg>
-
-                    </div>
-
-
-                    <div class="medical-focus">
-
-                        <span class="status-dot"></span>
-
-                        <div>
-                            <strong>FOCUS</strong>
-                            <small>ON YOUR DREAM</small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="medical-footer-left">
-                        SRINEET
-                    </div>
-
-
-                    <div class="medical-footer-right">
-                        COMPLETE NEET PREPARATION
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================
-                 PREPARATION HUB
-            ================================== -->
-
-            <section class="container preparation-section">
-
-                <div class="section-heading">
-
-                    <div class="section-kicker">
-                        YOUR PREPARATION HUB
-                    </div>
-
-
-                    <h2>
-                        Everything you need.
-                        <span>Nothing you don't.</span>
-                    </h2>
-
-
-                    <div class="heading-decoration">
-
-                        <span></span>
-                        <span></span>
-                        <span></span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Hub Cards -->
-
-                <div
-                    id="preparation-grid"
-                    class="preparation-grid"
-                >
-
-                    <!-- Cards injected by app.js -->
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================
-                 TODAY'S MISSION
-            ================================== -->
-
-            <section class="container dashboard-section">
-
-                <div class="section-heading compact">
-
-                    <div class="section-kicker">
-                        TODAY
-                    </div>
-
-                    <h2>
-                        Your mission.
-                    </h2>
-
-                </div>
-
-
-                <div class="dashboard-grid">
-
-                    <article class="info-card">
-
-                        <div class="info-card-icon">
-                            ✓
-                        </div>
-
-                        <div>
-
-                            <span class="card-label">
-                                CURRENT STREAK
-                            </span>
-
-                            <strong id="home-streak">
-                                0 days
-                            </strong>
-
-                            <p>
-                                Start your consistency journey.
-                            </p>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="info-card">
-
-                        <div class="info-card-icon">
-                            ↗
-                        </div>
-
-                        <div>
-
-                            <span class="card-label">
-                                TARGET SCORE
-                            </span>
-
-                            <strong id="home-target">
-                                Not set
-                            </strong>
-
-                            <p>
-                                Set your NEET target locally.
-                            </p>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="info-card">
-
-                        <div class="info-card-icon">
-                            ◷
-                        </div>
-
-                        <div>
-
-                            <span class="card-label">
-                                STUDY TIME
-                            </span>
-
-                            <strong id="home-study-time">
-                                0 min
-                            </strong>
-
-                            <p>
-                                Focused study recorded on this device.
-                            </p>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================
-                 CONTINUE STUDYING
-            ================================== -->
-
-            <section
-                id="continue-section"
-                class="container continue-section"
-            >
-
-                <div class="section-heading compact">
-
-                    <div class="section-kicker">
-                        PICK UP WHERE YOU LEFT
-                    </div>
-
-                    <h2>
-                        Continue studying.
-                    </h2>
-
-                </div>
-
-
-                <div id="continue-card">
-
-                    <!-- Rendered by app.js -->
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================
-                 WHY SRINEET
-            ================================== -->
-
-            <section class="container why-section">
-
-                <div class="why-card">
-
-                    <div class="section-kicker">
-                        WHY SRINEET
-                    </div>
-
-
-                    <h2>
-                        Built for serious preparation.
-                    </h2>
-
-
-                    <div class="why-list">
-
-                        <div class="why-item">
-
-                            <div class="why-icon">
-                                ✓
-                            </div>
-
-                            <div>
-                                <strong>Focused</strong>
-                                <span>No unnecessary clutter</span>
-                            </div>
-
-                        </div>
-
-
-                        <div class="why-item">
-
-                            <div class="why-icon">
-                                ◈
-                            </div>
-
-                            <div>
-                                <strong>Organised</strong>
-                                <span>Resources in one place</span>
-                            </div>
-
-                        </div>
-
-
-                        <div class="why-item">
-
-                            <div class="why-icon">
-                                ⚡
-                            </div>
-
-                            <div>
-                                <strong>Fast</strong>
-                                <span>Made for mobile learning</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-        </main>
-
-
-        <!-- Footer injected by app.js -->
-
-        <footer id="site-footer"></footer>
+      <button class="close-button" id="closeDrawer">×</button>
 
     </div>
 
+    <nav class="drawer-nav">
 
-    <!-- =========================================
-         DRAWER
-    ========================================== -->
+      <button onclick="goHome()">
+        <span class="nav-number">01</span>
+        <span>Home</span>
+        <b>→</b>
+      </button>
 
-    <div
-        id="drawer-backdrop"
-        class="drawer-backdrop"
-        aria-hidden="true"
-    ></div>
+      <button onclick="openFeature('tests')">
+        <span class="nav-number">02</span>
+        <span>Test Series</span>
+        <b>→</b>
+      </button>
+
+      <button onclick="openFeature('pyq')">
+        <span class="nav-number">03</span>
+        <span>PYQ Chapterwise</span>
+        <b>→</b>
+      </button>
+
+      <button onclick="openFeature('notes')">
+        <span class="nav-number">04</span>
+        <span>Smart Notes</span>
+        <b>→</b>
+      </button>
+
+      <button onclick="openFeature('practice')">
+        <span class="nav-number">05</span>
+        <span>Practice Zone</span>
+        <b>→</b>
+      </button>
+
+    </nav>
+
+    <div class="drawer-bottom">
+
+      <div class="mini-logo">S</div>
+
+      <div>
+        <strong>SRINEET</strong>
+        <small>Complete NEET Preparation</small>
+      </div>
+
+    </div>
+
+  </aside>
 
 
-    <aside
-        id="study-drawer"
-        class="study-drawer"
-        aria-hidden="true"
-    >
+  <!-- =========================
+       MAIN APP
+  ========================== -->
 
-        <div class="drawer-header">
+  <main id="app">
 
-            <div>
+    <!-- HOME -->
+    <section id="homePage" class="page active">
 
-                <span class="drawer-kicker">
-                    SRINEET
-                </span>
+      <!-- HERO -->
 
-                <h2>
-                    Study Menu
-                </h2>
+      <section class="hero">
 
+        <div class="hero-grid"></div>
+
+        <div class="hero-content">
+
+          <div class="hero-left">
+
+            <div class="neet-label">
+              <span></span>
+              NEET 2027
             </div>
 
-
-            <button
-                id="drawer-close"
-                class="drawer-close"
-                aria-label="Close menu"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <nav class="drawer-nav">
-
-            <a href="/" class="drawer-link">
-                <span class="drawer-icon">⌂</span>
-                <span>Home</span>
-            </a>
-
-
-            <a
-                href="/test-series/"
-                class="drawer-link"
-            >
-                <span class="drawer-icon">▣</span>
-                <span>Test Series</span>
-            </a>
-
-
-            <a
-                href="/pyq/"
-                class="drawer-link"
-            >
-                <span class="drawer-icon">◈</span>
-                <span>PYQ Chapterwise</span>
-            </a>
-
-
-            <a
-                href="/notes/"
-                class="drawer-link"
-            >
-                <span class="drawer-icon">▤</span>
-                <span>Smart Notes</span>
-            </a>
-
-
-            <a
-                href="/practice/"
-                class="drawer-link"
-            >
-                <span class="drawer-icon">✓</span>
-                <span>Practice Zone</span>
-            </a>
-
-        </nav>
-
-
-        <div class="drawer-bottom">
-
-            <span>
-                Focused preparation.
-            </span>
-
-            <strong>
-                SRINEET
-            </strong>
-
-        </div>
-
-    </aside>
-
-
-    <!-- =========================================
-         TELEGRAM MODAL
-    ========================================== -->
-
-    <div
-        id="telegram-modal"
-        class="modal-backdrop"
-        aria-hidden="true"
-    >
-
-        <div
-            class="telegram-modal"
-            role="dialog"
-            aria-modal="true"
-        >
-
-            <button
-                id="telegram-close"
-                class="modal-close"
-                aria-label="Close"
-            >
-                ×
-            </button>
-
-
-            <div class="telegram-logo">
-                ✈
-            </div>
-
-
-            <div class="section-kicker">
-                SRINEET COMMUNITY
-            </div>
-
-
-            <h2>
-                Stay connected with SRINEET.
-            </h2>
-
+            <h1>
+              Time is your
+              <em>advantage.</em>
+            </h1>
 
             <p>
-                Get important updates, preparation resources
-                and announcements on our official Telegram channel.
+              Make every day count.
             </p>
 
+            <div class="hero-status">
+              <span class="pulse"></span>
+              <strong id="heroSeconds">09</strong>
+              seconds remaining
+              <i>•</i>
+              Keep going.
+            </div>
 
-            <div class="telegram-actions">
+          </div>
 
-                <a
-                    id="telegram-join"
-                    class="btn btn-primary"
-                    href="https://t.me/srineetofficial"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Join Telegram
-                </a>
+          <div class="hero-right">
 
+            <div class="date-pill">
+              02 MAY 2027
+            </div>
 
-                <button
-                    id="telegram-continue"
-                    class="btn btn-soft"
-                    type="button"
-                >
-                    Continue to SRINEET
-                </button>
+            <div class="countdown">
+
+              <div class="count-box">
+                <strong id="days">000</strong>
+                <small>DAYS</small>
+              </div>
+
+              <div class="count-box">
+                <strong id="hours">00</strong>
+                <small>HRS</small>
+              </div>
+
+              <div class="count-box">
+                <strong id="minutes">00</strong>
+                <small>MIN</small>
+              </div>
 
             </div>
 
+          </div>
+
         </div>
+
+      </section>
+
+
+      <!-- DR SRISHTI BANNER -->
+
+      <section class="medical-banner">
+
+        <div class="medical-grid"></div>
+
+        <div class="medical-copy">
+
+          <div class="medical-tag">
+            <span></span>
+            MEDICAL EXCELLENCE
+          </div>
+
+          <p class="medical-overline">
+            DREAM • DISCIPLINE • DESTINATION
+          </p>
+
+          <h2>
+            <small>DR</small>
+            SRISHTI
+          </h2>
+
+          <div class="medical-line"></div>
+
+          <p class="medical-description">
+            Study with purpose.<br>
+            Prepare with confidence.
+          </p>
+
+        </div>
+
+        <div class="medical-art">
+
+          <div class="ecg-line">
+            <svg viewBox="0 0 520 180" preserveAspectRatio="none">
+              <polyline
+                points="0,95 120,95 150,95 175,95 195,25 225,150 255,95 355,95"
+              />
+            </svg>
+          </div>
+
+          <div class="medical-cross">
+            <span></span>
+            <b></b>
+          </div>
+
+          <div class="medical-ring ring-one"></div>
+          <div class="medical-ring ring-two"></div>
+
+        </div>
+
+        <div class="focus-pill">
+          <span></span>
+          <div>
+            <strong>FOCUS</strong>
+            <small>ON YOUR DREAM</small>
+          </div>
+        </div>
+
+        <div class="banner-footer-left">
+          SRINEET
+        </div>
+
+        <div class="banner-footer-right">
+          COMPLETE NEET PREPARATION
+        </div>
+
+      </section>
+
+
+      <!-- PREPARATION HUB -->
+
+      <section class="hub-section">
+
+        <div class="section-intro">
+
+          <span class="eyebrow">
+            YOUR PREPARATION HUB
+          </span>
+
+          <h2>
+            Everything you need.<br>
+            <span>Nothing you don't.</span>
+          </h2>
+
+          <div class="intro-decoration">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+          <!-- TEST SERIES -->
+
+          <article
+            class="feature-card card-one"
+            onclick="openFeature('tests')"
+          >
+
+            <span class="card-number">01</span>
+
+            <button class="card-arrow">↗</button>
+
+            <div class="feature-icon">
+              <span class="document-icon"></span>
+            </div>
+
+            <div class="card-content">
+
+              <h3>Test<br>Series</h3>
+
+              <p>
+                Premium CBT-style tests for focused preparation.
+              </p>
+
+            </div>
+
+            <div class="card-bottom">
+              <span>START TESTING</span>
+              <b>→</b>
+            </div>
+
+          </article>
+
+
+          <!-- PYQ -->
+
+          <article
+            class="feature-card card-two"
+            onclick="openFeature('pyq')"
+          >
+
+            <span class="card-number">02</span>
+
+            <button class="card-arrow">↗</button>
+
+            <div class="feature-icon question-icon">
+              ?
+            </div>
+
+            <div class="card-content">
+
+              <h3>PYQ<br>Chapterwise</h3>
+
+              <p>
+                Learn from the questions that actually matter.
+              </p>
+
+            </div>
+
+            <div class="card-bottom">
+              <span>EXPLORE PYQs</span>
+              <b>→</b>
+            </div>
+
+          </article>
+
+
+          <!-- NOTES -->
+
+          <article
+            class="feature-card card-three"
+            onclick="openFeature('notes')"
+          >
+
+            <span class="card-number">03</span>
+
+            <button class="card-arrow">↗</button>
+
+            <div class="feature-icon notes-icon">
+              <span>Ⅱ</span>
+            </div>
+
+            <div class="card-content">
+
+              <small>REVISION MATERIAL</small>
+
+              <h3>Smart<br>Notes</h3>
+
+              <p>
+                Keep your important concepts ready for revision.
+              </p>
+
+            </div>
+
+            <div class="card-bottom">
+              <span>OPEN NOTES</span>
+              <b>→</b>
+            </div>
+
+          </article>
+
+
+          <!-- PRACTICE -->
+
+          <article
+            class="feature-card card-four"
+            onclick="openFeature('practice')"
+          >
+
+            <span class="card-number">04</span>
+
+            <button class="card-arrow">↗</button>
+
+            <div class="feature-icon check-icon">
+              ✓
+            </div>
+
+            <div class="card-content">
+
+              <small>CHAPTERWISE</small>
+
+              <h3>Practice<br>Zone</h3>
+
+              <p>
+                Build accuracy chapter by chapter.
+              </p>
+
+            </div>
+
+            <div class="card-bottom">
+              <span>PRACTICE NOW</span>
+              <b>→</b>
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- WHY SRINEET -->
+
+      <section class="why-section">
+
+        <span class="eyebrow">
+          WHY SRINEET
+        </span>
+
+        <h2>Built for serious preparation.</h2>
+
+        <div class="why-list">
+
+          <div class="why-item">
+
+            <div class="why-icon">✓</div>
+
+            <div>
+              <strong>Focused</strong>
+              <span>No unnecessary clutter</span>
+            </div>
+
+          </div>
+
+          <div class="why-item">
+
+            <div class="why-icon">◇</div>
+
+            <div>
+              <strong>Organised</strong>
+              <span>Resources in one place</span>
+            </div>
+
+          </div>
+
+          <div class="why-item">
+
+            <div class="why-icon">ϟ</div>
+
+            <div>
+              <strong>Fast</strong>
+              <span>Made for mobile learning</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </section>
+
+
+    <!-- DYNAMIC FEATURE PAGE -->
+
+    <section id="featurePage" class="page feature-page">
+
+      <button class="back-button" onclick="goHome()">
+        ← Back to home
+      </button>
+
+      <div class="feature-page-header">
+
+        <span class="eyebrow" id="featureEyebrow">
+          SRINEET
+        </span>
+
+        <h1 id="featureTitle">
+          Test Series
+        </h1>
+
+        <p id="featureDescription">
+          Start your preparation.
+        </p>
+
+      </div>
+
+      <div id="featureContent" class="feature-page-content"></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       TELEGRAM POPUP
+  ========================== -->
+
+  <div class="modal-overlay" id="telegramModal">
+
+    <div class="telegram-modal">
+
+      <button
+        class="modal-close"
+        id="telegramClose"
+      >
+        ×
+      </button>
+
+      <div class="telegram-icon">
+        ✈
+      </div>
+
+      <span class="eyebrow">SRINEET COMMUNITY</span>
+
+      <h2>Stay connected.</h2>
+
+      <p>
+        Join the official SRINEET Telegram channel for
+        important updates, new tests and preparation resources.
+      </p>
+
+      <a
+        href="https://t.me/srineetofficial"
+        target="_blank"
+        rel="noopener"
+        class="telegram-button"
+        id="telegramJoin"
+      >
+        Join Official Telegram
+        <span>→</span>
+      </a>
+
+      <button
+        class="later-button"
+        id="telegramLater"
+      >
+        Maybe later
+      </button>
 
     </div>
 
+  </div>
 
-    <!-- =========================================
-         APP JAVASCRIPT
-    ========================================== -->
 
-    <script src="/assets/js/app.js"></script>
+  <!-- =========================
+       ANNOUNCEMENT POPUP
+  ========================== -->
+
+  <div class="modal-overlay" id="announcementModal">
+
+    <div class="announcement-modal">
+
+      <button
+        class="modal-close"
+        onclick="closeAnnouncement()"
+      >
+        ×
+      </button>
+
+      <div class="announcement-icon">✦</div>
+
+      <span class="eyebrow">LATEST UPDATE</span>
+
+      <h2>SRINEET is live.</h2>
+
+      <p>
+        Your focused NEET preparation platform is now ready.
+        More tests, PYQs, notes and practice material will be
+        added continuously.
+      </p>
+
+      <button
+        class="primary-button"
+        onclick="closeAnnouncement()"
+      >
+        Continue
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="site-footer">
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+
+        <div class="footer-logo">S</div>
+
+        <div>
+          <strong>SRINEET</strong>
+          <small>Complete NEET Preparation</small>
+        </div>
+
+      </div>
+
+      <p class="footer-tagline">
+        Prepare smart.<br>
+        Practice consistently.
+      </p>
+
+    </div>
+
+    <p class="footer-description">
+      SRINEET is designed to bring essential NEET preparation
+      resources together in a simple, focused and student-friendly
+      experience.
+    </p>
+
+    <div class="footer-pills">
+
+      <span>✓ Focused preparation</span>
+      <span>✓ Organised resources</span>
+      <span>✓ Fast learning experience</span>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span>© 2026 SRINEET</span>
+
+      <span>Made for NEET Aspirants</span>
+
+    </div>
+
+  </footer>
+
+
+  <script src="main.js"></script>
 
 </body>
 </html>
