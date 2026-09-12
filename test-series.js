@@ -1,8 +1,9 @@
 "use strict";
 
+
 /* =========================================================
-   SRINEET TEST PAPER PAGE
-   Robust version for GitHub Pages
+   SRINEET TEST SERIES
+   INSTITUTE DIRECTORY
 ========================================================= */
 
 
@@ -10,328 +11,115 @@
    ELEMENTS
 ========================================================= */
 
-const batchMark = document.getElementById("batchMark");
-const instituteLabel = document.getElementById("instituteLabel");
-const batchName = document.getElementById("batchName");
-const batchDescription = document.getElementById("batchDescription");
-const totalTests = document.getElementById("totalTests");
-const batchMeta = document.getElementById("batchMeta");
-const testList = document.getElementById("testList");
-const testEmpty = document.getElementById("testEmpty");
-const paperError = document.getElementById("paperError");
+const instituteGrid =
+  document.getElementById("instituteGrid");
 
-const filterButtons =
-  document.querySelectorAll(".filter-button");
+const instituteCount =
+  document.getElementById("instituteCount");
+
+const seriesError =
+  document.getElementById("seriesError");
 
 
 /* =========================================================
-   URL PARAMETERS
+   BUILT-IN INSTITUTE DATA
+   This prevents the page from becoming blank if JSON
+   loading fails on GitHub Pages.
 ========================================================= */
 
-const params =
-  new URLSearchParams(window.location.search);
+const institutes = [
 
-const instituteId =
-  params.get("institute");
-
-const batchId =
-  params.get("batch");
-
-
-/* =========================================================
-   FALLBACK INSTITUTES
-========================================================= */
-
-const institutes = {
-
-  pw: {
+  {
     id: "pw",
+    order: 1,
     name: "Physics Wallah",
-    shortName: "PW"
+    shortName: "PW",
+    description:
+      "Explore NEET test series and practice sets from Physics Wallah."
   },
 
-  allen: {
+  {
     id: "allen",
+    order: 2,
     name: "ALLEN",
-    shortName: "ALLEN"
+    shortName: "ALLEN",
+    description:
+      "Practice NEET-style tests with structured preparation."
   },
 
-  aakash: {
+  {
     id: "aakash",
+    order: 3,
     name: "Aakash Institute",
-    shortName: "AI"
+    shortName: "AI",
+    description:
+      "Explore NEET practice tests and examination resources."
   },
 
-  narayana: {
+  {
     id: "narayana",
+    order: 4,
     name: "Narayana",
-    shortName: "N"
+    shortName: "N",
+    description:
+      "Build exam confidence with focused NEET practice."
   },
 
-  unacademy: {
+  {
     id: "unacademy",
+    order: 5,
     name: "Unacademy",
-    shortName: "UA"
+    shortName: "UA",
+    description:
+      "Practice concepts, accuracy and exam-style questions."
   },
 
-  motion: {
+  {
     id: "motion",
+    order: 6,
     name: "Motion Education",
-    shortName: "ME"
+    shortName: "ME",
+    description:
+      "Focused NEET test practice for consistent preparation."
   },
 
-  resonance: {
+  {
     id: "resonance",
+    order: 7,
     name: "Resonance",
-    shortName: "R"
+    shortName: "R",
+    description:
+      "Practice structured tests designed around NEET preparation."
   },
 
-  vedantu: {
+  {
     id: "vedantu",
+    order: 8,
     name: "Vedantu",
-    shortName: "V"
+    shortName: "V",
+    description:
+      "Improve speed and accuracy with NEET practice tests."
   },
 
-  "sri-chaitanya": {
+  {
     id: "sri-chaitanya",
+    order: 9,
     name: "Sri Chaitanya",
-    shortName: "SC"
+    shortName: "SC",
+    description:
+      "Explore chapter and full-syllabus NEET practice."
   },
 
-  "career-point": {
+  {
     id: "career-point",
+    order: 10,
     name: "Career Point",
-    shortName: "CP"
+    shortName: "CP",
+    description:
+      "Prepare with focused NEET examination practice."
   }
 
-};
-
-
-/* =========================================================
-   FALLBACK BATCHES
-========================================================= */
-
-const batches = {
-
-  "pw-yakeen-1-0": {
-    id: "pw-yakeen-1-0",
-    instituteId: "pw",
-    name: "Yakeen 1.0",
-    subtitle:
-      "Focused NEET 2027 exam-style practice",
-    year: "NEET 2027",
-    type: "Full Test Series"
-  },
-
-  "pw-yakeen-2-0": {
-    id: "pw-yakeen-2-0",
-    instituteId: "pw",
-    name: "Yakeen 2.0",
-    subtitle:
-      "Complete NEET practice and revision",
-    year: "NEET 2027",
-    type: "Full Test Series"
-  },
-
-  "pw-neet-dropper": {
-    id: "pw-neet-dropper",
-    instituteId: "pw",
-    name: "NEET Dropper",
-    subtitle:
-      "Dedicated practice for NEET droppers",
-    year: "NEET 2027",
-    type: "Test Series"
-  },
-
-  "pw-real-test": {
-    id: "pw-real-test",
-    instituteId: "pw",
-    name: "Real Test",
-    subtitle:
-      "Practice with a real-exam approach",
-    year: "NEET 2027",
-    type: "Full Test Series"
-  }
-
-};
-
-
-/* =========================================================
-   TEST DATA
-========================================================= */
-
-const fallbackTests = {
-
-  "pw-yakeen-1-0": [
-
-    {
-      id: "pw-yakeen-1-0-test-01",
-      batchId: "pw-yakeen-1-0",
-      number: 1,
-      title: "Yakeen 1.0 — Test 01",
-      subtitle: "Complete NEET style practice test",
-      questions: 180,
-      duration: 180,
-      subjects: "Physics • Chemistry • Biology",
-      category: "full",
-      file: "tests/pw/yakeen-1-0/test-01.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-test-02",
-      batchId: "pw-yakeen-1-0",
-      number: 2,
-      title: "Yakeen 1.0 — Test 02",
-      subtitle: "Complete NEET style practice test",
-      questions: 180,
-      duration: 180,
-      subjects: "Physics • Chemistry • Biology",
-      category: "full",
-      file: "tests/pw/yakeen-1-0/test-02.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-test-03",
-      batchId: "pw-yakeen-1-0",
-      number: 3,
-      title: "Yakeen 1.0 — Test 03",
-      subtitle: "Complete NEET style practice test",
-      questions: 180,
-      duration: 180,
-      subjects: "Physics • Chemistry • Biology",
-      category: "full",
-      file: "tests/pw/yakeen-1-0/test-03.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-test-04",
-      batchId: "pw-yakeen-1-0",
-      number: 4,
-      title: "Yakeen 1.0 — Test 04",
-      subtitle: "Complete NEET style practice test",
-      questions: 180,
-      duration: 180,
-      subjects: "Physics • Chemistry • Biology",
-      category: "full",
-      file: "tests/pw/yakeen-1-0/test-04.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-test-05",
-      batchId: "pw-yakeen-1-0",
-      number: 5,
-      title: "Yakeen 1.0 — Test 05",
-      subtitle: "Complete NEET style practice test",
-      questions: 180,
-      duration: 180,
-      subjects: "Physics • Chemistry • Biology",
-      category: "full",
-      file: "tests/pw/yakeen-1-0/test-05.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-test-06",
-      batchId: "pw-yakeen-1-0",
-      number: 6,
-      title: "Yakeen 1.0 — Test 06",
-      subtitle: "Complete NEET style practice test",
-      questions: 180,
-      duration: 180,
-      subjects: "Physics • Chemistry • Biology",
-      category: "full",
-      file: "tests/pw/yakeen-1-0/test-06.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-test-07",
-      batchId: "pw-yakeen-1-0",
-      number: 7,
-      title: "Yakeen 1.0 — Test 07",
-      subtitle: "Complete NEET style practice test",
-      questions: 180,
-      duration: 180,
-      subjects: "Physics • Chemistry • Biology",
-      category: "full",
-      file: "tests/pw/yakeen-1-0/test-07.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-test-08",
-      batchId: "pw-yakeen-1-0",
-      number: 8,
-      title: "Yakeen 1.0 — Test 08",
-      subtitle: "Complete NEET style practice test",
-      questions: 180,
-      duration: 180,
-      subjects: "Physics • Chemistry • Biology",
-      category: "full",
-      file: "tests/pw/yakeen-1-0/test-08.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-test-09",
-      batchId: "pw-yakeen-1-0",
-      number: 9,
-      title: "Yakeen 1.0 — Test 09",
-      subtitle: "Complete NEET style practice test",
-      questions: 180,
-      duration: 180,
-      subjects: "Physics • Chemistry • Biology",
-      category: "full",
-      file: "tests/pw/yakeen-1-0/test-09.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-test-10",
-      batchId: "pw-yakeen-1-0",
-      number: 10,
-      title: "Yakeen 1.0 — Test 10",
-      subtitle: "Complete NEET style practice test",
-      questions: 180,
-      duration: 180,
-      subjects: "Physics • Chemistry • Biology",
-      category: "full",
-      file: "tests/pw/yakeen-1-0/test-10.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-chapter-01",
-      batchId: "pw-yakeen-1-0",
-      number: 11,
-      title: "Physics Chapter Practice",
-      subtitle: "Focused chapter-wise practice",
-      questions: 45,
-      duration: 60,
-      subjects: "Physics",
-      category: "chapter",
-      file: "tests/pw/yakeen-1-0/test-11.html"
-    },
-
-    {
-      id: "pw-yakeen-1-0-chapter-02",
-      batchId: "pw-yakeen-1-0",
-      number: 12,
-      title: "Chemistry Chapter Practice",
-      subtitle: "Focused chapter-wise practice",
-      questions: 45,
-      duration: 60,
-      subjects: "Chemistry",
-      category: "chapter",
-      file: "tests/pw/yakeen-1-0/test-12.html"
-    }
-
-  ]
-
-};
-
-
-/* =========================================================
-   STATE
-========================================================= */
-
-let allTests = [];
-
-let currentFilter = "all";
+];
 
 
 /* =========================================================
@@ -341,165 +129,153 @@ let currentFilter = "all";
 function escapeHTML(value) {
 
   return String(value)
+
     .replaceAll("&", "&amp;")
+
     .replaceAll("<", "&lt;")
+
     .replaceAll(">", "&gt;")
+
     .replaceAll('"', "&quot;")
+
     .replaceAll("'", "&#039;");
 
 }
 
 
 /* =========================================================
-   FORMAT INSTITUTE
+   CREATE INSTITUTE CARD
 ========================================================= */
 
-function getInstitute() {
+function createInstituteCard(institute) {
 
-  if (institutes[instituteId]) {
+  const card =
+    document.createElement("a");
 
-    return institutes[instituteId];
+  card.className =
+    "institute-card";
 
-  }
 
-  return {
+  /*
+   * Institute page
+   */
 
-    id: instituteId || "unknown",
+  card.href =
+    `institute.html?institute=${encodeURIComponent(
+      institute.id
+    )}`;
 
-    name:
-      instituteId
-        ? instituteId
-            .replaceAll("-", " ")
-            .replace(/\b\w/g, c => c.toUpperCase())
-        : "Institute",
 
-    shortName: "S"
+  card.innerHTML = `
 
-  };
+    <div class="institute-logo">
+      ${escapeHTML(institute.shortName)}
+    </div>
 
+
+    <div class="institute-content">
+
+      <div class="institute-order">
+        INSTITUTE ${String(institute.order).padStart(2, "0")}
+      </div>
+
+
+      <h3 class="institute-name">
+        ${escapeHTML(institute.name)}
+      </h3>
+
+
+      <p class="institute-description">
+        ${escapeHTML(institute.description)}
+      </p>
+
+    </div>
+
+
+    <div
+      class="institute-arrow"
+      aria-hidden="true"
+    >
+      →
+    </div>
+
+  `;
+
+
+  return card;
 }
 
 
 /* =========================================================
-   FORMAT BATCH
+   RENDER INSTITUTES
 ========================================================= */
 
-function getBatch() {
+function renderInstitutes(data) {
 
-  if (batches[batchId]) {
-
-    return batches[batchId];
-
+  if (!instituteGrid) {
+    return;
   }
 
-  return {
 
-    id: batchId,
-
-    instituteId: instituteId,
-
-    name:
-      batchId
-        ? batchId
-            .replaceAll("-", " ")
-            .replace(/\b\w/g, c => c.toUpperCase())
-        : "Test Series",
-
-    subtitle:
-      "NEET exam-style practice",
-
-    year: "NEET 2027",
-
-    type: "Test Series"
-
-  };
-
-}
+  instituteGrid.innerHTML = "";
 
 
-/* =========================================================
-   INITIALISE PAGE
-========================================================= */
-
-function initialisePage() {
-
-  if (!instituteId || !batchId) {
-
-    showError(
-      "Invalid test series link."
+  const sorted =
+    [...data].sort(
+      (a, b) =>
+        Number(a.order) -
+        Number(b.order)
     );
 
-    return;
+
+  sorted.forEach(
+    institute => {
+
+      instituteGrid.appendChild(
+        createInstituteCard(institute)
+      );
+
+    }
+  );
+
+
+  if (instituteCount) {
+
+    instituteCount.textContent =
+      String(sorted.length)
+        .padStart(2, "0");
 
   }
-
-
-  const institute =
-    getInstitute();
-
-  const batch =
-    getBatch();
-
-
-  /*
-    ALWAYS SHOW INSTITUTE
-  */
-
-  batchMark.textContent =
-    institute.shortName;
-
-
-  instituteLabel.textContent =
-    institute.name;
-
-
-  batchName.textContent =
-    batch.name;
-
-
-  batchDescription.textContent =
-    batch.subtitle;
-
-
-  batchMeta.textContent =
-    `${batch.year} • ${batch.type}`;
-
-
-  document.title =
-    `${batch.name} | ${institute.name} | SRINEET`;
-
-
-  /*
-    TEST DATA
-  */
-
-  allTests =
-    fallbackTests[batchId]
-      ? [...fallbackTests[batchId]]
-      : [];
-
-
-  totalTests.textContent =
-    String(allTests.length)
-      .padStart(2, "0");
-
-
-  renderTests();
 
 }
 
 
 /* =========================================================
-   LOAD REAL JSON
+   LOAD JSON
 ========================================================= */
 
-async function loadRealTests() {
+async function loadInstituteData() {
+
+  /*
+   * FIRST:
+   * Render built-in data immediately.
+   *
+   * So "Loading..." will NEVER appear.
+   */
+
+  renderInstitutes(institutes);
+
+
+  /*
+   * SECOND:
+   * Try loading the real JSON.
+   */
 
   try {
 
     const response =
       await fetch(
-        "./data/tests.json",
+        "./data/institutes.json",
         {
           cache: "no-store"
         }
@@ -507,11 +283,9 @@ async function loadRealTests() {
 
 
     if (!response.ok) {
-
       throw new Error(
-        "tests.json unavailable"
+        "institutes.json not available"
       );
-
     }
 
 
@@ -520,45 +294,33 @@ async function loadRealTests() {
 
 
     if (!Array.isArray(data)) {
-
       throw new Error(
-        "Invalid tests.json"
+        "Invalid institutes.json"
       );
+    }
+
+
+    if (data.length > 0) {
+
+      renderInstitutes(data);
 
     }
 
 
-    const matchingTests =
-      data.filter(
-        test =>
-          test.batchId === batchId
-      );
-
-
-    /*
-      Only replace fallback if
-      matching data exists.
-    */
-
-    if (matchingTests.length > 0) {
-
-      allTests =
-        matchingTests;
-
-
-      totalTests.textContent =
-        String(allTests.length)
-          .padStart(2, "0");
-
-
-      renderTests();
-
+    if (seriesError) {
+      seriesError.hidden = true;
     }
+
 
   } catch (error) {
 
+    /*
+     * Built-in data is already visible.
+     * Therefore do NOT show an error to the user.
+     */
+
     console.warn(
-      "SRINEET: Using built-in test data.",
+      "SRINEET: Using built-in institute data.",
       error
     );
 
@@ -568,231 +330,7 @@ async function loadRealTests() {
 
 
 /* =========================================================
-   CREATE TEST CARD
-========================================================= */
-
-function createTestCard(test) {
-
-  const card =
-    document.createElement("article");
-
-  card.className =
-    "test-card";
-
-
-  const completedKey =
-    `srineet_test_${test.id}_completed`;
-
-
-  const completed =
-    localStorage.getItem(
-      completedKey
-    ) === "true";
-
-
-  const buttonText =
-    completed
-      ? "Completed"
-      : "Start Test";
-
-
-  const buttonClass =
-    completed
-      ? "start-button completed-button"
-      : "start-button";
-
-
-  card.innerHTML = `
-
-    <div class="test-number">
-      ${String(test.number).padStart(2, "0")}
-    </div>
-
-
-    <div class="test-title">
-
-      <span>
-        TEST ${String(test.number).padStart(2, "0")}
-      </span>
-
-      <h3>
-        ${escapeHTML(test.title)}
-      </h3>
-
-      <p>
-        ${escapeHTML(test.subtitle)}
-      </p>
-
-    </div>
-
-
-    <div class="test-info">
-
-      <span>
-        ${escapeHTML(test.questions)} QUESTIONS
-      </span>
-
-      <span>
-        ${escapeHTML(test.duration)} MIN
-      </span>
-
-      <span>
-        ${escapeHTML(test.subjects)}
-      </span>
-
-    </div>
-
-
-    <div class="test-action">
-
-      <a
-        href="${escapeHTML(test.file)}"
-        class="${buttonClass}"
-      >
-
-        ${buttonText}
-
-        <strong>
-          ${completed ? "✓" : "→"}
-        </strong>
-
-      </a>
-
-    </div>
-
-  `;
-
-
-  return card;
-
-}
-
-
-/* =========================================================
-   RENDER TESTS
-========================================================= */
-
-function renderTests() {
-
-  let visibleTests =
-    [...allTests];
-
-
-  if (currentFilter !== "all") {
-
-    visibleTests =
-      visibleTests.filter(
-        test =>
-          test.category === currentFilter
-      );
-
-  }
-
-
-  visibleTests.sort(
-    (a, b) =>
-      Number(a.number) -
-      Number(b.number)
-  );
-
-
-  testList.innerHTML = "";
-
-
-  if (visibleTests.length === 0) {
-
-    testEmpty.hidden = false;
-
-    return;
-
-  }
-
-
-  testEmpty.hidden = true;
-
-
-  visibleTests.forEach(
-    test => {
-
-      testList.appendChild(
-        createTestCard(test)
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-filterButtons.forEach(
-  button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        filterButtons.forEach(
-          item =>
-            item.classList.remove("active")
-        );
-
-
-        button.classList.add("active");
-
-
-        currentFilter =
-          button.dataset.filter;
-
-
-        renderTests();
-
-      }
-    );
-
-  }
-);
-
-
-/* =========================================================
-   ERROR
-========================================================= */
-
-function showError(message) {
-
-  if (!paperError) {
-    return;
-  }
-
-
-  paperError.hidden = false;
-
-
-  const strong =
-    paperError.querySelector("strong");
-
-  if (strong) {
-
-    strong.textContent =
-      message;
-
-  }
-
-
-  testList.innerHTML = "";
-
-  testEmpty.hidden = true;
-
-}
-
-
-/* =========================================================
    START
 ========================================================= */
 
-initialisePage();
-
-loadRealTests();
+loadInstituteData();
