@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NRTS Test - 02 (Dropper NEET) - SRINEET Offline CBT</title>
+  <!-- Embedded KaTeX Math & Typography Styling -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-dark: #075985;
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-focus: #0284c7;
+      --nta-not-visited: #e2e8f0;
+      --nta-not-answered: #ef4444;
+      --nta-answered: #22c55e;
+      --nta-marked: #8b5cf6;
+      --nta-marked-answered: #7c3aed;
+    }
+    .dark {
+      --bg-main: #0b132b;
+      --bg-card: #1c2541;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --border-focus: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Layout */
+    .header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+    .brand-tagline {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .timer-badge {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .timer-badge.warning {
+      animation: pulse 1s infinite;
+      background: #dc2626;
+      color: #fff;
+    }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+
+    /* Screen containers */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 16px;
+      width: 100%;
+      flex: 1;
+    }
+    .instructions-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 900px;
+      margin: 20px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .cbt-workspace {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 1024px) {
+      .cbt-workspace { grid-template-columns: 1fr; }
+    }
+    .question-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+    }
+    .subject-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 6px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-main);
+      color: var(--text-main);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .q-stem {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    .assertion-box, .reason-box, .statement-box {
+      background: var(--bg-main);
+      border-left: 4px solid var(--primary);
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      border-radius: 0 8px 8px 0;
+    }
+    .match-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+    .match-table th, .match-table td {
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      text-align: left;
+    }
+    .match-table th { background: var(--bg-main); font-weight: 600; }
+
+    /* Options */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+      margin-bottom: 24px;
+    }
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      background: var(--bg-card);
+      transition: all 0.15s ease;
+    }
+    .option-item:hover {
+      border-color: var(--primary);
+      background: rgba(2, 132, 199, 0.04);
+    }
+    .option-item.selected {
+      border-color: var(--primary);
+      background: rgba(2, 132, 199, 0.1);
+      font-weight: 600;
+    }
+    .option-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-main);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-main);
+      flex-shrink: 0;
+    }
+    .option-item.selected .option-badge {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Action bar */
+    .action-bar {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .btn {
+      padding: 8px 18px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-outline { background: transparent; color: var(--text-main); }
+    .btn-outline:hover { background: var(--bg-main); }
+    .btn-warning { background: #f59e0b; color: #fff; border-color: #f59e0b; }
+    .btn-purple { background: #8b5cf6; color: #fff; border-color: #8b5cf6; }
+    .btn-danger { background: #ef4444; color: #fff; border-color: #ef4444; }
+
+    /* Palette */
+    .palette-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .candidate-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    .candidate-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .palette-legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 11px;
+      margin-bottom: 14px;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
+
+    /* 5 Questions per Row Grid */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .q-btn {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      position: relative;
+    }
+    .q-btn.current {
+      outline: 2.5px solid var(--primary);
+      outline-offset: 1px;
+    }
+    .q-btn.not-visited { background: #e2e8f0; color: #475569; }
+    .q-btn.not-answered { background: #ef4444; color: #fff; }
+    .q-btn.answered { background: #22c55e; color: #fff; }
+    .q-btn.marked { background: #8b5cf6; color: #fff; border-radius: 50%; }
+    .q-btn.answered-and-marked {
+      background: #8b5cf6;
+      color: #fff;
+      border-radius: 50%;
+    }
+    .q-btn.answered-and-marked::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1px solid #fff;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 16px;
+    }
+    .modal-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+    .summary-table th, .summary-table td {
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    /* Scratchpad Canvas */
+    .rough-work-box {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 380px;
+      height: 320px;
+      background: var(--bg-card);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      z-index: 45;
+      display: flex;
+      flex-direction: column;
+    }
+    .rough-work-header {
+      padding: 8px 12px;
+      background: var(--bg-main);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .canvas-el {
+      flex: 1;
+      width: 100%;
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    /* Results */
+    .result-score-card {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- SRINEET CBT Top Bar -->
+  <header class="header">
+    <div class="brand-logo">
+      <div style="background:#0284c7;color:#fff;width:34px;height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:900;">SR</div>
+      <div>
+        <div class="brand-title">SRINEET</div>
+        <div class="brand-tagline">Complete NEET Preparation</div>
+      </div>
+    </div>
+    <div id="testTitleHeader" style="font-weight:600;font-size:14px;">NRTS Test - 02 (Dropper NEET)</div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div id="timerDisplay" class="timer-badge">180:00</div>
+      <button class="btn btn-outline" id="roughWorkToggleBtn" onclick="toggleRoughWork()">Rough Sheet</button>
+      <button class="btn btn-outline" onclick="toggleFullscreen()">Fullscreen</button>
+      <button class="btn btn-outline" onclick="toggleDarkMode()">Dark/Light</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- 1. INSTRUCTIONS SCREEN -->
+    <div id="instructionsScreen" class="instructions-card">
+      <h2 style="font-size:22px;margin-bottom:8px;color:var(--primary);">NRTS Test - 02 (Dropper NEET)</h2>
+      <p style="color:var(--text-muted);font-size:14px;margin-bottom:20px;">Duration: 180 Minutes • Total Marks: 720 • Total Questions: 180</p>
+      
+      <h3 style="font-size:16px;margin-bottom:10px;font-weight:700;">General Instructions:</h3>
+      <ol style="margin-left:20px;font-size:14px;margin-bottom:20px;line-height:1.8;">
+        <li>The clock will be set at the server. The countdown timer in the top right corner will display the remaining time available for you to complete the examination.</li>
+        <li>When the timer reaches zero, the examination will end by itself. You will not be required to end or submit your examination.</li>
+        <li>Each question has 4 options [A, B, C, D]. Only one option is correct.</li>
+        <li><strong>Marking Scheme:</strong> Correct Answer: <strong>+4</strong>, Incorrect Answer: <strong>-1</strong>, Unattempted: <strong>0</strong>.</li>
+        <li><strong>Question Palette Symbols:</strong>
+          <ul style="list-style:none;margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <li><span style="display:inline-block;width:12px;height:12px;background:#e2e8f0;border-radius:3px;"></span> Gray: You have not visited the question yet.</li>
+            <li><span style="display:inline-block;width:12px;height:12px;background:#ef4444;border-radius:3px;"></span> Red: You have not answered the question.</li>
+            <li><span style="display:inline-block;width:12px;height:12px;background:#22c55e;border-radius:3px;"></span> Green: You have answered the question.</li>
+            <li><span style="display:inline-block;width:12px;height:12px;background:#8b5cf6;border-radius:50%;"></span> Purple: Marked for review.</li>
+            <li><span style="display:inline-block;width:12px;height:12px;background:#8b5cf6;border-radius:50%;"></span> Purple + Green dot: Answered and marked for review.</li>
+          </ul>
+        </li>
+      </ol>
+
+      <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:20px;">
+        <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;margin-bottom:20px;">
+          <input type="checkbox" id="declareCheck" onchange="document.getElementById('startBtn').disabled = !this.checked">
+          <span>I have read and understood all instructions and agree to adhere to the code of conduct.</span>
+        </label>
+        <button id="startBtn" class="btn btn-primary" style="padding:10px 32px;font-size:16px;" disabled onclick="startTest()">I am ready to begin</button>
+      </div>
+    </div>
+
+    <!-- 2. ACTIVE CBT EXAM SCREEN -->
+    <div id="examScreen" class="cbt-workspace" style="display:none;">
+      <!-- Left: Question Area -->
+      <div class="question-panel">
+        <div class="subject-tabs" id="subjectTabsContainer"></div>
+        <div class="q-meta">
+          <div id="qNumberDisplay" style="font-weight:700;color:var(--text-main);">Question 1</div>
+          <div id="qMarksDisplay">Marking: +4, -1</div>
+        </div>
+
+        <div id="questionContentArea">
+          <div id="qStem" class="q-stem"></div>
+          <div id="qVisualContainer"></div>
+          <div id="optionsContainer" class="options-grid"></div>
+        </div>
+
+        <div class="action-bar">
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-outline" onclick="handleClearResponse()">Clear Response</button>
+            <button class="btn btn-purple" onclick="handleMarkForReview()">Mark for Review & Next</button>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-outline" id="prevBtn" onclick="handlePrevious()">Previous</button>
+            <button class="btn btn-primary" id="saveNextBtn" onclick="handleSaveAndNext()">Save & Next</button>
+            <button class="btn btn-danger" onclick="showSubmitModal()">Submit Test</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: NTA 5-Column Question Palette -->
+      <div class="palette-panel">
+        <div class="candidate-info">
+          <div class="candidate-avatar">SR</div>
+          <div>
+            <div style="font-weight:700;font-size:14px;">NEET Aspirant</div>
+            <div style="font-size:11px;color:var(--text-muted);">Roll No: SRINEET-2026-01</div>
+          </div>
+        </div>
+
+        <div class="palette-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Answered (<span id="countAnswered">0</span>)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#ef4444;"></div> Not Answered (<span id="countNotAnswered">0</span>)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6;border-radius:50%;"></div> Marked Review (<span id="countMarked">0</span>)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#e2e8f0;"></div> Not Visited (<span id="countNotVisited">0</span>)</div>
+        </div>
+
+        <h4 style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text-muted);text-transform:uppercase;">Question Palette</h4>
+        <div class="palette-grid" id="paletteGridContainer"></div>
+      </div>
+    </div>
+
+    <!-- 3. RESULTS & ANALYTICS SCREEN -->
+    <div id="resultsScreen" style="display:none;">
+      <div class="result-score-card">
+        <h2 style="font-size:26px;margin-bottom:8px;">Exam Completed & Submitted</h2>
+        <div style="font-size:48px;font-weight:900;" id="finalScoreDisplay">0 / 720</div>
+        <p id="finalScoreSubtitle" style="font-size:15px;opacity:0.9;">SRINEET Performance Analysis Report</p>
+      </div>
+
+      <div class="analytics-grid">
+        <div class="stat-card">
+          <div style="font-size:28px;font-weight:700;color:#22c55e;" id="statCorrect">0</div>
+          <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;">Correct Answers</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:28px;font-weight:700;color:#ef4444;" id="statIncorrect">0</div>
+          <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;">Incorrect Answers</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:28px;font-weight:700;color:#64748b;" id="statUnattempted">0</div>
+          <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;">Unattempted</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:28px;font-weight:700;color:#0284c7;" id="statAccuracy">0%</div>
+          <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;">Accuracy Rate</div>
+        </div>
+      </div>
+
+      <!-- Per-Question Time Analysis -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:24px;">
+        <h3 style="font-size:17px;font-weight:700;margin-bottom:12px;">Per-Question Time Analysis (Speed vs Accuracy)</h3>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:16px;font-size:14px;">
+          <div>Fastest Question: <strong id="timeFastestQ">-</strong></div>
+          <div>Slowest Question: <strong id="timeSlowestQ">-</strong></div>
+          <div>Average Time / Question: <strong id="timeAverageQ">-</strong></div>
+        </div>
+        <div id="timeAnalysisTableContainer"></div>
+      </div>
+
+      <!-- Detailed Solutions -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">Detailed Solutions & Explanations</h3>
+        <div id="detailedSolutionsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="submitModal" class="modal-overlay" style="display:none;">
+    <div class="modal-card">
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:10px;">Are you sure you want to submit?</h3>
+      <p style="font-size:13px;color:var(--text-muted);">Please review your test summary before final submission. The test cannot be resumed after submission.</p>
+      <table class="summary-table">
+        <tr><th>Status</th><th>Count</th></tr>
+        <tr><td>Answered</td><td id="modalAnswered" style="font-weight:bold;color:#22c55e;">0</td></tr>
+        <tr><td>Not Answered</td><td id="modalNotAnswered" style="font-weight:bold;color:#ef4444;">0</td></tr>
+        <tr><td>Marked for Review</td><td id="modalMarked" style="font-weight:bold;color:#8b5cf6;">0</td></tr>
+        <tr><td>Not Visited</td><td id="modalNotVisited" style="font-weight:bold;color:#64748b;">0</td></tr>
+      </table>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
+        <button class="btn btn-outline" onclick="hideSubmitModal()">Resume Test</button>
+        <button class="btn btn-primary" onclick="finalizeSubmission()">Yes, Submit Final Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Draggable Digital Rough Work Canvas -->
+  <div id="roughWorkBox" class="rough-work-box" style="display:none;">
+    <div class="rough-work-header">
+      <span>SRINEET Digital Scratchpad</span>
+      <div style="display:flex;gap:6px;">
+        <button class="btn btn-outline" style="padding:2px 8px;font-size:11px;" onclick="clearCanvas()">Clear</button>
+        <button class="btn btn-outline" style="padding:2px 8px;font-size:11px;" onclick="toggleRoughWork()">✕</button>
+      </div>
+    </div>
+    <canvas id="scratchCanvas" class="canvas-el"></canvas>
+  </div>
+
+  <script>
+    // Embedded Data
+    const testMetadata = {"testId":"test-02","title":"NRTS Test - 02 (Dropper NEET)","subtitle":"Full Mock Test • Physics, Chemistry, Botany & Zoology • Complete NTA Pattern","durationMinutes":180,"totalQuestions":180,"totalMarks":720,"markingScheme":{"correct":4,"incorrect":-1,"unattempted":0},"instructions":["The test is of 180 minutes duration and contains 180 multiple choice questions (four options with a single correct answer).","Physics (Q1 to Q45), Chemistry (Q46 to Q90), Botany (Q91 to Q135), and Zoology (Q136 to Q180). All 180 questions are compulsory.","Each correct answer gives +4 marks while 1 mark will be deducted for a wrong MCQ response (-1). Unattempted questions receive 0 marks.","Total maximum marks are 720.","Use the on-screen Question Palette on the right to navigate between questions.","A digital rough work scratchpad is available via the \"Rough Sheet\" button at the top bar.","Do not refresh or close this browser window during the active test session."],"sections":[{"id":"sec-phy","name":"Physics","subject":"Physics","totalQuestions":45},{"id":"sec-chem","name":"Chemistry","subject":"Chemistry","totalQuestions":45},{"id":"sec-bot","name":"Botany","subject":"Botany","totalQuestions":45},{"id":"sec-zoo","name":"Zoology","subject":"Zoology","totalQuestions":45}]};
+    const questions = [{"id":1,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"The temperatures of two bodies measured with a thermometer are $t_1 = (35 \\pm 0.3)^\\circ\\text{C}$ and $t_2 = (75 \\pm 0.4)^\\circ\\text{C}$. Find the temperature difference along with its error.","options":["$110^\\circ\\text{C} \\pm 0.7^\\circ\\text{C}$","$40^\\circ\\text{C} \\pm 0.7^\\circ\\text{C}$","$40^\\circ\\text{C} \\pm 0.1^\\circ\\text{C}$","$40^\\circ\\text{C} \\pm 0.5^\\circ\\text{C}$"],"correctAnswer":1,"solution":"Difference: $t_2 - t_1 = 75 - 35 = 40^\\circ\\text{C}$.\nFor both addition and subtraction, absolute errors always add:\n$\\Delta t = \\Delta t_1 + \\Delta t_2 = 0.3 + 0.4 = 0.7^\\circ\\text{C}$.\nHence, temperature difference $= 40^\\circ\\text{C} \\pm 0.7^\\circ\\text{C}$."},{"id":2,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"In the equation $y = x^3 \\cos^2\\left(\\frac{2\\pi\\beta\\gamma}{\\alpha}\\right)$, the units of $x, \\alpha, \\beta$ are $\\text{m}, \\text{s}^{-1}, (\\text{ms}^{-1})^{-1}$ respectively. Find the units of $y$ and $\\gamma$.","options":["$\\text{m}^3, \\text{ms}^{-2}$","$\\text{m}, \\text{ms}^{-1}$","$\\text{m}, \\text{ms}^{-2}$","$\\text{m}^3, \\text{m}$"],"correctAnswer":0,"solution":"The argument of $\\cos$ must be dimensionless:\n$\\left[\\frac{\\beta\\gamma}{\\alpha}\\right] = [\\text{M}^0\\text{L}^0\\text{T}^0] \\implies \\gamma = \\frac{\\alpha}{\\beta}$.\nUnits of $\\alpha = [\\text{T}^{-1}]$, $\\beta = [\\text{L}^{-1}\\text{T}]$:\n$[\\gamma] = \\frac{\\text{T}^{-1}}{\\text{L}^{-1}\\text{T}} = \\text{LT}^{-2} (\\text{ms}^{-2})$.\nSince $y = x^3 \\cos^2(...)$ and cosine is dimensionless: $[y] = [x]^3 = \\text{m}^3$."},{"id":3,"subject":"Physics","topic":"Basic Maths & Calculus","type":"single-choice","question":"A straight line passes through the points $(2, 3)$ and $(7, 23)$. Find its slope.","options":["5","4.6","3","4"],"correctAnswer":3,"solution":"Slope formula: $\\text{slope} = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{23 - 3}{7 - 2} = \\frac{20}{5} = 4$."},{"id":4,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"Vector $\\vec{P} = 3\\hat{i} - 2\\hat{j} + 4\\hat{k}$ is perpendicular to both $\\vec{Q} = 2\\hat{i} + \\lambda\\hat{j} - \\hat{k}$ and $\\vec{R} = \\hat{i} + \\hat{j} + \\mu\\hat{k}$. The value of $\\lambda + \\mu$ is:","options":["$\\frac{1}{4}$","$\\frac{3}{4}$","$-\\frac{3}{4}$","$\\frac{5}{4}$"],"correctAnswer":1,"solution":"Perpendicularity with $\\vec{Q}$:\n$\\vec{P} \\cdot \\vec{Q} = 6 - 2\\lambda - 4 = 0 \\implies 2\\lambda = 2 \\implies \\lambda = 1$.\nPerpendicularity with $\\vec{R}$:\n$\\vec{P} \\cdot \\vec{R} = 3 - 2 + 4\\mu = 0 \\implies 1 + 4\\mu = 0 \\implies \\mu = -\\frac{1}{4}$.\nSum: $\\lambda + \\mu = 1 - \\frac{1}{4} = \\frac{3}{4}$."},{"id":5,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"The viscosity $\\eta$ of a gas depends on the long-range attractive part of the intermolecular force, $F = \\mu r^{-n}$, where $n$ is a number and $\\mu$ is a constant. Now suppose $\\eta$ is assumed to depend instead on the molecular mass $m$, a characteristic molecular length scale $L$, and the constant $\\mu$. Which of the following is correct?","options":["$\\eta \\propto m L^{-n} \\mu$","$\\eta \\propto m^{1/2} L^{(n+3)/2} \\mu^{-1/2}$","$\\eta \\propto m^{1/2} L^{-(n+3)/2} \\mu^{1/2}$","$\\eta \\propto m^{-1/2} L^{-(n+3)/2} \\mu^{1/2}$"],"correctAnswer":2,"solution":"Dimension of $\\eta$: $[\\eta] = \\text{ML}^{-1}\\text{T}^{-1}$.\nDimension of $\\mu$ (from $F = \\mu r^{-n}$): $[\\mu] = [F][r^n] = \\text{MLT}^{-2} \\cdot \\text{L}^n = \\text{ML}^{n+1}\\text{T}^{-2}$.\nAssume $\\eta \\propto m^a L^b \\mu^c$:\n$\\text{ML}^{-1}\\text{T}^{-1} \\propto \\text{M}^{a+c} \\text{L}^{b+c(n+1)} \\text{T}^{-2c}$.\nMatch powers:\n$-2c = -1 \\implies c = 1/2$; $a + c = 1 \\implies a = 1/2$;\n$b + c(n+1) = -1 \\implies b = -1 - \\frac{n+1}{2} = -\\frac{n+3}{2}$.\nThus, $\\eta \\propto m^{1/2} L^{-(n+3)/2} \\mu^{1/2}$."},{"id":6,"subject":"Physics","topic":"Units and Measurements","type":"assertion-reason","question":"Assertion (A): The number of significant figures in $6.020 \\times 10^{-3}$ is four.\nReason (R): In scientific notation, every digit written in the coefficient (mantissa) is significant, regardless of whether it is a leading, middle, or trailing zero within that coefficient.","options":["Both A and R are true, and R is the correct explanation of A","A is true, but R is false","A is false, but R is true","Both A and R are true, but R is not the correct explanation of A"],"correctAnswer":0,"solution":"The coefficient 6.020 has digits 6, 0, 2, 0 - all four are significant, since the zeros lie within/after the non-zero digits of an explicitly written decimal mantissa, so A is true.\nReason: this is exactly the general rule for scientific notation, and it directly explains why all four digits count - R is true and is the correct explanation."},{"id":7,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"If $\\vec{A} = \\vec{B} + \\vec{C}$ and the magnitudes of $\\vec{A}, \\vec{B}, \\vec{C}$ are 9, 7, 5 respectively, the angle between $\\vec{A}$ and $\\vec{C}$ is:","options":["$\\cos^{-1}\\left(\\frac{5}{6}\\right)$","$\\cos^{-1}\\left(\\frac{1}{2}\\right)$","$\\cos^{-1}\\left(\\frac{11}{30}\\right)$","$\\cos^{-1}\\left(\\frac{19}{30}\\right)$"],"correctAnswer":3,"solution":"Since $\\vec{B} = \\vec{A} - \\vec{C}$, by law of cosines:\n$B^2 = A^2 + C^2 - 2AC \\cos\\theta$\n$7^2 = 9^2 + 5^2 - 2(9)(5) \\cos\\theta$\n$49 = 81 + 25 - 90 \\cos\\theta = 106 - 90 \\cos\\theta$\n$90 \\cos\\theta = 106 - 49 = 57 \\implies \\cos\\theta = \\frac{57}{90} = \\frac{19}{30}$.\nAngle $\\theta = \\cos^{-1}\\left(\\frac{19}{30}\\right)$."},{"id":8,"subject":"Physics","topic":"Basic Maths & Calculus","type":"single-choice","question":"Find the value of $\\sin(-45^\\circ) + \\tan(225^\\circ) - \\cos(300^\\circ)$.","options":["$\\frac{1 + \\sqrt{2}}{2}$","$\\frac{1 - \\sqrt{2}}{2}$","$-\\frac{1}{2}$","$\\frac{\\sqrt{2} - 1}{2}$"],"correctAnswer":1,"solution":"Evaluate each term:\n$\\sin(-45^\\circ) = -\\sin(45^\\circ) = -\\frac{1}{\\sqrt{2}} = -\\frac{\\sqrt{2}}{2}$.\n$\\tan(225^\\circ) = \\tan(180^\\circ + 45^\\circ) = \\tan(45^\\circ) = 1$.\n$\\cos(300^\\circ) = \\cos(360^\\circ - 60^\\circ) = \\cos(60^\\circ) = \\frac{1}{2}$.\nCombine:\n$-\\frac{\\sqrt{2}}{2} + 1 - \\frac{1}{2} = \\frac{1}{2} - \\frac{\\sqrt{2}}{2} = \\frac{1 - \\sqrt{2}}{2}$."},{"id":9,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"Kepler's third law for a planet in circular orbit of radius $a$ around mass $M$ states $T^2 = \\frac{4\\pi^2 a^3}{GM}$. Using this relation, find the dimensional formula of the universal gravitational constant $G$.","options":["$[\\text{M}^{-1}\\text{L}^2\\text{T}^{-2}]$","$[\\text{ML}^{-1}\\text{T}^{-1}]$","$[\\text{M}^{-1}\\text{L}^3\\text{T}^{-2}]$","$[\\text{ML}^2\\text{T}^{-2}]$"],"correctAnswer":2,"solution":"Rearrange for $G$:\n$G = \\frac{4\\pi^2 a^3}{T^2 M}$.\nDimensions ($4\\pi^2$ is dimensionless):\n$[G] = \\frac{[\\text{L}^3]}{[\\text{T}^2][\\text{M}]} = [\\text{M}^{-1}\\text{L}^3\\text{T}^{-2}]$."},{"id":10,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"Which of the following pairs of displacement vectors cannot be combined to give a resultant vector of magnitude $15\\text{ cm}$?","options":["$2\\text{ cm}, 3\\text{ cm}$","$7\\text{ cm}, 8\\text{ cm}$","$10\\text{ cm}, 20\\text{ cm}$","$15\\text{ cm}, 15\\text{ cm}$"],"correctAnswer":0,"solution":"Triangle inequality: $|A - B| \\le R \\le A + B$.\nFor $2\\text{ cm}, 3\\text{ cm}$:\n$|2 - 3| \\le R \\le 2 + 3 \\implies 1\\text{ cm} \\le R \\le 5\\text{ cm}$.\nSince $15\\text{ cm}$ lies completely outside $[1, 5]\\text{ cm}$, this pair cannot give a $15\\text{ cm}$ resultant."},{"id":11,"subject":"Physics","topic":"Basic Maths & Calculus","type":"single-choice","question":"The curve $y = x^2 - 5x + 6$ intersects the $y$-axis at:","options":["$(2, 0)$","$(0, 5)$","$(3, 0)$","$(0, 6)$"],"correctAnswer":3,"solution":"On the $y$-axis, $x = 0$:\n$y = 0^2 - 5(0) + 6 = 6$.\nIntersection point is $(0, 6)$."},{"id":12,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"Given $\\alpha = \\frac{F v^3}{\\sin(\\beta t)}$ (where $v = \\text{velocity}$, $F = \\text{force}$, $t = \\text{time}$), find the dimensions of $\\alpha$ and $\\beta$ respectively.","options":["$[\\text{ML}^2\\text{T}^{-4}], [\\text{T}^{-1}]$","$[\\text{ML}^{-1}\\text{T}^0], [\\text{T}^{-1}]$","$[\\text{ML}^4\\text{T}^{-5}], [\\text{T}]$","$[\\text{ML}^4\\text{T}^{-5}], [\\text{T}^{-1}]$"],"correctAnswer":3,"solution":"The argument of sine must be dimensionless:\n$[\\beta t] = [\\text{M}^0\\text{L}^0\\text{T}^0] \\implies [\\beta] = [\\text{T}^{-1}]$.\nSince $\\sin(\\beta t)$ is dimensionless:\n$[\\alpha] = [F][v]^3 = [\\text{MLT}^{-2}][\\text{LT}^{-1}]^3 = [\\text{ML}^4\\text{T}^{-5}]$."},{"id":13,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"If $|\\vec{P} \\times \\vec{Q}| = \\vec{P} \\cdot \\vec{Q}$, find the angle between $\\vec{P}$ and $\\vec{Q}$ (with $\\vec{P}, \\vec{Q} \\ne 0$).","options":["$90^\\circ$","$0^\\circ$","$45^\\circ$","$60^\\circ$"],"correctAnswer":2,"solution":"Magnitudes of cross and dot products:\n$PQ \\sin\\theta = PQ \\cos\\theta \\implies \\tan\\theta = 1 \\implies \\theta = 45^\\circ$."},{"id":14,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"If $\\vec{P} = 2\\hat{i} + m\\hat{j} + \\hat{k}$ and $\\vec{Q} = 4\\hat{i} - 2\\hat{j} + m\\hat{k}$ are perpendicular to each other, find $m$.","options":["4","2","8","-8"],"correctAnswer":2,"solution":"Perpendicular vectors have zero dot product:\n$\\vec{P} \\cdot \\vec{Q} = (2)(4) + (m)(-2) + (1)(m) = 8 - 2m + m = 8 - m = 0 \\implies m = 8$."},{"id":15,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"In a regular hexagon $ABCDEF$, vectors $\\vec{a}, \\vec{b}, \\vec{c}, \\vec{d}, \\vec{e}, \\vec{f}$ represent its six sides $AB, BC, CD, DE, EF, FA$ respectively, taken in order (all equal magnitude). Which relation is necessarily true?","options":["$\\vec{a} + \\vec{d} = 0$","$\\vec{a} + \\vec{c} = 0$","$\\vec{a} + \\vec{b} = 0$","$\\vec{b} + \\vec{d} = 0$"],"correctAnswer":0,"solution":"In a regular hexagon, opposite sides are parallel and of equal length but oriented in opposite directions when traversed consecutively.\nSide $\\vec{a} (AB)$ is opposite to side $\\vec{d} (DE)$:\n$\\vec{d} = -\\vec{a} \\implies \\vec{a} + \\vec{d} = 0$."},{"id":16,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"Two forces of magnitude $F$ and $2F$ act on a body, and the magnitude of their resultant is $\\sqrt{7}F$. Find the angle between the two forces.","options":["$45^\\circ$","$90^\\circ$","$120^\\circ$","$60^\\circ$"],"correctAnswer":3,"solution":"Resultant formula:\n$R^2 = F^2 + (2F)^2 + 2(F)(2F)\\cos\\theta$\n$(\\sqrt{7}F)^2 = 5F^2 + 4F^2\\cos\\theta$\n$7F^2 = 5F^2 + 4F^2\\cos\\theta \\implies 4F^2\\cos\\theta = 2F^2 \\implies \\cos\\theta = \\frac{1}{2} \\implies \\theta = 60^\\circ$."},{"id":17,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"If $|\\vec{A} \\times \\vec{B}| = \\frac{1}{\\sqrt{3}} \\vec{A} \\cdot \\vec{B}$, the value of $|\\vec{A} - \\vec{B}|$ is:","options":["$(A^2 + B^2 + \\sqrt{3}AB)^{1/2}$","$(A^2 + B^2 - \\sqrt{3}AB)^{1/2}$","$(A^2 + B^2 - AB)^{1/2}$","$A - B$"],"correctAnswer":1,"solution":"Given:\n$AB\\sin\\theta = \\frac{1}{\\sqrt{3}} AB\\cos\\theta \\implies \\tan\\theta = \\frac{1}{\\sqrt{3}} \\implies \\theta = 30^\\circ$.\nMagnitude of difference:\n$|\\vec{A} - \\vec{B}| = \\sqrt{A^2 + B^2 - 2AB\\cos(30^\\circ)} = \\sqrt{A^2 + B^2 - 2AB\\left(\\frac{\\sqrt{3}}{2}\\right)} = (A^2 + B^2 - \\sqrt{3}AB)^{1/2}$."},{"id":18,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"The angle between vectors $\\vec{A}$ and $\\vec{B}$ is $\\theta$. Find the value of $(\\vec{A} + \\vec{B}) \\cdot (\\vec{A} \\times \\vec{B})$.","options":["$2AB\\sin\\theta$","$AB^2\\cos\\theta$","Zero","$A^2B\\sin\\theta$"],"correctAnswer":2,"solution":"$\\vec{A} \\times \\vec{B}$ is perpendicular to the plane containing both $\\vec{A}$ and $\\vec{B}$.\nTherefore, it is perpendicular to any linear combination of $\\vec{A}$ and $\\vec{B}$, including $(\\vec{A} + \\vec{B})$.\nThe dot product of two mutually perpendicular vectors is zero:\n$(\\vec{A} + \\vec{B}) \\cdot (\\vec{A} \\times \\vec{B}) = 0$."},{"id":19,"subject":"Physics","topic":"Basic Maths & Calculus","type":"single-choice","question":"Evaluate $\\int \\frac{dx}{x^{1/4}}$","options":["$\\frac{4}{3} x^{3/4} + c$","$\\frac{3}{4} x^{4/3} + c$","$-\\frac{4}{3} x^{-3/4} + c$","$-\\frac{3}{4} x^{-4/3} + c$"],"correctAnswer":0,"solution":"Rewrite: $\\int x^{-1/4} dx$.\nPower rule: $\\frac{x^{-1/4 + 1}}{-1/4 + 1} + c = \\frac{x^{3/4}}{3/4} + c = \\frac{4}{3} x^{3/4} + c$."},{"id":20,"subject":"Physics","topic":"Basic Maths & Calculus","type":"single-choice","question":"If $y = (x + 2)(x^2 - 2x + 4)$, find $\\frac{dy}{dx}$","options":["$3x^2$","$3x^2 + 8$","$2x^2$","$6x$"],"correctAnswer":0,"solution":"Recognise the sum-of-cubes algebraic identity:\n$y = (x + 2)(x^2 - 2x + 4) = x^3 + 2^3 = x^3 + 8$.\nDifferentiate:\n$\\frac{dy}{dx} = 3x^2 + 0 = 3x^2$."},{"id":21,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"Select the pair whose dimensions are the same:","options":["Impulse and Force","Momentum and Energy","Work and Power","Torque and Energy"],"correctAnswer":3,"solution":"Torque: $[\\tau] = [r][F] = [\\text{L}][\\text{MLT}^{-2}] = [\\text{ML}^2\\text{T}^{-2}]$.\nEnergy: $[E] = [\\text{ML}^2\\text{T}^{-2}]$. Both have identical dimensions $[\\text{ML}^2\\text{T}^{-2}]$."},{"id":22,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"A solid cylindrical wire has mass $(0.4 \\pm 0.004)\\text{ g}$ and radius $(0.6 \\pm 0.003)\\text{ mm}$. Treating it as a uniform solid cylinder rotating about its own axis, using $I = \\frac{1}{2}MR^2$, the maximum percentage error in the calculated moment of inertia is:","options":["1%","2%","3%","4%"],"correctAnswer":1,"solution":"Percentage error formula:\n$\\frac{\\Delta I}{I} \\times 100 = \\left(\\frac{\\Delta M}{M} + 2\\frac{\\Delta R}{R}\\right) \\times 100$\n$= \\left(\\frac{0.004}{0.4} + 2 \\times \\frac{0.003}{0.6}\\right) \\times 100 = (0.01 + 2 \\times 0.005) \\times 100 = (1\\% + 1\\%) = 2\\%$."},{"id":23,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"Which of the following is/are correct?\nI. Pressure = energy per unit volume\nII. Pressure = momentum per unit volume\nIII. Pressure = momentum transferred per unit area per unit time\nIV. Pressure = force per unit volume","options":["I, II, III and IV","I and III only","II and IV only","I only"],"correctAnswer":1,"solution":"Dimensions of Pressure: $[P] = [\\text{ML}^{-1}\\text{T}^{-2}]$.\nI. $\\frac{\\text{Energy}}{\\text{Volume}} = \\frac{\\text{ML}^2\\text{T}^{-2}}{\\text{L}^3} = [\\text{ML}^{-1}\\text{T}^{-2}]$ (Correct).\nII. $\\frac{\\text{Momentum}}{\\text{Volume}} = \\frac{\\text{MLT}^{-1}}{\\text{L}^3} = [\\text{ML}^{-2}\\text{T}^{-1}]$ (Incorrect).\nIII. $\\frac{\\text{Momentum}}{\\text{Area} \\times \\text{Time}} = \\frac{\\text{MLT}^{-1}}{\\text{L}^2\\text{T}} = [\\text{ML}^{-1}\\text{T}^{-2}]$ (Correct).\nIV. $\\frac{\\text{Force}}{\\text{Volume}} = \\frac{\\text{MLT}^{-2}}{\\text{L}^3} = [\\text{ML}^{-2}\\text{T}^{-2}]$ (Incorrect).\nThus, I and III only are correct."},{"id":24,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"If $\\vec{A} = 3\\hat{i} + 4\\hat{j} + 12\\hat{k}$, find the direction cosines of $\\vec{A}$.","options":["$\\frac{3}{19}, \\frac{4}{19}, \\frac{12}{19}$","$\\frac{3}{13}, \\frac{12}{13}, \\frac{4}{13}$","$\\frac{3}{13}, \\frac{4}{13}, \\frac{12}{13}$","$\\frac{1}{13}, \\frac{4}{13}, \\frac{3}{13}$"],"correctAnswer":2,"solution":"Magnitude:\n$|\\vec{A}| = \\sqrt{3^2 + 4^2 + 12^2} = \\sqrt{9 + 16 + 144} = \\sqrt{169} = 13$.\nDirection cosines:\n$\\cos\\alpha = \\frac{A_x}{|A|} = \\frac{3}{13}$, $\\cos\\beta = \\frac{A_y}{|A|} = \\frac{4}{13}$, $\\cos\\gamma = \\frac{A_z}{|A|} = \\frac{12}{13}$."},{"id":25,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"Three vectors $\\vec{A}, \\vec{B}, \\vec{C}$ satisfy $\\vec{A} + \\vec{B} + \\vec{C} = 0$, with $|\\vec{A}| = 3, |\\vec{B}| = 4, |\\vec{C}| = 5$. Find the angle between $\\vec{A}$ and $\\vec{B}$.","options":["$60^\\circ$","$90^\\circ$","$120^\\circ$","$53^\\circ$"],"correctAnswer":1,"solution":"Since $\\vec{A} + \\vec{B} = -\\vec{C}$:\n$|\\vec{A} + \\vec{B}|^2 = |-\\vec{C}|^2$\n$A^2 + B^2 + 2\\vec{A} \\cdot \\vec{B} = C^2$\n$3^2 + 4^2 + 2\\vec{A} \\cdot \\vec{B} = 5^2 \\implies 9 + 16 + 2\\vec{A} \\cdot \\vec{B} = 25$\n$25 + 2\\vec{A} \\cdot \\vec{B} = 25 \\implies \\vec{A} \\cdot \\vec{B} = 0$.\nZero dot product implies angle $\\theta = 90^\\circ$."},{"id":26,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"A vernier caliper has 10 vernier divisions equal to 9 main scale divisions, with 1 main scale division = $1\\text{ mm}$. With the jaws closed, the vernier zero lies to the right of the main scale zero, and the 4th vernier division coincides with a main scale line. While measuring an object, the main scale reads $2.3\\text{ cm}$ and the 7th vernier division coincides with a main scale line. Find the true (corrected) length of the object.","options":["$2.41\\text{ cm}$","$2.30\\text{ cm}$","$2.33\\text{ cm}$","$2.37\\text{ cm}$"],"correctAnswer":2,"solution":"Least count:\n$\\text{LC} = 1\\,\\text{MSD} - 1\\,\\text{VSD} = 1\\,\\text{mm} - 0.9\\,\\text{mm} = 0.1\\,\\text{mm} = 0.01\\,\\text{cm}$.\nZero error (vernier zero to the right $\\implies$ positive zero error):\n$e = +4 \\times 0.01 = +0.04\\,\\text{cm}$.\nObserved reading: $R_{\\text{obs}} = 2.3 + 7 \\times 0.01 = 2.37\\,\\text{cm}$.\nTrue length: $R_{\\text{true}} = R_{\\text{obs}} - e = 2.37 - 0.04 = 2.33\\,\\text{cm}$."},{"id":27,"subject":"Physics","topic":"Units and Measurements","type":"assertion-reason","question":"Assertion (A): The time period of a simple pendulum can be correctly given by $T = 2\\pi\\sqrt{lg}$.\nReason (R): According to the principle of homogeneity of dimensions, a formula is valid only if the dimensions of the L.H.S. equal the dimensions of the R.H.S.","options":["Both A and R are true, but R is not the correct explanation of A","Both A and R are true, and R is the correct explanation of A","A is false, but R is true","A is true, but R is false"],"correctAnswer":2,"solution":"Check dimensions:\nL.H.S.: $[T] = [\\text{T}]$.\nR.H.S.: $[\\sqrt{lg}] = [\\text{L} \\cdot \\text{LT}^{-2}]^{1/2} = [\\text{L}^2\\text{T}^{-2}]^{1/2} = [\\text{LT}^{-1}]$.\nSince $[\\text{T}] \\ne [\\text{LT}^{-1}]$, the formula $T = 2\\pi\\sqrt{lg}$ violates dimensional homogeneity, so Assertion (A) is false.\nThe stated principle of homogeneity of dimensions in Reason (R) is true."},{"id":28,"subject":"Physics","topic":"Basic Maths & Calculus","type":"single-choice","question":"Evaluate $\\int_{-1}^3 (3x^2 + 2)\\,dx$","options":["40","34","32","36"],"correctAnswer":3,"solution":"Antiderivative: $\\int (3x^2 + 2)\\,dx = x^3 + 2x$.\nEvaluate at limits:\n$[x^3 + 2x]_{-1}^3 = (3^3 + 2(3)) - ((-1)^3 + 2(-1)) = (27 + 6) - (-1 - 2) = 33 - (-3) = 36$."},{"id":29,"subject":"Physics","topic":"Basic Maths & Calculus","type":"single-choice","question":"Find the sum of the geometric series $3 + 6 + 12 + 24 + \\dots + 384$","options":["381","765","762","768"],"correctAnswer":1,"solution":"First term $a = 3$, common ratio $r = 2$.\nLast term: $a r^{n-1} = 384 \\implies 3(2^{n-1}) = 384 \\implies 2^{n-1} = 128 = 2^7 \\implies n = 8$.\nSum: $S_n = \\frac{a(r^n - 1)}{r - 1} = \\frac{3(2^8 - 1)}{2 - 1} = 3(256 - 1) = 3 \\times 255 = 765$."},{"id":30,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"The length and breadth of a plate are measured as $(6.0 \\pm 0.2)\\text{ cm}$ and $(3.0 \\pm 0.1)\\text{ cm}$ respectively. Find the absolute error in the measurement of its area.","options":["$1.2\\text{ cm}^2$","$0.9\\text{ cm}^2$","$2.0\\text{ cm}^2$","$0.6\\text{ cm}^2$"],"correctAnswer":0,"solution":"Area $A = l \\cdot b$.\nAbsolute error: $\\Delta A = b\\,\\Delta l + l\\,\\Delta b = (3.0)(0.2) + (6.0)(0.1) = 0.6 + 0.6 = 1.2\\text{ cm}^2$."},{"id":31,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"The angle between the vectors $\\vec{A} = 4\\hat{i} + 3\\hat{k}$ and $\\vec{B} = 3\\hat{i} + 4\\hat{j}$ is:","options":["$\\cos^{-1}\\left(\\frac{12}{25}\\right)$","$90^\\circ$","$\\cos^{-1}\\left(\\frac{7}{25}\\right)$","$0^\\circ$"],"correctAnswer":0,"solution":"Dot product: $\\vec{A} \\cdot \\vec{B} = (4)(3) + (0)(4) + (3)(0) = 12$.\nMagnitudes: $|\\vec{A}| = \\sqrt{4^2 + 3^2} = 5$, $|\\vec{B}| = \\sqrt{3^2 + 4^2} = 5$.\nCosine of angle: $\\cos\\theta = \\frac{\\vec{A} \\cdot \\vec{B}}{|A||B|} = \\frac{12}{5 \\times 5} = \\frac{12}{25}$.\nAngle $\\theta = \\cos^{-1}\\left(\\frac{12}{25}\\right)$."},{"id":32,"subject":"Physics","topic":"Basic Maths & Calculus","type":"single-choice","question":"Evaluate $\\int_0^\\pi \\sin x\\,dx$","options":["2","-2","0","1"],"correctAnswer":0,"solution":"Antiderivative: $\\int_0^\\pi \\sin x\\,dx = [-\\cos x]_0^\\pi = -\\cos\\pi - (-\\cos 0) = -(-1) - (-1) = 1 + 1 = 2$."},{"id":33,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"If $\\vec{P} \\cdot \\vec{Q} = -\\frac{PQ}{\\sqrt{2}}$, find the angle between $\\vec{P}$ and $\\vec{Q}$.","options":["$150^\\circ$","$180^\\circ$","$120^\\circ$","$135^\\circ$"],"correctAnswer":3,"solution":"Dot product definition: $\\vec{P} \\cdot \\vec{Q} = PQ\\cos\\theta$.\n$PQ\\cos\\theta = -\\frac{PQ}{\\sqrt{2}} \\implies \\cos\\theta = -\\frac{1}{\\sqrt{2}} \\implies \\theta = 180^\\circ - 45^\\circ = 135^\\circ$."},{"id":34,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"A force $\\vec{F} = (3\\hat{i} - \\hat{j})\\text{ N}$ displaces an object through $\\vec{S} = (2\\hat{i} + 4\\hat{j})\\text{ m}$. Find the work done ($W = \\vec{F} \\cdot \\vec{S}$).","options":["$10\\text{ J}$","$2\\text{ J}$","$14\\text{ J}$","$-2\\text{ J}$"],"correctAnswer":1,"solution":"Work done: $W = \\vec{F} \\cdot \\vec{S} = (3)(2) + (-1)(4) = 6 - 4 = 2\\text{ J}$."},{"id":35,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"For two non-zero vectors $\\vec{A}$ and $\\vec{B}$, it is given that $\\vec{A} \\times \\vec{B} = 0$ and $\\vec{A} \\cdot \\vec{B} = -|\\vec{A}||\\vec{B}|$. The relative orientation of $\\vec{A}$ and $\\vec{B}$ is:","options":["Parallel ($0^\\circ$)","Perpendicular ($90^\\circ$)","Antiparallel ($180^\\circ$)","Cannot be determined"],"correctAnswer":2,"solution":"$\\vec{A} \\times \\vec{B} = 0 \\implies \\theta = 0^\\circ$ or $180^\\circ$.\n$\\vec{A} \\cdot \\vec{B} = AB\\cos\\theta = -AB \\implies \\cos\\theta = -1 \\implies \\theta = 180^\\circ$.\nThus, the vectors are antiparallel ($180^\\circ$)."},{"id":36,"subject":"Physics","topic":"Units and Measurements","type":"assertion-reason","question":"Assertion (A): Power cannot be multiplied by time to give energy.\nReason (R): The dimensions of power and time are different.","options":["Both A and R are true, but R is not the correct explanation of A","A is false, but R is true","Both A and R are true, and R is the correct explanation of A","A is true, but R is false"],"correctAnswer":1,"solution":"Assertion: Power CAN be multiplied by time; $P \\times t = [\\text{ML}^2\\text{T}^{-3}][\\text{T}] = [\\text{ML}^2\\text{T}^{-2}]$, which is the dimension of energy. Hence, Assertion is false.\nReason: Power and time do have different dimensions ($[\\text{ML}^2\\text{T}^{-3}]$ vs $[\\text{T}]$), which is true. (Differing dimensions prevent addition/subtraction, not multiplication)."},{"id":37,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"Position $x$ is given by $x = at^3 + bt^2 + ct + d$, where $t$ is time. Find the dimensions of $a, b, c, d$ respectively.","options":["$[\\text{LT}^{-3}], [\\text{LT}^{-2}], [\\text{LT}^{-1}], [\\text{L}]$","$[\\text{LT}^{-1}], [\\text{LT}^{-2}], [\\text{LT}^{-3}], [\\text{L}]$","$[\\text{LT}^{-2}], [\\text{LT}^{-3}], [\\text{LT}^{-1}], [\\text{L}]$","$[\\text{L}], [\\text{LT}^{-1}], [\\text{LT}^{-2}], [\\text{LT}^{-3}]$"],"correctAnswer":0,"solution":"By dimensional homogeneity, each term must have dimension $[\\text{L}]$:\n$[at^3] = [\\text{L}] \\implies [a] = [\\text{LT}^{-3}]$\n$[bt^2] = [\\text{L}] \\implies [b] = [\\text{LT}^{-2}]$\n$[ct] = [\\text{L}] \\implies [c] = [\\text{LT}^{-1}]$\n$[d] = [\\text{L}]$."},{"id":38,"subject":"Physics","topic":"Basic Maths & Calculus","type":"single-choice","question":"In triangle $ABC$, right-angled at $B$, $\\sin C = \\frac{5}{13}$. Find the ratio $\\sin A : \\cos A$.","options":["12:5","5:12","1:7","7:12"],"correctAnswer":0,"solution":"In a right triangle at $B$, $\\sin C = \\frac{AB}{AC} = \\frac{5}{13}$.\nBy Pythagoras theorem: $BC = \\sqrt{13^2 - 5^2} = 12$.\nNow for angle $A$:\n$\\sin A = \\frac{BC}{AC} = \\frac{12}{13}$, $\\cos A = \\frac{AB}{AC} = \\frac{5}{13}$.\nRatio $\\sin A : \\cos A = \\frac{12/13}{5/13} = 12 : 5$."},{"id":39,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"A force $F$ is given by $F = at^2 + bt^3$, where $t$ is time. Find the dimensions of $a$ and $b$.","options":["$[\\text{MLT}^{-2}], [\\text{MLT}^{-3}]$","$[\\text{MLT}^{-4}], [\\text{MLT}^{-5}]$","$[\\text{MLT}^{-4}], [\\text{MLT}^{-3}]$","$[\\text{MLT}^{-3}], [\\text{MLT}^{-4}]$"],"correctAnswer":1,"solution":"Both terms must have the dimensions of force, $[\\text{MLT}^{-2}]$:\n$[a][\\text{T}^2] = [\\text{MLT}^{-2}] \\implies [a] = [\\text{MLT}^{-4}]$.\n$[b][\\text{T}^3] = [\\text{MLT}^{-2}] \\implies [b] = [\\text{MLT}^{-5}]$."},{"id":40,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"An athletic coach tells his team that muscle divided by reaction time equals force (i.e. $\\text{muscle}/\\text{time} = \\text{force}$). What dimensions does he assign to muscle?","options":["$[\\text{ML}^2\\text{T}^{-2}]$","$[\\text{ML}^2\\text{T}^{-3}]$","$[\\text{MLT}^{-1}]$","$[\\text{MLT}^{-2}]$"],"correctAnswer":2,"solution":"$\\frac{[\\text{muscle}]}{[\\text{time}]} = [\\text{Force}] \\implies [\\text{muscle}] = [\\text{Force}][\\text{time}] = [\\text{MLT}^{-2}][\\text{T}] = [\\text{MLT}^{-1}]$."},{"id":41,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"The velocity $v$ of a particle at time $t$ is given by $v = a\\sqrt{t} + \\frac{b}{t + c}$, where $a, b, c$ are constants. Find the dimensions of $a, b, c$ respectively.","options":["$[\\text{LT}^{-3/2}], [\\text{LT}], [\\text{T}^{-1}]$","$[\\text{L}], [\\text{LT}^{-1}], [\\text{T}]$","$[\\text{LT}^{-1}], [\\text{LT}], [\\text{LT}^{-2}]$","$[\\text{LT}^{-3/2}], [\\text{L}], [\\text{T}]$"],"correctAnswer":3,"solution":"Since $t$ and $c$ are added: $[c] = [t] = [\\text{T}]$.\nTerm $a\\sqrt{t}$ must have dimension of velocity $[\\text{LT}^{-1}]$:\n$[a][\\text{T}^{1/2}] = [\\text{LT}^{-1}] \\implies [a] = [\\text{LT}^{-3/2}]$.\nTerm $\\frac{b}{t+c}$ has dimension of velocity:\n$\\frac{[b]}{[\\text{T}]} = [\\text{LT}^{-1}] \\implies [b] = [\\text{L}]$."},{"id":42,"subject":"Physics","topic":"Units and Measurements","type":"single-choice","question":"A physical quantity $P$ is related to four measured quantities as $P = \\frac{a^2 b^3}{c^4 d}$. If the errors in measurement of $a, b, c, d$ are $0.2\\%, 0.1\\%, 0.2\\%, 0.3\\%$ respectively, find the maximum percentage error in $P$.","options":["1.2%","2.4%","0.8%","1.8%"],"correctAnswer":3,"solution":"Error propagation rule:\n$\\frac{\\Delta P}{P} \\times 100 = 2\\left(\\frac{\\Delta a}{a}\\right) + 3\\left(\\frac{\\Delta b}{b}\\right) + 4\\left(\\frac{\\Delta c}{c}\\right) + 1\\left(\\frac{\\Delta d}{d}\\right)$\n$= 2(0.2\\%) + 3(0.1\\%) + 4(0.2\\%) + 1(0.3\\%) = 0.4\\% + 0.3\\% + 0.8\\% + 0.3\\% = 1.8\\%$."},{"id":43,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"In the adjoining vector diagram, $C$ is the perpendicular distance from the tip of $\\vec{B}$ to the line of $\\vec{A}$ (as marked by the right angle), and the figure indicates the obtuse configuration between $\\vec{A}$ and $\\vec{B}$. If $|\\vec{B}| = 10\\text{ units}$, $C = 5\\text{ units}$, and $|\\vec{A}| = 5\\sqrt{3}\\text{ units}$, the magnitude of the resultant $\\vec{R} = \\vec{A} + \\vec{B}$ is:","options":["5 units","10 units","$5\\sqrt{3}$ units","15 units"],"correctAnswer":0,"assets":[{"id":"vector-diagram-43","type":"svg","data":"\u003csvg viewBox=\"0 0 320 200\" class=\"w-full max-w-xs mx-auto my-2\" xmlns=\"http://www.w3.org/2000/svg\"\u003e\n          \u003crect width=\"320\" height=\"200\" fill=\"#f8fafc\" rx=\"8\" stroke=\"#cbd5e1\"/\u003e\n          \u003c!-- Vector A horizontal --\u003e\n          \u003cline x1=\"80\" y1=\"150\" x2=\"230\" y2=\"150\" stroke=\"#0284c7\" stroke-width=\"2.5\"/\u003e\n          \u003cpolygon points=\"230,146 240,150 230,154\" fill=\"#0284c7\"/\u003e\n          \u003ctext x=\"150\" y=\"170\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#0284c7\"\u003eA\u003c/text\u003e\n          \u003c!-- Vector B pointing up-right obtuse --\u003e\n          \u003cline x1=\"80\" y1=\"150\" x2=\"240\" y2=\"50\" stroke=\"#059669\" stroke-width=\"2.5\"/\u003e\n          \u003cpolygon points=\"236,46 244,48 240,56\" fill=\"#059669\"/\u003e\n          \u003ctext x=\"135\" y=\"90\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#059669\"\u003eB\u003c/text\u003e\n          \u003c!-- Perpendicular drop C from tip of B to line of A --\u003e\n          \u003cline x1=\"240\" y1=\"50\" x2=\"240\" y2=\"150\" stroke=\"#64748b\" stroke-width=\"1.5\" stroke-dasharray=\"4\"/\u003e\n          \u003c!-- Right angle mark at (240, 150) --\u003e\n          \u003crect x=\"230\" y=\"140\" width=\"10\" height=\"10\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.5\"/\u003e\n          \u003ctext x=\"250\" y=\"105\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#64748b\"\u003eC\u003c/text\u003e\n        \u003c/svg\u003e","caption":"Figure: Vector geometry of A and B with perpendicular component C"}],"solution":"$C$ is the perpendicular component: $C = B\\sin\\phi = 5 \\implies 10\\sin\\phi = 5 \\implies \\sin\\phi = 1/2 \\implies \\phi = 30^\\circ$.\nSince the figure indicates the obtuse angle between $\\vec{A}$ and $\\vec{B}$:\n$\\theta = 180^\\circ - 30^\\circ = 150^\\circ$.\nLaw of cosines for resultant:\n$R^2 = A^2 + B^2 + 2AB\\cos(150^\\circ) = (5\\sqrt{3})^2 + 10^2 + 2(5\\sqrt{3})(10)\\left(-\\frac{\\sqrt{3}}{2}\\right)$\n$R^2 = 75 + 100 - 150 = 25 \\implies R = 5\\text{ units}$."},{"id":44,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"Two vectors $\\vec{A}$ and $\\vec{B}$ have equal magnitude $A$, and the magnitude of their resultant is also $A$. Find the angle between $\\vec{A}$ and $\\vec{B}$.","options":["$150^\\circ$","$60^\\circ$","$90^\\circ$","$120^\\circ$"],"correctAnswer":3,"solution":"Resultant magnitude formula:\n$R^2 = A^2 + B^2 + 2AB\\cos\\theta$\nSubstitute $B = A, R = A$:\n$A^2 = A^2 + A^2 + 2A^2\\cos\\theta \\implies A^2 = 2A^2(1 + \\cos\\theta) \\implies 1 + \\cos\\theta = 1/2 \\implies \\cos\\theta = -1/2 \\implies \\theta = 120^\\circ$."},{"id":45,"subject":"Physics","topic":"Vectors","type":"single-choice","question":"Given $\\vec{A} = 2\\hat{i} - \\hat{j} + 3\\hat{k}$, $\\vec{B} = \\hat{i} + 4\\hat{j} - 2\\hat{k}$, $\\vec{C} = -3\\hat{i} + 2\\hat{j} + \\hat{k}$. Find $\\vec{D}$ such that $\\vec{A} + \\vec{D} = 2\\vec{B} - \\vec{C}$.","options":["$3\\hat{i} + 7\\hat{j} - 8\\hat{k}$","$3\\hat{i} + 9\\hat{j} - 8\\hat{k}$","$5\\hat{i} + 7\\hat{j} - 6\\hat{k}$","$3\\hat{i} + 7\\hat{j} - 6\\hat{k}$"],"correctAnswer":0,"solution":"Compute RHS:\n$2\\vec{B} = 2(\\hat{i} + 4\\hat{j} - 2\\hat{k}) = 2\\hat{i} + 8\\hat{j} - 4\\hat{k}$.\nSubtract $\\vec{C}$:\n$2\\vec{B} - \\vec{C} = (2\\hat{i} + 8\\hat{j} - 4\\hat{k}) - (-3\\hat{i} + 2\\hat{j} + \\hat{k}) = 5\\hat{i} + 6\\hat{j} - 5\\hat{k}$.\nSolve for $\\vec{D} = (2\\vec{B} - \\vec{C}) - \\vec{A}$:\n$\\vec{D} = (5\\hat{i} + 6\\hat{j} - 5\\hat{k}) - (2\\hat{i} - \\hat{j} + 3\\hat{k}) = 3\\hat{i} + 7\\hat{j} - 8\\hat{k}$."},{"id":46,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"Consider the following reactions involving chlorine compounds, which are crucial in industrial processes:\nStatement I: In the reaction $\\text{Cl}_2(\\text{g}) + 2\\text{OH}^-(\\text{aq}) \\rightarrow \\text{ClO}^-(\\text{aq}) + \\text{Cl}^-(\\text{aq}) + \\text{H}_2\\text{O}(\\text{l})$, chlorine undergoes both oxidation and reduction, making it a disproportionation reaction.\nStatement II: When $\\text{FeCl}_3(\\text{aq})$ reacts with $\\text{H}_2(\\text{g})$ to form $\\text{FeCl}_2(\\text{aq})$ and $\\text{HCl}(\\text{aq})$, the $\\text{Fe}^{3+}$ ion acts as an oxidising agent by accepting an electronegative element.\nStatement III: The removal of hydrogen from $\\text{H}_2\\text{S}(\\text{g})$ when reacting with $\\text{O}_2(\\text{g})$ to form $\\text{S}(\\text{s})$ and $\\text{H}_2\\text{O}(\\text{l})$ is an example of oxidation according to the classical definition.\nStatement IV: In the process $2\\text{K}_4[\\text{Fe}(\\text{CN})_6](\\text{aq}) + \\text{H}_2\\text{O}_2(\\text{aq}) \\rightarrow 2\\text{K}_3[\\text{Fe}(\\text{CN})_6](\\text{aq}) + 2\\text{KOH}(\\text{aq})$, potassium ferrocyanide is oxidised due to the addition of an electronegative element.","options":["Statements I and III are correct.","Statements II and IV are correct.","Statements I, II and III are correct.","Statements I, III and IV are correct."],"correctAnswer":0,"solution":"I. $\\text{Cl}_2 + 2\\text{OH}^- \\rightarrow \\text{ClO}^- + \\text{Cl}^- + \\text{H}_2\\text{O}$. Chlorine changes from oxidation state 0 to +1 and -1, which is a disproportionation reaction (Correct).\nII. $\\text{Fe}^{3+}$ acts as an oxidizing agent by being reduced (gaining electron), not by accepting an electronegative element (Incorrect).\nIII. Removal of hydrogen from $\\text{H}_2\\text{S}$ is classical oxidation (Correct).\nIV. The process involves removal of electropositive potassium, not addition of electronegative element (Incorrect).\nHence, Statements I and III are correct."},{"id":47,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"A student performs an experiment where a strip of an unknown metal 'X' is placed in an aqueous solution of another metal 'Y' salt. After some time, the student observes a reddish-brown deposit on the strip and the blue color of the solution fades. Which of the following statements is a correct inference from these observations and general principles of redox reactions?","options":["X is a weaker reducing agent than Y.","The reaction is not a redox process.","X has a higher tendency to lose electrons compared to Y.","Y^{n+} ions are more easily oxidized than X atoms."],"correctAnswer":2,"solution":"The observation (reddish-brown deposit, likely copper, and fading blue color) shows that X displaces Y from solution. X is oxidized to X^{n+} and Y^{n+} is reduced to Y. Therefore, X has a higher tendency to lose electrons (stronger reducing agent) than Y."},{"id":48,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"In the compound $\\text{Na}_2\\text{S}_2\\text{O}_3$ (sodium thiosulphate), a widely used reagent in analytical chemistry, the average oxidation number of sulfur is calculated to be +2. However, considering its actual structure, the two sulfur atoms are not equivalent. What are the actual oxidation numbers of the two sulfur atoms in $\\text{Na}_2\\text{S}_2\\text{O}_3$?","options":["One sulfur atom is 0, and the other is +4.","One sulfur atom is +6, and the other is –2.","Both sulfur atoms are +2.","One sulfur atom is –1, and the other is +5."],"correctAnswer":1,"solution":"In thiosulphate ion $[\text{S}-\text{SO}_3]^{2-}$, one sulfur atom is the central atom bonded to three oxygen atoms and one terminal sulfur atom (analogous to sulfate where one oxygen is replaced by sulfur). The central sulfur has an oxidation state of +6, and the terminal sulfide-like sulfur has an oxidation state of -2."},{"id":49,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Consider the following redox reaction: $2\\text{KMnO}_4 + 16\\text{HCl} \\rightarrow 2\\text{KCl} + 2\\text{MnCl}_2 + 5\\text{Cl}_2 + 8\\text{H}_2\\text{O}$. If $31.6\\text{ g}$ of potassium permanganate reacts with $1.46\\text{ g}$ of $\\text{HCl}$, what is the percentage by mass of the excess reagent left unreacted?\n[Molar mass of $\\text{K} = 39\\text{ g/mol}, \\text{Mn} = 55\\text{ g/mol}, \\text{Cl} = 35.5\\text{ g/mol}, \\text{H} = 1\\text{ g/mol}$]","options":["97.5%","95.0%","98.2%","92.5%"],"correctAnswer":0,"solution":"Moles of $\\text{KMnO}_4 = 31.6 / 158 = 0.2\\text{ mol}$.\nMoles of $\\text{HCl} = 1.46 / 36.5 = 0.04\\text{ mol}$.\nFrom stoichiometry, $16\\text{ mol HCl}$ reacts with $2\\text{ mol KMnO}_4$, so $1\\text{ mol KMnO}_4$ reacts with $8\\text{ mol HCl}$.\n$0.04\\text{ mol HCl}$ reacts with $0.04 / 8 = 0.005\\text{ mol KMnO}_4$.\nExcess $\\text{KMnO}_4$ remaining $= 0.2 - 0.005 = 0.195\\text{ mol}$.\nPercentage unreacted $= \\frac{0.195}{0.2} \\times 100 = 97.5\\%$."},{"id":50,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"Chromium(VI) oxide, $\\text{CrO}_5$, is a deep blue compound known for its peroxo linkages. When calculating the oxidation number of chromium in $\\text{CrO}_5$ using standard rules, a seemingly incorrect value is obtained. Considering its actual structure with one chromyl oxygen and four peroxo oxygens, what is the correct oxidation state of chromium in $\\text{CrO}_5$?","options":["+5","+6","+8","+10"],"correctAnswer":1,"solution":"$\\text{CrO}_5$ has a butterfly structure with one oxo oxygen ($\\text{O}^{2-}$) and two peroxo groups ($-\\text{O}-\\text{O}-$, each oxygen has oxidation state $-1$):\n$x + 1(-2) + 4(-1) = 0 \\implies x - 6 = 0 \\implies x = +6$."},{"id":51,"subject":"Chemistry","topic":"Redox Reactions","type":"assertion-reason","question":"Assertion (A): In the reaction $2\\text{Na}(\\text{s}) + \\text{H}_2(\\text{g}) \\rightarrow 2\\text{NaH}(\\text{s})$, sodium acts as a reducing agent and hydrogen acts as an oxidising agent.\nReason (R): Sodium donates electrons to hydrogen, causing hydrogen to be reduced, and thereby increasing its own oxidation number from 0 to +1.","options":["Both A and R are true, and R is the correct explanation of A.","Both A and R are true, but R is NOT the correct explanation of A.","A is true, R is false.","A is false, R is false."],"correctAnswer":0,"solution":"Sodium loses electrons (oxidized from 0 to +1) and reduces hydrogen (0 to -1 in hydride $\\text{H}^-$). Therefore, sodium is the reducing agent and hydrogen is the oxidizing agent. Reason correctly explains Assertion."},{"id":52,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"Consider the following chemical reactions and their classification based on redox types:\nStatement I: The reaction $\\text{C}(\\text{s}) + \\text{O}_2(\\text{g}) \\rightarrow \\text{CO}_2(\\text{g})$ is a combination redox reaction because both reactants are in their elemental form and combine to form a single product.\nStatement II: The decomposition of calcium carbonate, $\\text{CaCO}_3(\\text{s}) \\rightarrow \\text{CaO}(\\text{s}) + \\text{CO}_2(\\text{g})$, is an example of a decomposition redox reaction.\nStatement III: The reaction $2\\text{H}_2\\text{O}_2(\\text{aq}) \\rightarrow 2\\text{H}_2\\text{O}(\\text{l}) + \\text{O}_2(\\text{g})$ is a disproportionation reaction for oxygen.\nStatement IV: The reaction $\\text{Mg}(\\text{s}) + 2\\text{H}_2\\text{O}(\\text{l}) \\xrightarrow{\\Delta} \\text{Mg}(\\text{OH})_2(\\text{s}) + \\text{H}_2(\\text{g})$ is a metal displacement reaction where magnesium displaces hydrogen from water.","options":["Statements I and II are correct.","Statements II and III are correct.","Statements I, III and IV are correct.","Statements I, II and IV are correct."],"correctAnswer":2,"solution":"Statement I is correct (combination redox).\nStatement II is incorrect because $\\text{CaCO}_3 \\rightarrow \\text{CaO} + \\text{CO}_2$ involves no change in oxidation numbers ($\text{Ca}^{2+}, \text{C}^{+4}, \text{O}^{-2}$ throughout; not a redox reaction).\nStatement III is correct (oxygen goes from -1 to -2 and 0; disproportionation).\nStatement IV is correct (magnesium displaces hydrogen; displacement redox).\nThus, Statements I, III and IV are correct."},{"id":53,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"Chlorine is widely used for water purification, but excess chlorine can be harmful. The excess chlorine can be removed by treating it with sulphur dioxide in the presence of water. Given the unbalanced skeletal ionic equation in acidic medium:\n$\\text{Cl}_2(\\text{g}) + \\text{SO}_2(\\text{g}) + \\text{H}_2\\text{O}(\\text{l}) \\rightarrow \\text{Cl}^-(\\text{aq}) + \\text{HSO}_4^-(\\text{aq}) + \\text{H}^+(\\text{aq})$\nWhat is the sum of the stoichiometric coefficients of $\\text{Cl}_2, \\text{SO}_2$, and $\\text{H}_2\\text{O}$ in the balanced equation using the oxidation number method?","options":["3","4","5","6"],"correctAnswer":1,"solution":"Balanced equation:\n$\\text{Cl}_2 + \\text{SO}_2 + 2\\text{H}_2\\text{O} \\rightarrow 2\\text{Cl}^- + \\text{HSO}_4^- + 3\\text{H}^+$.\nCoefficients:\n$\\text{Cl}_2 = 1, \\text{SO}_2 = 1, \\text{H}_2\\text{O} = 2$.\nSum $= 1 + 1 + 2 = 4$."},{"id":54,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"In the balancing of the redox reaction $\\text{MnO}_4^-(\\text{aq}) + \\text{I}^-(\\text{aq}) \\rightarrow \\text{MnO}_2(\\text{s}) + \\text{I}_2(\\text{s})$ in basic medium using the half-reaction method, a crucial step involves balancing oxygen atoms in the reduction half-reaction. After balancing oxygen atoms, what would be the number of $\\text{H}_2\\text{O}$ molecules and $\\text{OH}^-$ ions required to balance the reduction half-reaction of $\\text{MnO}_4^-$ to $\\text{MnO}_2$?","options":["Add $2\\text{H}_2\\text{O}$ to the right and $4\\text{OH}^-$ to the left.","Add $2\\text{H}_2\\text{O}$ to the left and $4\\text{OH}^-$ to the right.","Add $4\\text{H}_2\\text{O}$ to the right and $8\\text{OH}^-$ to the left.","Add $4\\text{H}_2\\text{O}$ to the left and $8\\text{OH}^-$ to the right."],"correctAnswer":1,"solution":"Reduction half-reaction in basic medium:\n$\\text{MnO}_4^- + 2\\text{H}_2\\text{O} + 3\\text{e}^- \\rightarrow \\text{MnO}_2 + 4\\text{OH}^-$.\nHence, add $2\\text{H}_2\\text{O}$ to the left and $4\\text{OH}^-$ to the right."},{"id":55,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"The oxidation number of oxygen is usually -2 in its compounds. However, there are specific compounds where oxygen exhibits different oxidation states due to unique bonding patterns. Which of the following compounds contains oxygen atoms with an oxidation state of $-1/2$?","options":["$\\text{H}_2\\text{O}_2$","$\\text{OF}_2$","$\\text{Na}_2\\text{O}$","$\\text{KO}_2$"],"correctAnswer":3,"solution":"In potassium superoxide $\\text{KO}_2$, potassium has oxidation state $+1$. The superoxide ion is $\\text{O}_2^-$, where each oxygen has an oxidation state of $-1/2$."},{"id":56,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"Consider the given unbalanced reaction: $\\text{Cu}_2\\text{O}(\\text{s}) + \\text{Cu}_2\\text{S}(\\text{s}) \\rightarrow \\text{Cu}(\\text{s}) + \\text{SO}_2(\\text{g})$. After balancing the equation, what is the stoichiometric coefficient for $\\text{Cu}(\\text{s})$ and which species acts as the primary oxidising agent?","options":["Coefficient of Cu(s) is 6; primary oxidising agent is Cu2O(s).","Coefficient of Cu(s) is 4; primary oxidising agent is Cu2S(s).","Coefficient of Cu(s) is 6; primary oxidising agent is Cu2S(s).","Coefficient of Cu(s) is 4; primary oxidising agent is Cu2O(s)."],"correctAnswer":0,"solution":"Balanced equation: $2\\text{Cu}_2\\text{O} + \\text{Cu}_2\\text{S} \\rightarrow 6\\text{Cu} + \\text{SO}_2$.\nThe coefficient of $\\text{Cu}(\\text{s})$ is 6.\n$\\text{Cu}^+$ in $\\text{Cu}_2\\text{O}$ oxidises $\\text{S}^{2-}$ in $\\text{Cu}_2\\text{S}$ to $\\text{SO}_2$, so the primary oxidising agent is $\\text{Cu}_2\\text{O}(\\text{s})$."},{"id":57,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"Match the redox reactions given in List-I with the correct mole ratio of oxidizing agent to reducing agent given in List-II.\nList-I:\nA. $\\text{KMnO}_4 + \\text{H}_2\\text{C}_2\\text{O}_4 \\rightarrow \\text{Mn}^{2+} + \\text{CO}_2$ (in acidic medium)\nB. $\\text{Cr}_2\\text{O}_7^{2-} + \\text{Sn}^{2+} \\rightarrow \\text{Cr}^{3+} + \\text{Sn}^{4+}$\nC. $\\text{IO}_3^- + \\text{N}_2\\text{H}_4 \\rightarrow \\text{I}^- + \\text{N}_2$\nD. $\\text{MnO}_4^- + \\text{Fe}^{2+} \\rightarrow \\text{Mn}^{2+} + \\text{Fe}^{3+}$\n\nList-II:\nI. $1 : 3$\nII. $2 : 5$\nIII. $1 : 5$\nIV. $2 : 3$","options":["A → II; B → I; C → IV; D → III","A → I; B → II; C → IV; D → III","A → II; B → IV; C → I; D → III","A → III; B → I; C → IV; D → II"],"correctAnswer":0,"solution":"The mole ratio of OA to RA is $n_{\\text{RA}} : n_{\\text{OA}}$:\nA. $\\text{KMnO}_4 (n=5)$ and $\\text{H}_2\\text{C}_2\\text{O}_4 (n=2) \\implies 2 : 5$ (II).\nB. $\\text{Cr}_2\\text{O}_7^{2-} (n=6)$ and $\\text{Sn}^{2+} (n=2) \\implies 2 : 6 = 1 : 3$ (I).\nC. $\\text{IO}_3^- (n=6)$ and $\\text{N}_2\\text{H}_4 (n=4) \\implies 4 : 6 = 2 : 3$ (IV).\nD. $\\text{MnO}_4^- (n=5)$ and $\\text{Fe}^{2+} (n=1) \\implies 1 : 5$ (III).\nCorrect matching: A-II, B-I, C-IV, D-III."},{"id":58,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"Consider the following redox reaction: $\\text{Fe}^{2+} + \\text{Cr}_2\\text{O}_7^{2-} + \\text{H}^+ \\rightarrow \\text{Fe}^{3+} + \\text{Cr}^{3+} + \\text{H}_2\\text{O}$.\nRead the following statements:\n(I) Iron(II) ion is oxidized.\n(II) $\\text{H}^+$ acts as a reducing agent.\n(III) The stoichiometric coefficient of $\\text{H}_2\\text{O}$ in the balanced equation is 7.\n(IV) Chromium is oxidized.\nChoose the correct option regarding the balanced reaction:","options":["I and III only","I, II and III only","I, III and IV only","II, III and IV only"],"correctAnswer":0,"solution":"Balanced equation: $6\\text{Fe}^{2+} + \\text{Cr}_2\\text{O}_7^{2-} + 14\\text{H}^+ \\rightarrow 6\\text{Fe}^{3+} + 2\\text{Cr}^{3+} + 7\\text{H}_2\\text{O}$.\nIron(II) is oxidized (+2 to +3), so (I) is correct.\nChromium is reduced (+6 to +3), so (IV) is false.\n$\\text{H}^+$ only provides acidic medium, so (II) is false.\nThe coefficient of $\\text{H}_2\\text{O}$ is 7, so (III) is correct.\nThus, I and III only are correct."},{"id":59,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Identify the incorrect statement regarding $16\\text{ g}$ of methane ($\\text{CH}_4$).","options":["It corresponds to 1 mol of CH4.","It occupies 22.4 L of volume at STP.","It contains 6.022 × 10^23 atoms of carbon.","It corresponds to 1.204 × 10^24 molecules of CH4."],"correctAnswer":3,"solution":"Molar mass of $\\text{CH}_4 = 12 + 4 = 16\\text{ g/mol}$.\n$16\\text{ g}$ corresponds to $1\\text{ mol}$, which contains $6.022 \\times 10^{23}$ molecules of $\\text{CH}_4$ (and occupies $22.4\\text{ L}$ at STP).\nStatement (4) claims $1.204 \\times 10^{24}$ molecules (which would be 2 moles), hence it is incorrect."},{"id":60,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"Consider the following statements regarding disproportionation reactions and the properties of chemical species:\nStatement I: $\\text{ClO}_4^-$ does not undergo disproportionation because chlorine is already in its highest possible oxidation state (+7).\nStatement II: Gold metal ($\\text{Au}$) can displace hydrogen from hydrochloric acid ($\\text{HCl}$) because gold is a stronger reducing agent than hydrogen.\nStatement III: A substance with a very high positive standard reduction potential ($E^\\circ$) is generally a strong oxidising agent.\nStatement IV: The oxidation number of carbon in $\\text{C}_3\\text{O}_2$ is actually +2 for terminal carbons and 0 for the middle carbon, though the average is 4/3.","options":["Statements I and II are correct.","Statements II and III are correct.","Statements I, III and IV are correct.","Statements I, II and IV are correct."],"correctAnswer":2,"solution":"Statement I is correct ($\\text{Cl}$ is +7, highest state, cannot be oxidized further).\nStatement II is incorrect (Gold has a high positive reduction potential, $+1.50\\text{ V}$, below hydrogen in electrochemical series; cannot displace $\\text{H}_2$).\nStatement III is correct (high $E^\\circ$ means high tendency to get reduced $\\implies$ strong oxidizing agent).\nStatement IV is correct (carbon suboxide $\\text{O}=\\text{C}=\\text{C}=\\text{C}=\\text{O}$ has terminal carbons +2 and central carbon 0, average 4/3).\nThus, I, III and IV are correct."},{"id":61,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"In iodometric and iodimetric titrations, which are redox titration methods, iodine plays a crucial role. For an iodometric titration involving the reaction of $\\text{Cu}^{2+}$ ions with iodide ions ($\\text{I}^-$) to liberate iodine ($\\text{I}_2$), what is the key indicator used to detect the end point, and what is the characteristic observation at this point?","options":["Phenolphthalein; solution turns pink.","Starch solution; disappearance of the intense blue color.","Methyl orange; solution turns red.","Potassium permanganate; appearance of a light pink color."],"correctAnswer":1,"solution":"In iodometric titration, starch solution is used as the indicator. It forms an intense dark blue complex with $\\text{I}_2$. When all liberated $\\text{I}_2$ is reduced to $\\text{I}^-$ by thiosulphate, the blue color disappears sharply."},{"id":62,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"Consider the following statements regarding the rules for assigning oxidation numbers to elements in compounds and ions:\nStatement I: The oxidation number of an uncombined element, such as $\\text{O}_3$ or $\\text{Na}$, is always zero.\nStatement II: In monoatomic ions like $\\text{Mg}^{2+}$ or $\\text{Cl}^-$, the oxidation number is equal to the charge on the ion.\nStatement III: Aluminium exhibits an oxidation number of +3 in $\\text{AlCl}_3$.\nStatement IV: Halogens (Cl, Br, I) always have an oxidation number of -1 in their compounds.","options":["Statements I, II and III are correct.","Statements I, II and IV are correct.","Statements II, III and IV are correct.","Statements I, III and IV are correct."],"correctAnswer":0,"solution":"Statement I, II, and III are correct standard rules.\nStatement IV is incorrect because halogens have positive oxidation states when combined with more electronegative elements (such as in oxoacids, interhalogens, e.g. $\\text{ClO}_3^-$ has $\\text{Cl}$ in +5 state)."},{"id":63,"subject":"Chemistry","topic":"Redox Reactions","type":"single-choice","question":"Consider the feasibility of the following reaction under standard conditions:\n$\\text{Ag}(\\text{s}) + \\text{Fe}^{3+}(\\text{aq}) \\rightarrow \\text{Ag}^+(\\text{aq}) + \\text{Fe}^{2+}(\\text{aq})$\nBased on the standard electrode potentials values:\n$E^\\circ_{\\text{Ag}^+/\\text{Ag}} = +0.80\\text{ V}$\n$E^\\circ_{\\text{Fe}^{3+}/\\text{Fe}^{2+}} = +0.77\\text{ V}$\nWhich statement accurately describes the reaction's feasibility and the roles of the species involved?","options":["The reaction is not feasible because E^\\circ_cell is negative, indicating Ag(s) is a weaker reducing agent than Fe^{2+}(aq).","The reaction is feasible because E^\\circ_cell is positive, suggesting Fe^{3+}(aq) is easily reduced.","The reaction is feasible because Ag(s) is oxidized, and Ag+/Ag has a higher reduction potential.","The reaction is at equilibrium under standard conditions as the potentials are very close."],"correctAnswer":0,"solution":"$E^\\circ_{\\text{cell}} = E^\\circ_{\\text{cathode}} - E^\\circ_{\\text{anode}} = E^\\circ_{\\text{Fe}^{3+}/\\text{Fe}^{2+}} - E^\\circ_{\\text{Ag}^+/\\text{Ag}} = 0.77 - 0.80 = -0.03\\text{ V}$.\nSince $E^\\circ_{\\text{cell}} \u003c 0$, $\\Delta G^\\circ \u003e 0$, the reaction is non-spontaneous (not feasible) under standard conditions."},{"id":64,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"A bottle of concentrated sulphuric acid is labelled as $98\\% (\\text{w}/\\text{w})$ and its density is $1.84\\text{ g mL}^{-1}$. If $50\\text{ mL}$ of this concentrated acid is diluted to $2\\text{ L}$ to prepare a new solution, what would be the molarity of the diluted sulphuric acid? The molar mass of $\\text{H}_2\\text{SO}_4$ is $98\\text{ g mol}^{-1}$.","options":["0.920 M","0.460 M","0.230 M","1.84 M"],"correctAnswer":1,"solution":"Molarity of concentrated $\\text{H}_2\\text{SO}_4 = \\frac{\\% \\times d \\times 10}{M_w} = \\frac{98 \\times 1.84 \\times 10}{98} = 18.4\\text{ M}$.\nDilution formula: $M_1 V_1 = M_2 V_2$\n$18.4 \\times 0.050\\text{ L} = M_2 \\times 2\\text{ L} \\implies M_2 = \\frac{0.92}{2} = 0.460\\text{ M}$."},{"id":65,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"Consider the following statements regarding concentration units and solubility:\nStatement I: Mass percentage (w/w) and molality are independent of temperature.\nStatement II: A 10% (V/V) ethanol solution in water means 10 g of ethanol is dissolved in 90 g of water.\nStatement III: Henry's law constant $K_H$ for a gas is independent of temperature.\nStatement IV: Parts per million (ppm) can be expressed as mass to mass, volume to volume, and mass to volume.","options":["Statements I and II are correct.","Statements II and III are correct.","Statements I, II and IV are correct.","Statements I and IV are correct."],"correctAnswer":3,"solution":"Statement I is true (mass and molality depend only on mass, which is temperature-independent).\nStatement II is false (10% V/V means $10\\text{ mL}$ in $100\\text{ mL}$ total solution).\nStatement III is false ($K_H$ strongly increases with temperature as gas solubility decreases).\nStatement IV is true (ppm can be mass/mass, vol/vol, or mass/vol).\nThus, I and IV are correct."},{"id":66,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"The Henry's law constant ($K_H$) values for some gases in water at 298 K are provided below:\n$\\text{O}_2 : 34.86\\text{ kbar}$\n$\\text{N}_2 : 76.48\\text{ kbar}$\n$\\text{CO}_2 : 1.67\\text{ kbar}$\n$\\text{He} : 144.97\\text{ kbar}$\nIf the partial pressure of each gas is maintained at 0.5 bar, which gas would exhibit the highest concentration (mole fraction) in water at 298 K?","options":["$\\text{O}_2$","$\\text{N}_2$","$\\text{CO}_2$","$\\text{He}$"],"correctAnswer":2,"solution":"By Henry's law: $p = K_H x \\implies x = \\frac{p}{K_H}$.\nAt constant partial pressure $p$, solubility (mole fraction $x$) is inversely proportional to $K_H$.\n$\\text{CO}_2$ has the lowest $K_H$ ($1.67\\text{ kbar}$), hence it has the highest solubility/concentration."},{"id":67,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"Which of the following statements is INCORRECT regarding the factors affecting the solubility of substances?","options":["The solubility of NaCl in water increases significantly with an increase in pressure.","Generally, the solubility of gases in liquids decreases with an increase in temperature.","Polar solutes like KNO3 dissolve readily in polar solvents like water.","Increasing the partial pressure of CO2 over soda water increases the solubility of CO2 in it."],"correctAnswer":0,"solution":"Solids and liquids are almost incompressible; changes in pressure have practically no effect on the solubility of solid solutes like $\\text{NaCl}$ in liquids. Hence statement (1) is incorrect."},{"id":68,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"Statement I: For an ideal solution, the total vapour pressure over the solution always varies linearly with the mole fraction of any one component.\nStatement II: In an ideal solution, the intermolecular attractive forces between the solute-solute (A-A), solvent-solvent (B-B), and solute-solvent (A-B) molecules are nearly equal.","options":["Both statements are correct.","Statement I is correct but statement II is incorrect.","Both statements are incorrect.","Statement I is incorrect but statement II is correct."],"correctAnswer":0,"solution":"Both statements are correct. In an ideal solution, $P_{\\text{total}} = P_A^\\circ + (P_B^\\circ - P_A^\\circ)x_B$, which is a straight-line linear equation with mole fraction. Also, ideal solutions obey Raoult's law over the entire range because A-A, B-B, and A-B attractive interactions are nearly identical."},{"id":69,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"Consider a mixture of ethanol and acetone. This solution shows a positive deviation from Raoult's law. Which of the following observations or explanations is consistent with this behaviour?","options":["The enthalpy of mixing (\\Delta H_mix) for this solution is negative.","The intermolecular attractive forces between ethanol and acetone molecules are weaker than those between pure ethanol or pure acetone molecules.","The solution will form a maximum boiling azeotrope at a specific composition.","The A-A, B-B, and A-B intermolecular attractive forces are nearly equal, leading to ideal behaviour."],"correctAnswer":1,"solution":"In pure ethanol, molecules are strongly hydrogen-bonded. When acetone is added, acetone molecules get between ethanol molecules and break existing H-bonds. The A-B interactions become weaker than A-A interactions, increasing vapor pressure (positive deviation, $\\Delta H_{\\text{mix}} \u003e 0$)."},{"id":70,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"At 300 K, the vapour pressure of pure water is $30\\text{ mm Hg}$. When $18\\text{ g}$ of a non-volatile solute (molar mass $180\\text{ g mol}^{-1}$) is dissolved in $180\\text{ g}$ of water, what will be the vapour pressure of the solution?\n(Given: Molar mass of water = $18\\text{ g mol}^{-1}$)","options":["28.5 mm Hg","29.7 mm Hg","30.3 mm Hg","27.0 mm Hg"],"correctAnswer":1,"solution":"Moles of solute $n_2 = 18 / 180 = 0.1\\text{ mol}$.\nMoles of solvent $n_1 = 180 / 18 = 10\\text{ mol}$.\nMole fraction of solvent $x_1 = \\frac{10}{10 + 0.1} = \\frac{10}{10.1} \\approx 0.9901$.\nVapour pressure of solution $P = P_1^\\circ x_1 = 30 \\times \\frac{10}{10.1} \\approx 29.7\\text{ mm Hg}$."},{"id":71,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"A solution is prepared by dissolving $1.8\\text{ g}$ of glucose ($\\text{C}_6\\text{H}_{12}\\text{O}_6$) in $100\\text{ g}$ of water. Given that the molar mass of glucose is $180\\text{ g mol}^{-1}$ and the ebullioscopic constant ($K_b$) for water is $0.52\\text{ K kg mol}^{-1}$. At what temperature will this solution boil if pure water boils at 373.15 K?","options":["373.202 K","373.102 K","373.670 K","372.630 K"],"correctAnswer":0,"solution":"Moles of glucose $= 1.8 / 180 = 0.01\\text{ mol}$.\nMolality $m = \\frac{0.01\\text{ mol}}{0.100\\text{ kg}} = 0.1\\text{ m}$.\n$\\Delta T_b = K_b \\times m = 0.52 \\times 0.1 = 0.052\\text{ K}$.\n$T_b = T_b^\\circ + \\Delta T_b = 373.15 + 0.052 = 373.202\\text{ K}$."},{"id":72,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"A $0.5\\text{ g}$ sample of a non-volatile, non-electrolyte solute is dissolved in $25\\text{ g}$ of benzene. The freezing point depression observed is $0.50\\text{ K}$. Given that the cryoscopic constant ($K_f$) for benzene is $5.12\\text{ K kg mol}^{-1}$, calculate the molar mass of the solute.","options":["102.4 g mol^-1","205 g mol^-1","410 g mol^-1","512 g mol^-1"],"correctAnswer":1,"solution":"$\\Delta T_f = K_f \\frac{w_2 \\times 1000}{M_2 \\times w_1}$\n$0.50 = 5.12 \\times \\frac{0.5 \\times 1000}{M_2 \\times 25} = \\frac{5.12 \\times 20}{M_2} = \\frac{102.4}{M_2}$\n$M_2 = \\frac{102.4}{0.50} = 204.8 \\approx 205\\text{ g mol}^{-1}$."},{"id":73,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"A $0.01\\text{ M}$ aqueous solution of $\\text{K}_2\\text{SO}_4$ is found to have an osmotic pressure of $0.56\\text{ atm}$ at $27^\\circ\\text{C}$. Calculate the van't Hoff factor ($i$) for $\\text{K}_2\\text{SO}_4$ in this solution.\n(Given: $R = 0.082\\text{ L atm mol}^{-1}\\text{K}^{-1}$)","options":["1.89","2.28","2.84","3.00"],"correctAnswer":1,"solution":"$\\Pi = i C R T$\n$0.56 = i \\times 0.01 \\times 0.082 \\times 300 = i \\times 0.246$\n$i = \\frac{0.56}{0.246} = 2.276 \\approx 2.28$."},{"id":74,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"Solution of benzoic acid ($\\text{C}_6\\text{H}_5\\text{COOH}$) in benzene shows a freezing point depression of $1.62\\text{ K}$. Given that $K_f$ for benzene is $4.9\\text{ K kg mol}^{-1}$. If $2\\text{ g}$ of benzoic acid is dissolved in $25\\text{ g}$ of benzene, calculate the degree of association of benzoic acid, assuming it forms a dimer.","options":["99.2%","49.6%","198.4%","0.50%"],"correctAnswer":0,"solution":"Molar mass of benzoic acid $= 122\\text{ g/mol}$.\nCalculated $\\Delta T_f = K_f \\frac{w_2 \\times 1000}{M_2 \\times w_1} = 4.9 \\times \\frac{2 \\times 1000}{122 \\times 25} = \\frac{9800}{3050} \\approx 3.213\\text{ K}$.\n$i = \\frac{\\Delta T_{f,\\text{obs}}}{\\Delta T_{f,\\text{calc}}} = \\frac{1.62}{3.213} = 0.5042$.\nFor dimerization: $i = 1 - \\alpha/2 \\implies \\alpha/2 = 1 - 0.5042 = 0.4958 \\implies \\alpha = 0.9916 = 99.2\\%$."},{"id":75,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"Match the aqueous solutions of the compounds given in List-I (assuming 100% dissociation for electrolytes) with their corresponding ideal van't Hoff factor (i) in List-II.\nList-I:\nA. $\\text{K}_2\\text{SO}_4$\nB. $\\text{FeCl}_3$\nC. $\\text{KCl}$\nD. Glucose\n\nList-II:\nI. 4\nII. 2\nIII. 1\nIV. 3","options":["A-IV, B-I, C-II, D-III","A-I, B-II, C-III, D-IV","A-II, B-IV, C-I, D-III","A-IV, B-II, C-I, D-III"],"correctAnswer":0,"solution":"$\\text{K}_2\\text{SO}_4 \\rightarrow 2\\text{K}^+ + \\text{SO}_4^{2-} (3\\text{ ions}) \\implies i = 3$ (IV).\n$\\text{FeCl}_3 \\rightarrow \\text{Fe}^{3+} + 3\\text{Cl}^- (4\\text{ ions}) \\implies i = 4$ (I).\n$\\text{KCl} \\rightarrow \\text{K}^+ + \\text{Cl}^- (2\\text{ ions}) \\implies i = 2$ (II).\nGlucose is non-electrolyte $\\implies i = 1$ (III).\nCorrect matching: A-IV, B-I, C-II, D-III."},{"id":76,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"Examine the following statements about the van't Hoff factor and abnormal molar masses:\nStatement I: The van't Hoff factor (i) is defined as the ratio of observed colligative property to calculated colligative property.\nStatement II: For a solute undergoing dissociation, the experimentally determined molar mass is always higher than the normal molar mass.\nStatement III: For an ideal solution of non-electrolyte, the van't Hoff factor (i) is equal to 1.\nStatement IV: Ethanoic acid dimerises in benzene due to hydrogen bonding, leading to an 'abnormal' molar mass that is lower than its normal molar mass.","options":["Statements I, II and III are correct.","Statements I and III are correct.","Statements II and IV are correct.","All statements are correct."],"correctAnswer":1,"solution":"Statement I is true (definition of $i$).\nStatement II is false (dissociation produces more particles, increasing colligative property, resulting in lower experimental molar mass).\nStatement III is true ($i = 1$ for non-electrolytes).\nStatement IV is false (dimerization causes experimental molar mass to be nearly twice the normal molar mass, i.e., higher, not lower).\nThus, Statements I and III are correct."},{"id":77,"subject":"Chemistry","topic":"Solutions","type":"assertion-reason","question":"Assertion (A): The solubility of a solid solute in a liquid solvent is significantly affected by temperature changes.\nReason (R): The dissolution process for solids in liquids can be either endothermic or exothermic, influencing solubility based on Le Chatelier's Principle.","options":["Both A and R are true, and R is the correct explanation of A.","Both A and R are true, but R is NOT the correct explanation of A.","A is true, R is false.","A is false, R is false."],"correctAnswer":0,"solution":"The dissolution of a solid in liquid represents a dynamic equilibrium. Depending on whether $\\Delta H_{\\text{sol}} \u003e 0$ or $\u003c 0$, temperature shifts the equilibrium according to Le Chatelier's principle. Both statements are true and Reason explains Assertion."},{"id":78,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"Which of the following statements about colligative properties and the van't Hoff factor is/are correct?\nStatement I: The van't Hoff factor for $\\text{BaCl}_2$ in a dilute aqueous solution is expected to be close to 3.\nStatement II: For a solute that undergoes association in solution, the observed molar mass will be higher than its normal molar mass.\nStatement III: Colligative properties are useful for determining molar masses because they depend only on the number of solute particles, irrespective of their identity.","options":["Statements I and II only.","Statements I and III only.","Statements II and III only.","All statements I, II and III are correct."],"correctAnswer":3,"solution":"$\\text{BaCl}_2$ yields 3 ions ($\\text{Ba}^{2+} + 2\\text{Cl}^-$), so $i \\approx 3$ (I is correct).\nAssociation reduces particle count, giving higher observed molar mass (II is correct).\nColligative properties depend solely on the number of solute particles (III is correct).\nAll statements I, II, and III are correct."},{"id":79,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"A $0.05\\text{ m}$ aqueous solution of $\\text{Na}_3\\text{PO}_4$ boils at 373.23 K. Given that the boiling point of pure water is 373.15 K and the ebullioscopic constant ($K_b$) for water is $0.52\\text{ K kg mol}^{-1}$, calculate the van't Hoff factor ($i$) for $\\text{Na}_3\\text{PO}_4$ in this solution.","options":["2.00","2.50","3.08","3.50"],"correctAnswer":2,"solution":"$\\Delta T_b = 373.23 - 373.15 = 0.08\\text{ K}$.\n$\\Delta T_b = i \\times K_b \\times m$\n$0.08 = i \\times 0.52 \\times 0.05 = i \\times 0.026$\n$i = \\frac{0.08}{0.026} = 3.077 \\approx 3.08$."},{"id":80,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"Which of the following statements is INCORRECT regarding the characteristics of ideal and non-ideal solutions?","options":["For solutions showing positive deviation from Raoult's law, the intermolecular attractive forces between solute-solvent (A-B) molecules are stronger than those between solute-solute (A-A) and solvent-solvent (B-B) molecules.","For solutions showing negative deviation from Raoult's law, the enthalpy of mixing (\\Delta H_mix) is negative.","For an ideal solution, the volume of mixing (\\Delta V_mix) is zero.","A mixture of ethanol and acetone exhibits positive deviation from Raoult's law."],"correctAnswer":0,"solution":"For positive deviation, the intermolecular attractive forces between A-B are WEAKER than A-A and B-B, allowing molecules to escape more easily into the vapor phase. Statement (1) claims they are stronger, which is incorrect."},{"id":81,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"A binary solution of two volatile liquids, A and B, is prepared. At 320 K, the vapour pressures of pure liquids A and B are $P_A^\\circ = 250\\text{ mm Hg}$ and $P_B^\\circ = 400\\text{ mm Hg}$ respectively. If the solution contains 2 moles of A and 3 moles of B, and assuming ideal behaviour, what is the mole fraction of component A in the vapour phase at 320 K?","options":["0.400","0.294","0.706","0.600"],"correctAnswer":1,"solution":"Mole fraction in liquid phase:\n$x_A = \\frac{2}{2+3} = 0.4$, $x_B = \\frac{3}{5} = 0.6$.\nPartial vapour pressures:\n$P_A = 0.4 \\times 250 = 100\\text{ mm Hg}$, $P_B = 0.6 \\times 400 = 240\\text{ mm Hg}$.\nTotal pressure $P_{\\text{total}} = 100 + 240 = 340\\text{ mm Hg}$.\nMole fraction of A in vapor phase: $y_A = \\frac{P_A}{P_{\\text{total}}} = \\frac{100}{340} = 0.294$."},{"id":82,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"A non-volatile solute is dissolved in a solvent. The molar mass of the solvent is $46\\text{ g mol}^{-1}$. The normal freezing point of the solvent is 155.7 K and its enthalpy of fusion is $4.6\\text{ kJ mol}^{-1}$. Calculate the cryoscopic constant ($K_f$) for this solvent.\n(Given: Gas constant $R = 8.314\\text{ J mol}^{-1}\\text{K}^{-1}$)","options":["2.02 K kg mol^-1","2.34 K kg mol^-1","1.99 K kg mol^-1","1.20 K kg mol^-1"],"correctAnswer":0,"solution":"$K_f = \\frac{R \\cdot M_1 \\cdot (T_f^\\circ)^2}{\\Delta_{\\text{fus}}H}$\n$M_1 = 0.046\\text{ kg/mol}$, $T_f^\\circ = 155.7\\text{ K}$, $\\Delta_{\\text{fus}}H = 4600\\text{ J/mol}$.\n$K_f = \\frac{8.314 \\times 0.046 \\times (155.7)^2}{4600} = \\frac{8.314 \\times 0.046 \\times 24242.5}{4600} = \\frac{9271.3}{4600} \\approx 2.02\\text{ K kg mol}^{-1}$."},{"id":83,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"Match the concentration terms in List I with their correct characteristic definitions or properties in List II.\nList-I:\nA. Molarity\nB. Molality\nC. Mole fraction\nD. Mass percent\n\nList-II:\nI. Temperature independent; it is the ratio of number of moles of a particular component to the total number of moles of the solution.\nII. Temperature independent; it is defined as the number of moles of solute present in 1 kg of solvent.\nIII. Temperature dependent; it is defined as the number of moles of solute in 1 litre of the solution.\nIV. Temperature independent; it relates the mass of the solute to the mass of the solution.","options":["A-III, B-II, C-I, D-IV","A-II, B-III, C-IV, D-I","A-III, B-I, C-II, D-IV","A-IV, B-II, C-I, D-III"],"correctAnswer":0,"solution":"Molarity is moles per litre of solution (temperature-dependent) $\\implies$ III.\nMolality is moles per kg of solvent $\\implies$ II.\nMole fraction is ratio of moles $\\implies$ I.\nMass percent is ratio of masses $\\implies$ IV.\nCorrect matching: A-III, B-II, C-I, D-IV."},{"id":84,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Consider the following statements regarding a reaction mixture where 5.0 mol of $\\text{P}_4$ reacts with 18.0 mol of $\\text{O}_2$ to form $\\text{P}_4\\text{O}_{10}$ and $\\text{P}_4\\text{O}_6$:\nStatement I: If no reactants are left over, the total number of moles of products formed is 4.0 mol.\nStatement II: The mole ratio of $\\text{P}_4\\text{O}_{10}$ to $\\text{P}_4\\text{O}_6$ in the product mixture is 2 : 1.\nSelect the correct option:","options":["Both Statement I and Statement II are incorrect.","Statement I is incorrect but Statement II is correct.","Statement I is correct but Statement II is incorrect.","Both Statement I and Statement II are correct."],"correctAnswer":0,"solution":"Let $x$ moles of $\\text{P}_4$ form $\\text{P}_4\\text{O}_{10}$ and $y$ moles form $\\text{P}_4\\text{O}_6$:\n$x + y = 5.0$.\nOxygen consumed: $5x + 3y = 18.0$.\nMultiply first equation by 3: $3x + 3y = 15.0$.\nSubtract: $2x = 3.0 \\implies x = 1.5\\text{ mol } \\text{P}_4\\text{O}_{10}$, $y = 3.5\\text{ mol } \\text{P}_4\\text{O}_6$.\nTotal moles of product $= 1.5 + 3.5 = 5.0\\text{ mol}$ (Statement I is incorrect).\nMole ratio $\\text{P}_4\\text{O}_{10} : \\text{P}_4\\text{O}_6 = 1.5 : 3.5 = 3 : 7$ (Statement II is incorrect).\nBoth statements are incorrect."},{"id":85,"subject":"Chemistry","topic":"Solutions","type":"single-choice","question":"An aqueous solution of ethanol ($\\text{C}_2\\text{H}_5\\text{OH}$) has a density of $0.92\\text{ g mL}^{-1}$ and is $4.6\\%$ ethanol by mass. What is the molality ($m$) and molarity ($M$) of the solution respectively?","options":["0.92 m, 1.05 M","1.05 m, 1.05 M","1.00 m, 1.00 M","1.05 m, 0.92 M"],"correctAnswer":3,"solution":"In $100\\text{ g}$ solution: $4.6\\text{ g}$ ethanol ($0.1\\text{ mol}$), $95.4\\text{ g}$ water ($0.0954\\text{ kg}$).\nMolality $m = \\frac{0.1}{0.0954} = 1.048 \\approx 1.05\\text{ m}$.\nVolume of solution $= \\frac{100\\text{ g}}{0.92\\text{ g/mL}} = 108.7\\text{ mL} = 0.1087\\text{ L}$.\nMolarity $M = \\frac{0.1}{0.1087} = 0.92\\text{ M}$."},{"id":86,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"What volume of $0.6\\text{ M HCl}$ should be mixed with $0.2\\text{ M HCl}$ to prepare $2\\text{ L}$ of a $0.3\\text{ M HCl}$ solution?","options":["1.5 L","0.75 L","1.0 L","0.5 L"],"correctAnswer":3,"solution":"$M_1 V_1 + M_2(2 - V_1) = M_f V_f$\n$0.6 V_1 + 0.2(2 - V_1) = 0.3 \\times 2$\n$0.4 V_1 + 0.4 = 0.6 \\implies 0.4 V_1 = 0.2 \\implies V_1 = 0.5\\text{ L}$."},{"id":87,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R):\nAssertion (A): The Law of Multiple Proportions is illustrated by the pair of compounds $\\text{SO}_2$ and $\\text{SO}_3$.\nReason (R): When two elements combine to form more than one compound, the masses of one element that combine with a fixed mass of the other are in a ratio of small whole numbers. Choose the most appropriate answer:","options":["Both (A) and (R) are correct and (R) is the correct explanation of (A).","(A) is correct but (R) is incorrect.","(A) is incorrect but (R) is correct.","Both (A) and (R) are correct but (R) is NOT the correct explanation of (A)."],"correctAnswer":0,"solution":"In $\\text{SO}_2$ and $\\text{SO}_3$, the masses of oxygen combining with $32\\text{ g}$ of sulfur are $32\\text{ g}$ and $48\\text{ g}$ respectively. The ratio is $32 : 48 = 2 : 3$, which illustrates the Law of Multiple Proportions. Reason states the law correctly and explains Assertion."},{"id":88,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"A solution contains $20\\text{ ppm}$ of a heavy metal pollutant. Express this concentration as a mass percentage.","options":["0.02%","2 × 10^–4 %","2 × 10^–5 %","2 × 10^–3 %"],"correctAnswer":3,"solution":"$20\\text{ ppm} = \\frac{20\\text{ g}}{10^6\\text{ g}}$.\nMass percentage $= \\frac{20}{10^6} \\times 100 = 20 \\times 10^{-4}\\% = 2 \\times 10^{-3}\\%$."},{"id":89,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"When $20.0\\text{ g}$ of a sample of impure calcium carbonate ($\\text{CaCO}_3$) is treated with excess hydrochloric acid, $3.36\\text{ L}$ of $\\text{CO}_2$ gas is liberated at STP. What is the percentage purity of the sample?","options":["85%","75%","50%","90%"],"correctAnswer":1,"solution":"$\\text{CaCO}_3 + 2\\text{HCl} \\rightarrow \\text{CaCl}_2 + \\text{CO}_2 + \\text{H}_2\\text{O}$.\nMoles of $\\text{CO}_2 = \\frac{3.36}{22.4} = 0.15\\text{ mol}$.\nMoles of pure $\\text{CaCO}_3 = 0.15\\text{ mol}$.\nMass of pure $\\text{CaCO}_3 = 0.15 \\times 100 = 15.0\\text{ g}$.\nPercentage purity $= \\frac{15.0}{20.0} \\times 100 = 75\\%$."},{"id":90,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"If $4.0\\text{ g}$ of $\\text{H}_2$ reacts with $32.0\\text{ g}$ of $\\text{O}_2$ to form water, which component acts as the limiting reagent and how much water is formed?","options":["Oxygen is limiting; 36.0 g water is formed.","Hydrogen is limiting; 36.0 g water is formed.","Both reactants are consumed completely; 36.0 g water is formed.","Oxygen is limiting; 18.0 g water is formed."],"correctAnswer":2,"solution":"$2\\text{H}_2 + \\text{O}_2 \\rightarrow 2\\text{H}_2\\text{O}$.\nMoles of $\\text{H}_2 = 4 / 2 = 2\\text{ mol}$.\nMoles of $\\text{O}_2 = 32 / 32 = 1\\text{ mol}$.\nSince $2\\text{ mol H}_2$ requires exactly $1\\text{ mol O}_2$, both reactants are consumed completely (stoichiometric amounts).\nWater formed $= 2\\text{ mol} \\times 18\\text{ g/mol} = 36.0\\text{ g}$."},{"id":91,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"A cell is observed to have its centrioles duplicating in the cytoplasm while its genetic material is replicating within the nucleus. This cell is in which phase of the cell cycle?","options":["G1 phase","G2 phase","S phase","M phase"],"correctAnswer":2,"solution":"The S (synthesis) phase is characterized by two key events occurring simultaneously in different compartments in animal cells: DNA replication inside the nucleus, and centriole duplication in the cytoplasm."},{"id":92,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Given below are two statements:\nStatement I: The nuclear envelope consists of two parallel membranes, with the outer membrane often bearing ribosomes and being continuous with the endoplasmic reticulum.\nStatement II: The perinuclear space is continuous with the cytoplasm through the nuclear pores, allowing free passage of all molecules.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","options":["Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect.","Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct."],"correctAnswer":2,"solution":"Statement I is correct. Statement II is incorrect because nuclear pores are selectively permeable passages regulating the movement of RNA and protein molecules between the nucleoplasm and the cytoplasm; they do not allow free passage of all molecules, nor do they connect the perinuclear space with the cytoplasm."},{"id":93,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"assertion-reason","question":"Given below are two statements: One is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): The 'resting phase' is a misnomer for the interphase of the cell cycle.\nReason (R): During interphase, the cell undergoes extensive growth and DNA replication in an orderly manner, making it a period of intense cellular activity.\nIn the light of the above statements, choose the correct answer from the options given below:","options":["Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A.","A is true but R is false.","A is false but R is true."],"correctAnswer":0,"solution":"Assertion (A) is true: Interphase was historically called the \"resting phase\" because no division is visible, which is a misnomer. Reason (R) is true and correctly explains that interphase is a period of intense metabolic activity, cell growth, and DNA replication."},{"id":94,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Select the option that correctly represents the composition of the mitotic apparatus formed during cell division in an animal cell.","options":["Spindle fibres and the condensed chromosomes.","Two asters along with the spindle fibres.","The centrosome and the surrounding pericentriolar material.","Microtubules radiating from a single centrosome."],"correctAnswer":1,"solution":"The two asters together with spindle fibres form the mitotic apparatus in an animal cell."},{"id":95,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"During mitosis, the chromosomes eventually spread through the cytoplasm of the cell. This spatial transition is essential because it allows for:","options":["the initiation of chromatin condensation.","the attachment of spindle fibres to kinetochores.","the decondensation of chromosomes into chromatin.","the movement of daughter chromosomes to the poles."],"correctAnswer":1,"solution":"The complete breakdown of the nuclear envelope allows the spindle fibres from the opposite poles to access and attach to the kinetochores on the chromosomes, which is essential for aligning chromosomes on the equatorial plate."},{"id":96,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"A researcher analyzing the cell wall of an alga would expect to find cellulose in combination with which other characteristic substances?","options":["Chitin and complex polysaccharides","Hemicellulose, pectins, and proteins","Galactans, mannans, and calcium carbonate","Peptidoglycan and teichoic acid"],"correctAnswer":2,"solution":"Algae have a cell wall made of cellulose, galactans, mannans, and minerals like calcium carbonate, whereas plant cell walls consist of cellulose, hemicellulose, pectins, and proteins."},{"id":97,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Match List-I with List-II.\nList-I (Structure):\n(A) Axoneme\n(B) Central sheath\n(C) Radial spoke\n(D) Linker\n\nList-II (Description/Function):\n(I) Encloses the central microtubules and is connected to peripheral doublets\n(II) Core of a cilium or flagellum, possessing microtubules\n(III) Interconnects the adjacent peripheral doublets\n(IV) Connects a peripheral doublet to the central sheath\n\nChoose the correct answer from the options given below:","options":["A-II, B-I, C-IV, D-III","A-III, B-II, C-IV, D-I","A-IV, B-I, C-II, D-III","A-II, B-III, C-I, D-IV"],"correctAnswer":0,"solution":"Axoneme is the core of cilium/flagellum (II).\nCentral sheath encloses central pair of tubules (I).\nRadial spoke connects peripheral doublets to central sheath (IV).\nLinkers connect adjacent peripheral doublets (III).\nCorrect matching: A-II, B-I, C-IV, D-III."},{"id":98,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Given below are two statements:\nStatement I: A cell in the quiescent stage (G0) is metabolically inactive and has permanently exited the cell cycle.\nStatement II: Cells enter the G0 stage from the G1 phase when they are no longer required to proliferate.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","options":["Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect.","Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct."],"correctAnswer":3,"solution":"Statement I is incorrect because cells in the quiescent stage ($G_0$) remain metabolically active; they only cease to proliferate unless called upon to do so. Statement II is correct."},{"id":99,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"The orientation of separating chromosomes during anaphase, with their centromeres leading towards the poles, is a direct consequence of:","options":["repulsive forces generated between the chromosome arms.","the pulling action exerted by microtubules on the kinetochores.","the pushing force of interpolar microtubules on the cell's center.","cytoplasmic flow directing the chromosomes towards the poles."],"correctAnswer":1,"solution":"During anaphase, the kinetochore microtubules shorten and exert a pulling force attached at the centromere (kinetochore), causing the centromere to lead toward the pole while the arms trail behind."},{"id":100,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Identify the set of correct statements regarding the process of meiosis:\n(A) It involves a single cycle of DNA replication followed by two sequential cycles of nuclear division.\n(B) The process ensures the production of haploid cells from specialized diploid cells.\n(C) Pairing of non-homologous chromosomes occurs during Prophase I.\n(D) Four diploid cells are formed at the end of Meiosis II.\n(E) It is responsible for conserving the specific chromosome number across generations in sexual reproduction.\nChoose the correct option:","options":["(A), (B), (E)","(B), (C), (D)","(A), (D), (E)","(A), (B), (C)"],"correctAnswer":0,"solution":"(A) is correct (1 DNA replication cycle, 2 divisions).\n(B) is correct (haploid gametes formed).\n(C) is incorrect (pairing is between homologous chromosomes, not non-homologous).\n(D) is incorrect (four haploid cells are formed, not diploid).\n(E) is correct (conserves chromosome number across generations).\nThus, (A), (B), (E) is the correct set."},{"id":101,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"A cell from an onion root tip has 16 chromosomes. What will be the number of chromosomes and the amount of DNA in each daughter cell after mitosis?","options":["16 chromosomes and 4C DNA","8 chromosomes and 2C DNA","16 chromosomes and 2C DNA","32 chromosomes and 4C DNA"],"correctAnswer":2,"solution":"Mitosis is equational division. An onion root tip cell ($2n = 16$, DNA content $2C$ in $G_1$) duplicates its DNA to $4C$ in S phase, then separates sister chromatids during anaphase. Each daughter cell receives 16 chromosomes and $2C$ DNA content."},{"id":102,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Which event is unique to meiosis and is primarily responsible for generating genetic variation among the resulting haploid cells?","options":["Separation of sister chromatids","Formation of a spindle apparatus","Replication of DNA before division","Recombination between non-sister chromatids of homologous chromosomes"],"correctAnswer":3,"solution":"Crossing over (recombination between non-sister chromatids of homologous chromosomes during pachytene of prophase I) is unique to meiosis and produces genetic variation."},{"id":103,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Observe the diagram related to a stage of mitosis below and identify the correct statement about the structures labelled P.","options":["Structures P are future daughter chromosomes, each with a 2C DNA content.","Structures P have begun their migration towards opposite poles due to centromere division.","Structures P will now enter the S phase to replicate their DNA.","The number of structures P at each pole will be half the number of chromosomes in the parent cell."],"correctAnswer":1,"assets":[{"id":"anaphase-diagram-103","type":"svg","data":"\u003csvg viewBox=\"0 0 320 220\" class=\"w-full max-w-xs mx-auto my-2\" xmlns=\"http://www.w3.org/2000/svg\"\u003e\n          \u003cellipse cx=\"160\" cy=\"110\" rx=\"90\" ry=\"100\" fill=\"#f8fafc\" stroke=\"#334155\" stroke-width=\"2\"/\u003e\n          \u003c!-- Top Aster --\u003e\n          \u003ccircle cx=\"160\" cy=\"30\" r=\"4\" fill=\"#0284c7\"/\u003e\n          \u003cline x1=\"160\" y1=\"30\" x2=\"140\" y2=\"70\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/\u003e\n          \u003cline x1=\"160\" y1=\"30\" x2=\"160\" y2=\"70\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/\u003e\n          \u003cline x1=\"160\" y1=\"30\" x2=\"180\" y2=\"70\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/\u003e\n          \u003c!-- Top V-shaped chromatids P --\u003e\n          \u003cpath d=\"M 135 75 L 140 70 L 145 75\" fill=\"none\" stroke=\"#dc2626\" stroke-width=\"3\"/\u003e\n          \u003cpath d=\"M 155 75 L 160 70 L 165 75\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"3\"/\u003e\n          \u003cpath d=\"M 175 75 L 180 70 L 185 75\" fill=\"none\" stroke=\"#059669\" stroke-width=\"3\"/\u003e\n          \u003c!-- Bottom Aster --\u003e\n          \u003ccircle cx=\"160\" cy=\"190\" r=\"4\" fill=\"#0284c7\"/\u003e\n          \u003cline x1=\"160\" y1=\"190\" x2=\"140\" y2=\"150\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/\u003e\n          \u003cline x1=\"160\" y1=\"190\" x2=\"160\" y2=\"150\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/\u003e\n          \u003cline x1=\"160\" y1=\"190\" x2=\"180\" y2=\"150\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/\u003e\n          \u003c!-- Bottom V-shaped chromatids --\u003e\n          \u003cpath d=\"M 135 145 L 140 150 L 145 145\" fill=\"none\" stroke=\"#dc2626\" stroke-width=\"3\"/\u003e\n          \u003cpath d=\"M 155 145 L 160 150 L 165 145\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"3\"/\u003e\n          \u003cpath d=\"M 175 145 L 180 150 L 185 145\" fill=\"none\" stroke=\"#059669\" stroke-width=\"3\"/\u003e\n          \u003c!-- Label P --\u003e\n          \u003cline x1=\"110\" y1=\"65\" x2=\"135\" y2=\"70\" stroke=\"#0f172a\" stroke-width=\"1.5\"/\u003e\n          \u003ctext x=\"95\" y=\"68\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#0f172a\"\u003eP\u003c/text\u003e\n        \u003c/svg\u003e","caption":"Figure: Mitotic Anaphase showing separating chromatids labelled P"}],"solution":"The diagram represents anaphase of mitosis. Structures P are individual chromatids (now individual daughter chromosomes) migrating towards the opposite poles after the splitting of the centromere."},{"id":104,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"While both are involved in protein synthesis, the cytoplasmic ribosomes differ from the ribosomes found within chloroplasts in that:","options":["cytoplasmic ribosomes are not bound by any membrane, whereas chloroplast ribosomes are.","cytoplasmic ribosomes are larger and have subunits of 60S and 40S.","chloroplast ribosomes translate mRNA into proteins, a function not performed by cytoplasmic ribosomes.","cytoplasmic ribosomes are composed of rRNA and protein, while chloroplast ribosomes are made only of rRNA."],"correctAnswer":1,"solution":"Eukaryotic cytoplasmic ribosomes are 80S (composed of 60S and 40S subunits), whereas chloroplast ribosomes are 70S (composed of 50S and 30S subunits, similar to prokaryotic ribosomes)."},{"id":105,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Given below are two statements:\nStatement I: During the S phase of the cell cycle, the amount of DNA per cell doubles, but the number of chromosomes remains the same.\nStatement II: After S phase, each chromosome consists of two sister chromatids held together by a single centromere.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","options":["Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect.","Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct."],"correctAnswer":0,"solution":"Both Statement I and Statement II are correct. DNA replicates from $2C$ to $4C$, but chromosome count remains $2n$ because sister chromatids remain attached at the common centromere."},{"id":106,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"In a meiotic cell, bivalents begin to separate from each other but remain physically attached at X-shaped structures called chiasmata. The initial formation of these visible connections is a direct consequence of the:","options":["completion of recombination, leaving the chromosomes linked.","dissolution of the synaptonemal complex while crossovers persist.","terminalisation of chiasmata and full condensation of chromosomes.","pairing of homologous chromosomes to form the bivalent structure."],"correctAnswer":1,"solution":"During diplotene, the synaptonemal complex dissolves and homologous chromosomes separate from each other except at the sites of crossing over, creating X-shaped structures called chiasmata."},{"id":107,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Which of the following is an INCORRECT match between the cell type/organism and the type of cell division it exhibits?","options":["Diploid somatic cells in animals - Mitosis","Haploid male honey bees - Mitosis","Gamete formation in diploid plants - Meiosis","Haploid cells in higher plants - Meiosis"],"correctAnswer":3,"solution":"Meiosis is a reduction division that can only occur in diploid or polyploid cells; it cannot occur in haploid cells because chromosome number cannot be halved below $n$. Haploid cells divide by mitosis."},{"id":108,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"The formation of a syncytium, such as the liquid endosperm in coconut, is a result of:","options":["repeated cytokinesis without any nuclear division.","the fusion of multiple cells into a single large cell.","repeated karyokinesis without subsequent cytokinesis.","the absence of S phase between successive M phases."],"correctAnswer":2,"solution":"A syncytium (multinucleated condition) results when nuclear division (karyokinesis) is not followed by cytoplasmic division (cytokinesis), as in liquid endosperm of coconut."},{"id":109,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"The structural organization of a centriole is often described as a 'cartwheel', which consists of:","options":["nine peripheral triplet fibrils and two central singlet microtubules.","nine peripheral doublet fibrils connected by radial spokes to a central sheath.","nine evenly spaced peripheral triplet fibrils connected to a central proteinaceous hub.","a 9+2 array of microtubules enclosed within an extension of the cell membrane."],"correctAnswer":2,"solution":"A centriole has a 9+0 cartwheel structure consisting of nine peripheral triplet fibrils of tubulin connected to a central proteinaceous hub via radial spokes."},{"id":110,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"assertion-reason","question":"Given below are two statements: One is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): Crossing over is an enzyme-mediated process that occurs between non-sister chromatids of homologous chromosomes.\nReason (R): The process is responsible for the recombination of genetic material and is completed by the end of the zygotene stage.\nIn the light of the above statements, choose the correct answer from the options given below:","options":["Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A.","A is true but R is false.","A is false but R is true."],"correctAnswer":2,"solution":"Assertion (A) is true (crossing over occurs between non-sister chromatids, mediated by recombinase). Reason (R) is false because crossing over occurs during pachytene, not zygotene (zygotene is the stage of synapsis)."},{"id":111,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Which statement accurately describes an event occurring during telophase of mitosis?","options":["Chromosomal material condenses to form compact chromosomes.","The nuclear envelope disintegrates, and the nucleolus disappears.","Individual chromosomes lose their distinct identity and collect as a mass at the poles.","Spindle fibres attach to the kinetochores of the chromosomes."],"correctAnswer":2,"solution":"In telophase, chromosomes reach the opposite poles, decondense, lose their individuality, and form a mass of chromatin, while the nuclear envelope and nucleolus reform."},{"id":112,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"A cultured animal cell is treated with a drug that disrupts the formation of microtubules. Which of the following cellular functions would be most directly impaired?","options":["Protein synthesis","Maintenance of cell shape","Lipid synthesis","Active transport across the plasma membrane"],"correctAnswer":1,"solution":"Microtubules are a key constituent of the cytoskeleton, which is responsible for mechanical support, motility, and maintenance of cell shape (as well as forming the mitotic spindle)."},{"id":113,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"A key difference between Anaphase I of meiosis and anaphase of mitosis is that in Anaphase I:","options":["the centromere of each chromosome splits.","homologous chromosomes separate and move to opposite poles.","the chromosome number is temporarily doubled.","each pole receives an identical set of daughter chromosomes."],"correctAnswer":1,"solution":"In Anaphase I of meiosis, homologous chromosomes separate while sister chromatids remain attached at their centromeres. In mitotic anaphase, centromeres split and sister chromatids separate."},{"id":114,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"assertion-reason","question":"Given below are two statements: One is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): Plant cells, being enclosed by a relatively inextensible cell wall, undergo cytokinesis by a different mechanism than animal cells.\nReason (R): In plant cells, wall formation starts in the centre and grows outward to meet the existing lateral walls.\nIn the light of the above statements, choose the correct answer from the options given below:","options":["Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A.","A is true but R is false.","A is false but R is true."],"correctAnswer":0,"solution":"Plant cells have a rigid cell wall and cannot pinch inward by furrow formation. Instead, they form a cell plate starting from the center and growing centrifugal (outwards) to meet the lateral walls. Both statements are true and Reason explains Assertion."},{"id":115,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Which of the following organelles is NOT part of the endomembrane system because its functions are not coordinated with the others in the system?","options":["Golgi complex","Endoplasmic reticulum","Peroxisome","Vacuole"],"correctAnswer":2,"solution":"The endomembrane system includes ER, Golgi complex, lysosomes, and vacuoles. Peroxisomes, chloroplasts, and mitochondria are not coordinated with these and are not part of the endomembrane system."},{"id":116,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Match List-I with List-II regarding chromosome classification based on centromere position:\nList-I (Type):\n(A) Metacentric\n(B) Sub-metacentric\n(C) Acrocentric\n(D) Telocentric\n\nList-II (Description):\n(I) Centromere is situated close to the end, forming one very short arm.\n(II) Centromere is terminal.\n(III) Centromere is in the middle, forming two equal arms.\n(IV) Centromere is slightly away from the middle, forming unequal arms.\n\nChoose the correct answer from the options given below:","options":["A-III, B-IV, C-I, D-II","A-III, B-I, C-IV, D-II","A-IV, B-III, C-I, D-II","A-II, B-IV, C-I, D-III"],"correctAnswer":0,"solution":"Metacentric: centromere in middle $\\implies$ III.\nSub-metacentric: slightly away from middle $\\implies$ IV.\nAcrocentric: close to end $\\implies$ I.\nTelocentric: terminal centromere $\\implies$ II.\nCorrect matching: A-III, B-IV, C-I, D-II."},{"id":117,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"The fluid nature of the lipid bilayer in the plasma membrane is most critical for which of the following functions?","options":["Preventing the passage of polar molecules.","Providing a fixed framework for membrane proteins.","Allowing the cell to grow and form intercellular junctions.","Protecting the nonpolar tails from the aqueous environment."],"correctAnswer":2,"solution":"The quasi-fluid nature of membrane lipids enables cell growth, formation of intercellular junctions, secretion, endocytosis, and cell division."},{"id":118,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"How many of the following features are associated with prokaryotic cells?\n(A) A non-membrane bound nucleoid\n(B) 80S ribosomes in the cytoplasm\n(C) Presence of membrane-bound organelles like mitochondria\n(D) A cell wall surrounding the cell membrane (except in some)\n(E) Presence of inclusion bodies lying free in the cytoplasm","options":["Two","Three","Four","Five"],"correctAnswer":1,"solution":"(A) is correct (nucleoid is non-membrane bound).\n(B) is incorrect (prokaryotes have 70S ribosomes, not 80S).\n(C) is incorrect (prokaryotes lack membrane-bound organelles).\n(D) is correct (cell wall is present, except in Mycoplasma).\n(E) is correct (inclusion bodies lie free in cytoplasm).\nThus, exactly 3 features (A, D, E) are associated with prokaryotic cells."},{"id":119,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"A key feature of the stage between the two meiotic divisions is that:","options":["the chromosomes undergo replication to prepare for Meiosis II.","it is generally long-lived, allowing for significant cell growth.","the chromosomes do not reach the fully extended state of an interphase nucleus.","the nuclear membrane and nucleolus do not reappear."],"correctAnswer":2,"solution":"Interkinesis is short-lived, involves no replication of DNA, and the chromosomes do not reach the extremely decondensed, fully extended state of an interphase nucleus."},{"id":120,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"The ability of certain pathogenic bacteria to establish an infection often depends on their initial adherence to host tissues, a process mediated by surface appendages not involved in motility. These structures are:","options":["Flagella","Pili","Fimbriae","Plasmids"],"correctAnswer":2,"solution":"Fimbriae are small, bristle-like fibres sprouting out of the cell that help bacteria attach to rocks in streams and to host tissues."},{"id":121,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"During pachytene, each bivalent is clearly seen to be composed of four chromatids. This configuration is a direct consequence of:","options":["the pairing of four non-homologous chromosomes.","the replication of chromosomes prior to meiosis I.","the splitting of centromeres during prophase I.","the separation of homologous chromosomes."],"correctAnswer":1,"solution":"Because each homologous chromosome had already replicated into two sister chromatids during premeiotic S phase, when the two homologous chromosomes pair during synapsis, the bivalent consists of 4 chromatids (tetrad)."},{"id":122,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"A major reorganisation of virtually all cellular components occurs during which phase of the cell cycle?","options":["S phase","G1 phase","G2 phase","M phase"],"correctAnswer":3,"solution":"Mitosis (M phase) is the most dramatic period of the cell cycle, involving a major reorganization of virtually all components of the cell (condensation of chromosomes, breakdown and reformation of nuclear envelope, organelle remodeling, and spindle apparatus activity)."},{"id":123,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"In the cells of the testes that are responsible for producing steroidal hormones like testosterone, which organelle would be expected to be particularly well-developed and abundant?","options":["Rough endoplasmic reticulum","Smooth endoplasmic reticulum","Lysosomes","Peroxisomes"],"correctAnswer":1,"solution":"The smooth endoplasmic reticulum (SER) is the major site for synthesis of lipids, and in animal cells, lipid-like steroidal hormones are synthesized in the SER."},{"id":124,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"A mutation in the gene for the enzyme recombinase would most likely lead to a failure in:","options":["the pairing of homologous chromosomes.","the separation of homologous chromosomes.","the exchange of genetic material between non-sister chromatids.","the formation of the meiotic spindle."],"correctAnswer":2,"solution":"Recombinase is the key enzyme that catalyzes crossing over (exchange of genetic material between non-sister chromatids of homologous chromosomes during pachytene)."},{"id":125,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Given below are two statements:\nStatement I: Mitosis helps in restoring the nucleo-cytoplasmic ratio.\nStatement II: In plants, mitotic divisions in the apical and lateral cambium result in continuous growth throughout their life.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","options":["Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect.","Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct."],"correctAnswer":0,"solution":"Both statements are correct. Mitosis restores the nucleo-cytoplasmic ratio disturbed by cell growth, and mitotic divisions in plant meristems (apical and lateral cambium) provide continuous growth."},{"id":126,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Consider the following events:\n(A) Initiation of condensation of chromosomal material.\n(B) Movement of duplicated centrosomes towards opposite poles.\n(C) Disappearance of the Golgi complex and ER.\n(D) Complete disintegration of the nuclear envelope.\nWhich of these events mark the completion of prophase and the start of the subsequent phase?","options":["A and B only","D only","C and D only","A, B, C, and D"],"correctAnswer":1,"solution":"The complete disintegration of the nuclear envelope marks the end of prophase and the beginning of metaphase."},{"id":127,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"The enzyme recombinase is functionally active during:","options":["Zygotene, facilitating the pairing of homologous chromosomes.","Pachytene, mediating the exchange of genetic material.","Diplotene, causing the dissolution of the synaptonemal complex.","Anaphase II, enabling the separation of sister chromatids."],"correctAnswer":1,"solution":"Crossing over is an enzyme-mediated process involving recombinase, which occurs actively during the pachytene stage of Prophase I."},{"id":128,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"A cell that is determined to be in the G2 phase of the cell cycle. Which of the following would be true for this cell?","options":["The amount of DNA is 2C and the chromosome number is 2n.","DNA replication is in progress.","Synthesis of proteins in preparation for mitosis is occurring.","The cell is metabolically active but no longer proliferating."],"correctAnswer":2,"solution":"During the G2 phase, DNA replication is already finished (DNA is 4C, chromosome number is 2n), and proteins like tubulin required for mitosis are synthesized while cell growth continues."},{"id":129,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"How many of the following statements regarding chloroplasts are correct?\n(A) In Chlamydomonas, the number of chloroplasts is typically one per cell.\n(B) The inner chloroplast membrane is relatively more permeable than the outer membrane.\n(C) The stroma contains enzymes required for the synthesis of carbohydrates and proteins.\n(D) The ribosomes of chloroplasts are smaller (70S) than the cytoplasmic ribosomes (80S).","options":["One","Two","Three","Four"],"correctAnswer":2,"solution":"(A) is correct (1 per cell in Chlamydomonas).\n(B) is incorrect (the inner membrane is relatively less permeable than the outer membrane).\n(C) is correct (stroma contains RuBisCO and other enzymes for carbohydrate/protein synthesis).\n(D) is correct (chloroplast ribosomes are 70S).\nHence, three statements (A, C, D) are correct."},{"id":130,"subject":"Botany","topic":"Cell - The Unit of Life","type":"assertion-reason","question":"Given below are two statements: One is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): Lysosomes are capable of digesting carbohydrates, proteins, lipids, and nucleic acids.\nReason (R): Lysosomal vesicles are rich in hydrolytic enzymes that are optimally active at an acidic pH.\nIn the light of the above statements, choose the correct answer from the options given below:","options":["Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A.","A is true but R is false.","A is false but R is true."],"correctAnswer":0,"solution":"Lysosomes are rich in acid hydrolases (lipases, proteases, carbohydrases, nucleases) optimally active at acidic pH (~5), capable of digesting all major biomacromolecules. Both statements are true and Reason explains Assertion."},{"id":131,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"The 'S' in 70S and 80S ribosomes is Svedberg's unit. It is an indirect measure of:","options":["surface area and volume.","sedimentation rate only.","the number of subunits.","density and size."],"correctAnswer":3,"solution":"Svedberg's unit (S) stands for sedimentation coefficient; it is an indirect measure of both density and size."},{"id":132,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"In the context of the cell theory, the statement \"Omnis cellula-e cellula\" was a crucial modification because the original theory formulated by Schleiden and Schwann did not:","options":["state that all organisms are composed of cells.","recognize the cell as the basic unit of life.","explain how new cells were formed.","apply to both plants and animals."],"correctAnswer":2,"solution":"Schleiden and Schwann together formulated cell theory, but did not explain how new cells were formed. Rudolf Virchow (1855) first explained that cells divide and new cells arise from pre-existing cells (\"Omnis cellula-e cellula\")."},{"id":133,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"Which of the following cellular states, described in terms of chromosome number (n) and DNA content (C), is never observed during any stage of mitosis in a diploid somatic cell of a higher plant?","options":["Chromosome number = 4n, DNA content = 4C","Chromosome number = n, DNA content = 2C","Chromosome number = 2n, DNA content = 4C","Chromosome number = 2n, DNA content = 2C"],"correctAnswer":1,"solution":"A diploid plant cell undergoing mitosis is never haploid ($n$); reduction to $n$ only happens during meiosis. In mitotic anaphase chromosome number is temporarily $4n$ ($4C$), in $G_2$ it is $2n$ ($4C$), and in daughter cells it is $2n$ ($2C$)."},{"id":134,"subject":"Botany","topic":"Cell Cycle and Cell Division","type":"single-choice","question":"A bivalent structure observed during meiosis consists of:","options":["two chromatids and two centromeres.","four chromatids and two centromeres.","four chromatids and four centromeres.","two chromatids and one centromere."],"correctAnswer":1,"solution":"A bivalent consists of a pair of homologous chromosomes. Each homologous chromosome has 2 sister chromatids and 1 centromere. Thus, a bivalent has 4 chromatids and 2 centromeres."},{"id":135,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"A cell that is very active in protein synthesis and secretion would be expected to have:","options":["abundant smooth endoplasmic reticulum.","a large, prominent nucleolus and well-developed RER.","many mitochondria and few ribosomes.","a large central vacuole and a thick secondary wall."],"correctAnswer":1,"solution":"Cells actively synthesizing and secreting proteins have a prominent nucleolus (for rRNA and ribosome biogenesis) and an extensive network of rough endoplasmic reticulum (RER)."},{"id":136,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"A scientist is studying the communication between cardiac muscle cells. She finds that action potentials spread rapidly from one cell to the next, allowing the heart to contract as a synchronized unit. Which of the following cell junctions is primarily responsible for this rapid ionic communication?","options":["Tight junctions","Gap junctions","Adhering junctions","Desmosomes"],"correctAnswer":1,"solution":"Gap junctions facilitate communication between adjacent cells by connecting the cytoplasm of adjoining cells, allowing rapid transfer of ions, small molecules, and sometimes big molecules."},{"id":137,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Given below are two statements:\nStatement I: Areolar connective tissue is a loose connective tissue present beneath the skin and serves as a support framework for epithelium.\nStatement II: Adipose tissue is a type of dense connective tissue located mainly beneath the skin, specialized to store fats.\nIn the light of the above statements, choose the correct answer:","options":["Both Statement I and Statement II are correct.","Statement I is correct, but Statement II is incorrect.","Statement I is incorrect, but Statement II is correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":1,"solution":"Statement I is correct. Statement II is incorrect because adipose tissue is a type of loose connective tissue, not dense connective tissue."},{"id":138,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Match List-I with List-II:\nList-I (Epithelial Tissue):\n(A) Simple columnar with microvilli\n(B) Ciliated columnar epithelium\n(C) Non-keratinized stratified squamous epithelium\n(D) Compound epithelium with limited secretional role\n\nList-II (Location):\n(I) Fallopian tubes\n(II) Moist surface of the buccal cavity\n(III) Lining of intestine\n(IV) Tubular parts of nephrons in kidneys\n\nChoose the correct answer from the options given below:","options":["A-III, B-I, C-II, D-IV","A-III, B-I, C-IV, D-II","A-I, B-III, C-II, D-IV","A-IV, B-I, C-II, D-III"],"correctAnswer":0,"solution":"Simple columnar with microvilli lines the intestine $\\implies$ III.\nCiliated columnar lines bronchioles and Fallopian tubes $\\implies$ I.\nStratified squamous moist lining buccal cavity/pharynx $\\implies$ II.\nCompound epithelium with limited secretional role (e.g. ducts of salivary glands, pancreas, etc.) $\\implies$ IV.\nCorrect matching: A-III, B-I, C-II, D-IV."},{"id":139,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"A tissue sample shows parallel bundles of fibres with rows of fibroblasts in between. The fibres are thick, wavy, and provide great tensile strength against pulling in one direction. Identify the major protein fibre present and the classification of this tissue.","options":["Elastin fibres; Dense irregular connective tissue","Reticular fibres; Loose connective tissue","Collagen fibres; Dense regular connective tissue","Collagen fibres; Dense irregular connective tissue"],"correctAnswer":2,"solution":"Dense regular connective tissue (such as tendons) possesses collagen fibres present in rows between many parallel bundles of fibres, providing great tensile strength."},{"id":140,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Cartilage and bone are both specialized connective tissues. Which of the following is a common feature shared by both of them?","options":["In both, cells are enclosed in small cavities called lacunae.","Both have a hard, non-pliable ground substance rich in calcium salts.","Both are vascular and undergo continuous remodeling throughout life.","In both, the intercellular matrix contains chondroitin sulfate as the primary component."],"correctAnswer":0,"solution":"In both cartilage (chondrocytes) and bone (osteocytes), the cells reside enclosed within small fluid-filled cavities called lacunae."},{"id":141,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): Smooth muscle fibres are known as involuntary muscles.\nReason (R): Their functioning cannot be directly controlled by conscious will, and they are innervated by the autonomic nervous system.\nIn the light of the above statements, choose the correct answer:","options":["Both A and R are true, and R is the correct explanation of A.","Both A and R are true, but R is NOT the correct explanation of A.","A is true, but R is false.","A is false, but R is true."],"correctAnswer":0,"solution":"Smooth muscles are called involuntary precisely because their functioning cannot be directly controlled by conscious will (under autonomic control). Thus, both A and R are true, and R explains A."},{"id":142,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Consider the following statements regarding skeletal muscle tissue:\nI. Skeletal muscle fibres are tapered at both ends (fusiform) and lack striations.\nII. A bundle of muscle fibres is known as a fascicle, which is held together by a collagenous connective tissue sheath called fascia.\nIII. Skeletal muscle fibres are multinucleated with peripherally located nuclei (syncytial).\nIV. These muscles are primarily attached to skeletal bones and are under voluntary control.\nWhich of the statements given above are CORRECT?","options":["Only I and II","Only II, III and IV","Only I, III and IV","I, II, III and IV"],"correctAnswer":1,"solution":"Statement I is incorrect because skeletal muscle fibres are cylindrical (not fusiform) and show prominent striations (fusiform and non-striated describes smooth muscle). Statements II, III, and IV are correct descriptions of skeletal muscle."},{"id":143,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Given below are two statements:\nStatement I: Compound epithelium plays a major role in absorption and secretion in the digestive tract.\nStatement II: The main function of compound epithelium is to provide protection against chemical and mechanical stresses.\nIn the light of the above statements, choose the most appropriate answer:","options":["Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect.","Statement I is correct, but Statement II is incorrect.","Statement I is incorrect, but Statement II is correct."],"correctAnswer":3,"solution":"Compound epithelium consists of two or more layers of cells; its main function is to provide protection against mechanical and chemical stress, having a very limited role in secretion and absorption (which is performed by simple epithelium). Thus Statement I is incorrect and Statement II is correct."},{"id":144,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Which of the following statements regarding neural tissue is/are INCORRECT?\nA. Neurons are the unit of the neural system and are excitable cells.\nB. Neuroglial cells protect and support neurons and make up more than one-half the volume of neural tissue in human body.\nC. When a neuron is suitably stimulated, an electrical disturbance is generated which swiftly travels along its cyton only.\nD. Neuroglia are directly involved in the conduction of nerve impulses along with neurons.","options":["A and B only","C and D only","B and C only","A and D only"],"correctAnswer":1,"solution":"Statement C is incorrect because the electrical disturbance travels swiftly along the plasma membrane and axon to the nerve endings, not just cyton. Statement D is incorrect because neuroglial cells are non-excitable supporting cells and do not conduct nerve impulses. Thus, C and D are incorrect."},{"id":145,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"The proximal convoluted tubule (PCT) of a nephron is lined by which of the following epithelial tissues to increase the surface area for reabsorption?","options":["Simple squamous epithelium","Simple cuboidal epithelium with microvilli","Ciliated columnar epithelium","Keratinized stratified squamous epithelium"],"correctAnswer":1,"solution":"The epithelium of the proximal convoluted tubule (PCT) of nephron in the kidney has cuboidal cells with brush border (microvilli) to enhance reabsorption."},{"id":146,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Which of the following statements is INCORRECT regarding cartilage?","options":["The intercellular material is solid and pliable, resisting compression.","It is highly vascularized and regenerates very quickly after injury.","Chondrocytes are enclosed in lacunae within the matrix.","Most of the cartilages in vertebrate embryos are replaced by bones in adults."],"correctAnswer":1,"solution":"Cartilage is avascular (lacks direct blood vessels) and heals/regenerates very slowly compared to other tissues. Thus, option (2) is incorrect."},{"id":147,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Consider the following statements regarding blood:\nI. Blood is a fluid connective tissue containing plasma, red blood cells (RBCs), white blood cells (WBCs), and platelets.\nII. Blood lacks fibres, unlike all other connective tissues.\nIII. The matrix of blood is secreted by the cellular elements present in it.\nIV. It is the main circulating fluid that helps in the transport of various substances.\nWhich of the above statements are CORRECT?","options":["Only I and IV","Only II and III","Only I, II and IV","I, II, III and IV"],"correctAnswer":2,"solution":"Statements I, II, and IV are correct. Statement III is incorrect because blood plasma (matrix) is synthesized primarily by liver cells and other tissues, not secreted by blood cells themselves."},{"id":148,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Which of the following is an INCORRECT match regarding glandular epithelium?","options":["Salivary gland - Exocrine gland","Goblet cells - Multicellular gland","Thyroid gland - Endocrine gland","Sweat gland - Exocrine gland"],"correctAnswer":1,"solution":"Goblet cells of the alimentary canal are isolated glandular cells, meaning they are unicellular glands, not multicellular glands."},{"id":149,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"How many of the following are examples of dense irregular connective tissue?\nA. Tendons\nB. Dermis of skin\nC. Ligaments\nD. Perichondrium\nE. Cartilage","options":["One","Two","Three","Four"],"correctAnswer":1,"solution":"Dense irregular connective tissue has fibroblasts and many fibres (mostly collagen) oriented differently; it is found in the dermis of skin (B) and fibrous coverings like perichondrium (D). Tendons and ligaments are dense regular. Cartilage is specialized connective tissue. Thus, exactly two (B and D)."},{"id":150,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Given below are two statements:\nStatement I: Intercalated discs are communication junctions present between cardiac muscle cells.\nStatement II: Cardiac muscle tissue is voluntary and non-striated in nature.\nIn the light of the above statements, choose the correct answer:","options":["Both Statement I and Statement II are correct.","Statement I is correct, but Statement II is incorrect.","Statement I is incorrect, but Statement II is correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":1,"solution":"Statement I is correct. Statement II is incorrect because cardiac muscle is involuntary and striated (with branching fibres)."},{"id":151,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"The wall of blood vessels and air sacs of lungs are made of a single thin layer of flattened cells with irregular boundaries. This tissue is:","options":["Simple cuboidal epithelium","Simple squamous epithelium","Simple columnar epithelium","Pseudostratified columnar epithelium"],"correctAnswer":1,"solution":"Simple squamous epithelium consists of a single thin layer of flattened cells with irregular boundaries, forming diffusion boundaries in the air sacs of lungs and blood vessel walls."},{"id":152,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Complete the analogy: (i) : Skeletal muscle to bone :: Ligament : (iii) ; and (i) contains parallel bundles of (ii) fibres.","options":["(i)-Tendon, (ii)-Collagen, (iii)-Bone to bone","(i)-Ligament, (ii)-Elastin, (iii)-Cartilage to bone","(i)-Tendon, (ii)-Elastin, (iii)-Muscle to muscle","(i)-Fascia, (ii)-Reticular, (iii)-Bone to bone"],"correctAnswer":0,"solution":"Tendons attach skeletal muscles to bones and contain dense regular parallel bundles of collagen fibres. Ligaments attach bone to bone."},{"id":153,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Match List-I with List-II:\nList-I (Tissue/Cell Type):\n(A) Mast cells\n(B) Macrophages\n(C) Adipocytes\n(D) Fibroblasts\n\nList-II (Function/Characteristic):\n(I) Phagocytic in nature\n(II) Storage of fats\n(III) Secrete histamine, serotonin, and heparin\n(IV) Produce fibres and ground substance\n\nChoose the correct answer:","options":["A-I, B-III, C-II, D-IV","A-III, B-IV, C-II, D-I","A-III, B-I, C-II, D-IV","A-II, B-I, C-III, D-IV"],"correctAnswer":2,"solution":"Mast cells secrete histamine, heparin, serotonin $\\implies$ III.\nMacrophages are phagocytic $\\implies$ I.\nAdipocytes store fat $\\implies$ II.\nFibroblasts secrete fibres $\\implies$ IV.\nCorrect matching: A-III, B-I, C-II, D-IV."},{"id":154,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Which of the following is INCORRECT regarding a tendon?","options":["It connects bone to bone.","It is a dense regular connective tissue.","It contains rows of collagen fibres.","It connects skeletal muscle to bone."],"correctAnswer":0,"solution":"Tendons connect skeletal muscle to bone. Ligaments connect bone to bone. Thus option (1) is incorrect."},{"id":155,"subject":"Zoology","topic":"Structural Organisation in Animals","type":"single-choice","question":"Smooth muscle fibres are characterized by:","options":["Striations - Voluntary - Cylindrical","Unstriated (smooth) - Involuntary - Spindle-shaped (fusiform)","Striations - Involuntary - Branched","Striations - Involuntary - Unbranched"],"correctAnswer":1,"solution":"Smooth muscle fibres are non-striated (smooth), involuntary in action, and spindle-shaped (fusiform, tapering at both ends) with a single central nucleus."},{"id":156,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"If a female cockroach produces 10 oothecae in her lifetime, and each ootheca contains an average of 15 eggs, how many nymphs can potentially hatch from this female?","options":["100","120","150","200"],"correctAnswer":2,"solution":"Total potential nymphs $= 10 \\text{ oothecae} \\times 15 \\text{ eggs/ootheca} = 150 \\text{ nymphs}$. (Note: in question paper option 150 corresponds to 150 potential offspring)."},{"id":157,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): The head of Periplaneta americana is triangular in shape and lies anteriorly at right angles to the longitudinal body axis.\nReason (R): It is formed by the fusion of eight embryonic segments and bears a pair of compound eyes.\nIn the light of the above statements, choose the correct answer:","options":["A is true, but R is false.","Both A and R are true, and R is the correct explanation of A.","Both A and R are true, but R is NOT the correct explanation of A.","A is false, but R is true."],"correctAnswer":0,"solution":"Assertion (A) is true: The cockroach head is triangular and hypognathous (lies at right angles to body axis). Reason (R) is false because the head is formed by the fusion of SIX embryonic segments, not eight."},{"id":158,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"The respiratory system of cockroach consists of a network of trachea that open through how many pairs of spiracles, and on which part of the body are they located?","options":["10 pairs of spiracles present on the lateral side of the body (pleura).","8 pairs of spiracles located on the tergum.","12 pairs of spiracles located on the sternum.","6 pairs of spiracles located on the abdomen only."],"correctAnswer":0,"solution":"Cockroach respiratory system opens through 10 pairs of small holes called spiracles present on the lateral side of the body (pleura): 2 pairs in the thorax and 8 pairs in the abdomen."},{"id":159,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Which of the following statements about the compound eyes of cockroach is TRUE?","options":["Each compound eye consists of about 1000 hexagonal ommatidia.","They give apposition vision with high resolution during the day.","The compound eyes are made up of about 2000 hexagonal ommatidia in each eye, providing mosaic vision.","They are located on the ventral surface of the head."],"correctAnswer":2,"solution":"Cockroach compound eyes are situated on the dorsal surface of the head. Each eye consists of about 2000 hexagonal ommatidia, giving mosaic vision with more sensitivity but less resolution (nocturnal vision)."},{"id":160,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"How many hepatic (gastric) caeca are present at the junction of the foregut and midgut in cockroach, and what is their primary function?","options":["100-150; excretion","6-8; secretion of digestive juice","10-12; absorption of water","2-4; storage of food"],"correctAnswer":1,"solution":"At the junction of foregut and midgut, a ring of 6-8 blind tubules called hepatic or gastric caeca is present, which secretes digestive juice."},{"id":161,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Consider the following statements regarding the blood vascular system of cockroach:\nI. It is of open type with poorly developed blood vessels.\nII. Hemolymph is composed of colourless plasma and hemocytes.\nIII. The heart is an elongated muscular tube lying along the mid-dorsal line of the thorax and abdomen.\nIV. It has 10 funnel-shaped chambers with ostia on either side.\nWhich of the above statements are CORRECT?","options":["Only I and II","Only I, II and IV","Only I, II and III","I, II, III and IV"],"correctAnswer":2,"solution":"Statements I, II, and III are correct. Statement IV is incorrect because the heart consists of 13 funnel-shaped chambers (3 thoracic and 10 abdominal), not 10."},{"id":162,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Match List-I with List-II regarding cockroach morphology and anatomy:\nList-I:\n(A) Anal styles\n(B) Anal cerci\n(C) Titillator\n(D) Collaterial glands\n\nList-II:\n(I) Female reproductive system (ootheca formation)\n(II) Male gonapophyses (phallomeres)\n(III) 10th abdominal segment in both sexes\n(IV) 9th sternum in males only\n\nChoose the correct answer:","options":["A-III, B-IV, C-II, D-I","A-IV, B-III, C-II, D-I","A-IV, B-II, C-III, D-I","A-III, B-I, C-II, D-IV"],"correctAnswer":1,"solution":"Anal styles are present on 9th sternum in males only $\\implies$ IV.\nAnal cerci arise from 10th segment in both sexes $\\implies$ III.\nTitillator is part of male external genitalia (phallomeres) $\\implies$ II.\nCollaterial glands are in female reproductive system $\\implies$ I.\nCorrect matching: A-IV, B-III, C-II, D-I."},{"id":163,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Given below are two statements:\nStatement I: In male cockroach, genital pouch lies at the hind end of abdomen bound dorsally by 9th and 10th terga and ventrally by 9th sternum.\nStatement II: In female cockroach, the genital pouch is formed by the 7th, 8th, and 9th sterna, where 7th sternum is boat-shaped.\nIn the light of the above statements, choose the correct answer:","options":["Both Statement I and Statement II are correct.","Statement I is correct, but Statement II is incorrect.","Statement I is incorrect, but Statement II is correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":0,"solution":"Both Statement I and Statement II are correct descriptions of male and female cockroach genital pouches."},{"id":164,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Which of the following statements is CORRECT regarding oothecae in cockroach?","options":["Ootheca is a dark reddish to blackish-brown capsule about 8 mm long.","The female produces 9-10 oothecae, each containing 14-16 eggs.","Oothecae are dropped or glued to a suitable surface with high humidity near food.","All of the above statements are correct."],"correctAnswer":3,"solution":"All statements are correct: Ootheca is dark brown, ~8 mm long, females lay 9-10 oothecae, each bearing 14-16 eggs, glued in protected crevices near food."},{"id":165,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"The exoskeleton of cockroach is made of hardened chitinous plates called:","options":["Tergites only","Sclerites","Sternites only","Pleurites only"],"correctAnswer":1,"solution":"The exoskeleton has hardened chitinous plates called sclerites (tergites dorsally, sternites ventrally, and pleurites laterally)."},{"id":166,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Which of the following mouthparts of cockroach are paired?\n(A) Mandibles\n(B) Maxillae\n(C) Labrum\n(D) Labium\n(E) Hypopharynx\nChoose the correct option:","options":["(A) and (B) only","(A), (B), and (C)","(C) and (D) only","(A), (B), and (E)"],"correctAnswer":0,"solution":"In cockroach mouthparts, a pair of mandibles and a pair of maxillae are paired. Labrum (upper lip), labium (lower lip), and hypopharynx (tongue) are median unpaired structures."},{"id":167,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"In addition to Malpighian tubules, which of the following structures also help in excretion in cockroach?","options":["Fat body, nephrocytes, and urecose glands","Hepatic caeca and green glands","Collaterial glands and mushroom glands","Tracheoles and spiracles"],"correctAnswer":0,"solution":"In cockroach, excretion is performed by Malpighian tubules. In addition, the fat body, nephrocytes, and urecose glands also help in excretion."},{"id":168,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Which of the following correctly describes the structure of the proventriculus (gizzard) in cockroach?","options":["Thin-walled sac used exclusively for storage of food.","Outer layer of thick circular muscles and thick inner cuticle forming six highly chitinous plates called teeth.","Ring of 100-150 yellow-coloured thin filamentous tubules.","Muscular chamber containing 13 funnel-shaped valves."],"correctAnswer":1,"solution":"The gizzard (proventriculus) has an outer layer of thick circular muscles and a thick inner cuticle forming six highly chitinous plates called teeth, which grind food particles."},{"id":169,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): Cockroach is uricotelic in nature.\nReason (R): It excretes nitrogenous waste mainly in the form of uric acid to conserve water.\nIn the light of the above statements, choose the correct answer:","options":["Both A and R are true, and R is the correct explanation of A.","Both A and R are true, but R is NOT the correct explanation of A.","A is true, but R is false.","A is false, but R is true."],"correctAnswer":0,"solution":"Cockroach converts nitrogenous waste into uric acid and excretes it as a semi-solid paste through the hindgut, an adaptation for water conservation. Both A and R are true and R explains A."},{"id":170,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"What kind of vision is provided by the ommatidia of a cockroach compound eye?","options":["Mosaic vision with more sensitivity but less resolution (nocturnal vision).","Superposition vision with low sensitivity and high resolution.","Monocular vision with depth perception.","Binocular stereoscopic color vision."],"correctAnswer":0,"solution":"With several ommatidia, a cockroach receives several images of an object. This kind of vision is known as mosaic vision, characterized by more sensitivity but less resolution, common during night (nocturnal vision)."},{"id":171,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Identify the CORRECT match between the cockroach mouthpart and its common anatomical name:","options":["Labrum - Upper lip","Labium - Upper lip","Hypopharynx - Lower lip","Mandible - Tongue"],"correctAnswer":0,"solution":"Labrum = upper lip; Labium = lower lip; Hypopharynx = tongue; Mandibles = jaws."},{"id":172,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Which of the following is CORRECT regarding the head of cockroach?","options":["Formed by the fusion of three segments.","Attached to thorax by a long, rigid neck.","Formed by the fusion of six segments, shows great mobility in all directions due to a flexible neck.","Bears sessile simple eyes and lacks antennae."],"correctAnswer":2,"solution":"The head is formed by the fusion of six segments and shows great mobility in all directions due to a flexible neck."},{"id":173,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Given below are two statements:\nStatement I: The nervous system of cockroach consists of a series of fused, segmentally arranged ganglia joined by paired longitudinal connectives on the ventral side.\nStatement II: Three ganglia lie in the thorax and six in the abdomen.\nIn the light of the above statements, choose the correct answer:","options":["Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect.","Statement I is correct, but Statement II is incorrect.","Statement I is incorrect, but Statement II is correct."],"correctAnswer":0,"solution":"Both Statement I and Statement II are correct: The nervous system has 3 ganglia in the thorax and 6 in the abdomen connected by paired longitudinal connectives on the ventral side."},{"id":174,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"How many chambers are present in the heart of Periplaneta americana?","options":["10","13","8","12"],"correctAnswer":1,"solution":"The heart of cockroach consists of 13 funnel-shaped chambers (3 in the thorax and 10 in the abdomen) with ostia on either side."},{"id":175,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): If the head of a cockroach is cut off, it will still live for as long as one week.\nReason (R): The head holds only a bit of a nervous system while the rest is situated along the ventral part of its body.\nIn the light of the above statements, choose the correct answer:","options":["Both A and R are true, and R is the correct explanation of A.","Both A and R are true, but R is NOT the correct explanation of A.","A is true, but R is false.","A is false, but R is true."],"correctAnswer":0,"solution":"Because the head holds only a bit of a nervous system while the rest is situated along the ventral part of its body, a headless cockroach can survive for up to a week until it dies of dehydration/starvation. Both A and R are true and R explains A."},{"id":176,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"The lower lip in the mouthparts of cockroach is formed by:","options":["Labrum","Labium","Hypopharynx","Maxilla"],"correctAnswer":1,"solution":"The lower lip of the cockroach is the labium, while the upper lip is the labrum."},{"id":177,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"The development of Periplaneta americana is described as:","options":["Holometabolous, with complete metamorphosis.","Paurometabolous, development through nymphal stages.","Ametabolous, without any metamorphosis.","Hemimetabolous, with aquatic naiads."],"correctAnswer":1,"solution":"The development of Periplaneta americana is paurometabolous, meaning there is development through nymphal stages (about 13 moults to reach adult form)."},{"id":178,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"Which of the following statements about the excretory system of cockroach is TRUE?","options":["Cockroach excretes ammonia as its primary nitrogenous waste.","Malpighian tubules are located at the junction of midgut and hindgut and are 6-8 in number.","Excretory system consists of 100-150 Malpighian tubules, which extract uric acid from hemolymph and excrete it through the hindgut.","Nephridia are the primary excretory organs."],"correctAnswer":2,"solution":"Excretion is performed by 100-150 yellow-coloured thin filamentous Malpighian tubules at the junction of midgut and hindgut, which absorb nitrogenous waste products and convert them into uric acid."},{"id":179,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): Male cockroaches bear a pair of short, thread-like anal styles which are absent in females.\nReason (R): Anal cerci are present in both male and female cockroaches on the 10th segment.\nIn the light of the above statements, choose the correct answer:","options":["Both (A) and (R) are correct and (R) is the correct explanation of (A).","Both (A) and (R) are correct, but (R) is not the correct explanation of (A).","(A) is correct, but (R) is incorrect.","(A) is incorrect, but (R) is correct."],"correctAnswer":1,"solution":"Both statements are factually correct statements from NCERT. Anal styles distinguish males from females (on 9th sternum), while anal cerci are present in both sexes (on 10th tergum). However, R is not the explanation of A."},{"id":180,"subject":"Zoology","topic":"Cockroach Morphology & Anatomy","type":"single-choice","question":"The forewings of cockroach arise from (i) and are called (iii) ; while hindwings arise from (ii). Complete the blanks:","options":["(i)-Prothorax, (ii)-Mesothorax, (iii)-Tegmina","(i)-Mesothorax, (ii)-Metathorax, (iii)-Tegmina","(i)-Metathorax, (ii)-Mesothorax, (iii)-Halteres","(i)-Mesothorax, (ii)-Metathorax, (iii)-Elytra"],"correctAnswer":1,"solution":"The first pair of wings arises from mesothorax and the second pair from metathorax. Forewings (mesothoracic) called tegmina are opaque dark and leathery and cover the hind wings when at rest. Hind wings are transparent, membranous and used in flight."}];
+
+    // State
+    let currentIndex = 0;
+    let activeSubject = 'Physics';
+    const userAnswers = {}; // qId -> optionIndex (0..3)
+    const paletteStates = {}; // qId -> 'not-visited' | 'not-answered' | 'answered' | 'marked-for-review' | 'answered-and-marked'
+    const timeSpent = {}; // qId -> seconds
+    let questionOpenTime = Date.now();
+    let secondsRemaining = (testMetadata.durationMinutes || 180) * 60;
+    let timerInterval = null;
+    let isTestActive = false;
+
+    // Initialize states
+    questions.forEach((q, idx) => {
+      paletteStates[q.id] = idx === 0 ? 'not-answered' : 'not-visited';
+      userAnswers[q.id] = null;
+      timeSpent[q.id] = 0;
+    });
+
+    function startTest() {
+      document.getElementById('instructionsScreen').style.display = 'none';
+      document.getElementById('examScreen').style.display = 'grid';
+      isTestActive = true;
+      questionOpenTime = Date.now();
+      initSubjects();
+      renderCurrentQuestion();
+      renderPalette();
+      startTimer();
+      initScratchpad();
+      renderMath();
+    }
+
+    function initSubjects() {
+      const subjects = [...new Set(questions.map(q => q.subject))];
+      activeSubject = subjects[0] || 'Physics';
+      const container = document.getElementById('subjectTabsContainer');
+      container.innerHTML = subjects.map(s => 
+        '<button class="tab-btn ' + (s === activeSubject ? 'active' : '') + '" onclick="switchSubject(\'' + s + '\')">' + s.toUpperCase() + '</button>'
+      ).join('');
+    }
+
+    function switchSubject(sub) {
+      recordTimeSpent();
+      activeSubject = sub;
+      const firstQIndex = questions.findIndex(q => q.subject === sub);
+      if (firstQIndex !== -1) {
+        currentIndex = firstQIndex;
+        if (paletteStates[questions[currentIndex].id] === 'not-visited') {
+          paletteStates[questions[currentIndex].id] = 'not-answered';
+        }
+      }
+      initSubjects();
+      renderCurrentQuestion();
+      renderPalette();
+      renderMath();
+    }
+
+    function renderCurrentQuestion() {
+      const q = questions[currentIndex];
+      document.getElementById('qNumberDisplay').textContent = 'Question ' + (currentIndex + 1) + ' of ' + questions.length + ' (' + q.subject + ')';
+      
+      let stemHtml = '<div>' + escapeHtml(q.question) + '</div>';
+
+      if (q.assertion && q.reason) {
+        stemHtml += '<div class="assertion-box"><strong>Assertion:</strong> ' + escapeHtml(q.assertion) + '</div>' +
+                    '<div class="reason-box"><strong>Reason:</strong> ' + escapeHtml(q.reason) + '</div>';
+      }
+
+      if (q.statements && q.statements.length > 0) {
+        stemHtml += q.statements.map(s => '<div class="statement-box">' + escapeHtml(s) + '</div>').join('');
+      }
+
+      if (q.matchColumn) {
+        stemHtml += '<table class="match-table"><tr><th>' + escapeHtml(q.matchColumn.col1Title || 'Column I') + '</th><th>' + escapeHtml(q.matchColumn.col2Title || 'Column II') + '</th></tr>';
+        const maxRows = Math.max(q.matchColumn.col1.length, q.matchColumn.col2.length);
+        for (let i = 0; i < maxRows; i++) {
+          const c1 = q.matchColumn.col1[i] ? q.matchColumn.col1[i].key + '. ' + q.matchColumn.col1[i].text : '';
+          const c2 = q.matchColumn.col2[i] ? q.matchColumn.col2[i].key + '. ' + q.matchColumn.col2[i].text : '';
+          stemHtml += '<tr><td>' + escapeHtml(c1) + '</td><td>' + escapeHtml(c2) + '</td></tr>';
+        }
+        stemHtml += '</table>';
+      }
+
+      document.getElementById('qStem').innerHTML = stemHtml;
+
+      // Visuals / diagrams
+      const visualContainer = document.getElementById('qVisualContainer');
+      visualContainer.innerHTML = '';
+      if (q.assets && q.assets.length > 0) {
+        q.assets.forEach(a => {
+          if (a.type === 'svg') {
+            visualContainer.innerHTML += '<div>' + a.data + (a.caption ? '<p style="text-align:center;font-size:12px;color:var(--text-muted);">' + escapeHtml(a.caption) + '</p>' : '') + '</div>';
+          } else if (a.type === 'image') {
+            visualContainer.innerHTML += '<div style="text-align:center;"><img src="' + a.data + '" style="max-width:100%;border-radius:6px;" alt="diagram"/></div>';
+          }
+        });
+      }
+
+      // Options
+      const selected = userAnswers[q.id];
+      const optLabels = ['A', 'B', 'C', 'D'];
+      const optionsHtml = q.options.map((opt, idx) => {
+        const isSel = selected === idx;
+        return '<div class="option-item ' + (isSel ? 'selected' : '') + '" onclick="selectOption(' + idx + ')">' +
+               '<div class="option-badge">' + optLabels[idx] + '</div>' +
+               '<div>' + escapeHtml(opt) + '</div>' +
+               '</div>';
+      }).join('');
+      document.getElementById('optionsContainer').innerHTML = optionsHtml;
+
+      document.getElementById('prevBtn').disabled = currentIndex === 0;
+      renderMath();
+    }
+
+    function selectOption(optIndex) {
+      const q = questions[currentIndex];
+      userAnswers[q.id] = optIndex;
+      renderCurrentQuestion();
+    }
+
+    function handleClearResponse() {
+      const q = questions[currentIndex];
+      userAnswers[q.id] = null;
+      if (paletteStates[q.id] === 'answered') {
+        paletteStates[q.id] = 'not-answered';
+      } else if (paletteStates[q.id] === 'answered-and-marked') {
+        paletteStates[q.id] = 'marked-for-review';
+      }
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function handleSaveAndNext() {
+      recordTimeSpent();
+      const q = questions[currentIndex];
+      if (userAnswers[q.id] !== null && userAnswers[q.id] !== undefined) {
+        paletteStates[q.id] = 'answered';
+      } else {
+        paletteStates[q.id] = 'not-answered';
+      }
+      moveToNext();
+    }
+
+    function handleMarkForReview() {
+      recordTimeSpent();
+      const q = questions[currentIndex];
+      if (userAnswers[q.id] !== null && userAnswers[q.id] !== undefined) {
+        paletteStates[q.id] = 'answered-and-marked';
+      } else {
+        paletteStates[q.id] = 'marked-for-review';
+      }
+      moveToNext();
+    }
+
+    function handlePrevious() {
+      if (currentIndex > 0) {
+        recordTimeSpent();
+        currentIndex--;
+        if (paletteStates[questions[currentIndex].id] === 'not-visited') {
+          paletteStates[questions[currentIndex].id] = 'not-answered';
+        }
+        renderCurrentQuestion();
+        renderPalette();
+      }
+    }
+
+    function moveToNext() {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        if (paletteStates[questions[currentIndex].id] === 'not-visited') {
+          paletteStates[questions[currentIndex].id] = 'not-answered';
+        }
+        renderCurrentQuestion();
+        renderPalette();
+      } else {
+        renderPalette();
+        showSubmitModal();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      recordTimeSpent();
+      currentIndex = idx;
+      if (paletteStates[questions[currentIndex].id] === 'not-visited') {
+        paletteStates[questions[currentIndex].id] = 'not-answered';
+      }
+      activeSubject = questions[currentIndex].subject;
+      initSubjects();
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function recordTimeSpent() {
+      const elapsed = Math.round((Date.now() - questionOpenTime) / 1000);
+      const qId = questions[currentIndex].id;
+      timeSpent[qId] = (timeSpent[qId] || 0) + elapsed;
+      questionOpenTime = Date.now();
+    }
+
+    function renderPalette() {
+      let ans = 0, notAns = 0, marked = 0, notVis = 0;
+      const grid = document.getElementById('paletteGridContainer');
+      grid.innerHTML = questions.map((q, idx) => {
+        const state = paletteStates[q.id];
+        if (state === 'answered' || state === 'answered-and-marked') ans++;
+        else if (state === 'marked-for-review') marked++;
+        else if (state === 'not-answered') notAns++;
+        else notVis++;
+
+        const isCurrent = idx === currentIndex ? 'current' : '';
+        return '<button class="q-btn ' + state + ' ' + isCurrent + '" onclick="jumpToQuestion(' + idx + ')">' + (idx + 1) + '</button>';
+      }).join('');
+
+      document.getElementById('countAnswered').textContent = ans;
+      document.getElementById('countNotAnswered').textContent = notAns;
+      document.getElementById('countMarked').textContent = marked;
+      document.getElementById('countNotVisited').textContent = notVis;
+    }
+
+    function startTimer() {
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        secondsRemaining--;
+        if (secondsRemaining <= 0) {
+          clearInterval(timerInterval);
+          finalizeSubmission();
+        } else {
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(secondsRemaining / 60);
+      const s = secondsRemaining % 60;
+      const display = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      const badge = document.getElementById('timerDisplay');
+      badge.textContent = display;
+      if (secondsRemaining <= 300) badge.classList.add('warning');
+    }
+
+    function showSubmitModal() {
+      recordTimeSpent();
+      let ans = 0, notAns = 0, marked = 0, notVis = 0;
+      questions.forEach(q => {
+        const st = paletteStates[q.id];
+        if (st === 'answered' || st === 'answered-and-marked') ans++;
+        else if (st === 'marked-for-review') marked++;
+        else if (st === 'not-answered') notAns++;
+        else notVis++;
+      });
+      document.getElementById('modalAnswered').textContent = ans;
+      document.getElementById('modalNotAnswered').textContent = notAns;
+      document.getElementById('modalMarked').textContent = marked;
+      document.getElementById('modalNotVisited').textContent = notVis;
+      document.getElementById('submitModal').style.display = 'flex';
+    }
+
+    function hideSubmitModal() {
+      document.getElementById('submitModal').style.display = 'none';
+      questionOpenTime = Date.now();
+    }
+
+    function finalizeSubmission() {
+      clearInterval(timerInterval);
+      recordTimeSpent();
+      document.getElementById('submitModal').style.display = 'none';
+      document.getElementById('examScreen').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+
+      // Calculate score (+4, -1)
+      let score = 0, correct = 0, incorrect = 0, unattempted = 0;
+      questions.forEach(q => {
+        const ans = userAnswers[q.id];
+        if (ans === null || ans === undefined) {
+          unattempted++;
+        } else if (ans === q.correctAnswer) {
+          correct++;
+          score += (testMetadata.markingScheme.correct || 4);
+        } else {
+          incorrect++;
+          score += (testMetadata.markingScheme.incorrect || -1);
+        }
+      });
+
+      const totalAttempted = correct + incorrect;
+      const accuracy = totalAttempted > 0 ? Math.round((correct / totalAttempted) * 100) : 0;
+
+      document.getElementById('finalScoreDisplay').textContent = score + ' / ' + testMetadata.totalMarks;
+      document.getElementById('statCorrect').textContent = correct;
+      document.getElementById('statIncorrect').textContent = incorrect;
+      document.getElementById('statUnattempted').textContent = unattempted;
+      document.getElementById('statAccuracy').textContent = accuracy + '%';
+
+      // Per-question time analysis
+      let fastestQ = null, slowestQ = null, minSec = Infinity, maxSec = -Infinity, totalTime = 0;
+      questions.forEach(q => {
+        const sec = timeSpent[q.id] || 0;
+        totalTime += sec;
+        if (sec < minSec && sec > 0) { minSec = sec; fastestQ = q.id; }
+        if (sec > maxSec) { maxSec = sec; slowestQ = q.id; }
+      });
+      const avgTime = Math.round(totalTime / questions.length);
+
+      document.getElementById('timeFastestQ').textContent = fastestQ ? 'Q' + fastestQ + ' (' + minSec + 's)' : 'N/A';
+      document.getElementById('timeSlowestQ').textContent = slowestQ ? 'Q' + slowestQ + ' (' + maxSec + 's)' : 'N/A';
+      document.getElementById('timeAverageQ').textContent = avgTime + ' seconds';
+
+      // Render Solution list
+      const optLabels = ['A', 'B', 'C', 'D'];
+      const solContainer = document.getElementById('detailedSolutionsContainer');
+      solContainer.innerHTML = questions.map((q, idx) => {
+        const userOpt = userAnswers[q.id];
+        const isCorr = userOpt === q.correctAnswer;
+        const statusBadge = userOpt === null ? '<span style="color:#64748b;font-weight:bold;">Unattempted</span>' :
+                            isCorr ? '<span style="color:#22c55e;font-weight:bold;">Correct (+4)</span>' :
+                            '<span style="color:#ef4444;font-weight:bold;">Incorrect (-1)</span>';
+        
+        return '<div style="border-bottom:1px solid var(--border);padding:16px 0;">' +
+               '<div style="display:flex;justify-content:space-between;margin-bottom:8px;">' +
+               '<strong>Q' + (idx + 1) + '. ' + q.subject + '</strong>' +
+               '<div>' + statusBadge + ' • Time Spent: ' + (timeSpent[q.id] || 0) + 's</div>' +
+               '</div>' +
+               '<p style="margin-bottom:8px;">' + escapeHtml(q.question) + '</p>' +
+               '<div style="font-size:13px;margin-bottom:6px;">Your Answer: ' + (userOpt !== null ? optLabels[userOpt] : 'None') + ' | Correct Answer: <strong>' + (q.correctAnswer !== null ? optLabels[q.correctAnswer] : 'Key Unresolved') + '</strong></div>' +
+               '<div style="background:var(--bg-main);padding:10px 14px;border-radius:6px;font-size:13px;margin-top:6px;"><strong>Explanation:</strong><br>' + escapeHtml(q.solution || 'Solution not provided in source.') + '</div>' +
+               '</div>';
+      }).join('');
+
+      renderMath();
+    }
+
+    function toggleRoughWork() {
+      const box = document.getElementById('roughWorkBox');
+      box.style.display = box.style.display === 'none' ? 'flex' : 'none';
+      if (box.style.display === 'flex') resizeCanvas();
+    }
+
+    function initScratchpad() {
+      const canvas = document.getElementById('scratchCanvas');
+      const ctx = canvas.getContext('2d');
+      let drawing = false;
+
+      function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - rect.left, y: clientY - rect.top };
+      }
+
+      function start(e) {
+        drawing = true;
+        const p = getPos(e);
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+      }
+      function draw(e) {
+        if (!drawing) return;
+        const p = getPos(e);
+        ctx.strokeStyle = '#0284c7';
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = 'round';
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+      }
+      function end() { drawing = false; }
+
+      canvas.addEventListener('mousedown', start);
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', end);
+      canvas.addEventListener('touchstart', start, { passive: true });
+      canvas.addEventListener('touchmove', draw, { passive: true });
+      canvas.addEventListener('touchend', end);
+    }
+
+    function resizeCanvas() {
+      const canvas = document.getElementById('scratchCanvas');
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    function clearCanvas() {
+      const canvas = document.getElementById('scratchCanvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    function renderMath() {
+      if (window.renderMathInElement) {
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\(', right: '\)', display: false },
+              { left: '\[', right: '\]', display: true }
+            ],
+            throwOnError: false
+          });
+        } catch(e) {}
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>
