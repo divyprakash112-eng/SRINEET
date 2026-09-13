@@ -442,7 +442,7 @@ button {
 .institute-grid {
   display: grid;
 
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   gap: 18px;
 
@@ -457,17 +457,17 @@ button {
 .institute-card {
   position: relative;
 
-  min-height: 155px;
+  min-height: 260px;
 
-  padding: 25px;
+  padding: 28px;
 
-  display: grid;
+  display: flex;
 
-  grid-template-columns: 76px 1fr 42px;
+  flex-direction: column;
 
-  align-items: center;
+  align-items: flex-start;
 
-  gap: 22px;
+  gap: 0;
 
   overflow: hidden;
 
@@ -548,21 +548,21 @@ button {
   position: relative;
   z-index: 2;
 
-  width: 76px;
-  height: 76px;
+  width: 60px;
+  height: 60px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 8px;
+  border-radius: 15px;
 
   color: var(--wine);
 
   background: conic-gradient(from 45deg, var(--gold-soft), var(--gold), var(--gold-hi), var(--gold), var(--gold-soft));
 
   font-family: "Fraunces", serif;
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 700;
 
   box-shadow:
@@ -570,6 +570,17 @@ button {
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
 
   transform: translateZ(26px);
+
+  margin-bottom: 20px;
+}
+
+.institute-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+
+  flex: 1;
 }
 
 .institute-order {
@@ -639,6 +650,9 @@ button {
 
   transform: translateZ(30px);
   transition: transform 0.3s ease, background 0.3s ease;
+
+  margin-top: 18px;
+  align-self: flex-end;
 }
 
 .institute-card:hover .institute-arrow {
@@ -851,36 +865,45 @@ button {
   }
 
   .institute-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
   }
 
   .institute-card {
-    min-height: 135px;
-
-    grid-template-columns: 62px 1fr 38px;
+    min-height: 200px;
 
     padding: 18px;
-
-    gap: 15px;
 
     border-radius: 21px;
   }
 
   .institute-logo {
-    width: 62px;
-    height: 62px;
+    width: 48px;
+    height: 48px;
 
-    border-radius: 7px;
+    border-radius: 12px;
 
-    font-size: 18px;
+    font-size: 15px;
+
+    margin-bottom: 14px;
   }
 
   .institute-name {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .institute-description {
-    font-size: 11px;
+    font-size: 10.5px;
+  }
+
+  .institute-arrow {
+    width: 34px;
+    height: 34px;
+
+    font-size: 17px;
+
+    margin-top: 12px;
   }
 
   .footer-inner {
