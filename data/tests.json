@@ -74,5 +74,24 @@
       "Botany: Cell Cycle and Cell Division (Complete Chapter)",
       "Zoology: Breathing and Exchange of Gases: Introduction to Breathing and Respiration, Respiratory organs, Human respiratory system, Mechanism of Breathing, Respiratory volumes and Capacities, Exchange of gases"
     ]
+  },
+  {
+    "id": "pw-yakeen-1-0-test-05",
+    "instituteId": "pw",
+    "batchId": "pw-yakeen-1-0",
+    "number": 5,
+    "title": "Rank Booster Test 1",
+    "questions": 180,
+    "duration": 180,
+    "date": "28 June 2026",
+    "category": "full",
+    "status": "available",
+    "file": "tests/pw/yakeen-1-0/test-05.html",
+    "syllabus": [
+      "Physics: Mathematical Tools (Complete Chapter), Vectors (Complete Chapter), Units and Measurements (Complete Chapter)",
+      "Chemistry: Some Basic Concept of Chemistry (Complete Chapter), Redox Reaction (Complete Chapter), Solutions (Complete Chapter)",
+      "Botany: Cell - The Unit of Life (Complete Chapter), Cell Cycle and Cell Division (Complete Chapter)",
+      "Zoology: Animal Kingdom (Complete Chapter)"
+    ]
   }
 ]
