@@ -16,23 +16,23 @@
       "Botany: Cell – The Unit of Life: What is a Cell?, Discovery of the Cell, Cell Theory, Overview of Cell, Types of Cell, Structure Prokaryotic Cell",
       "Zoology: Animal Kingdom: Introduction, Kingdom-Animalia, Basis of Classification, Phylum – Porifera, Phylum – Coelenterata/Cnidaria"
     ]
+  },
+  {
+    "id": "pw-yakeen-1-0-test-02",
+    "instituteId": "pw",
+    "batchId": "pw-yakeen-1-0",
+    "number": 2,
+    "title": "Practice Test 1",
+    "questions": 180,
+    "duration": 180,
+    "category": "full",
+    "status": "available",
+    "file": "tests/pw/yakeen-1-0/test-02.html",
+    "syllabus": [
+      "Physics: Mathematical Tools (Complete Chapter)",
+      "Chemistry: Some Basic Concept of Chemistry (Complete Chapter)",
+      "Botany: Cell - The Unit of Life: What is a Cell?, Discovery of the Cell, Cell Theory, Overview of Cell, Types of cell, Structure Prokaryotic cell, Prokaryotic cells, Eukaryotic cells",
+      "Zoology: Animal Kingdom: Introduction, Kingdom-Animalia, Basis of Classification, Phylum-Porifera, Phylum-Coelenterata/Cnidaria, Phylum-Ctenophora, Phylum-Platyhelminthes, Phylum-Aschelminthes/Nemathelminthes, Phylum-Annelida, Phylum-Arthropoda, Phylum-Mollusca, Phylum-Echinodermata"
+    ]
   }
 ]
-{
-  "id": "pw-yakeen-1-0-test-02",
-  "instituteId": "pw",
-  "batchId": "pw-yakeen-1-0",
-  "number": 2,
-  "title": "Practice Test 1",
-  "questions": 180,
-  "duration": 180,
-  "category": "full",
-  "status": "available",
-  "file": "tests/pw/yakeen-1-0/test-02.html",
-  "syllabus": [
-    "Physics: Mathematical Tools (Complete Chapter)",
-    "Chemistry: Some Basic Concept of Chemistry (Complete Chapter)",
-    "Botany: Cell - The Unit of Life: What is a Cell?, Discovery of the Cell, Cell Theory, Overview of Cell, Types of cell, Structure Prokaryotic cell, Prokaryotic cells, Eukaryotic cells",
-    "Zoology: Animal Kingdom: Introduction, Kingdom-Animalia, Basis of Classification, Phylum-Porifera, Phylum-Coelenterata/Cnidaria, Phylum-Ctenophora, Phylum-Platyhelminthes, Phylum-Aschelminthes/Nemathelminthes, Phylum-Annelida, Phylum-Arthropoda, Phylum-Mollusca, Phylum-Echinodermata"
-  ]
-}
