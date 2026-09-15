@@ -924,7 +924,7 @@ button {
 .feature-grid {
   margin-top: 37px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
 }
 
@@ -1004,6 +1004,11 @@ button {
 
 .check-icon {
   background: linear-gradient(145deg, var(--wine-2), var(--wine-3));
+  color: var(--gold-hi);
+}
+
+.progress-icon {
+  background: linear-gradient(145deg, var(--wine), var(--gold));
   color: var(--gold-hi);
 }
 
