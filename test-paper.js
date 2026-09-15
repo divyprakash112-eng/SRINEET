@@ -532,6 +532,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*
+     * SECONDARY BUTTONS GROUP
+     *
+     * "View Syllabus" aur "OMR Mode" — dono
+     * same size ke chhote buttons, saath mein
+     * group karke rakhe hain. Bada CBT button
+     * inke side mein alag se aayega.
+     */
+
+    const secondaryActions =
+      document.createElement("div");
+
+    secondaryActions.className =
+      "secondary-actions";
+
+
+    /*
      * VIEW SYLLABUS BUTTON
      *
      * Har test card par hamesha dikhta hai.
@@ -558,11 +574,52 @@ document.addEventListener("DOMContentLoaded", () => {
       () => openSyllabusModal(test)
     );
 
-    action.appendChild(syllabusButton);
+    secondaryActions.appendChild(syllabusButton);
 
 
     /*
-     * CBT HTML LINK
+     * OMR MODE BUTTON (Test PDF)
+     *
+     * tests.json mein us test ke "pdfFile"
+     * field mein PDF ka direct link do —
+     * GitHub Release link ya koi bhi hosted
+     * PDF URL. Field na diya ho to ye button
+     * apne aap nahi dikhega.
+     *
+     * Example tests.json entry:
+     * "pdfFile": "https://github.com/USER/REPO/releases/download/TAG/test-01-omr.pdf"
+     */
+
+    if (test.pdfFile) {
+
+      const omrButton =
+        document.createElement("a");
+
+      omrButton.className =
+        "omr-button";
+
+      omrButton.href =
+        test.pdfFile;
+
+      omrButton.target =
+        "_blank";
+
+      omrButton.rel =
+        "noopener";
+
+      omrButton.textContent =
+        "OMR Mode";
+
+      secondaryActions.appendChild(omrButton);
+
+    }
+
+
+    action.appendChild(secondaryActions);
+
+
+    /*
+     * CBT HTML LINK (bada button, side mein)
      *
      * This is the important part.
      *
@@ -584,7 +641,7 @@ document.addEventListener("DOMContentLoaded", () => {
       button.textContent =
         isCompleted(test.id)
           ? "Review Test"
-          : "Start Test";
+          : "CBT Mode";
 
 
       action.appendChild(button);
