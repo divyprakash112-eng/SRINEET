@@ -93,5 +93,24 @@
       "Botany: Cell - The Unit of Life (Complete Chapter), Cell Cycle and Cell Division (Complete Chapter)",
       "Zoology: Animal Kingdom (Complete Chapter)"
     ]
+  },
+  {
+    "id": "pw-yakeen-1-0-test-06",
+    "instituteId": "pw",
+    "batchId": "pw-yakeen-1-0",
+    "number": 6,
+    "title": "Practice Test 3",
+    "questions": 180,
+    "duration": 180,
+    "date": "12 July 2026",
+    "category": "full",
+    "status": "available",
+    "file": "tests/pw/yakeen-1-0/test-06.html",
+    "syllabus": [
+      "Physics: Motion in a straight line (Complete Chapter)",
+      "Chemistry: Thermodynamics (Complete Chapter), Equilibrium (Chemical Equilibrium)",
+      "Botany: The Living World (Complete Chapter), Biological Classification (Complete Chapter)",
+      "Zoology: Breathing and Exchange of Gases (Complete Chapter), Structural Organization in Animals: Tissues, Animal Tissues, Epithelium Tissue, Cell Junctions, Connective Tissue, Muscular Tissue, Nervous Tissue"
+    ]
   }
 ]
