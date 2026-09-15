@@ -9,6 +9,11 @@
     "duration": 180,
     "category": "full",
     "status": "available",
-    "file": "tests/pw/yakeen-1-0/test-01.html"
+    "file": "tests/pw/yakeen-1-0/test-01.html",
+    "syllabus": [
+      "Physics: Units & Measurements, Kinematics, Laws of Motion",
+      "Chemistry: Some Basic Concepts of Chemistry, Atomic Structure",
+      "Biology: The Living World, Biological Classification, Plant Kingdom"
+    ]
   }
 ]
