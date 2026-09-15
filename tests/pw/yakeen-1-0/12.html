@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YAKEEN NEET (2027) PRACTICE TEST - 02 - SRINEET Offline CBT</title>
+  <!-- KaTeX Math & Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onload="if(typeof onKatexLoaded==='function')onKatexLoaded()"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="if(typeof triggerKaTeXAutoRender==='function')triggerKaTeXAutoRender()"></script>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-dark: #075985;
+      --bg-main: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-focus: #0284c7;
+      --nta-not-visited: #e2e8f0;
+      --nta-not-answered: #ef4444;
+      --nta-answered: #22c55e;
+      --nta-marked: #8b5cf6;
+      --nta-marked-answered: #7c3aed;
+    }
+    body.dark {
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
+      --bg-main: #0b132b;
+      --bg-card: #1c2541;
+      --bg-card-subtle: #131b31;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --border-focus: #38bdf8;
+      --nta-not-visited: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Universal Header */
+    .header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 16px;
+    }
+    .brand-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+    }
+    .brand-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+    .timer-badge {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    body.dark .timer-badge {
+      background: #450a0a;
+      color: #fca5a5;
+      border-color: #7f1d1d;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .btn-primary { background: #0284c7; color: #ffffff; }
+    .btn-primary:hover { background: #0369a1; }
+    .btn-success { background: #16a34a; color: #ffffff; }
+    .btn-success:hover { background: #15803d; }
+    .btn-purple { background: #7c3aed; color: #ffffff; }
+    .btn-purple:hover { background: #6d28d9; }
+    .btn-outline { background: var(--bg-card); color: var(--text-main); border-color: var(--border); }
+    .btn-outline:hover { background: var(--bg-card-subtle); }
+    .btn-palette-toggle {
+      background: #f3e8ff;
+      color: #7e22ce;
+      border-color: #d8b4fe;
+    }
+    body.dark .btn-palette-toggle {
+      background: #3b0764;
+      color: #d8b4fe;
+      border-color: #6b21a8;
+    }
+    .btn-palette-toggle:hover { background: #e9d5ff; }
+
+    /* Main Container */
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px;
+      flex: 1;
+    }
+
+    /* CBT Workspace Card */
+    .cbt-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 580px;
+    }
+
+    /* Subject Tabs Bar */
+    .subject-nav {
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      overflow-x: auto;
+    }
+    .subject-tab-list {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .subject-tab {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .subject-tab.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+    .subject-badge {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.08);
+    }
+    .subject-tab.active .subject-badge {
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* Question Meta Header */
+    .q-meta-bar {
+      padding: 10px 16px;
+      background: rgba(2, 132, 199, 0.05);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+    .q-num-title {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 14px;
+    }
+    .marks-badge {
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .marks-pos { background: #dcfce7; color: #15803d; }
+    .marks-neg { background: #fee2e2; color: #b91c1c; }
+
+    /* Question Content Area */
+    .q-content {
+      padding: 24px;
+      flex: 1;
+      overflow-y: auto;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Specialized Question Type Formatters */
+    .ar-card {
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 12px 0;
+      border: 1px solid transparent;
+    }
+    .ar-assertion {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+      border-left: 4px solid #f59e0b;
+    }
+    .ar-reason {
+      background: rgba(2, 132, 199, 0.08);
+      border-color: rgba(2, 132, 199, 0.3);
+      border-left: 4px solid #0284c7;
+    }
+    .ar-label {
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .ar-assertion .ar-label { color: #d97706; }
+    .ar-reason .ar-label { color: #0284c7; }
+
+    .statement-item {
+      padding: 12px 16px;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+
+    .match-table-wrapper {
+      margin: 16px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    .match-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .match-table th, .match-table td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .match-table th {
+      background: var(--bg-card-subtle);
+      font-weight: 700;
+    }
+
+    /* Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      font-size: 14px;
+    }
+    .option-item:hover {
+      border-color: #38bdf8;
+      background: rgba(2, 132, 199, 0.04);
+    }
+    .option-item.selected {
+      border-color: #0284c7;
+      background: rgba(2, 132, 199, 0.1);
+      box-shadow: 0 0 0 2px #0284c7;
+      font-weight: 600;
+    }
+    .option-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .option-item.selected .option-badge {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+
+    /* Bottom Action Bar */
+    .action-bar {
+      padding: 12px 16px;
+      background: var(--bg-card-subtle);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ======================================================== */
+    /* SLIDE-OVER QUESTION PALETTE DRAWER                       */
+    /* ======================================================== */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(2px);
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .palette-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 380px;
+      max-width: 90vw;
+      background: var(--bg-card);
+      border-left: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .palette-drawer.open {
+      transform: translateX(0);
+    }
+    .drawer-header {
+      padding: 14px 16px;
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .drawer-title {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+    }
+    .btn-close {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .drawer-candidate {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+    }
+    .drawer-legends {
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.02);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 11px;
+    }
+    .legend-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 11px;
+      color: #fff;
+    }
+    .box-ans { background: #22c55e; }
+    .box-not-ans { background: #ef4444; }
+    .box-mark { background: #8b5cf6; border-radius: 50%; }
+    .box-not-vis { background: var(--border); color: var(--text-main); }
+    .box-ans-mark {
+      background: #8b5cf6;
+      border-radius: 50%;
+      position: relative;
+    }
+    .box-ans-mark::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1.5px solid #fff;
+    }
+
+    .drawer-filter {
+      padding: 8px 12px;
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+    }
+    .drawer-filter-btn {
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      cursor: pointer;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+    .drawer-filter-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+
+    .drawer-grid-container {
+      padding: 14px;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .palette-grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .palette-btn {
+      height: 38px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.1s ease;
+      position: relative;
+      user-select: none;
+    }
+    .palette-btn.current {
+      outline: 2.5px solid #0284c7;
+      outline-offset: 2px;
+      font-weight: 900;
+      transform: scale(1.04);
+      z-index: 2;
+    }
+    .palette-btn.state-not-visited {
+      background: var(--bg-card-subtle);
+      border-color: var(--border);
+      color: var(--text-main);
+    }
+    .palette-btn.state-not-answered {
+      background: #ef4444;
+      color: #ffffff;
+    }
+    .palette-btn.state-answered {
+      background: #22c55e;
+      color: #ffffff;
+    }
+    .palette-btn.state-marked-for-review {
+      background: #8b5cf6;
+      color: #ffffff;
+      border-radius: 50%;
+    }
+    .palette-btn.state-answered-and-marked {
+      background: #8b5cf6;
+      color: #ffffff;
+      border-radius: 50%;
+    }
+    .palette-btn.state-answered-and-marked::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1px solid #ffffff;
+    }
+
+    .drawer-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-card-subtle);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+    .modal-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 480px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+    .summary-table th, .summary-table td {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .summary-table th { background: var(--bg-card-subtle); }
+
+    /* Results */
+    .results-hero {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #fff;
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    /* Scratchpad Canvas */
+    .scratch-window {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 380px;
+      height: 320px;
+      background: #ffffff;
+      border: 2px solid #0284c7;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .scratch-header {
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .scratch-canvas {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      cursor: crosshair;
+    }
+  </style>
+</head>
+<body>
+  <!-- Universal Header -->
+  <header class="header">
+    <div class="brand-group">
+      <div class="brand-badge">SR</div>
+      <div>
+        <div class="brand-title">SRINEET</div>
+        <div class="brand-sub">Offline CBT Engine</div>
+      </div>
+    </div>
+
+    <!-- Exam Timer -->
+    <div id="examTimerBadge" class="timer-badge" style="display:none;">
+      ⏱️ <span id="timerDisplay">03:00:00</span>
+    </div>
+
+    <div class="header-actions">
+      <!-- Question Palette Trigger -->
+      <button id="btnHeaderPalette" class="btn btn-palette-toggle" style="display:none;" onclick="togglePaletteDrawer()">
+        📑 Question Palette
+      </button>
+
+      <!-- Digital Rough Sheet -->
+      <button id="btnRoughSheet" class="btn btn-outline" style="display:none;" onclick="toggleScratchpad()">
+        ✏️ Rough Sheet
+      </button>
+
+      <!-- Dark Mode -->
+      <button class="btn btn-outline" onclick="toggleDarkMode()" title="Toggle Dark/Light Mode">
+        🌓
+      </button>
+
+      <!-- Fullscreen -->
+      <button class="btn btn-outline" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+        ⛶
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- 1. INSTRUCTIONS SCREEN -->
+    <div id="instructionsScreen" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+      <h2 style="font-size:22px;font-weight:800;color:var(--primary);margin-bottom:8px;">YAKEEN NEET (2027) PRACTICE TEST - 02</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Duration: 180 Minutes | Total Questions: 180 | Maximum Marks: 720</p>
+
+      <div style="background:var(--bg-card-subtle);border-left:4px solid #0284c7;padding:14px 16px;border-radius:0 8px 8px 0;margin-bottom:20px;font-size:13px;">
+        <strong>Important Exam Instructions:</strong>
+        <ul style="margin:8px 0 0 20px;line-height:1.7;">
+          <li>Each correct answer fetches <strong>+4 marks</strong>.</li>
+          <li>Each incorrect answer results in <strong>-1 mark</strong> deduction.</li>
+          <li>Unattempted questions receive <strong>0 marks</strong>.</li>
+          <li>Questions 'Answered and Marked for Review' <strong>WILL BE EVALUATED</strong> for score calculation.</li>
+          <li>Click on the <strong>Question Palette</strong> button at any time to open the question drawer.</li>
+        </ul>
+      </div>
+
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin:20px 0;cursor:pointer;">
+        <input type="checkbox" id="termsCheck" onchange="document.getElementById('startExamBtn').disabled = !this.checked">
+        <span>I have read and understood all the instructions and am ready to begin the test.</span>
+      </label>
+
+      <button id="startExamBtn" class="btn btn-primary" style="padding:10px 28px;font-size:14px;" disabled onclick="startTest()">
+        I am ready to begin
+      </button>
+    </div>
+
+    <!-- 2. CBT EXAM SCREEN -->
+    <div id="examScreen" class="cbt-card" style="display:none;">
+      <!-- Subject Navigation -->
+      <div class="subject-nav">
+        <div class="subject-tab-list" id="subjectTabContainer"></div>
+        <button class="btn btn-palette-toggle" onclick="togglePaletteDrawer()">
+          📑 Palette (<span id="btnPaletteCount">Q1</span>)
+        </button>
+      </div>
+
+      <!-- Question Meta -->
+      <div class="q-meta-bar">
+        <div>
+          <span id="qDisplayNumber" class="q-num-title">Question 1</span>
+          <span style="color:var(--text-muted);font-size:12px;" id="qSubjectBadge">/ 180</span>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <span class="marks-badge marks-pos">+4 Marks</span>
+          <span class="marks-badge marks-neg">-1 Mark</span>
+        </div>
+      </div>
+
+      <!-- Question Body Content -->
+      <div id="qContentArea" class="q-content">
+        <div id="qStemContainer"></div>
+        <div id="qVisualContainer"></div>
+        <div id="optionsListContainer" class="options-list"></div>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <div class="action-group">
+          <button class="btn btn-outline" onclick="handleClearResponse()">Clear Response</button>
+          <button class="btn btn-purple" onclick="handleMarkForReview()">Mark for Review & Next</button>
+        </div>
+        <div class="action-group">
+          <button class="btn btn-outline" id="prevBtn" onclick="handlePrevious()">Previous</button>
+          <button class="btn btn-primary" id="saveNextBtn" onclick="handleSaveAndNext()">Save & Next</button>
+          <button class="btn btn-success" onclick="showSubmitModal()">Submit Test</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. RESULTS SCREEN -->
+    <div id="resultsScreen" style="display:none;">
+      <div class="results-hero">
+        <h2 style="font-size:24px;font-weight:800;margin-bottom:6px;">Exam Completed & Submitted</h2>
+        <div style="font-size:44px;font-weight:900;" id="resScore">0 / 720</div>
+        <p style="font-size:13px;opacity:0.9;">SRINEET Performance & Accuracy Analysis</p>
+      </div>
+
+      <div class="analytics-grid">
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#22c55e;" id="resCorrect">0</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Correct</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#ef4444;" id="resIncorrect">0</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Incorrect</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#64748b;" id="resUnattempted">0</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Unattempted</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#0284c7;" id="resAccuracy">0%</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Accuracy</div>
+        </div>
+      </div>
+
+      <!-- Time Analysis -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:20px;">
+        <h3 style="font-size:15px;font-weight:800;margin-bottom:12px;">Per-Question Time & Speed Analysis</h3>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-size:13px;">
+          <div>Fastest: <strong id="resFastest">-</strong></div>
+          <div>Slowest: <strong id="resSlowest">-</strong></div>
+          <div>Average: <strong id="resAvg">-</strong></div>
+        </div>
+        <div id="resTimeTableContainer" style="overflow-x:auto;"></div>
+      </div>
+
+      <!-- Detailed Solutions -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px;">
+        <h3 style="font-size:16px;font-weight:800;margin-bottom:14px;">Detailed Solutions & Explanations</h3>
+        <div id="resSolutionsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE-OVER QUESTION PALETTE DRAWER                       -->
+  <!-- ======================================================== -->
+  <div id="drawerBackdrop" class="drawer-backdrop" onclick="closePaletteDrawer()"></div>
+
+  <aside id="paletteDrawer" class="palette-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Question Palette</div>
+      <button class="btn-close" onclick="closePaletteDrawer()">✕</button>
+    </div>
+
+    <!-- Candidate Profile -->
+    <div class="drawer-candidate">
+      <div style="width:32px;height:32px;border-radius:50%;background:#0284c7;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;">
+        SR
+      </div>
+      <div style="flex:1;">
+        <div style="font-weight:700;">NEET Aspirant</div>
+        <div style="font-size:10px;color:var(--text-muted);">Roll No: 2026-NEET-SRI</div>
+      </div>
+      <span style="background:#dcfce7;color:#15803d;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px;">ACTIVE</span>
+    </div>
+
+    <!-- NTA Visual Legends with Live Counts -->
+    <div class="drawer-legends">
+      <div class="legend-chip">
+        <div class="legend-box box-ans" id="dCountAns">0</div>
+        <span>Answered</span>
+      </div>
+      <div class="legend-chip">
+        <div class="legend-box box-not-ans" id="dCountNotAns">0</div>
+        <span>Not Answered</span>
+      </div>
+      <div class="legend-chip">
+        <div class="legend-box box-mark" id="dCountMark">0</div>
+        <span>Marked Review</span>
+      </div>
+      <div class="legend-chip">
+        <div class="legend-box box-not-vis" id="dCountNotVis">0</div>
+        <span>Not Visited</span>
+      </div>
+      <div class="legend-chip" style="grid-column: span 2; padding-top:4px; border-top: 1px solid var(--border);">
+        <div class="legend-box box-ans-mark" id="dCountAnsMark">0</div>
+        <span>Answered & Marked (Evaluated)</span>
+      </div>
+    </div>
+
+    <!-- Subject Filters inside Drawer -->
+    <div class="drawer-filter" id="drawerFilterContainer"></div>
+
+    <!-- 5-Questions Per Row Grid -->
+    <div class="drawer-grid-container">
+      <div class="palette-grid-5" id="drawerGrid"></div>
+    </div>
+
+    <!-- Drawer Footer Submit -->
+    <div class="drawer-footer">
+      <button class="btn btn-success" style="width:100%;padding:10px;" onclick="closePaletteDrawer();showSubmitModal();">
+        Submit Examination
+      </button>
+    </div>
+  </aside>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="submitModal" class="modal-overlay" style="display:none;">
+    <div class="modal-card">
+      <h3 style="font-size:17px;font-weight:800;margin-bottom:8px;">Submit Examination Confirmation</h3>
+      <p style="font-size:13px;color:var(--text-muted);">Please review your answers summary. You cannot change your answers after final submission.</p>
+
+      <table class="summary-table">
+        <tr><th>Exam Status</th><th>Question Count</th></tr>
+        <tr><td>Answered</td><td id="mCountAns" style="font-weight:bold;color:#22c55e;">0</td></tr>
+        <tr><td>Not Answered</td><td id="mCountNotAns" style="font-weight:bold;color:#ef4444;">0</td></tr>
+        <tr><td>Marked for Review</td><td id="mCountMark" style="font-weight:bold;color:#8b5cf6;">0</td></tr>
+        <tr><td>Answered & Marked</td><td id="mCountAnsMark" style="font-weight:bold;color:#7c3aed;">0</td></tr>
+        <tr><td>Not Visited</td><td id="mCountNotVis" style="font-weight:bold;color:#64748b;">0</td></tr>
+      </table>
+
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;">
+        <button class="btn btn-outline" onclick="hideSubmitModal()">Resume Test</button>
+        <button class="btn btn-primary" onclick="finalizeSubmission()">Yes, Submit Exam</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Digital Rough Sheet Overlay -->
+  <div id="scratchWindow" class="scratch-window" style="display:none;">
+    <div class="scratch-header">
+      <span>SRINEET Digital Scratchpad</span>
+      <div style="display:flex;gap:4px;">
+        <button class="btn btn-outline" style="padding:1px 6px;font-size:10px;height:20px;" onclick="clearScratchpad()">Clear</button>
+        <button class="btn btn-outline" style="padding:1px 6px;font-size:10px;height:20px;" onclick="toggleScratchpad()">✕</button>
+      </div>
+    </div>
+    <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+  </div>
+
+  <script>
+    // Embedded Data
+    var testMetadata = {"testId":"yakeen-neet-2027-test-02","title":"YAKEEN NEET (2027) PRACTICE TEST - 02","subtitle":"Physics: Vectors & Units • Chemistry: Solutions • Botany: Cell Cycle & Division • Zoology: Breathing & Exchange of Gases","durationMinutes":180,"totalQuestions":180,"totalMarks":720,"markingScheme":{"correct":4,"incorrect":-1,"unattempted":0},"instructions":["Immediately fill in the particulars on this page of the test booklet.","The test is of 180 minutes duration and contains 180 multiple choice questions from Physics, Chemistry, Botany and Zoology (45 questions in each subject).","The maximum marks are 720.","There is only one correct response for each question.","Each correct answer gives +4 marks while 1 mark will be deducted for a wrong response (-1).","Use the on-screen Question Palette on the right to navigate between questions.","A digital rough work scratchpad is available via the \"Rough Sheet\" button at the top bar.","Do not refresh or close this browser window during the active test session."],"sections":[{"id":"sec-phy","name":"Physics","subject":"Physics","totalQuestions":45},{"id":"sec-chem","name":"Chemistry","subject":"Chemistry","totalQuestions":45},{"id":"sec-bot","name":"Botany","subject":"Botany","totalQuestions":45},{"id":"sec-zoo","name":"Zoology","subject":"Zoology","totalQuestions":45}]};
+    var questions = [{"id":1,"subject":"Physics","type":"single-choice","question":"If the angle between two forces increases, the magnitude of their resultant","options":["decreases","increases","remains unchanged","first decreases and then increases"],"correctAnswer":0,"solution":"Resultant of two vectors is given by $R = \\sqrt{A^2 + B^2 + 2AB\\cos\\theta}$. If $\\theta \\uparrow$, then $\\cos\\theta \\downarrow$. So, $R$ will decrease."},{"id":2,"subject":"Physics","type":"single-choice","question":"In an experiment four quantities $a, b, c$ and $d$ are measured with percentage error $1\\%$, $2\\%$, $3\\%$ and $4\\%$, respectively. Quantity $P$ is calculated as follows:\n$$P = \\frac{a^3 b^2}{cd}$$\nmaximum $\\%$ error in $P$ is:","options":["7%","4%","14%","10%"],"correctAnswer":2,"solution":"For maximum possible percentage error:\n$$\\frac{\\Delta P}{P} \\le 3\\frac{\\Delta a}{a} + 2\\frac{\\Delta b}{b} + 1\\frac{\\Delta c}{c} + 1\\frac{\\Delta d}{d}$$\n$$= 3(1\\%) + 2(2\\%) + 1(3\\%) + 1(4\\%) = 3 + 4 + 3 + 4 = 14\\%.$$"},{"id":3,"subject":"Physics","type":"single-choice","question":"Which of the following relation is correct between $\\vec{A}, \\vec{B} \\& \\vec{C}$ if $\\vec{C} = \\vec{A} + \\vec{B}$","options":["$B + A \u003c C \u003c B - A$","$A \\le C \\ge B$","$|A - B| \\le C \\le A + B$","$|A - B| \u003c C \u003c A + B$"],"correctAnswer":2,"solution":"If $\\vec{C} = \\vec{A} + \\vec{B}$, by the triangle inequality for magnitudes:\n$$|A - B| \\le |\\vec{A} + \\vec{B}| \\le |A| + |B| \\implies |A - B| \\le C \\le A + B.$$"},{"id":4,"subject":"Physics","type":"single-choice","question":"The velocity of a moving particle depends upon time $t$ as $v = at + \\frac{b}{t+c}$. Then dimensional formula for $b$ is:","options":["$[M^0 L^0 T^0]$","$[M^0 L^1 T^0]$","$[M^0 L^1 T^{-1}]$","$[M^0 L^1 T^{-2}]$"],"correctAnswer":1,"solution":"Since $v$ has dimensions $[LT^{-1}]$, each term on the right must match these dimensions.\nIn $t + c$, $c$ has the dimension of time $[T]$.\nHence $\\frac{[b]}{[T]} = [LT^{-1}] \\implies [b] = [LT^0] = [L] = [M^0 L^1 T^0]$."},{"id":5,"subject":"Physics","type":"single-choice","question":"Which of the following sets cannot enter into the list of fundamental quantities in any system of units?","options":["length, mass and velocity","length, time and velocity","mass, time and velocity","length, time and mass"],"correctAnswer":1,"solution":"A valid set of fundamental units must consist of dimensionally independent quantities. In particular, velocity depends on length and time ($v \\sim LT^{-1}$), so including it along with $L$ and $T$ does not add a new independent dimension. Therefore, length, time, and velocity cannot serve as a fundamental set."},{"id":6,"subject":"Physics","type":"single-choice","question":"The dimensions of physical quantity $X$ in the equation, $\\text{Force} = \\frac{X}{\\text{Density}}$ is given by:","options":["$[M^1 L^4 T^{-2}]$","$[M^2 L^{-2} T^{-1}]$","$[M^2 L^{-2} T^{-2}]$","$[M^1 L^{-2} T^{-1}]$"],"correctAnswer":2,"solution":"Rearranging: $[X] = [\\text{Force} \\times \\text{density}] = [MLT^{-2}] \\times [ML^{-3}] = [M^2 L^{-2} T^{-2}]$."},{"id":7,"subject":"Physics","type":"single-choice","question":"A vector $\\vec{A}$ points vertically upward and $\\vec{B}$ points towards north. The vector product $\\vec{A} \\times \\vec{B}$ is:","options":["Zero","Along west","Along east","Vertically downward"],"correctAnswer":1,"solution":"Let vertically upward be $\\hat{k}$ and north be $\\hat{j}$. Then $\\vec{A} \\times \\vec{B} \\propto \\hat{k} \\times \\hat{j} = -\\hat{i}$, which represents west."},{"id":8,"subject":"Physics","type":"single-choice","question":"Force acting on an object is proportional to the square of acceleration. Find the dimensions of proportional constant.","options":["$[M L^{-1} T^2]$","$[M^{-1} L^{-1} T^{-2}]$","$[M L^2 T^{-2}]$","$[M L^2 T^1]$"],"correctAnswer":0,"solution":"$F = ka^2 \\implies [k] = \\frac{[F]}{[a^2]} = \\frac{[MLT^{-2}]}{[L^2 T^{-4}]} = [ML^{-1} T^2]$."},{"id":9,"subject":"Physics","type":"single-choice","question":"$\\vec{A} \\cdot \\vec{B} = |\\vec{A} \\times \\vec{B}|$, then the angle $\\theta$ between vector $\\vec{A}$ and $\\vec{B}$ is:","options":["$0^\\circ$","$\\pi/4$","$\\pi/2$","$\\pi$"],"correctAnswer":1,"solution":"$\\vec{A} \\cdot \\vec{B} = |\\vec{A} \\times \\vec{B}| \\implies AB\\cos\\theta = AB\\sin\\theta \\implies 1 = \\tan\\theta \\implies \\theta = \\frac{\\pi}{4}$."},{"id":10,"subject":"Physics","type":"single-choice","question":"If $E, M, J$ and $G$ denote energy, mass, angular momentum and gravitational constant then $\\frac{E J^2}{M^5 G^2}$ has the dimensions of:","options":["length","angle","mass","time"],"correctAnswer":1,"solution":"Dimensions:\n$E = [ML^2 T^{-2}]$\n$J = [ML^2 T^{-1}] \\implies J^2 = [M^2 L^4 T^{-2}]$\n$G = [M^{-1} L^3 T^{-2}] \\implies G^2 = [M^{-2} L^6 T^{-4}]$\n$M = [M] \\implies M^5 = [M^5]$\nNumerator: $EJ^2 = [M^3 L^6 T^{-4}]$.\nDenominator: $M^5 G^2 = [M^3 L^6 T^{-4}]$.\nResult: $[M^0 L^0 T^0]$, dimensionless (angle)."},{"id":11,"subject":"Physics","type":"single-choice","question":"The angle between vectors $(\\vec{A} \\times \\vec{B})$ and $(\\vec{B} \\times \\vec{A})$ is:","options":["Zero","$\\pi$","$\\frac{\\pi}{4}$","$\\frac{\\pi}{2}$"],"correctAnswer":1,"solution":"Since $(\\vec{A} \\times \\vec{B}) = -(\\vec{B} \\times \\vec{A})$, the two vectors are antiparallel (opposite in direction). Therefore, the angle between them is $\\pi$ radians ($180^\\circ$)."},{"id":12,"subject":"Physics","type":"single-choice","question":"Which of the following unit conversion is incorrect?","options":["1 angstrom = $10^{-10}\\text{ m}$","1 fermi = $10^{-15}\\text{ m}$","1 light year $\\approx 9.46 \\times 10^{15}\\text{ m}$","1 astronomical unit $= 1.496 \\times 10^{-11}\\text{ m}$"],"correctAnswer":3,"solution":"$1\\text{ AU} = 1.496 \\times 10^{11}\\text{ m}$, not $10^{-11}\\text{ m}$. Hence option (4) is incorrect."},{"id":13,"subject":"Physics","type":"single-choice","question":"If the two vectors $\\vec{A} = 2\\hat{i} + 3\\hat{j} + 4\\hat{k}$ and $\\vec{B} = \\hat{i} + 2\\hat{j} - n\\hat{k}$ are perpendicular then the value of $n$ is:","options":["1","2","3","4"],"correctAnswer":1,"solution":"For perpendicular vectors, $\\vec{A} \\cdot \\vec{B} = 0$:\n$$(2\\hat{i} + 3\\hat{j} + 4\\hat{k}) \\cdot (\\hat{i} + 2\\hat{j} - n\\hat{k}) = 0$$\n$$2(1) + 3(2) + 4(-n) = 0 \\implies 2 + 6 - 4n = 0 \\implies 4n = 8 \\implies n = 2.$$"},{"id":14,"subject":"Physics","type":"single-choice","question":"Van der Waal's gas equation is $\\left(P + \\frac{a}{V^2}\\right)(V - b) = RT$. The dimensions of constant $a$ as given above are:","options":["$[ML^4 T^{-2}]$","$[ML^5 T^{-2}]$","$[ML^3 T^{-2}]$","$[ML^2 T^{-2}]$"],"correctAnswer":1,"solution":"By dimensional homogeneity, $[P] = \\frac{[a]}{[V^2]} \\implies [a] = [P][V^2] = [ML^{-1} T^{-2}][L^6] = [ML^5 T^{-2}]$."},{"id":15,"subject":"Physics","type":"single-choice","question":"Two vectors are given by $\\vec{A} = \\hat{i} + 2\\hat{j} + 2\\hat{k}$ and $\\vec{B} = 3\\hat{i} + 6\\hat{j} + 2\\hat{k}$. Another vector $\\vec{C}$ has the same magnitude as $\\vec{B}$ but has the same direction as $\\vec{A}$. Then which of the following vectors represent $\\vec{C}$:","options":["$\\frac{7}{3}(\\hat{i} + 2\\hat{j} + 2\\hat{k})$","$\\frac{3}{7}(\\hat{i} - 2\\hat{j} + 2\\hat{k})$","$\\frac{7}{9}(\\hat{i} - 2\\hat{j} + 2\\hat{k})$","$\\frac{9}{7}(\\hat{i} + 2\\hat{j} + 2\\hat{k})$"],"correctAnswer":0,"solution":"$\\|\\vec{A}\\| = \\sqrt{1^2 + 2^2 + 2^2} = 3$.\n$\\|\\vec{B}\\| = \\sqrt{3^2 + 6^2 + 2^2} = \\sqrt{9 + 36 + 4} = 7$.\n$\\vec{C} = \\|\\vec{B}\\| \\hat{A} = 7 \\left(\\frac{\\hat{i} + 2\\hat{j} + 2\\hat{k}}{3}\\right) = \\frac{7}{3}(\\hat{i} + 2\\hat{j} + 2\\hat{k})$."},{"id":16,"subject":"Physics","type":"single-choice","question":"A dimensionless quantity ________.","options":["never has a unit","always has a unit","may have a unit","does not exist"],"correctAnswer":2,"solution":"A dimensionless quantity may have units (e.g., plane angle is measured in radians, solid angle in steradians, but both are dimensionless)."},{"id":17,"subject":"Physics","type":"single-choice","question":"If a vector $\\vec{A}$ makes an angles $\\alpha, \\beta$ and $\\gamma$ respectively with the $x, y$ and $z$ axis respectively. Then $\\sin^2\\alpha + \\sin^2\\beta + \\sin^2\\gamma$ is equal to:","options":["0","1","2","3"],"correctAnswer":2,"solution":"We know that $\\cos^2\\alpha + \\cos^2\\beta + \\cos^2\\gamma = 1$.\nSubstituting $\\cos^2\\theta = 1 - \\sin^2\\theta$:\n$$(1 - \\sin^2\\alpha) + (1 - \\sin^2\\beta) + (1 - \\sin^2\\gamma) = 1$$\n$$3 - (\\sin^2\\alpha + \\sin^2\\beta + \\sin^2\\gamma) = 1 \\implies \\sin^2\\alpha + \\sin^2\\beta + \\sin^2\\gamma = 2.$$"},{"id":18,"subject":"Physics","type":"single-choice","question":"Match List-I with List-II:\n\n| List-I (Physical quantity) | List-II (Magnitude) |\n| :--- | :--- |\n| A. Planck's constant | I. $2.9 \\times 10^{-3}\\text{ m K}$ |\n| B. Wien's constant | II. $6.62 \\times 10^{-34}\\text{ kg m}^2\\text{ s}^{-1}$ |\n| C. Stefan–Boltzmann constant | III. $6.67 \\times 10^{-11}\\text{ N m}^2\\text{ kg}^{-2}$ |\n| D. Universal gravitational constant | IV. $5.67 \\times 10^{-8}\\text{ W m}^{-2}\\text{ K}^{-4}$ |","options":["A - IV, B - I, C - II, D - III","A - I, B - II, C - IV, D - III","A - III, B - I, C - IV, D - II","A - II, B - I, C - IV, D - III"],"correctAnswer":3,"solution":"Planck's constant $h \\approx 6.62 \\times 10^{-34}\\text{ kg m}^2\\text{ s}^{-1}$ (II).\nWien's constant $b \\approx 2.9 \\times 10^{-3}\\text{ m K}$ (I).\nStefan–Boltzmann constant $\\sigma \\approx 5.67 \\times 10^{-8}\\text{ W m}^{-2}\\text{ K}^{-4}$ (IV).\nUniversal gravitational constant $G \\approx 6.67 \\times 10^{-11}\\text{ N m}^2\\text{ kg}^{-2}$ (III).\nCorrect matching is A - II, B - I, C - IV, D - III."},{"id":19,"subject":"Physics","type":"single-choice","question":"A vector $\\vec{A} = 4\\hat{i} - 3\\hat{j} + 5\\hat{k}$. The magnitude of the vector is:","options":["50","$\\sqrt{32}$","$2\\sqrt{50}$","$\\sqrt{16 + 9 + 25}$"],"correctAnswer":3,"solution":"$|\\vec{A}| = \\sqrt{A_x^2 + A_y^2 + A_z^2} = \\sqrt{4^2 + (-3)^2 + 5^2} = \\sqrt{16 + 9 + 25} = \\sqrt{50}$. Option (4) gives $\\sqrt{16 + 9 + 25}$."},{"id":20,"subject":"Physics","type":"single-choice","question":"Light year is","options":["light emitted by the sun in one year","the time taken by light to travel from sun to earth","the distance travelled by light in free space in one year","the time taken by earth to go once around the sun."],"correctAnswer":2,"solution":"Light year is the distance travelled by light in vacuum in one year."},{"id":21,"subject":"Physics","type":"single-choice","question":"If three forces $\\vec{F}_1 = 3\\hat{i} - 4\\hat{j} + 5\\hat{k}$, $\\vec{F}_2 = -3\\hat{i} + 4\\hat{j}$ and $\\vec{F}_3 = 5\\hat{k}$ are acted on a body, then the direction of resultant force on the body is:","options":["Along $x$-axis","Along $y$-axis","Along $z$-axis","In indeterminate form"],"correctAnswer":2,"solution":"$\\vec{F} = \\vec{F}_1 + \\vec{F}_2 + \\vec{F}_3 = (3\\hat{i} - 4\\hat{j} + 5\\hat{k}) + (-3\\hat{i} + 4\\hat{j}) + 5\\hat{k} = 10\\hat{k}$. The force is directed along the $+z$-axis."},{"id":22,"subject":"Physics","type":"single-choice","question":"Candela is the unit of:","options":["Sound intensity","Luminous intensity","Charge","Energy"],"correctAnswer":1,"solution":"Candela (cd) is the SI base unit of luminous intensity."},{"id":23,"subject":"Physics","type":"single-choice","question":"If $\\hat{n}$ is a unit vector in the direction of the vector $\\vec{A}$, then:","options":["$\\hat{n} = \\frac{\\vec{A}}{|\\vec{A}|}$","$\\hat{n} = \\vec{A}|\\vec{A}|$","$\\hat{n} = \\frac{|\\vec{A}|}{\\vec{A}}$","None of the above"],"correctAnswer":0,"solution":"A unit vector $\\hat{n}$ in the direction of $\\vec{A}$ is obtained by dividing $\\vec{A}$ by its magnitude $|\\vec{A}|$."},{"id":24,"subject":"Physics","type":"single-choice","question":"Which of the following is smallest unit?","options":["Millimetre","Angstrom","Fermi","Metre"],"correctAnswer":2,"solution":"$1\\text{ mm} = 10^{-3}\\text{ m}$, $1\\text{ \\AA} = 10^{-10}\\text{ m}$, $1\\text{ fm} = 10^{-15}\\text{ m}$. The smallest unit is fermi ($10^{-15}\\text{ m}$)."},{"id":25,"subject":"Physics","type":"single-choice","question":"The value of the sum of two vectors $\\vec{A}$ and $\\vec{B}$ with $\\theta$ as the angle between them is:","options":["$\\sqrt{A^2 + B^2 + 2AB\\cos\\theta}$","$\\sqrt{A^2 - B^2 + 2AB\\cos\\theta}$","$\\sqrt{A^2 + B^2 - 2AB\\sin\\theta}$","$\\sqrt{A^2 + B^2 + 2AB\\sin\\theta}$"],"correctAnswer":0,"solution":"$R = \\sqrt{A^2 + B^2 + 2AB\\cos\\theta}$."},{"id":26,"subject":"Physics","type":"single-choice","question":"When a copper sphere is heated, maximum percentage change will be observed in:","options":["radius","area","volume","none of these"],"correctAnswer":2,"solution":"$\\frac{\\Delta r}{r} = \\alpha\\Delta T$, $\\frac{\\Delta A}{A} = 2\\alpha\\Delta T$, $\\frac{\\Delta V}{V} = 3\\alpha\\Delta T$. Thus, maximum percentage change occurs in the volume."},{"id":27,"subject":"Physics","type":"single-choice","question":"Figure shows ABCDEF as a regular hexagon. What is the value of $\\vec{AB} + \\vec{AC} + \\vec{AD} + \\vec{AE} + \\vec{AF}$?\n\n\u003csvg viewBox=\"0 0 200 180\" class=\"w-48 h-40 mx-auto my-2\"\u003e\u003cpolygon points=\"100,20 160,55 160,125 100,160 40,125 40,55\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/\u003e\u003cline x1=\"40\" y1=\"125\" x2=\"160\" y2=\"55\" stroke=\"#94a3b8\" stroke-dasharray=\"3,3\"/\u003e\u003cline x1=\"100\" y1=\"160\" x2=\"100\" y2=\"20\" stroke=\"#94a3b8\" stroke-dasharray=\"3,3\"/\u003e\u003cline x1=\"160\" y1=\"125\" x2=\"40\" y2=\"55\" stroke=\"#94a3b8\" stroke-dasharray=\"3,3\"/\u003e\u003ccircle cx=\"100\" cy=\"90\" r=\"3\" fill=\"#dc2626\"/\u003e\u003ctext x=\"100\" y=\"105\" font-size=\"12\" font-weight=\"bold\" fill=\"#dc2626\" text-anchor=\"middle\"\u003eO\u003c/text\u003e\u003ctext x=\"30\" y=\"135\" font-size=\"12\" font-weight=\"bold\" fill=\"#1e293b\"\u003eA\u003c/text\u003e\u003ctext x=\"100\" y=\"175\" font-size=\"12\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\"\u003eB\u003c/text\u003e\u003ctext x=\"170\" y=\"135\" font-size=\"12\" font-weight=\"bold\" fill=\"#1e293b\"\u003eC\u003c/text\u003e\u003ctext x=\"170\" y=\"55\" font-size=\"12\" font-weight=\"bold\" fill=\"#1e293b\"\u003eD\u003c/text\u003e\u003ctext x=\"100\" y=\"15\" font-size=\"12\" font-weight=\"bold\" fill=\"#1e293b\" text-anchor=\"middle\"\u003eE\u003c/text\u003e\u003ctext x=\"30\" y=\"55\" font-size=\"12\" font-weight=\"bold\" fill=\"#1e293b\"\u003eF\u003c/text\u003e\u003c/svg\u003e","options":["$\\vec{AO}$","$2\\vec{AO}$","$4\\vec{AO}$","$6\\vec{AO}$"],"correctAnswer":3,"solution":"In regular hexagon ABCDEF with centre O:\n$\\vec{AD} = 2\\vec{AO}$.\n$\\vec{AB} + \\vec{AF} = \\vec{AO}$.\n$\\vec{AC} + \\vec{AE} = 3\\vec{AO}$.\nSum $= \\vec{AB} + \\vec{AC} + \\vec{AD} + \\vec{AE} + \\vec{AF} = 6\\vec{AO}$."},{"id":28,"subject":"Physics","type":"single-choice","question":"The dimension of $\\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}}$ is that of:","options":["Velocity","Time","Capacitance","Distance"],"correctAnswer":0,"solution":"$c = \\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}}$ is the speed of light in vacuum. Its dimension is $[LT^{-1}]$, which is velocity."},{"id":29,"subject":"Physics","type":"single-choice","question":"Find the resultant of following vectors:\n\n\u003csvg viewBox=\"0 0 220 180\" class=\"w-56 h-44 mx-auto my-2\"\u003e\u003cline x1=\"20\" y1=\"90\" x2=\"200\" y2=\"90\" stroke=\"#64748b\" stroke-width=\"1.5\"/\u003e\u003cline x1=\"110\" y1=\"10\" x2=\"110\" y2=\"170\" stroke=\"#64748b\" stroke-width=\"1.5\"/\u003e\u003cdefs\u003e\u003cmarker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"\u003e\u003cpath d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#2563eb\"/\u003e\u003c/marker\u003e\u003cmarker id=\"arr-red\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"\u003e\u003cpath d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#dc2626\"/\u003e\u003c/marker\u003e\u003cmarker id=\"arr-green\" viewBox=\"0 0 10 10\" refX=\"6\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"\u003e\u003cpath d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#16a34a\"/\u003e\u003c/marker\u003e\u003c/defs\u003e\u003cline x1=\"110\" y1=\"90\" x2=\"190\" y2=\"90\" stroke=\"#2563eb\" stroke-width=\"2.5\" marker-end=\"url(#arr)\"/\u003e\u003ctext x=\"150\" y=\"80\" font-size=\"12\" font-weight=\"bold\" fill=\"#2563eb\"\u003e|A|=10\u003c/text\u003e\u003cline x1=\"110\" y1=\"90\" x2=\"60\" y2=\"52\" stroke=\"#dc2626\" stroke-width=\"2.5\" marker-end=\"url(#arr-red)\"/\u003e\u003ctext x=\"50\" y=\"45\" font-size=\"12\" font-weight=\"bold\" fill=\"#dc2626\"\u003e|B|=5\u003c/text\u003e\u003ctext x=\"75\" y=\"83\" font-size=\"10\" font-weight=\"bold\" fill=\"#dc2626\"\u003e37°\u003c/text\u003e\u003cpath d=\"M 85 90 A 25 25 0 0 1 80 67\" fill=\"none\" stroke=\"#dc2626\" stroke-width=\"1.2\"/\u003e\u003cline x1=\"110\" y1=\"90\" x2=\"110\" y2=\"165\" stroke=\"#16a34a\" stroke-width=\"2.5\" marker-end=\"url(#arr-green)\"/\u003e\u003ctext x=\"116\" y=\"145\" font-size=\"12\" font-weight=\"bold\" fill=\"#16a34a\"\u003e|C|=11\u003c/text\u003e\u003c/svg\u003e","options":["8","6","10","20"],"correctAnswer":2,"solution":"Resolving vectors:\n$\\vec{A} = (10, 0)$\n$\\vec{B} = (-5\\cos 37^\\circ, 5\\sin 37^\\circ) = (-4, 3)$\n$\\vec{C} = (0, -11)$\nSumming components: $\\vec{R} = (10 - 4 + 0, 0 + 3 - 11) = (6, -8)$.\n$|\\vec{R}| = \\sqrt{6^2 + (-8)^2} = \\sqrt{36 + 64} = 10$."},{"id":30,"subject":"Physics","type":"single-choice","question":"For $10^{(at+3)}$, if $t$ is time, then the dimension of $a$ is:","options":["$[M^0 L^0 T^0]$","$[M^0 L^0 T^1]$","$[M^0 L^0 T^{-1}]$","$[M^0 L^{-1} T^0]$"],"correctAnswer":2,"solution":"$at + 3$ is an exponent and must be dimensionless. Thus $[a][T] = 1 \\implies [a] = [T^{-1}] = [M^0 L^0 T^{-1}]$."},{"id":31,"subject":"Physics","type":"single-choice","question":"The unit vector along $\\hat{i} - 2\\hat{j}$ is:","options":["$\\frac{\\hat{i} - 2\\hat{j}}{\\sqrt{5}}$","$\\hat{i} + \\hat{j}$","$\\frac{\\hat{i} + \\hat{j}}{\\sqrt{2}}$","$\\frac{\\hat{i} - \\hat{j}}{\\sqrt{5}}$"],"correctAnswer":0,"solution":"$\\hat{A} = \\frac{\\vec{A}}{|\\vec{A}|} = \\frac{\\hat{i} - 2\\hat{j}}{\\sqrt{1^2 + (-2)^2}} = \\frac{\\hat{i} - 2\\hat{j}}{\\sqrt{5}}$."},{"id":32,"subject":"Physics","type":"single-choice","question":"Two rods have lengths measured as $(1.8 \\pm 0.2)\\text{ m}$ and $(2.3 \\pm 0.1)\\text{ m}$. Calculate their combined length with error limits.","options":["$(4.2 \\pm 0.3)\\text{ m}$","$(4.1 \\pm 0.3)\\text{ m}$","$(4.1 \\pm 0.4)\\text{ m}$","$(4.3 \\pm 0.3)\\text{ m}$"],"correctAnswer":1,"solution":"$l = l_1 + l_2 = 1.8 + 2.3 = 4.1\\text{ m}$.\n$\\Delta l = \\pm(0.2 + 0.1) = \\pm 0.3\\text{ m}$.\nCombined length = $(4.1 \\pm 0.3)\\text{ m}$."},{"id":33,"subject":"Physics","type":"single-choice","question":"If $\\vec{A}$ is a vector of magnitude 5 units due east. What is the magnitude and direction of a vector $-5\\vec{A}$?","options":["5 units due east","25 units due west","5 units due west","25 units due east"],"correctAnswer":1,"solution":"Multiplying $\\vec{A}$ by $-5$ multiplies its magnitude by $|-5| = 5$ (so magnitude becomes $5 \\times 5 = 25$) and reverses its direction (from east to west). Hence 25 units due west."},{"id":34,"subject":"Physics","type":"single-choice","question":"Velocity ($V$) of object is given as a function of time ($t$) and position ($x$),\n$$V = \\alpha t + \\beta x + \\gamma$$\nthen dimension of $\\alpha, \\beta$ and $\\gamma$ are:","options":["$[LT^{-2}], [T^{-1}], [LT^{-2}]$","$[LT^{-2}], [T^{-1}], [LT^{-1}]$","$[LT^{-1}], [LT^{-2}], [T^{-1}]$","$[LT^{-1}], [L], [T]$"],"correctAnswer":1,"solution":"Since $[V] = [LT^{-1}]$:\n$[\\alpha][T] = [LT^{-1}] \\implies [\\alpha] = [LT^{-2}]$.\n$[\\beta][L] = [LT^{-1}] \\implies [\\beta] = [T^{-1}]$.\n$[\\gamma] = [LT^{-1}]$.\nHence $\\alpha: [LT^{-2}], \\beta: [T^{-1}], \\gamma: [LT^{-1}]$."},{"id":35,"subject":"Physics","type":"single-choice","question":"The angle between the two vectors $\\vec{A} = 3\\hat{i} + 4\\hat{j} + 5\\hat{k}$ and $\\vec{B} = 3\\hat{i} + 4\\hat{j} - 5\\hat{k}$ will be:","options":["$90^\\circ$","$0^\\circ$","$60^\\circ$","$45^\\circ$"],"correctAnswer":0,"solution":"$\\vec{A} \\cdot \\vec{B} = (3)(3) + (4)(4) + (5)(-5) = 9 + 16 - 25 = 0$.\nSince $\\vec{A} \\cdot \\vec{B} = 0$, $\\cos\\theta = 0 \\implies \\theta = 90^\\circ$."},{"id":36,"subject":"Physics","type":"single-choice","question":"A quantity is represented by $X = M^a L^b T^c$. The percentage error in measurement of M, L and T are $\\alpha\\%, \\beta\\%$ and $\\gamma\\%$ respectively. The percentage error in $X$ would be:","options":["$(a\\alpha + b\\beta + c\\gamma)\\%$","$(a\\alpha - b\\beta + c\\gamma)\\%$","$(a\\alpha - b\\beta - c\\gamma)\\%$","$(a\\alpha + \\beta b - \\gamma c)\\%$"],"correctAnswer":0,"solution":"Maximum percentage error in $X$ is:\n$$\\frac{\\Delta X}{X} \\times 100 = a\\left(\\frac{\\Delta M}{M}\\times 100\\right) + b\\left(\\frac{\\Delta L}{L}\\times 100\\right) + c\\left(\\frac{\\Delta T}{T}\\times 100\\right) = (a\\alpha + b\\beta + c\\gamma)\\%.$$"},{"id":37,"subject":"Physics","type":"single-choice","question":"A force $(2\\hat{i} + 2\\hat{j})\\text{ N}$ displaces an object through a displacement $(2\\hat{i} - 3\\hat{j})\\text{ m}$. The work done ($W = \\vec{F} \\cdot \\vec{S}$) is:","options":["2 J","-2 J","5 J","13 J"],"correctAnswer":1,"solution":"$W = \\vec{F} \\cdot \\vec{S} = (2\\hat{i} + 2\\hat{j}) \\cdot (2\\hat{i} - 3\\hat{j}) = 2(2) + 2(-3) = 4 - 6 = -2\\text{ J}$."},{"id":38,"subject":"Physics","type":"single-choice","question":"Dimensional formula for coefficient of restitution:","options":["$[MLT^{-2}]$","$[M^0 L^0 T^0]$","$[MLT^{-1}]$","$[MT^{-2}]$"],"correctAnswer":1,"solution":"Coefficient of restitution $e$ is the ratio of relative velocity of separation to relative velocity of approach, which is dimensionless ($[M^0 L^0 T^0]$)."},{"id":39,"subject":"Physics","type":"single-choice","question":"Which of the following vector identities is false?","options":["$\\vec{P} + \\vec{Q} = \\vec{Q} + \\vec{P}$","$\\vec{P} \\times \\vec{Q} = \\vec{Q} \\times \\vec{P}$","$\\vec{P} \\cdot \\vec{Q} = \\vec{Q} \\cdot \\vec{P}$","$\\vec{P} \\times \\vec{Q} \\ne \\vec{Q} \\times \\vec{P}$"],"correctAnswer":1,"solution":"Vector cross product is anticommutative: $\\vec{P} \\times \\vec{Q} = -(\\vec{Q} \\times \\vec{P})$. Therefore $\\vec{P} \\times \\vec{Q} = \\vec{Q} \\times \\vec{P}$ is false."},{"id":40,"subject":"Physics","type":"single-choice","question":"Two quantities A and B have different dimensions. Which mathematical operation given below is physically meaningful?","options":["A/B","A + B","A - B","None of these"],"correctAnswer":0,"solution":"Quantities having different dimensions cannot be added or subtracted, but can be multiplied or divided. Hence A/B is physically meaningful."},{"id":41,"subject":"Physics","type":"single-choice","question":"Cross product of two vectors $\\vec{a}$ and $\\vec{b}$ is maximum in magnitude when angle between them is:","options":["$0^\\circ$","$60^\\circ$","$90^\\circ$","$45^\\circ$"],"correctAnswer":2,"solution":"$|\\vec{a} \\times \\vec{b}| = ab\\sin\\theta$. Maximum occurs when $\\sin\\theta = 1 \\implies \\theta = 90^\\circ$."},{"id":42,"subject":"Physics","type":"single-choice","question":"If the density of a substance is $2\\text{ g/cm}^3$, its value in $\\text{kg/m}^3$ is:","options":["$2000\\text{ kg/m}^3$","$200\\text{ kg/m}^3$","$20000\\text{ kg/m}^3$","None of these"],"correctAnswer":0,"solution":"$1\\text{ g/cm}^3 = \\frac{10^{-3}\\text{ kg}}{(10^{-2}\\text{ m})^3} = 1000\\text{ kg/m}^3$. Hence $2\\text{ g/cm}^3 = 2000\\text{ kg/m}^3$."},{"id":43,"subject":"Physics","type":"single-choice","question":"Which one of the following physical quantities is not a fundamental quantity?","options":["Luminous intensity","Thermodynamic temperature","Electric current","Work"],"correctAnswer":3,"solution":"Work is a derived quantity ($[W] = [ML^2 T^{-2}]$), while luminous intensity, thermodynamic temperature, and electric current are fundamental SI base quantities."},{"id":44,"subject":"Physics","type":"single-choice","question":"If $C$ and $R$ denote capacitance and resistance, the dimensional formula of $CR$ is:","options":["$[M^0 L^0 T^1]$","$[M^0 L^0 T^0]$","$[M^0 L^0 T^{-1}]$","not expressible in term of $MLT$"],"correctAnswer":0,"solution":"$CR$ is the capacitive time constant of an RC circuit, having dimensions of time $[T] = [M^0 L^0 T^1]$."},{"id":45,"subject":"Physics","type":"single-choice","question":"Which of the following graph is correct: $n = \\text{magnitude of measurement} \\& u = \\text{unit of measurement}$.\n\n\u003cdiv class=\"grid grid-cols-3 gap-2 my-2\"\u003e\u003cdiv class=\"border rounded p-1 text-center\"\u003e\u003cspan class=\"text-xs font-bold block\"\u003e(1)\u003c/span\u003e\u003csvg viewBox=\"0 0 100 80\" class=\"w-24 h-20 mx-auto\"\u003e\u003cline x1=\"20\" y1=\"70\" x2=\"90\" y2=\"70\" stroke=\"#64748b\"/\u003e\u003cline x1=\"20\" y1=\"10\" x2=\"20\" y2=\"70\" stroke=\"#64748b\"/\u003e\u003cpath d=\"M 25 15 Q 35 55 85 65\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/\u003e\u003ctext x=\"10\" y=\"20\" font-size=\"10\"\u003en\u003c/text\u003e\u003ctext x=\"85\" y=\"78\" font-size=\"10\"\u003eu\u003c/text\u003e\u003c/svg\u003e\u003c/div\u003e\u003cdiv class=\"border rounded p-1 text-center\"\u003e\u003cspan class=\"text-xs font-bold block\"\u003e(2)\u003c/span\u003e\u003csvg viewBox=\"0 0 100 80\" class=\"w-24 h-20 mx-auto\"\u003e\u003cline x1=\"20\" y1=\"70\" x2=\"90\" y2=\"70\" stroke=\"#64748b\"/\u003e\u003cline x1=\"20\" y1=\"10\" x2=\"20\" y2=\"70\" stroke=\"#64748b\"/\u003e\u003cline x1=\"20\" y1=\"40\" x2=\"85\" y2=\"40\" stroke=\"#2563eb\" stroke-width=\"2\"/\u003e\u003ctext x=\"5\" y=\"20\" font-size=\"10\"\u003enu\u003c/text\u003e\u003ctext x=\"85\" y=\"78\" font-size=\"10\"\u003eu\u003c/text\u003e\u003c/svg\u003e\u003c/div\u003e\u003cdiv class=\"border rounded p-1 text-center\"\u003e\u003cspan class=\"text-xs font-bold block\"\u003e(3)\u003c/span\u003e\u003csvg viewBox=\"0 0 100 80\" class=\"w-24 h-20 mx-auto\"\u003e\u003cline x1=\"20\" y1=\"70\" x2=\"90\" y2=\"70\" stroke=\"#64748b\"/\u003e\u003cline x1=\"20\" y1=\"10\" x2=\"20\" y2=\"70\" stroke=\"#64748b\"/\u003e\u003cline x1=\"20\" y1=\"40\" x2=\"85\" y2=\"40\" stroke=\"#2563eb\" stroke-width=\"2\"/\u003e\u003ctext x=\"5\" y=\"20\" font-size=\"10\"\u003enu\u003c/text\u003e\u003ctext x=\"85\" y=\"78\" font-size=\"10\"\u003en\u003c/text\u003e\u003c/svg\u003e\u003c/div\u003e\u003c/div\u003e","options":["Graph (1)","Graph (2)","Graph (3)","All of these"],"correctAnswer":3,"solution":"$Q = nu = \\text{constant}$.\n1. Plot of $n$ vs $u$ is a rectangular hyperbola ($n \\propto 1/u$).\n2. Plot of $nu$ vs $u$ is a horizontal straight line ($nu$ is constant).\n3. Plot of $nu$ vs $n$ is also a horizontal straight line.\nHence, all of these graphs are correct."},{"id":46,"subject":"Chemistry","type":"single-choice","question":"Find boiling point of deci molal aqueous solution of glucose. ($K_b = 0.52\\text{ K kg/mole}$)","options":["373.052","473.052","573.052","273.052"],"correctAnswer":0,"solution":"Boiling point elevation: $\\Delta T_b = K_b \\cdot m = 0.52 \\times 0.1 = 0.052\\text{ K}$.\nNormal b.p. of water = $373\\text{ K}$.\nNew b.p. = $373 + 0.052 = 373.052\\text{ K}$."},{"id":47,"subject":"Chemistry","type":"single-choice","question":"A solution of acetone in ethanol:","options":["behaves like a near ideal solution","obeys Raoults law","shows a negative deviation from Raoults law","shows a positive deviation from Raoults law"],"correctAnswer":3,"solution":"Acetone in ethanol shows positive deviation from Raoult's law because hydrogen bonds between ethanol molecules are broken when acetone is added, increasing vapour pressure."},{"id":48,"subject":"Chemistry","type":"single-choice","question":"Calculate the concentration in terms of mass by volume percentage of the solution containing, 2.5 g potassium chloride in 50 ml of potassium chloride (KCl) solution?","options":["25%","20%","5%","None of these"],"correctAnswer":2,"solution":"$\\text{Mass by volume } \\% = \\frac{\\text{mass of solute}}{\\text{volume of solution}} \\times 100 = \\frac{2.5}{50} \\times 100 = 5\\%$."},{"id":49,"subject":"Chemistry","type":"single-choice","question":"Which of the following statements is true about a Raoult's law for an ideal solution?","options":["The total vapour pressure is the sum of the partial pressures.","The partial vapour pressure of each component is proportional to its mole fraction.","The vapour pressure decreases with an increase in mole fraction of solute.","Both (1) and (2)"],"correctAnswer":3,"solution":"For an ideal solution obeying Raoult's law:\n1. Total vapour pressure equals the sum of the partial vapour pressures (Dalton's law).\n2. Each component's partial pressure is directly proportional to its mole fraction ($p_i = x_i p_i^\\circ$).\nHence, both (1) and (2) are true."},{"id":50,"subject":"Chemistry","type":"single-choice","question":"Correct expression for relative lowering of vapour pressure of a dilute solution.","options":["$\\frac{P_A^\\circ - P_A}{P_A^\\circ} = \\frac{n_A}{n_B - n_A}$","$\\frac{P_A^\\circ - P_A}{P_A} = \\frac{n_B}{n_A + n_B}$","$\\frac{P_A^\\circ - P_A}{P_A} = \\frac{n_B}{n_A + n_B}$","$\\frac{P_A^\\circ - P_A}{P_A^\\circ} = \\frac{n_B}{n_A}$"],"correctAnswer":3,"solution":"For a dilute solution, $n_B \\ll n_A$, so relative lowering $\\frac{P_A^\\circ - P_A}{P_A^\\circ} = \\frac{n_B}{n_A + n_B} \\approx \\frac{n_B}{n_A}$."},{"id":51,"subject":"Chemistry","type":"single-choice","question":"The vapour pressure of water at 300 K in a closed container is 0.4 atm. If the volume of the container is doubled, its vapour pressure at 300 K will be:","options":["0.8 atm","0.2 atm","0.4 atm","0.6 atm"],"correctAnswer":2,"solution":"Vapour pressure in equilibrium depends only on temperature and the nature of the liquid, not on container volume (as long as some liquid remains). Hence it remains 0.4 atm."},{"id":52,"subject":"Chemistry","type":"single-choice","question":"Molarity and molality of a solution of caustic soda are respectively 10 M and 100 m. The density of the solution is:","options":["$0.5\\text{ g mL}^{-1}$","$8.2\\text{ g mL}^{-1}$","$1.2\\text{ g mL}^{-1}$","$1.5\\text{ g mL}^{-1}$"],"correctAnswer":0,"solution":"$d = M\\left(\\frac{1}{m} + \\frac{\\text{molar mass of solute}}{1000}\\right) = 10\\left(\\frac{1}{100} + \\frac{40}{1000}\\right) = 10\\left(\\frac{10 + 40}{1000}\\right) = 0.5\\text{ g mL}^{-1}$."},{"id":53,"subject":"Chemistry","type":"single-choice","question":"Given below are two statements:\nStatement I: Isotonic solutions have same osmotic pressure.\nStatement II: Osmotic pressure is a colligative property.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","options":["Both Statement I and Statement II are correct.","Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":0,"solution":"Isotonic solutions by definition have identical osmotic pressure at a given temperature. Osmotic pressure depends on the number of solute particles, making it a colligative property. Both statements are correct."},{"id":54,"subject":"Chemistry","type":"single-choice","question":"Match List-I with List-II:\n\n| List-I | List-II |\n| :--- | :--- |\n| (A) Molarity | (I) Moles of solutes/mass of solvent (kg) |\n| (B) Molality | (II) Moles of component/total moles |\n| (C) Mole fraction | (III) Moles of solute/volume of solution(L) |\n| (D) Mass percent | (IV) $\\frac{\\text{Mass of solute}}{\\text{total mass}} \\times 100$ |\n\nChoose the correct answer from the options given below:","options":["A-III, B-I, C-II, D-IV","A-IV, B-III, C-II, D-I","A-II, B-III, C-IV, D-I","A-II, B-I, C-III, D-IV"],"correctAnswer":0,"solution":"Molarity = moles/volume of solution (L) (III).\nMolality = moles/mass of solvent (kg) (I).\nMole fraction = moles of component/total moles (II).\nMass percent = (mass of solute/total mass) * 100 (IV).\nCorrect match: A-III, B-I, C-II, D-IV."},{"id":55,"subject":"Chemistry","type":"single-choice","question":"Out of the following 0.1 molal aqueous solutions which will have maximum freezing point?","options":["Glucose","Potassium chloride","Sodium sulphate","Aluminium sulphate"],"correctAnswer":0,"solution":"Depression in freezing point $\\Delta T_f = i K_f m \\propto i$.\nFor glucose, $i = 1$.\nFor KCl, $i = 2$.\nFor $\\text{Na}_2\\text{SO}_4$, $i = 3$.\nFor $\\text{Al}_2(\\text{SO}_4)_3$, $i = 5$.\nMinimum $i$ means minimum depression in freezing point, hence highest freezing point is for glucose."},{"id":56,"subject":"Chemistry","type":"single-choice","question":"$K_H$ value for $\\text{He}, \\text{H}_2, \\text{N}_2, \\text{O}_2$ at 293 K are as follows respectively 144.97, 69.16, 76.48 and 34.86. Which gas is least soluble?","options":["He","$\\text{H}_2$","$\\text{N}_2$","$\\text{O}_2$"],"correctAnswer":0,"solution":"According to Henry's law, $K_H \\propto \\frac{1}{\\text{Solubility}}$. Higher $K_H$ corresponds to lower solubility. Helium (He) has the highest $K_H$ (144.97), so it is least soluble."},{"id":57,"subject":"Chemistry","type":"single-choice","question":"The boiling point of $\\text{C}_6\\text{H}_6$, $\\text{CH}_3\\text{OH}$, $\\text{C}_6\\text{H}_5\\text{NH}_2$ and $\\text{C}_6\\text{H}_5\\text{NO}_2$ are $80^\\circ\\text{C}$, $65^\\circ\\text{C}$, $184^\\circ\\text{C}$ and $212^\\circ\\text{C}$ respectively. Which will show highest vapour pressure at room temperature?","options":["$\\text{C}_6\\text{H}_6$","$\\text{CH}_3\\text{OH}$","$\\text{C}_6\\text{H}_5\\text{NH}_2$","$\\text{C}_6\\text{H}_5\\text{NO}_2$"],"correctAnswer":1,"solution":"Lower the boiling point, higher the vapour pressure. Since $\\text{CH}_3\\text{OH}$ (methanol) has the lowest boiling point ($65^\\circ\\text{C}$), it has the highest vapour pressure at room temperature."},{"id":58,"subject":"Chemistry","type":"single-choice","question":"If molality of the dilute solution is doubled, the value of molal depression constant ($K_f$) will be:","options":["Unchanged","Doubled","Halved","Tripled"],"correctAnswer":0,"solution":"$K_f$ is a characteristic property of the solvent only and does not depend on the molality of the solution."},{"id":59,"subject":"Chemistry","type":"single-choice","question":"Match the Column-I with Column-II to find out the correct option:\n\n| Column-I | Column-II |\n| :--- | :--- |\n| (A) Binary solution | (I) $P_a = P_a^\\circ X_a$ |\n| (B) Raoult's law | (II) Solution with 2 components |\n| (C) Henry's law | (III) Ratio of moles of a component to total moles |\n| (D) Mole fraction | (IV) $P = K_H X$ |","options":["A-II, B-I, C-IV, D-III","A-IV, B-II, C-I, D-III","A-IV, B-I, C-III, D-II","A-III, B-I, C-IV, D-II"],"correctAnswer":0,"solution":"Binary solution = Solution with 2 components (II).\nRaoult's law = $P_a = P_a^\\circ X_a$ (I).\nHenry's law = $P = K_H X$ (IV).\nMole fraction = Ratio of moles of component to total moles (III).\nCorrect matching is A-II, B-I, C-IV, D-III."},{"id":60,"subject":"Chemistry","type":"single-choice","question":"The correct relationship between the boiling points of very dilute solutions of $\\text{AlCl}_3$ ($t_1$) and $\\text{CaCl}_2$ ($t_2$), having the same molar concentration, is:","options":["$t_1 = t_2$","$t_1 \u003e t_2$","$t_2 \u003e t_1$","$t_2 \\ge t_1$"],"correctAnswer":1,"solution":"$\\Delta T_b = i K_b m$. For $\\text{AlCl}_3$, $i = 4$. For $\\text{CaCl}_2$, $i = 3$. Greater $i$ gives higher elevation in boiling point, hence $t_1 \u003e t_2$."},{"id":61,"subject":"Chemistry","type":"single-choice","question":"How much oxygen is dissolved in 100 mL water at 298 K if partial pressure of oxygen is 0.5 atm and $K_H = 1.4 \\times 10^{-3}\\text{ mol/L/atm}$?","options":["22.4 mg","22.4 g","2.24 g","2.24 mg"],"correctAnswer":3,"solution":"Using Henry's law: $C = K_H P = 1.4 \\times 10^{-3} \\times 0.5 = 7 \\times 10^{-4}\\text{ mol L}^{-1}$.\nFor $100\\text{ mL} = 0.1\\text{ L}$:\n$n = 7 \\times 10^{-4} \\times 0.1 = 7 \\times 10^{-5}\\text{ mol}$.\nMass of $\\text{O}_2 = 7 \\times 10^{-5} \\times 32 = 2.24 \\times 10^{-3}\\text{ g} = 2.24\\text{ mg}$."},{"id":62,"subject":"Chemistry","type":"single-choice","question":"A solution has a $1 : 4$ mole ratio of pentane to hexane. The vapour pressures of the pure hydrocarbons at $20^\\circ\\text{C}$ are $440\\text{ mmHg}$ for pentane and $120\\text{ mmHg}$ for hexane. The mole fraction of pentane in the vapour phase would be:","options":["0.200","0.549","0.786","0.478"],"correctAnswer":3,"solution":"$X_{\\text{pentane}} = 1/5 = 0.2$, $X_{\\text{hexane}} = 4/5 = 0.8$.\n$P_{\\text{pentane}} = 0.2 \\times 440 = 88\\text{ mmHg}$.\n$P_{\\text{hexane}} = 0.8 \\times 120 = 96\\text{ mmHg}$.\n$P_{\\text{total}} = 88 + 96 = 184\\text{ mmHg}$.\n$Y_{\\text{pentane}} = 88 / 184 \\approx 0.478$."},{"id":63,"subject":"Chemistry","type":"single-choice","question":"The freezing point depression of 0.001m $K_x[\\text{Fe}(\\text{CN})_6]$ is $7.4 \\times 10^{-3}\\text{ K}$. The value of $x$ is: (Assuming complete dissociation, $K_f = 1.85\\text{ K kg mol}^{-1}$ for water)","options":["4","3","2","1"],"correctAnswer":1,"solution":"$\\Delta T_f = i K_f m \\implies i = \\frac{7.4 \\times 10^{-3}}{1.85 \\times 10^{-3}} = 4$.\n$K_x[\\text{Fe}(\\text{CN})_6]$ dissociates to give $x + 1$ ions.\n$x + 1 = 4 \\implies x = 3$."},{"id":64,"subject":"Chemistry","type":"single-choice","question":"The solubility of gases in liquids:","options":["increases with increase in pressure and temperature.","decreases with increase in pressure and temperature.","increases with increase in pressure and decrease in temperature.","decreases with increase in pressure and increase in temperature."],"correctAnswer":2,"solution":"According to Henry's Law, gas solubility increases with increase in pressure. Dissolution of gases is exothermic, so solubility increases with decrease in temperature."},{"id":65,"subject":"Chemistry","type":"single-choice","question":"A solution containing 10 g per $\\text{dm}^3$ of urea (molecular mass $60\\text{ g mol}^{-1}$) is isotonic with a 5% solution of a non-volatile solute. The molecular mass of this non-volatile solute is:","options":["$200\\text{ g mol}^{-1}$","$300\\text{ g mol}^{-1}$","$250\\text{ g mol}^{-1}$","$350\\text{ g mol}^{-1}$"],"correctAnswer":1,"solution":"For isotonic solutions: $\\pi_{\\text{urea}} = \\pi_{\\text{solute}}$.\n$\\frac{10}{60} = \\frac{50}{M_{\\text{solute}}} \\implies M = 300\\text{ g mol}^{-1}$."},{"id":66,"subject":"Chemistry","type":"single-choice","question":"23 g of ethanol is dissolved in 36 g of water. Find mole fraction of ethanol.","options":["2","0.5","0.2","0.8"],"correctAnswer":2,"solution":"$n_{\\text{C}_2\\text{H}_5\\text{OH}} = \\frac{23}{46} = 0.5\\text{ mol}$.\n$n_{\\text{H}_2\\text{O}} = \\frac{36}{18} = 2\\text{ mol}$.\n$X_{\\text{ethanol}} = \\frac{0.5}{0.5 + 2} = \\frac{0.5}{2.5} = 0.2$."},{"id":67,"subject":"Chemistry","type":"single-choice","question":"For a solution of volatile liquids the partial vapour pressure of each component in solution is directly proportional to:","options":["Molarity","Mole fraction","Molality","Normality"],"correctAnswer":1,"solution":"According to Raoult's law, partial vapour pressure of each component is directly proportional to its mole fraction in the solution."},{"id":68,"subject":"Chemistry","type":"single-choice","question":"How much the amount of $\\text{CaCl}_2$ ($i = 2.47$) dissolved in 2.5 L of solution such that its osmotic pressure is 0.75 atm at $27^\\circ\\text{C}$?","options":["0.3 mol","0.03 mol","3 mol","0.003 mol"],"correctAnswer":1,"solution":"$\\pi = i \\left(\\frac{n}{V}\\right) R T \\implies n = \\frac{\\pi V}{i R T} = \\frac{0.75 \\times 2.5}{2.47 \\times 0.0821 \\times 300} = \\frac{1.875}{60.836} \\approx 0.03\\text{ mol}$."},{"id":69,"subject":"Chemistry","type":"single-choice","question":"Dissolution of 1.5 g of a non-volatile solute (mol. wt. = $60\\text{ g mol}^{-1}$) in 250 g of a solvent reduces its freezing point by $0.01^\\circ\\text{C}$. Find the molal depression constant of the solvent.","options":["0.01","0.001","0.0001","0.1"],"correctAnswer":3,"solution":"Molality $m = \\frac{1.5 \\times 1000}{60 \\times 250} = 0.1\\text{ molal}$.\n$\\Delta T_f = K_f \\times m \\implies 0.01 = K_f \\times 0.1 \\implies K_f = 0.1$."},{"id":70,"subject":"Chemistry","type":"single-choice","question":"What is camphor in $\\text{N}_2$ gas an example of?","options":["Solid in liquid solution","Liquid in gas solution","Solid in gas solution","Gas in gas solution"],"correctAnswer":2,"solution":"Camphor in nitrogen gas is an example of a solid solute dissolved in a gaseous solvent (solid in gas solution)."},{"id":71,"subject":"Chemistry","type":"single-choice","question":"The depression in freezing point of 0.1 M aqueous solution of $\\text{HCl}$, $\\text{CuSO}_4$ and $\\text{K}_2\\text{SO}_4$ are in the ratio:","options":["$1 : 1 : 1$","$1 : 2 : 3$","$1 : 1 : 1.5$","$2 : 4 : 3$"],"correctAnswer":2,"solution":"$\\Delta T_f \\propto i$.\nFor $\\text{HCl}$, $i = 2$.\nFor $\\text{CuSO}_4$, $i = 2$.\nFor $\\text{K}_2\\text{SO}_4$, $i = 3$.\nRatio $= 2 : 2 : 3 = 1 : 1 : 1.5$."},{"id":72,"subject":"Chemistry","type":"single-choice","question":"$P_A$ and $P_B$ are the vapour pressure of pure liquid components, A and B, respectively of an ideal binary solution. If $X_A$ represents the mole fraction of component A, the total pressure of the solution will be:","options":["$P_A + X_A(P_B - P_A)$","$P_A + X_A(P_A - P_B)$","$P_B + X_A(P_B - P_A)$","$P_B + X_A(P_A - P_B)$"],"correctAnswer":3,"solution":"$P_{\\text{total}} = P_A X_A + P_B X_B = P_A X_A + P_B(1 - X_A) = P_B + X_A(P_A - P_B)$."},{"id":73,"subject":"Chemistry","type":"single-choice","question":"Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R:\nAssertion A: The molarity of a solution changes with temperature.\nReason R: Molarity is a colligative property.\nIn the light of the above statements, choose the correct answer from the options given below:","options":["A is true but R is false.","A is false but R is true.","Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A."],"correctAnswer":0,"solution":"Molarity depends on the volume of the solution, which expands or contracts with temperature changes (Assertion is true). Molarity is a concentration unit, NOT a colligative property (Reason is false)."},{"id":74,"subject":"Chemistry","type":"single-choice","question":"From the given graph at constant temperature, which gas has the least solubility?\n\n\u003csvg viewBox=\"0 0 220 180\" class=\"w-56 h-44 mx-auto my-2\"\u003e\u003cline x1=\"40\" y1=\"150\" x2=\"200\" y2=\"150\" stroke=\"#64748b\" stroke-width=\"2\"/\u003e\u003cline x1=\"40\" y1=\"20\" x2=\"40\" y2=\"150\" stroke=\"#64748b\" stroke-width=\"2\"/\u003e\u003cline x1=\"40\" y1=\"150\" x2=\"90\" y2=\"30\" stroke=\"#dc2626\" stroke-width=\"2.5\"/\u003e\u003ctext x=\"95\" y=\"35\" font-size=\"11\" font-weight=\"bold\" fill=\"#dc2626\"\u003egas - A\u003c/text\u003e\u003cline x1=\"40\" y1=\"150\" x2=\"125\" y2=\"45\" stroke=\"#ea580c\" stroke-width=\"2.5\"/\u003e\u003ctext x=\"130\" y=\"50\" font-size=\"11\" font-weight=\"bold\" fill=\"#ea580c\"\u003egas - B\u003c/text\u003e\u003cline x1=\"40\" y1=\"150\" x2=\"160\" y2=\"70\" stroke=\"#2563eb\" stroke-width=\"2.5\"/\u003e\u003ctext x=\"165\" y=\"75\" font-size=\"11\" font-weight=\"bold\" fill=\"#2563eb\"\u003egas - C\u003c/text\u003e\u003cline x1=\"40\" y1=\"150\" x2=\"185\" y2=\"105\" stroke=\"#16a34a\" stroke-width=\"2.5\"/\u003e\u003ctext x=\"188\" y=\"112\" font-size=\"11\" font-weight=\"bold\" fill=\"#16a34a\"\u003egas - D\u003c/text\u003e\u003ctext x=\"80\" y=\"170\" font-size=\"12\" font-weight=\"bold\" fill=\"#475569\"\u003eSolubility\u003c/text\u003e\u003ctext x=\"10\" y=\"90\" font-size=\"11\" font-weight=\"bold\" fill=\"#475569\" transform=\"rotate(-90 20 90)\"\u003ePartial pressure\u003c/text\u003e\u003c/svg\u003e","options":["gas - D","gas - B","gas - A","gas - C"],"correctAnswer":2,"solution":"By Henry's law, $P = \\frac{1}{k_H} \\cdot \\text{Solubility}$. A steeper slope in the $P$ vs Solubility graph means higher pressure is required to dissolve the same amount, indicating least solubility. Gas A has the steepest slope, hence least soluble."},{"id":75,"subject":"Chemistry","type":"single-choice","question":"A solution is obtained by dissolving 0.2 moles of urea in a litre water. Another solution is obtained by dissolving 0.4 moles of cane-sugar in a litre of water at the same temperature. The lowering of vapour pressure to the first solution is:","options":["Same as that of the second solution","Half to that of the second solution","Double to that of the second solution","None"],"correctAnswer":1,"solution":"Relative lowering of vapour pressure depends on the number of moles of solute. Since the first solution has 0.2 moles and the second has 0.4 moles, lowering for the first solution is half that of the second."},{"id":76,"subject":"Chemistry","type":"single-choice","question":"Calculate the vapour pressure of pure B, if $P_{\\text{total}} = (0.195X_A + 0.315)\\text{ atm}$ at 295 K:","options":["0.38 atm","0.04 atm","0.315 atm","0.172 atm"],"correctAnswer":2,"solution":"$P_{\\text{total}} = P_A X_A + P_B(1 - X_A) = (P_A - P_B)X_A + P_B$.\nComparing with $P_{\\text{total}} = 0.195X_A + 0.315$, we get $P_B = 0.315\\text{ atm}$."},{"id":77,"subject":"Chemistry","type":"single-choice","question":"Vapour pressure of pure A = 100 torr, moles = 2; vapour pressure of pure B = 80 torr, moles = 3. Total vapour pressure of the mixture is:","options":["440 torr","460 torr","180 torr","88 torr"],"correctAnswer":3,"solution":"$X_A = 2/5$, $X_B = 3/5$.\n$P = P_A X_A + P_B X_B = 100\\left(\\frac{2}{5}\\right) + 80\\left(\\frac{3}{5}\\right) = 40 + 48 = 88\\text{ torr}$."},{"id":78,"subject":"Chemistry","type":"single-choice","question":"Two solutions A and B are separated by semi-permeable membrane. If liquid flows from A to B then:","options":["A is less concentrated than B","A is more concentrated than B","Both have same concentration","None of these"],"correctAnswer":0,"solution":"In osmosis, solvent flows across a semipermeable membrane from a region of lower solute concentration (dilute solution A) to higher solute concentration (concentrated solution B)."},{"id":79,"subject":"Chemistry","type":"single-choice","question":"Which of following representations of $i$ (van't Hoff factor) is not correct?","options":["$i = \\frac{\\text{Observed colligative property}}{\\text{Expected colligative property}}$","$i = \\frac{\\text{Normal molecular mass}}{\\text{Observed molecular mass}}$","$i = \\frac{\\text{No. of molecules actually present}}{\\text{Molecules expected to be present}}$","$i = \\frac{\\text{Total number of particles taken before association/dissociation}}{\\text{Total number of particles taken after association/dissociation}}$"],"correctAnswer":3,"solution":"The correct definition is $i = \\frac{\\text{Total particles after association/dissociation}}{\\text{Total particles before association/dissociation}}$. Option (4) has numerator and denominator inverted, so it is incorrect."},{"id":80,"subject":"Chemistry","type":"single-choice","question":"Which of the following factor(s) affect the solubility of a gaseous solute in the fixed volume of liquid solvent?\n(i) Nature of solute\n(ii) Temperature\n(iii) Pressure","options":["(i) and (iii) at constant T","(i) and (ii) at constant p","Only (iii)","Both (1) and (2)"],"correctAnswer":3,"solution":"The solubility of a gaseous solute depends on the nature of solute, temperature, and pressure. Statements (1) and (2) are both valid conditions."},{"id":81,"subject":"Chemistry","type":"single-choice","question":"18 g of glucose is dissolved in 182 g of water. What will be the mass percentage of glucose?","options":["18%","9%","36%","15%"],"correctAnswer":1,"solution":"$\\text{Mass percent} = \\frac{\\text{mass of glucose}}{\\text{mass of solution}} \\times 100 = \\frac{18}{18 + 182} \\times 100 = \\frac{18}{200} \\times 100 = 9\\%$."},{"id":82,"subject":"Chemistry","type":"single-choice","question":"Given below are two statements:\nStatement I: Colligative properties depends on the number of particles of solute in the solution.\nStatement II: Vapour pressure is a colligative property.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","options":["Both Statement I and Statement II are correct.","Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":1,"solution":"Statement I is correct (colligative properties depend strictly on number of solute particles). Statement II is incorrect (relative lowering of vapour pressure is a colligative property, not vapour pressure itself)."},{"id":83,"subject":"Chemistry","type":"single-choice","question":"An azeotropic mixture of two liquids has boiling point lower than either of them, when it:","options":["Shows a negative deviation from Raoult's law","Shows no deviation from Raoult's law","Shows positive deviation from Raoult's law","Is saturated"],"correctAnswer":2,"solution":"A minimum boiling azeotrope forms when a solution shows large positive deviation from Raoult's law."},{"id":84,"subject":"Chemistry","type":"single-choice","question":"The mass of KCl required to depress the freezing point of 500 g water by 2 K is ($K_f = 1.86$, $K = 39$):","options":["10.01 g","40.05 g","7.45 g","20.03 g"],"correctAnswer":3,"solution":"$\\Delta T_f = i K_f m \\implies 2 = 2 \\times 1.86 \\times m \\implies m = 0.5376\\text{ mol/kg}$.\nMoles of KCl = $0.5376 \\times 0.5 = 0.2688\\text{ mol}$.\nMolar mass of KCl = $39 + 35.5 = 74.5\\text{ g/mol}$.\nMass = $0.2688 \\times 74.5 \\approx 20.03\\text{ g}$."},{"id":85,"subject":"Chemistry","type":"single-choice","question":"Which one is not equal to zero for an ideal solution?","options":["$\\Delta H_{\\text{mix}}$","$\\Delta S_{\\text{mix}}$","$\\Delta V_{\\text{mix}}$","$\\Delta P = P_{\\text{observed}} - P_{\\text{Raoult}}$"],"correctAnswer":1,"solution":"For an ideal solution, $\\Delta H_{\\text{mix}} = 0$, $\\Delta V_{\\text{mix}} = 0$, and $\\Delta P = 0$. However, entropy of mixing is always positive ($\\Delta S_{\\text{mix}} \u003e 0$)."},{"id":86,"subject":"Chemistry","type":"single-choice","question":"The statement \"5% of NaCl in water by mass\" means:","options":["5 g of NaCl is dissolved in 100 g of water","5 g of NaCl is dissolved in 95 g of water","5 g of NaCl is dissolved in 1000 g of water","5 g of NaCl is dissolved in 500 g of water"],"correctAnswer":1,"solution":"A 5% (w/w) solution contains 5 g of NaCl in 100 g of solution, which means 5 g of NaCl is mixed with $(100 - 5) = 95\\text{ g}$ of water."},{"id":87,"subject":"Chemistry","type":"single-choice","question":"Total vapour pressure of mixture of 1 mol X ($P_X^\\circ = 150\\text{ torr}$) and 2 mol Y ($P_Y^\\circ = 300\\text{ torr}$) is 240 torr. In this case:","options":["there is a negative deviation from Raoults law.","there is a positive deviation from Raoults law.","there is no deviation from Raoults law.","cannot be decided."],"correctAnswer":0,"solution":"$P_{\\text{ideal}} = X_X P_X^\\circ + X_Y P_Y^\\circ = \\frac{1}{3}(150) + \\frac{2}{3}(300) = 50 + 200 = 250\\text{ torr}$.\nSince $P_{\\text{observed}} = 240\\text{ torr} \u003c P_{\\text{ideal}}$, there is a negative deviation from Raoult's law."},{"id":88,"subject":"Chemistry","type":"single-choice","question":"Given below are two statements:\nStatement I: A binary mixture of nitric acid and water shows negative deviation from Raoult's law.\nStatement II: A binary mixture of water and ethanol shows positive deviation from Raoult's law.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","options":["Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct.","Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":2,"solution":"Nitric acid + water forms stronger intermolecular attractions (negative deviation). Water + ethanol weakens hydrogen bonding (positive deviation). Both statements are correct."},{"id":89,"subject":"Chemistry","type":"single-choice","question":"The value of Henry's constant $K_H$ is ________.","options":["greater for gases with higher solubility.","greater for gases with lower solubility.","constant for all gases.","not related to the solubility of gases."],"correctAnswer":1,"solution":"From Henry's law ($C = \\frac{P}{K_H}$), higher $K_H$ indicates lower solubility of the gas in liquid at a given pressure."},{"id":90,"subject":"Chemistry","type":"single-choice","question":"Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R:\nAssertion (A): The boiling point of a solution is always higher than that of the pure solvent.\nReason (R): The presence of a solute decreases the vapor pressure of the solvent, thus increasing the boiling point.\nIn the light of the above statements, choose the correct answer from the options given below:","options":["Both A and R are correct, and R is the correct explanation of A.","Both A and R are correct, but R is not the correct explanation of A.","A is correct, but R is incorrect.","A is incorrect, but R is correct."],"correctAnswer":0,"solution":"Adding a non-volatile solute lowers the solvent's vapour pressure; the liquid must therefore be heated to a higher temperature for its vapour pressure to reach atmospheric pressure (elevation in boiling point). Both are correct and R explains A."},{"id":91,"subject":"Botany","type":"single-choice","question":"The most dramatic period of the cell cycle is:","options":["interphase.","$G_0$ phase.","M phase.","interkinesis."],"correctAnswer":2,"solution":"M phase is the most dramatic period of the cell cycle, involving a major reorganization of virtually all components of the cell (NCERT Class 11th, Page 122)."},{"id":92,"subject":"Botany","type":"single-choice","question":"Find the mismatched pair.","options":["Interphase - represents the phase between two successive M phases.","Yeast cells - Divide in about every 90 minutes.","Human cells in culture - Divide in every 120 minutes.","M Phase - Phase of cell cycle when the actual cell division occurs."],"correctAnswer":2,"solution":"Human cells in culture divide once in approximately 24 hours, not 120 minutes. Hence (3) is mismatched."},{"id":93,"subject":"Botany","type":"single-choice","question":"Proteins are synthesised in preparation for mitosis during the:","options":["$G_0$ phase.","$G_1$ phase.","S phase.","$G_2$ phase."],"correctAnswer":3,"solution":"During the $G_2$ phase, proteins are synthesised in preparation for mitosis while cell growth continues (NCERT 11th, Page 121)."},{"id":94,"subject":"Botany","type":"single-choice","question":"Identify the correct statement regarding meiosis.","options":["It results in the production of four daughter cells with identical genetic complement.","It increases the genetic variability in the population of organisms from one generation to the next.","It is found in male honey bees.","A dyad of cells forms after telophase II."],"correctAnswer":1,"solution":"Meiosis increases genetic variability in the population of organisms from one generation to the next due to crossing over and independent assortment."},{"id":95,"subject":"Botany","type":"single-choice","question":"Given below are two statements:\nStatement I: Each centrosome radiates out microtubules called asters.\nStatement II: The two asters together with spindle fibres form the mitotic apparatus.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","options":["Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct.","Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":2,"solution":"Each centrosome radiates out microtubules called asters. The two asters together with spindle fibres form the mitotic apparatus. Both statements are correct (NCERT Class 11th, Page 122)."},{"id":96,"subject":"Botany","type":"single-choice","question":"Recombinase enzyme is involved in:","options":["synapsis.","crossing over.","terminalisation of chiasmata.","dissolution of synaptonemal complex."],"correctAnswer":1,"solution":"Crossing over is an enzyme-mediated process and the enzyme involved is called recombinase."},{"id":97,"subject":"Botany","type":"single-choice","question":"In the final stage of karyokinesis:","options":["condensation of the chromosomes takes place.","chromosomes decondense at their respective poles.","spindle fibres attach to kinetochores of chromosomes.","centromeres split and chromatids separate."],"correctAnswer":1,"solution":"At telophase (the final stage of karyokinesis), chromosomes that have reached their respective poles decondense and lose their individuality."},{"id":98,"subject":"Botany","type":"single-choice","question":"The M phase of cell cycle usually ends with the:","options":["replication of DNA.","division of cytoplasm.","nuclear division.","duplication of centriole."],"correctAnswer":1,"solution":"The M phase starts with nuclear division (karyokinesis) and usually ends with division of cytoplasm (cytokinesis) (NCERT Page 121)."},{"id":99,"subject":"Botany","type":"single-choice","question":"Choose the incorrect statement w.r.t the prophase of mitosis.","options":["Chromosomal material condenses to form compact mitotic chromosomes.","Chromosomes are seen to be composed of two chromatids attached together at the centromere.","Centrosome which had undergone duplication during interphase, begins to move towards opposite poles of the cell.","Nucleolus, Golgi complex and endoplasmic reticulum reform."],"correctAnswer":3,"solution":"Nucleolus, Golgi complex and endoplasmic reticulum reform during telophase, not prophase. In prophase, they disappear."},{"id":100,"subject":"Botany","type":"single-choice","question":"Match List-I with List-II:\n\n| List-I | List-II |\n| :--- | :--- |\n| (A) Prophase I | (I) Splitting of centromere |\n| (B) Prophase II | (II) Typically longer and more complex than mitotic prophase |\n| (C) Telophase I | (III) Initiates after a short lived intermediate stage |\n| (D) Anaphase II | (IV) Followed by cytokinesis |\n\nChoose the correct answer from the options given below:","options":["A-III, B-I, C-II, D-IV","A-III, B-II, C-I, D-IV","A-II, B-III, C-IV, D-I","A-II, B-III, C-I, D-IV"],"correctAnswer":2,"solution":"Prophase I is typically longer and more complex (II).\nProphase II initiates after short-lived interkinesis (III).\nTelophase I is followed by cytokinesis (IV).\nAnaphase II involves splitting of centromere (I).\nCorrect match: A-II, B-III, C-IV, D-I."},{"id":101,"subject":"Botany","type":"single-choice","question":"Find the mismatched pair.","options":["Metaphase I - Bivalent chromosomes align on the equatorial plate","Prophase II - The nuclear membrane disappears by the end of prophase","Anaphase I - Sister chromatids separate","Telophase II - Meiosis ends with telophase II"],"correctAnswer":2,"solution":"In Anaphase I, homologous chromosomes separate while sister chromatids remain associated at their centromeres. Sister chromatids separate in Anaphase II."},{"id":102,"subject":"Botany","type":"single-choice","question":"Choose the incorrect statement w.r.t the meiosis.","options":["Meiosis ensures the production of haploid phase in the life cycle of sexually reproducing organisms.","Meiosis involves two sequential cycles of nuclear and cell division called meiosis I and meiosis II but only a single cycle of DNA replication.","Meiosis I is initiated after the parental chromosomes have replicated to produce identical sister chromatids at the S phase.","Meiosis involves pairing of non homologous chromosomes and recombination between sister chromatids of non homologous chromosomes."],"correctAnswer":3,"solution":"Meiosis involves pairing of homologous chromosomes and recombination between non-sister chromatids of homologous chromosomes, not non-homologous."},{"id":103,"subject":"Botany","type":"single-choice","question":"From the given set of the phases, how many are present in interphase?\n\n`Gap-1phase, Metaphase, Mitosis phase, Telophase, Synthesis phase.`","options":["Two","Three","Four","One"],"correctAnswer":0,"solution":"The interphase is divided into three phases: $G_1$ phase (Gap 1), S phase (Synthesis), and $G_2$ phase (Gap 2). From the given set, only Gap-1 phase and Synthesis phase are part of interphase (total = 2)."},{"id":104,"subject":"Botany","type":"single-choice","question":"Identify the incorrect statement w.r.t prophase.","options":["Marked by the initiation of condensation of chromosomal material.","The chromosomal material becomes untangled during the process.","Disintegration of nuclear envelope initiates in this stage.","The chromosomes are spread through the cytoplasm of the cell."],"correctAnswer":3,"solution":"The chromosomes become spread through the cytoplasm when the nuclear envelope completely disintegrates at the beginning of metaphase."},{"id":105,"subject":"Botany","type":"single-choice","question":"Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R:\nAssertion A: Liquid endosperm in coconut shows syncytium.\nReason R: In liquid endosperm karyokinesis is not followed by cytokinesis as a result of which multinucleate condition arises.\nIn the light of the above statements, choose the correct answer from the options given below:","options":["A is true but R is false.","A is false but R is true.","Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A."],"correctAnswer":2,"solution":"In some organisms, karyokinesis is not followed by cytokinesis, resulting in a multinucleate condition leading to the formation of syncytium (e.g., liquid endosperm in coconut). Both are true and R explains A."},{"id":106,"subject":"Botany","type":"single-choice","question":"In which of the following phases of cell cycle does splitting of centromere occur?","options":["Anaphase of mitosis and Anaphase II of meiosis","Anaphase I of meiosis and Anaphase II of meiosis","Metaphase of mitosis and Metaphase II of meiosis","Anaphase of mitosis and Anaphase I of meiosis"],"correctAnswer":0,"solution":"Splitting of centromere and separation of chromatids occurs in anaphase of mitosis and anaphase II of meiosis."},{"id":107,"subject":"Botany","type":"single-choice","question":"During the $G_1$ phase, all are correct except:","options":["replication of DNA.","the cell is metabolically active.","cell continuously grows.","synthesise most of the organelle."],"correctAnswer":0,"solution":"Replication of DNA occurs during the S (Synthesis) phase, not the $G_1$ phase."},{"id":108,"subject":"Botany","type":"single-choice","question":"Bivalents or tetrads are more clearly visible at:","options":["pachytene.","zygotene.","diakinesis.","diplotene."],"correctAnswer":0,"solution":"Bivalents are formed during zygotene but become more clearly visible as tetrads during the pachytene stage (NCERT)."},{"id":109,"subject":"Botany","type":"single-choice","question":"Identify the incorrect statement from the following.","options":["A very significant contribution of mitosis is cell repair.","The growth of multicellular organisms is due to meiosis.","Gametes are formed from specialised diploid cells.","Meiosis includes meiosis I and meiosis II."],"correctAnswer":1,"solution":"The growth of multicellular organisms is due to mitosis, not meiosis. Meiosis is specialized for gametogenesis."},{"id":110,"subject":"Botany","type":"single-choice","question":"Consider the following statements regarding the significance of mitosis and choose the correct option.\nA. It occurs in apical meristem in plants.\nB. Haploid cells divide by mitosis in male honey bees.\nC. It is a method of replacing old or worn-out cells.\nD. It occurs in lateral meristem in plants.\nThe correct statements are:","options":["A, B, C, and D","A, B, and C","A and C only","B and D only"],"correctAnswer":0,"solution":"All four statements (A, B, C, and D) are correct facts regarding mitosis."},{"id":111,"subject":"Botany","type":"single-choice","question":"Match List-I with List-II:\n\n| List-I | List-II |\n| :--- | :--- |\n| (A) Terminalisation of chiasmata | (I) Pairing of homologous chromosomes |\n| (B) Synapsis | (II) Point of attachment between homologous chromosomes |\n| (C) Chiasmata | (III) Nuclear protein complex that helps in adherence of homologous chromosomes |\n| (D) Synaptonemal complex | (IV) Shifting of chiasmata outwards towards the ends of a bivalent |\n\nChoose the correct answer from the options given below:","options":["A-III, B-IV, C-II, D-I","A-IV, B-II, C-III, D-I","A-II, B-IV, C-III, D-I","A-IV, B-I, C-II, D-III"],"correctAnswer":3,"solution":"Terminalisation of chiasmata = Shifting towards ends (IV).\nSynapsis = Pairing of homologous chromosomes (I).\nChiasmata = Point of attachment / X-structure (II).\nSynaptonemal complex = Protein complex for adherence (III).\nCorrect matching: A-IV, B-I, C-II, D-III."},{"id":112,"subject":"Botany","type":"single-choice","question":"Anaphase I differs from anaphase of mitosis as in the former:","options":["separation of homologous chromosomes occurs.","splitting of the centromere occurs.","shortening of microtubules occurs.","chromatids move to opposite poles."],"correctAnswer":0,"solution":"During anaphase I of meiosis, homologous chromosomes separate while sister chromatids remain attached at their centromeres. In mitotic anaphase, centromeres split and sister chromatids separate."},{"id":113,"subject":"Botany","type":"single-choice","question":"Read the following statement w.r.t. cell cycle:\nA. M-phase is also called the resting phase because replication does not occur during this phase.\nB. Interphase is the phase during which the cell is preparing for division.\nC. The interphase is divided into four prominent phases, i.e., $G_0, G_1, S$ and $G_2$ phases.\nD. The M phase starts with the nuclear division, usually ends with division of cytoplasm.\nThe option with incorrect statement is:","options":["A and B","A and C","B and D","C and D"],"correctAnswer":1,"solution":"A is incorrect (interphase was historically called resting phase, not M-phase). C is incorrect (interphase has three phases $G_1, S, G_2$; $G_0$ is an inactive quiescent exit). Thus A and C are incorrect."},{"id":114,"subject":"Botany","type":"single-choice","question":"If the number of bivalents are 8 in metaphase - I, what shall be the number of chromosomes in daughter cells after meiosis -I and meiosis - II respectively?","options":["8 and 4","4 and 4","8 and 8","16 and 8"],"correctAnswer":2,"solution":"8 bivalents at Metaphase I means $2n = 16$. After Meiosis I, reduction occurs so each daughter cell has $n = 8$ chromosomes. Meiosis II is equational, so chromosomes remain 8."},{"id":115,"subject":"Botany","type":"single-choice","question":"Regarding the events of Prophase I of meiosis:\nA. Chromosomes start pairing together in the zygotene stage in a process called synapsis.\nB. Crossing over occurs between non-sister chromatids of homologous chromosomes during the pachytene stage.\nC. The synaptonemal complex dissolves, and X-shaped structures called chiasmata become visible during diplotene.\nD. The beginning of diplotene is recognised by the terminalisation of chiasmata.\nE. Leptotene, zygotene, and pachytene are relatively short-lived compared to diplotene and diakinesis.\nHow many of the following statements are correct?","options":["Two only","Three only","Four only","One only"],"correctAnswer":1,"solution":"Statements A, B, and C are correct.\nD is incorrect (terminalisation is characteristic of diakinesis).\nE is incorrect (leptotene and zygotene are short-lived, while pachytene and diplotene can be very long).\nExactly three statements are correct."},{"id":116,"subject":"Botany","type":"single-choice","question":"A stage of mitosis is shown in the diagram. Which stage is it and what are its characteristics?\n\n\u003csvg viewBox=\"0 0 160 140\" class=\"w-40 h-36 mx-auto my-2\"\u003e\u003cellipse cx=\"80\" cy=\"70\" rx=\"65\" ry=\"55\" fill=\"#f8fafc\" stroke=\"#3b82f6\" stroke-width=\"2\"/\u003e\u003ccircle cx=\"80\" cy=\"20\" r=\"4\" fill=\"#64748b\"/\u003e\u003ccircle cx=\"80\" cy=\"120\" r=\"4\" fill=\"#64748b\"/\u003e\u003cline x1=\"80\" y1=\"20\" x2=\"60\" y2=\"70\" stroke=\"#94a3b8\" stroke-dasharray=\"2,2\"/\u003e\u003cline x1=\"80\" y1=\"20\" x2=\"80\" y2=\"70\" stroke=\"#94a3b8\" stroke-dasharray=\"2,2\"/\u003e\u003cline x1=\"80\" y1=\"20\" x2=\"100\" y2=\"70\" stroke=\"#94a3b8\" stroke-dasharray=\"2,2\"/\u003e\u003cline x1=\"80\" y1=\"120\" x2=\"60\" y2=\"70\" stroke=\"#94a3b8\" stroke-dasharray=\"2,2\"/\u003e\u003cline x1=\"80\" y1=\"120\" x2=\"80\" y2=\"70\" stroke=\"#94a3b8\" stroke-dasharray=\"2,2\"/\u003e\u003cline x1=\"80\" y1=\"120\" x2=\"100\" y2=\"70\" stroke=\"#94a3b8\" stroke-dasharray=\"2,2\"/\u003e\u003crect x=\"52\" y=\"66\" width=\"16\" height=\"8\" rx=\"2\" fill=\"#ef4444\"/\u003e\u003crect x=\"72\" y=\"66\" width=\"16\" height=\"8\" rx=\"2\" fill=\"#10b981\"/\u003e\u003crect x=\"92\" y=\"66\" width=\"16\" height=\"8\" rx=\"2\" fill=\"#8b5cf6\"/\u003e\u003c/svg\u003e","options":["Anaphase - Chromatids move to opposite poles","Metaphase - Spindle fibres attached to chromosome","Late prophase - Nuclear membrane, nucleolus, golgi complexes and ER disappeared","Transition to metaphase - Spindle fibres attached to kinetochores of chromosomes"],"correctAnswer":3,"solution":"Transition to metaphase: Spindle fibres attach to kinetochores of chromosomes as they move toward the equatorial plane."},{"id":117,"subject":"Botany","type":"single-choice","question":"M phase is also called as equational division because;","options":["the amount of DNA per cell doubles in progeny.","the number of chromosomes in the parent and progeny cells remain the same.","two sequential cycles of nuclear and cell division take place.","it has long prophase."],"correctAnswer":1,"solution":"Since the number of chromosomes in the parent and progeny cells is the same, M phase is called equational division."},{"id":118,"subject":"Botany","type":"single-choice","question":"Choose the incorrect statement w.r.t the telophase I of meiosis I.","options":["The nuclear membrane and nucleolus reappear.","Cytokinesis follows and this is called as tetrad of cells.","In many cases the chromosomes do undergo some dispersion.","Chromosomes do not reach the extremely extended state of the interphase nucleus."],"correctAnswer":1,"solution":"After telophase I, cytokinesis follows and the resulting pair of cells is called a dyad of cells, not a tetrad (tetrad forms after telophase II)."},{"id":119,"subject":"Botany","type":"single-choice","question":"The five phases of prophase-I are subdivided on the basis of:","options":["the number of chromatids.","the position of the kinetochore.","chromosomal behaviour.","the position of the centromere."],"correctAnswer":2,"solution":"Prophase I of meiosis is subdivided into five phases (Leptotene, Zygotene, Pachytene, Diplotene, Diakinesis) based on chromosomal behaviour."},{"id":120,"subject":"Botany","type":"single-choice","question":"A bivalent is:","options":["two daughter cells after meiosis I.","a duplicated chromosome composed of sister chromatids.","paired homologous chromosomes.","paired non-homologous chromosomes."],"correctAnswer":2,"solution":"A bivalent is a pair of synapsed homologous chromosomes formed during zygotene stage of prophase I."},{"id":121,"subject":"Botany","type":"single-choice","question":"Electron micrographs of ____A____ stage indicate that chromosome synapsis is accompanied by the formation of complex structure called ____B____.\nSelect the correct option to fill in the blanks.","options":["A = pachytene, B = recombination nodule","A = diplotene, B = chiasmata","A = zygotene, B = synaptonemal complex","A = diakinesis, B = metaphase plate"],"correctAnswer":2,"solution":"During zygotene stage, chromosome synapsis is accompanied by the formation of a complex structure called the synaptonemal complex."},{"id":122,"subject":"Botany","type":"single-choice","question":"Tetrads are seen during:","options":["metaphase II of meiosis.","anaphase I of meiosis.","prophase I of meiosis.","All of these."],"correctAnswer":2,"solution":"Tetrads (bivalents consisting of 4 chromatids) are clearly visible during prophase I of meiosis (pachytene stage)."},{"id":123,"subject":"Botany","type":"single-choice","question":"Identify the correct statements from the following.\nA. Cell-plate formed during cytokinesis represents the middle lamella.\nB. In plant cells, wall formation starts in the centre of the cell and grows outward to meet the existing lateral walls.\nC. A very significant contribution of meiosis is cell repair.\nD. Mitotic divisions in the meristematic tissues - the apical and the lateral cambium, result in a continuous growth of plants throughout their life.\nChoose the most appropriate answer from the options given below:","options":["A and C only","A, B and D only","B and D only","All A, B, C and D"],"correctAnswer":1,"solution":"Statements A, B, and D are correct. C is incorrect because cell repair is a function of mitosis, not meiosis."},{"id":124,"subject":"Botany","type":"single-choice","question":"A, B and C are three stages in the mitosis as given in diagrams:\n\n\u003cdiv class=\"grid grid-cols-3 gap-2 my-2 text-center\"\u003e\u003cdiv class=\"border rounded p-1\"\u003e\u003csvg viewBox=\"0 0 80 80\" class=\"w-20 h-20 mx-auto\"\u003e\u003ccircle cx=\"40\" cy=\"40\" r=\"35\" fill=\"#fef2f2\" stroke=\"#dc2626\"/\u003e\u003cpath d=\"M 30 25 Q 40 40 30 55 M 50 25 Q 40 40 50 55\" stroke=\"#991b1b\" stroke-width=\"2.5\" fill=\"none\"/\u003e\u003c/svg\u003e\u003cspan class=\"text-xs font-bold block\"\u003eA: Late prophase\u003c/span\u003e\u003c/div\u003e\u003cdiv class=\"border rounded p-1\"\u003e\u003csvg viewBox=\"0 0 80 80\" class=\"w-20 h-20 mx-auto\"\u003e\u003ccircle cx=\"40\" cy=\"40\" r=\"35\" fill=\"#eff6ff\" stroke=\"#2563eb\"/\u003e\u003cline x1=\"40\" y1=\"10\" x2=\"40\" y2=\"70\" stroke=\"#94a3b8\" stroke-dasharray=\"2,2\"/\u003e\u003cline x1=\"20\" y1=\"40\" x2=\"60\" y2=\"40\" stroke=\"#1d4ed8\" stroke-width=\"3\"/\u003e\u003c/svg\u003e\u003cspan class=\"text-xs font-bold block\"\u003eB: Metaphase\u003c/span\u003e\u003c/div\u003e\u003cdiv class=\"border rounded p-1\"\u003e\u003csvg viewBox=\"0 0 80 80\" class=\"w-20 h-20 mx-auto\"\u003e\u003ccircle cx=\"40\" cy=\"40\" r=\"35\" fill=\"#f0fdf4\" stroke=\"#16a34a\"/\u003e\u003cpath d=\"M 25 25 L 35 25 M 45 25 L 55 25\" stroke=\"#15803d\" stroke-width=\"3\"/\u003e\u003cpath d=\"M 25 55 L 35 55 M 45 55 L 55 55\" stroke=\"#15803d\" stroke-width=\"3\"/\u003e\u003c/svg\u003e\u003cspan class=\"text-xs font-bold block\"\u003eC: Anaphase\u003c/span\u003e\u003c/div\u003e\u003c/div\u003e\n\nThe correct sequence of events that occurs during mitosis is:","options":["A -\u003e C -\u003e B","A -\u003e B -\u003e C","C -\u003e A -\u003e B","C -\u003e B -\u003e A"],"correctAnswer":1,"solution":"A represents late prophase, B represents metaphase, and C represents anaphase. The sequential order in mitosis is A -\u003e B -\u003e C."},{"id":125,"subject":"Botany","type":"single-choice","question":"All are the features of interkinesis, except:","options":["the stage occurs between the two meiotic divisions.","it is generally short lived.","replication of DNA takes place.","it is followed by prophase II."],"correctAnswer":2,"solution":"There is no replication of DNA during interkinesis."},{"id":126,"subject":"Botany","type":"single-choice","question":"The sequence of events by which a cell duplicates its genome, synthesises the other constituents of the cell and eventually divides into two daughter cells is termed:","options":["cell cycle.","mitosis.","interphase.","meiosis."],"correctAnswer":0,"solution":"This is the exact definition of cell cycle given in NCERT Class 11th, Page 120."},{"id":127,"subject":"Botany","type":"single-choice","question":"During cell division, four haploid daughter cells are formed at the end of:","options":["meiosis II.","meiosis I.","mitosis.","prophase II."],"correctAnswer":0,"solution":"During cell division, four haploid cells are formed at the end of meiosis II."},{"id":128,"subject":"Botany","type":"single-choice","question":"Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R:\nAssertion A: Heart cells are the cells in the adult animals that do not appear to exhibit division.\nReason R: Heart cells exit $G_2$ phase to enter $G_0$ of the cell cycle.\nIn the light of above statements, choose the correct answer from the options given below:","options":["A is true but R is false.","A is false but R is true.","Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A."],"correctAnswer":0,"solution":"Some cells in adult animals (e.g. heart cells) do not divide and exit from $G_1$ phase (not $G_2$ phase) to enter $G_0$. Assertion is true, Reason is false."},{"id":129,"subject":"Botany","type":"single-choice","question":"A cell with 48 chromosomes and 2C DNA content undergoes mitosis. What will be the chromosome number and DNA content in each daughter nucleus at telophase?","options":["48 chromosomes, 2C DNA","96 chromosomes, 2C DNA","96 chromosomes, 4C DNA","48 chromosomes, 4C DNA"],"correctAnswer":0,"solution":"Mitosis is equational division. DNA content replicates from 2C to 4C in S phase, and during anaphase/telophase is equally distributed, returning to 2C DNA and maintaining 48 chromosomes per daughter nucleus."},{"id":130,"subject":"Botany","type":"single-choice","question":"Identify the incorrect statements about $G_0$ phase.\nA. This stage is also called quiescent stage.\nB. These cells have exited from the $G_2$ phase of the cell cycle.\nC. Heart cells generally remain in this stage.\nD. Cells in this stage can proliferate when conditions require replacing cells that have been lost due to injury or cell death.\nE. Cells in this stage remain metabolically active.\nChoose the correct answer from the options given below:","options":["A, B, C and E only","B only","A and B only","All except B"],"correctAnswer":1,"solution":"Statement B is incorrect because cells exit from the $G_1$ phase, not $G_2$ phase, to enter $G_0$."},{"id":131,"subject":"Botany","type":"single-choice","question":"Resting phase of cell cycle;\n(1) starts with the nuclear division.\n(2) usually ends with division of cytoplasm.\n(3) is the time during which the cell is preparing for division.\n(4) is when the actual cell division takes place.","options":["starts with the nuclear division.","usually ends with division of cytoplasm.","is the time during which the cell is preparing for division.","is when the actual cell division takes place."],"correctAnswer":2,"solution":"The interphase (resting phase) is the time during which the cell is preparing for division by undergoing cell growth and DNA replication in an orderly manner."},{"id":132,"subject":"Botany","type":"single-choice","question":"Identify the mismatched pair.\n(1) Gap 1 - It occurs between M phase and S phase\n(2) Gap 2 - It occurs between S phase and M phase\n(3) Interphase - It occurs between two successive M phases\n(4) M phase - It occurs between karyokinesis and cytokinesis","options":["Gap 1 - It occurs between M phase and S phase","Gap 2 - It occurs between S phase and M phase","Interphase - It occurs between two successive M phases","M phase - It occurs between karyokinesis and cytokinesis"],"correctAnswer":3,"solution":"M phase includes both karyokinesis and cytokinesis; it does not occur between them. Hence (4) is mismatched."},{"id":133,"subject":"Botany","type":"single-choice","question":"Identify the correct statement/s from the following by studying the following diagram of equational division.\n\n\u003csvg viewBox=\"0 0 140 140\" class=\"w-36 h-36 mx-auto my-2\"\u003e\u003ccircle cx=\"70\" cy=\"70\" r=\"55\" fill=\"#fff7ed\" stroke=\"#ea580c\" stroke-width=\"2\"/\u003e\u003cellipse cx=\"70\" cy=\"70\" rx=\"35\" ry=\"35\" fill=\"#fed7aa\" opacity=\"0.6\"/\u003e\u003cpath d=\"M 50 50 L 90 90 M 50 90 L 90 50\" stroke=\"#c2410c\" stroke-width=\"4\"/\u003e\u003ccircle cx=\"70\" cy=\"70\" r=\"5\" fill=\"#7c2d12\"/\u003e\u003c/svg\u003e\n\nA. This stage can last for months and years in oocytes of some vertebrates.\nB. Dissolution of synaptonemal complex characterises this stage.\nC. Four chromatids of each bivalent chromosome become distinct and clearly appear in this phase.\nD. Chromosomes are seen to be composed of two chromatids attached together at the centromere.","options":["C and D only","D only","A, B, and C only","A, B, C, and D"],"correctAnswer":1,"solution":"Studying the diagram representing chromosome structure, statement D correctly identifies that chromosomes are composed of two chromatids attached at the centromere."},{"id":134,"subject":"Botany","type":"single-choice","question":"Which of the followings are key events of telophase?\nI. Golgi complex and endoplasmic reticulum reform.\nII. Chromatids move to opposite poles.\nIII. Chromosomes cluster at opposite poles and their identity is lost as discrete elements.\nIV. Nuclear envelope develops around the chromosome clusters at each pole forming two daughter nuclei.\nChoose the most appropriate answer from the options given below:","options":["I and II only","II only","I, III and IV only","II, III and IV only"],"correctAnswer":2,"solution":"Chromatids moving to opposite poles (II) is an anaphase event. Telophase events are I, III, and IV."},{"id":135,"subject":"Botany","type":"single-choice","question":"Given below are two statements:\nOne is labelled as Assertion A and the other is labelled as Reason R:\nAssertion A: In an animal cell, cytokinesis is achieved by the appearance of a furrow in the plasma membrane.\nReason R: During karyokinesis in animal cells, the furrow gradually deepens and ultimately joins in the centre dividing the cell cytoplasm into two.\nIn the light of the above statements, choose the correct answer from the options given below:","options":["A is true but R is false.","A is false but R is true.","Both A and R are correct and R is the correct explanation of A.","Both A and R are correct but R is NOT the correct explanation of A."],"correctAnswer":0,"solution":"Furrow deepening and cytoplasmic division is cytokinesis, not karyokinesis. Assertion is true, Reason is false."},{"id":136,"subject":"Zoology","type":"single-choice","question":"Identify the correct statement w.r.t the function of liver:","options":["Helps in osmoregulation","Conversion of ammonia to urea via urea cycle","Secretion of sebum","Secretion of perspiration"],"correctAnswer":1,"solution":"Liver is the principal organ where ammonia is converted into urea through the ornithine (urea) cycle."},{"id":137,"subject":"Zoology","type":"single-choice","question":"Which of the following is not true regarding excretion in Planaria?","options":["Osmoregulation and excretion occur by flame cells","Also called solenocytes","They are called protonephridia","Nephridia are absent"],"correctAnswer":2,"solution":"Planaria possesses protonephridia with flame cells, which are primarily concerned with osmoregulation and ionic regulation."},{"id":138,"subject":"Zoology","type":"single-choice","question":"Identify the incorrect statement:","options":["Medullary nephrons have a very long loop of Henle","Vasa recta is absent or highly reduced in cortical nephrons","Majority of nephrons are cortical nephrons","Malpighian corpuscle lies in the medullary region of kidney"],"correctAnswer":3,"solution":"The Malpighian corpuscle (glomerulus and Bowman's capsule), PCT, and DCT of the nephron are situated in the cortical region of the kidney, not the medullary region."},{"id":139,"subject":"Zoology","type":"single-choice","question":"In human kidney, Podocytes are:","options":["Present in glomerulus","Epithelial cells of Bowman's capsule","Endothelial cells of glomerular blood vessel","Present in between PCT and Henle loop"],"correctAnswer":1,"solution":"Podocytes are specialized epithelial cells forming the visceral layer of Bowman's capsule, arranged in an intricate manner leaving filtration slits."},{"id":140,"subject":"Zoology","type":"single-choice","question":"Read the following statements:\nA. The functional units of kidneys are called nephrons.\nB. Kidneys are retroperitoneal in position.\nC. Kidneys are located between the levels of 12th thoracic and 3rd lumbar vertebra.\nHow many statements are correct?","options":["None","One","Two","Three"],"correctAnswer":3,"solution":"All three statements (A, B, and C) are factually correct statements describing human kidney anatomy."},{"id":141,"subject":"Zoology","type":"single-choice","question":"What is the main cause of the production of large volumes of dilute urine?","options":["Non-functioning of adrenal cortex","Inadequate secretion of ADH","Excess secretion of ADH","Inadequate secretion of aldosterone"],"correctAnswer":1,"solution":"ADH (antidiuretic hormone/vasopressin) promotes water reabsorption in the distal tubules and collecting duct. A lack or hyposecretion of ADH results in diabetes insipidus, characterized by large volumes of dilute urine (diuresis)."},{"id":142,"subject":"Zoology","type":"single-choice","question":"In human kidneys, the pyramid of the renal medulla projected into:","options":["Pelvis","Renal capsule","Columns of Bertini","Calyces"],"correctAnswer":3,"solution":"The medullary pyramids project into the calyces (minor and major calyces), which in turn lead to the renal pelvis."},{"id":143,"subject":"Zoology","type":"single-choice","question":"Identify the incorrect statement:","options":["Uric acid is the most toxic excretory product.","Reptiles are uricotelic animals.","Terrestrial adaptation necessitated the production of lesser toxic nitrogenous wastes like urea and uric acid.","Ammonia is the most toxic form of nitrogenous waste."],"correctAnswer":0,"solution":"Ammonia is the most toxic nitrogenous waste requiring large amounts of water for excretion, while uric acid is the least toxic and requires minimal water."},{"id":144,"subject":"Zoology","type":"single-choice","question":"A person feels the urge for micturition when:","options":["The urinary bladder is empty","Stretch receptors on the walls of the urinary bladder send signals to the CNS","Stretch receptors on the walls of the urinary bladder send signals to the PNS","Ureters are completely filled with urine"],"correctAnswer":1,"solution":"As the urinary bladder gets filled with urine, the stretch receptors on the walls of the bladder send signals to the Central Nervous System (CNS), initiating the micturition reflex."},{"id":145,"subject":"Zoology","type":"single-choice","question":"Complete the following analogy:\nAscending limb of loop of Henle: Impermeable to water :: Descending limb of loop of Henle: ______","options":["Impermeable to water","Permeable to electrolytes","Permeable to water","Impermeable to electrolytes"],"correctAnswer":2,"solution":"The descending limb of loop of Henle is permeable to water but almost impermeable to electrolytes, concentrating the filtrate as it moves down."},{"id":146,"subject":"Zoology","type":"single-choice","question":"Filtration slits are formed by:","options":["Endothelial cells of glomerular capillaries","Podocytes of the inner wall of Bowman's capsule","Basement membrane","Cells of parietal layer of Bowman's capsule"],"correctAnswer":1,"solution":"The podocytes of the visceral (inner) layer of Bowman's capsule possess pedicels (foot processes) that leave slit pores or filtration slits between them."},{"id":147,"subject":"Zoology","type":"single-choice","question":"Which part of the nephron plays a significant role in the maintenance of high osmolarity of medullary interstitial fluid?","options":["PCT","DCT","Henle's loop","Glomerulus"],"correctAnswer":2,"solution":"The hairpin loop of Henle, along with the vasa recta via the counter-current multiplier and exchanger mechanisms, plays a pivotal role in maintaining the osmolarity gradient in medullary interstitium."},{"id":148,"subject":"Zoology","type":"single-choice","question":"Which of the following is removed from the filtrate in collecting duct?","options":["Water and urea","Water and glucose","Glucose and amino acids","Amino acids and urea"],"correctAnswer":0,"solution":"Large amounts of water could be reabsorbed from the collecting duct to produce concentrated urine. Small amounts of urea also enter the medullary interstitium from the collecting duct to keep up the osmolarity."},{"id":149,"subject":"Zoology","type":"single-choice","question":"The human kidneys can produce urine nearly:","options":["4 times concentrated than initial filtrate","2 times concentrated than initial filtrate","3 times concentrated than initial filtrate","5 times concentrated than initial filtrate"],"correctAnswer":0,"solution":"Human kidneys can produce urine nearly four times concentrated than the initial filtrate (up to 1200 mOsmol/L vs 300 mOsmol/L)."},{"id":150,"subject":"Zoology","type":"single-choice","question":"Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R:\nAssertion A: Henle's loop and vasa recta play a significant role in producing concentrated urine.\nReason R: The counter current mechanism helps maintain a concentration gradient in the medullary interstitium.\nIn the light of the above statements, choose the correct answer from the options given below:","options":["A is true but R is false.","A is false but R is true.","Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A."],"correctAnswer":2,"solution":"The counter current mechanism operated by Henle's loop and vasa recta maintains an osmolarity gradient in the medullary interstitium, which enables easy passage of water from the collecting duct to produce concentrated urine."},{"id":151,"subject":"Zoology","type":"single-choice","question":"Glomerular filtration rate is:","options":["125 ml/min","180 litres/day","125 ml/second","Both (1) and (2)"],"correctAnswer":3,"solution":"GFR is about $125\\text{ mL/minute}$, which equates to approximately $125 \\times 60 \\times 24 = 180\\text{ litres per day}$. Both (1) and (2) are correct."},{"id":152,"subject":"Zoology","type":"single-choice","question":"Which of the following statement is incorrect?","options":["PCT is lined by simple cuboidal brush border epithelium","PCT increases the surface area for reabsorption","Nearly all of the essential nutrients are reabsorbed by PCT","10-20 percent of electrolytes and water are reabsorbed by PCT"],"correctAnswer":3,"solution":"Nearly 70-80% of electrolytes and water are reabsorbed by the proximal convoluted tubule (PCT), not 10-20%."},{"id":153,"subject":"Zoology","type":"single-choice","question":"Match List-I with List-II:\n\n| List-I | List-II |\n| :--- | :--- |\n| (A) Antennal glands | (I) Earthworm |\n| (B) Nephridia | (II) Prawn |\n| (C) Protonephridia | (III) Cockroach |\n| (D) Malpighian tubules | (IV) Amphioxus |\n\nChoose the correct answer from the options given below:","options":["A-II, B-I, C-IV, D-III","A-II, B-IV, C-I, D-III","A-III, B-I, C-IV, D-II","A-IV, B-II, C-I, D-III"],"correctAnswer":0,"solution":"Antennal glands / green glands = Prawn (II).\nNephridia = Earthworm (I).\nProtonephridia = Amphioxus (IV).\nMalpighian tubules = Cockroach (III).\nCorrect matching: A-II, B-I, C-IV, D-III."},{"id":154,"subject":"Zoology","type":"single-choice","question":"Arrange the following in correct sequence regarding the passage of urine:\nA. Bowman's capsule\nB. Renal pelvis\nC. Ureter\nD. Collecting duct\nE. Urinary bladder","options":["A -\u003e D -\u003e B -\u003e C -\u003e E","A -\u003e B -\u003e C -\u003e D -\u003e E","D -\u003e A -\u003e B -\u003e C -\u003e E","B -\u003e A -\u003e D -\u003e C -\u003e E"],"correctAnswer":0,"solution":"The filtrate moves from Bowman's capsule -\u003e nephron tubules -\u003e Collecting duct -\u003e Calyces -\u003e Renal pelvis -\u003e Ureter -\u003e Urinary bladder."},{"id":155,"subject":"Zoology","type":"single-choice","question":"How much amount of blood is filtered by the kidneys per minute?","options":["1100-1200 ml","500 ml","100-200 ml","5000 ml"],"correctAnswer":0,"solution":"On average, 1100-1200 mL of blood is filtered by the kidneys per minute, which constitutes roughly 1/5th of the cardiac output."},{"id":156,"subject":"Zoology","type":"single-choice","question":"Choose the incorrect statement regarding kidneys:","options":["Kidneys are reddish brown, bean shaped structures","Each kidney of an adult human measures 10-12 cm in length","The right kidney is slightly higher than the left kidney","Toward the centre of the inner concave surface is a notch called hilum"],"correctAnswer":2,"solution":"The right kidney is located slightly lower than the left kidney because the large right lobe of the liver occupies space above it."},{"id":157,"subject":"Zoology","type":"single-choice","question":"In response to low GFR:","options":["Juxtaglomerular cells release renin","Renin converts angiotensinogen in blood to angiotensin I","Angiotensin II activates the adrenal cortex to release aldosterone","All of the above"],"correctAnswer":3,"solution":"Low GFR triggers the renin-angiotensin-aldosterone system (RAAS): JG cells release renin, which converts angiotensinogen to angiotensin I, then to angiotensin II, stimulating aldosterone release."},{"id":158,"subject":"Zoology","type":"single-choice","question":"Osmolarity in the cortex of human kidney is about:","options":["300 mOsmol/L","1200 mOsmol/L","600 mOsmol/L","900 mOsmol/L"],"correctAnswer":0,"solution":"The osmolarity of the cortical interstitial fluid is isotonic with blood plasma, about $300\\text{ mOsmol L}^{-1}$, and increases to $1200\\text{ mOsmol L}^{-1}$ in the inner medulla."},{"id":159,"subject":"Zoology","type":"single-choice","question":"The condition of accumulation of urea in blood is termed as:","options":["Uremia","Renal calculi","Glomerulonephritis","Ketonuria"],"correctAnswer":0,"solution":"Accumulation of urea in blood due to malfunctioning of kidneys is called uremia."},{"id":160,"subject":"Zoology","type":"single-choice","question":"Match List-I with List-II:\n\n| List-I | List-II |\n| :--- | :--- |\n| (A) Glycosuria | (I) Inflammation of glomeruli of kidney |\n| (B) Gout | (II) Accumulation of uric acid crystals in joints |\n| (C) Renal calculi | (III) Presence of glucose in urine |\n| (D) Glomerulonephritis | (IV) Insoluble mass of crystallised salts within the kidney |\n\nChoose the correct answer from the options given below:","options":["A-III, B-II, C-IV, D-I","A-I, B-II, C-III, D-IV","A-IV, B-III, C-II, D-I","A-II, B-IV, C-I, D-III"],"correctAnswer":0,"solution":"Glycosuria = Presence of glucose in urine (III).\nGout = Accumulation of uric acid crystals in joints (II).\nRenal calculi = Insoluble mass of crystallised salts in kidney (IV).\nGlomerulonephritis = Inflammation of glomeruli (I).\nCorrect match: A-III, B-II, C-IV, D-I."},{"id":161,"subject":"Zoology","type":"single-choice","question":"The principal nitrogenous excretory product in human is synthesised in:","options":["Kidneys and eliminated by kidneys","Liver and also eliminated by the same","Liver, but eliminated mostly through kidneys","Kidneys, but eliminated mostly through liver"],"correctAnswer":2,"solution":"In humans, urea is synthesized in the liver by the ornithine cycle and released into blood, which is then filtered and eliminated mostly through the kidneys."},{"id":162,"subject":"Zoology","type":"single-choice","question":"Which of the following is/are responsible for excretion?","options":["Skin","Liver","Lungs","All of these"],"correctAnswer":3,"solution":"Besides kidneys, organs like lungs (eliminate $\\text{CO}_2$ and water vapour), liver (excretes bile pigments, cholesterol, degraded steroid hormones), and skin (sweat and sebaceous glands) assist in excretion."},{"id":163,"subject":"Zoology","type":"single-choice","question":"Identify the labeled part 'A' in the given diagram of human urinary system:\n\n\u003csvg viewBox=\"0 0 200 220\" class=\"w-48 h-52 mx-auto my-2\"\u003e\u003cpath d=\"M 60 70 C 45 70 40 90 40 110 C 40 130 50 145 65 145 C 80 145 75 125 75 110 C 75 90 75 70 60 70 Z\" fill=\"#b91c1c\" stroke=\"#991b1b\" stroke-width=\"1.5\"/\u003e\u003cpath d=\"M 140 80 C 125 80 125 100 125 120 C 125 135 120 155 135 155 C 150 155 160 140 160 120 C 160 100 155 80 140 80 Z\" fill=\"#b91c1c\" stroke=\"#991b1b\" stroke-width=\"1.5\"/\u003e\u003cpath d=\"M 52 70 C 50 55 70 50 72 70 Z\" fill=\"#eab308\" stroke=\"#ca8a04\" stroke-width=\"2\"/\u003e\u003ctext x=\"80\" y=\"45\" font-size=\"14\" font-weight=\"bold\" fill=\"#ca8a04\"\u003eA\u003c/text\u003e\u003cline x1=\"78\" y1=\"48\" x2=\"62\" y2=\"60\" stroke=\"#ca8a04\" stroke-width=\"1.5\"/\u003e\u003cpath d=\"M 65 125 Q 70 170 95 190\" fill=\"none\" stroke=\"#f59e0b\" stroke-width=\"2\"/\u003e\u003cpath d=\"M 135 135 Q 130 170 105 190\" fill=\"none\" stroke=\"#f59e0b\" stroke-width=\"2\"/\u003e\u003ccircle cx=\"100\" cy=\"195\" r=\"14\" fill=\"#fed7aa\" stroke=\"#ea580c\" stroke-width=\"1.5\"/\u003e\u003c/svg\u003e","options":["Adrenal gland","Kidney","Ureter","Urinary bladder"],"correctAnswer":0,"solution":"Part 'A' located on top of the superior pole of the kidney represents the adrenal (suprarenal) gland."},{"id":164,"subject":"Zoology","type":"single-choice","question":"Given below are two statements:\nStatement I: Atrial Natriuretic Factor (ANF) can cause vasodilation and thereby decrease the blood pressure.\nStatement II: ANF mechanism acts as a check on the renin-angiotensin mechanism.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","options":["Both Statement I and Statement II are correct.","Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":0,"solution":"ANF released by the heart atria in response to increased blood flow causes vasodilation, decreases blood pressure, and acts as an antagonistic check on the renin-angiotensin mechanism."},{"id":165,"subject":"Zoology","type":"single-choice","question":"A fall in GFR activates:","options":["JG cells to release renin","Posterior pituitary to release vasopressin","Adrenal cortex to release aldosterone","Adrenal medulla to release adrenaline"],"correctAnswer":0,"solution":"A fall in GFR / glomerular blood flow / blood pressure activates the juxtaglomerular (JG) cells to release renin directly."},{"id":166,"subject":"Zoology","type":"single-choice","question":"Excretion of dilute urine is mainly due to:","options":["Absence of ADH","Presence of ADH","Excess of aldosterone","Excess of renin"],"correctAnswer":0,"solution":"In the absence or deficiency of ADH, the distal tubules and collecting ducts remain impermeable to water, leading to non-reabsorption of water and elimination of large quantities of dilute urine."},{"id":167,"subject":"Zoology","type":"single-choice","question":"Sebaceous glands eliminate certain substances like:","options":["Sterols, hydrocarbons and waxes","Urea, sterols and waxes","NaCl, hydrocarbons and urea","Lactic acid, sterols and waxes"],"correctAnswer":0,"solution":"Sebaceous glands eliminate certain substances like sterols, hydrocarbons and waxes through sebum."},{"id":168,"subject":"Zoology","type":"single-choice","question":"How much urea is excreted per day by a normal human adult?","options":["25-30 gm","10-15 gm","40-50 gm","5-10 gm"],"correctAnswer":0,"solution":"An adult human excretes on average 25-30 grams of urea per day."},{"id":169,"subject":"Zoology","type":"single-choice","question":"An adult human excretes on an average:","options":["1 to 1.5 litres of urine per day","2 to 2.5 litres of urine per day","0.5 to 1 litre of urine per day","3 to 4 litres of urine per day"],"correctAnswer":0,"solution":"An adult human excretes on average 1 to 1.5 litres of urine per day."},{"id":170,"subject":"Zoology","type":"single-choice","question":"Reabsorption of water in DCT and collecting duct is facilitated by:","options":["ADH","Renin","ANF","Oxytocin"],"correctAnswer":0,"solution":"Antidiuretic hormone (ADH / vasopressin) facilitates water reabsorption from the distal convoluted tubule and collecting duct by inserting aquaporin channels."},{"id":171,"subject":"Zoology","type":"single-choice","question":"Identify the hormone secreted by heart that causes vasodilation:","options":["Renin","ANF","Aldosterone","Angiotensinogen"],"correctAnswer":1,"solution":"Atrial Natriuretic Factor (ANF) is secreted by the atria of the heart to cause vasodilation and decrease blood pressure."},{"id":172,"subject":"Zoology","type":"single-choice","question":"Which among the following is not a step in urine formation?","options":["Glomerular filtration","Reabsorption","Secretion","Exocytosis"],"correctAnswer":3,"solution":"Urine formation involves three main processes: glomerular filtration, tubular reabsorption, and tubular secretion. Exocytosis is not considered a primary step of urine formation."},{"id":173,"subject":"Zoology","type":"single-choice","question":"Match the following columns:\n\n| Column-I | Column-II |\n| :--- | :--- |\n| (A) PCT | (I) Impermeable to water |\n| (B) DCT | (II) Permeable to water |\n| (C) Descending limb of loop of Henle | (III) Conditional reabsorption of $\\text{Na}^+$ and water |\n| (D) Ascending limb of loop of Henle | (IV) Reabsorption of 70-80% electrolytes and water |\n\nChoose the correct option:","options":["A-IV, B-III, C-II, D-I","A-IV, B-II, C-III, D-I","A-I, B-II, C-III, D-IV","A-II, B-I, C-IV, D-III"],"correctAnswer":0,"solution":"PCT = 70-80% reabsorption (IV).\nDCT = Conditional reabsorption of $\\text{Na}^+$ and water (III).\nDescending limb = Permeable to water (II).\nAscending limb = Impermeable to water (I).\nCorrect match: A-IV, B-III, C-II, D-I."},{"id":174,"subject":"Zoology","type":"single-choice","question":"Identify the incorrect statement regarding hemodialysis:","options":["Blood is pumped into a dialysing unit after adding an anticoagulant like heparin.","The unit contains a coiled cellophane tube surrounded by dialysing fluid.","The dialysing fluid has the same composition as that of plasma except the nitrogenous wastes.","The cleared blood is pumped back to the body through a vein after adding heparin."],"correctAnswer":3,"solution":"The cleared blood is pumped back into the body through a vein after adding anti-heparin (not heparin) to restore normal clotting ability."},{"id":175,"subject":"Zoology","type":"single-choice","question":"The pH of human urine is approximately:","options":["6.0","7.4","8.0","5.0"],"correctAnswer":0,"solution":"Normal human urine is slightly acidic with an average pH of 6.0."},{"id":176,"subject":"Zoology","type":"single-choice","question":"Sweat produced by sweat glands contains:","options":["NaCl","Small amounts of urea","Lactic acid","All of the above"],"correctAnswer":3,"solution":"Sweat is a watery fluid containing NaCl, small amounts of urea, lactic acid, etc."},{"id":177,"subject":"Zoology","type":"single-choice","question":"What happens when the stretch receptors of the urinary bladder are completely removed?","options":["There will be no micturition","Micturition will continue","Urine will continue to collect normally in the bladder","Urine will not collect in the bladder"],"correctAnswer":1,"solution":"If stretch receptors are surgically removed or impaired, tension cannot trigger reflex contraction; urine will continuously leak/dribble out without voluntary bladder control, meaning micturition will continue."},{"id":178,"subject":"Zoology","type":"single-choice","question":"Choose the correct statement:","options":["Juxtamedullary nephrons have a short loop of Henle.","Cortical nephrons have a long loop of Henle extending deep into the medulla.","Vasa recta is well developed in juxtamedullary nephrons.","Vasa recta is well developed in cortical nephrons."],"correctAnswer":2,"solution":"In juxtamedullary nephrons, the loop of Henle is very long and runs deep into the medulla, and the vasa recta is prominently developed."},{"id":179,"subject":"Zoology","type":"single-choice","question":"In birds and reptiles, the main nitrogenous waste product is:","options":["Ammonia","Urea","Uric acid","Creatinine"],"correctAnswer":2,"solution":"Birds, land snails, insects and reptiles excrete uric acid in the form of pellet or paste with a minimum loss of water and are called uricotelic animals."},{"id":180,"subject":"Zoology","type":"single-choice","question":"What percentage of glomerular filtrate is reabsorbed by the renal tubules?","options":["99%","90%","80%","50%"],"correctAnswer":0,"solution":"Out of 180 litres of glomerular filtrate formed daily, only about 1.5 litres is released as urine, which means nearly 99% of the filtrate has to be reabsorbed by renal tubules."}];
+
+    
+    // State Variables
+    var currentIndex = 0;
+    var activeSubject = 'Physics';
+    var paletteFilter = 'All';
+    var userAnswers = {};
+    var paletteStates = {};
+    var timeSpent = {};
+    var questionOpenTimestamp = Date.now();
+    var secondsRemaining = (typeof testMetadata !== 'undefined' && testMetadata.durationMinutes ? testMetadata.durationMinutes : 180) * 60;
+    var timerInterval = null;
+    var isExamActive = false;
+
+    // Initialize Question States
+    if (typeof questions !== 'undefined' && Array.isArray(questions)) {
+      questions.forEach((q, idx) => {
+        paletteStates[q.id] = idx === 0 ? 'not-answered' : 'not-visited';
+        userAnswers[q.id] = null;
+        timeSpent[q.id] = 0;
+      });
+    }
+
+    // ==========================================
+    // MATHEMATICAL TYPESETTING ENGINE (OFFLINE + KATEX)
+    // ==========================================
+    function formatLatexFallback(latex) {
+      if (!latex) return '';
+      let s = String(latex);
+
+      // 1. Text & Formatting Macros
+      s = s.replace(/\\text\{([^}]+)\}/g, '$1');
+      s = s.replace(/\\mathrm\{([^}]+)\}/g, '$1');
+      s = s.replace(/\\mathbf\{([^}]+)\}/g, '<strong>$1</strong>');
+      s = s.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
+
+      // 2. Vectors and Unit Vectors
+      s = s.replace(/\\hat\{i\}/g, '<b style="font-family:monospace;">î</b>');
+      s = s.replace(/\\hat\{j\}/g, '<b style="font-family:monospace;">ĵ</b>');
+      s = s.replace(/\\hat\{k\}/g, '<b style="font-family:monospace;">k̂</b>');
+      s = s.replace(/\\vec\{([^}]+)\}/g, '<span style="font-family:serif;font-style:italic;">$1&#x20D7;</span>');
+
+      // 3. Fractions & Roots
+      s = s.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1 / $2)');
+      s = s.replace(/\\sqrt\{([^}]+)\}/g, '&radic;($1)');
+      s = s.replace(/\\sqrt/g, '&radic;');
+
+      // 4. Delimiters & Spacing via Split/Join (zero regex syntax risk)
+      s = s.split('\\left(').join('(').split('\\right)').join(')');
+      s = s.split('\\left[').join('[').split('\\right]').join(']');
+      s = s.split('\\left\\{').join('{').split('\\right\\}').join('}');
+      s = s.split('\\left|').join('|').split('\\right|').join('|');
+      s = s.split('\\,').join(' ');
+      s = s.split('\\;').join('  ');
+      s = s.split('\\quad').join('    ');
+      s = s.split('\\\\').join('<br/>');
+
+      // 5. Common Scientific & Mathematical Symbols
+      const symList = [
+        ['^{\\circ}\\text{C}', '°C'],
+        ['^{\\circ}', '°'],
+        ['^\\circ', '°'],
+        ['\\times', '×'],
+        ['\\cdot', '·'],
+        ['\\pm', '±'],
+        ['\\approx', '≈'],
+        ['\\ne', '≠'],
+        ['\\le', '≤'],
+        ['\\ge', '≥'],
+        ['\\to', '→'],
+        ['\\implies', '⇒'],
+        ['\\Delta', 'Δ'],
+        ['\\Omega', 'Ω'],
+        ['\\alpha', 'α'],
+        ['\\beta', 'β'],
+        ['\\gamma', 'γ'],
+        ['\\delta', 'δ'],
+        ['\\theta', 'θ'],
+        ['\\mu', 'μ'],
+        ['\\lambda', 'λ'],
+        ['\\pi', 'π'],
+        ['\\phi', 'φ'],
+        ['\\sigma', 'σ'],
+        ['\\tau', 'τ'],
+        ['\\omega', 'ω'],
+        ['\\eta', 'η'],
+        ['\\varepsilon', 'ε'],
+        ['\\sin', 'sin'],
+        ['\\cos', 'cos'],
+        ['\\tan', 'tan']
+      ];
+
+      for (let i = 0; i < symList.length; i++) {
+        s = s.split(symList[i][0]).join(symList[i][1]);
+      }
+
+      // 6. Superscripts & Subscripts
+      s = s.replace(/\^\{([^}]+)\}/g, '<sup>$1</sup>');
+      s = s.replace(/\^([0-9a-zA-Z+-])/g, '<sup>$1</sup>');
+      s = s.replace(/_\{([^}]+)\}/g, '<sub>$1</sub>');
+      s = s.replace(/_([0-9a-zA-Z])/g, '<sub>$1</sub>');
+
+      // 7. Strip leftover macro braces
+      s = s.replace(/[{}]/g, '');
+
+      return s;
+    }
+
+    function renderMathInString(content) {
+      if (!content) return '';
+      let clean = String(content)
+        .replace(/[\uFFFD\u25A1\u25A0\uFFFC]/g, '')
+        .replace(/□/g, '');
+
+      const hasKatex = typeof window !== 'undefined' && window.katex && typeof window.katex.renderToString === 'function';
+
+      function renderLatex(latex, isDisplay) {
+        const trimmed = latex.trim();
+        if (hasKatex) {
+          try {
+            return window.katex.renderToString(trimmed, {
+              displayMode: isDisplay,
+              throwOnError: false
+            });
+          } catch (e) {}
+        }
+        const fallback = formatLatexFallback(trimmed);
+        if (isDisplay) {
+          return '<div style="margin:8px 0;text-align:center;font-family:serif;font-weight:600;">' + fallback + '</div>';
+        }
+        return '<span style="font-family:serif;">' + fallback + '</span>';
+      }
+
+      // 1. Display math: $$...$$
+      clean = clean.replace(/\$\$([\s\S]*?)\$\$/g, function(_, match) {
+        return renderLatex(match, true);
+      });
+      // Display math: \[...\]
+      clean = clean.replace(/\\\[([\s\S]*?)\\\]/g, function(_, match) {
+        return renderLatex(match, true);
+      });
+
+      // 2. Inline math: $...$
+      clean = clean.replace(/\$([^$\r\n]+?)\$/g, function(_, match) {
+        return renderLatex(match, false);
+      });
+      // Inline math: \(...\)
+      clean = clean.replace(/\\\(([\s\S]*?)\\\)/g, function(_, match) {
+        return renderLatex(match, false);
+      });
+
+      // 3. Fallback for unbracketed LaTeX commands if any left
+      if (clean.indexOf('\\') !== -1) {
+        clean = formatLatexFallback(clean);
+      }
+
+      return clean;
+    }
+
+    function onKatexLoaded() {
+      if (isExamActive) {
+        renderCurrentQuestion();
+      }
+      triggerKaTeXAutoRender();
+    }
+
+    function triggerKaTeXAutoRender() {
+      if (typeof window !== 'undefined' && window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch(e) {}
+      }
+    }
+
+    // ==========================================
+    // EXAM LIFECYCLE & NAVIGATION
+    // ==========================================
+    function startTest() {
+      document.getElementById('instructionsScreen').style.display = 'none';
+      document.getElementById('examScreen').style.display = 'flex';
+      document.getElementById('examTimerBadge').style.display = 'flex';
+      document.getElementById('btnHeaderPalette').style.display = 'inline-flex';
+      document.getElementById('btnRoughSheet').style.display = 'inline-flex';
+
+      isExamActive = true;
+      questionOpenTimestamp = Date.now();
+      initSubjectTabs();
+      initDrawerSubjectFilter();
+      renderCurrentQuestion();
+      renderPalette();
+      startTimer();
+      initScratchpad();
+      triggerKaTeXAutoRender();
+    }
+
+    function initSubjectTabs() {
+      const subs = [...new Set(questions.map(q => q.subject))];
+      if (!subs.includes(activeSubject) && subs.length > 0) activeSubject = subs[0];
+
+      const container = document.getElementById('subjectTabContainer');
+      if (!container) return;
+
+      container.innerHTML = subs.map(sub => {
+        const count = questions.filter(q => q.subject === sub).length;
+        const isActive = activeSubject === sub;
+        const safeSub = sub.replace(/'/g, "\\'");
+        return '<button class="subject-tab ' + (isActive ? 'active' : '') + '" onclick="switchSubject(\'' + safeSub + '\')">' +
+               '<span>' + sub.toUpperCase() + '</span>' +
+               '<span class="subject-badge">' + count + '</span>' +
+               '</button>';
+      }).join('');
+    }
+
+    function initDrawerSubjectFilter() {
+      const subs = [...new Set(questions.map(q => q.subject))];
+      const container = document.getElementById('drawerFilterContainer');
+      if (!container) return;
+
+      let html = '<button class="drawer-filter-btn ' + (paletteFilter === 'All' ? 'active' : '') + '" onclick="setDrawerFilter(\'All\')">ALL (' + questions.length + ')</button>';
+      subs.forEach(s => {
+        const count = questions.filter(q => q.subject === s).length;
+        const safeSub = s.replace(/'/g, "\\'");
+        html += '<button class="drawer-filter-btn ' + (paletteFilter === s ? 'active' : '') + '" onclick="setDrawerFilter(\'' + safeSub + '\')">' + s.toUpperCase() + ' (' + count + ')</button>';
+      });
+      container.innerHTML = html;
+    }
+
+    function setDrawerFilter(sub) {
+      paletteFilter = sub;
+      initDrawerSubjectFilter();
+      renderPalette();
+    }
+
+    function switchSubject(sub) {
+      recordTimeSpent();
+      activeSubject = sub;
+      const firstIdx = questions.findIndex(q => q.subject === sub);
+      if (firstIdx !== -1) {
+        currentIndex = firstIdx;
+        if (paletteStates[questions[currentIndex].id] === 'not-visited') {
+          paletteStates[questions[currentIndex].id] = 'not-answered';
+        }
+      }
+      initSubjectTabs();
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function recordTimeSpent() {
+      const now = Date.now();
+      const elapsed = Math.max(0, Math.floor((now - questionOpenTimestamp) / 1000));
+      const currentQ = questions[currentIndex];
+      if (currentQ) {
+        timeSpent[currentQ.id] = (timeSpent[currentQ.id] || 0) + elapsed;
+      }
+      questionOpenTimestamp = now;
+    }
+
+    function renderCurrentQuestion() {
+      const q = questions[currentIndex];
+      if (!q) return;
+
+      document.getElementById('qDisplayNumber').textContent = 'Question ' + (currentIndex + 1);
+      document.getElementById('qSubjectBadge').textContent = '/ ' + questions.length + ' (' + q.subject + ')';
+      document.getElementById('btnPaletteCount').textContent = 'Q' + (currentIndex + 1);
+
+      let html = '';
+      const text = q.question || '';
+
+      // Assertion-Reason Detection
+      const arRegex = /(?:Assertion\s*(?:\(A\)|A)?\s*:?)([\s\S]*?)(?:Reason\s*(?:\(R\)|R)?\s*:?)([\s\S]*)$/i;
+      if (q.type === 'assertion-reason' || q.assertion || arRegex.test(text)) {
+        let intro = text;
+        let assertion = q.assertion || '';
+        let reason = q.reason || '';
+
+        if (!assertion && !reason && arRegex.test(text)) {
+          const match = text.match(arRegex);
+          const splitIdx = text.search(/Assertion\s*(?:\(A\)|A)?\s*:?/i);
+          intro = text.substring(0, splitIdx).trim();
+          assertion = match[1].trim();
+          reason = match[2].trim();
+        }
+
+        assertion = assertion.replace(/^Assertion\s*(?:\(A\)|A)?\s*:?\s*/i, '').trim();
+        reason = reason.replace(/^Reason\s*(?:\(R\)|R)?\s*:?\s*/i, '').trim();
+
+        if (intro) html += '<div style="margin-bottom:12px;font-weight:600;">' + renderMathInString(intro) + '</div>';
+        if (assertion) {
+          html += '<div class="ar-card ar-assertion">' +
+                  '<div class="ar-label">Assertion (A)</div>' +
+                  '<div>' + renderMathInString(assertion) + '</div>' +
+                  '</div>';
+        }
+        if (reason) {
+          html += '<div class="ar-card ar-reason">' +
+                  '<div class="ar-label">Reason (R)</div>' +
+                  '<div>' + renderMathInString(reason) + '</div>' +
+                  '</div>';
+        }
+      }
+      // Statement Type Detection
+      else if (q.type === 'statement-type' || (q.statements && q.statements.length > 0) || /Statement\s+(?:I|II|1|2)\s*:/i.test(text)) {
+        let intro = text;
+        let statements = q.statements ? [...q.statements] : [];
+
+        if (statements.length === 0 && /Statement\s+(?:I|II|1|2)\s*:/i.test(text)) {
+          const stmtRegex = /(Statement\s+(?:I|II|III|IV|1|2|3|4)\s*:[\s\S]*?)(?=(Statement\s+(?:I|II|III|IV|1|2|3|4)\s*:|$))/gi;
+          const matches = Array.from(text.matchAll(stmtRegex));
+          if (matches.length > 0) {
+            const firstIdx = text.search(/Statement\s+(?:I|II|1|2)\s*:/i);
+            intro = text.substring(0, firstIdx).trim();
+            statements = matches.map(m => m[1].trim());
+          }
+        }
+
+        if (intro) html += '<div style="margin-bottom:12px;font-weight:600;">' + renderMathInString(intro) + '</div>';
+        statements.forEach(stmt => {
+          html += '<div class="statement-item">' + renderMathInString(stmt) + '</div>';
+        });
+      }
+      // Match the Column Detection
+      else if (q.type === 'match-the-column' && q.matchColumn) {
+        html += '<div style="margin-bottom:12px;font-weight:600;">' + renderMathInString(text) + '</div>';
+        html += '<div class="match-table-wrapper"><table class="match-table">';
+        html += '<tr><th>' + renderMathInString(q.matchColumn.col1Title || 'Column I') + '</th><th>' + renderMathInString(q.matchColumn.col2Title || 'Column II') + '</th></tr>';
+        const maxLen = Math.max(q.matchColumn.col1.length, q.matchColumn.col2.length);
+        for (let i = 0; i < maxLen; i++) {
+          const c1 = q.matchColumn.col1[i] ? '<strong>' + q.matchColumn.col1[i].key + '.</strong> ' + renderMathInString(q.matchColumn.col1[i].text) : '';
+          const c2 = q.matchColumn.col2[i] ? '<strong>' + q.matchColumn.col2[i].key + '.</strong> ' + renderMathInString(q.matchColumn.col2[i].text) : '';
+          html += '<tr><td>' + c1 + '</td><td>' + c2 + '</td></tr>';
+        }
+        html += '</table></div>';
+      }
+      // Standard MCQ Question
+      else {
+        html += '<div style="font-weight:600;">' + renderMathInString(text) + '</div>';
+      }
+
+      document.getElementById('qStemContainer').innerHTML = html;
+
+      // Diagrams & Visual Assets
+      const visualBox = document.getElementById('qVisualContainer');
+      visualBox.innerHTML = '';
+      if (q.assets && q.assets.length > 0) {
+        q.assets.forEach(a => {
+          if (a.type === 'svg') {
+            visualBox.innerHTML += '<div style="text-align:center;margin:16px 0;">' + a.data + (a.caption ? '<p style="font-size:12px;color:var(--text-muted);">' + escapeHtml(a.caption) + '</p>' : '') + '</div>';
+          } else if (a.type === 'image') {
+            visualBox.innerHTML += '<div style="text-align:center;margin:16px 0;"><img src="' + a.data + '" style="max-height:280px;border-radius:8px;"/></div>';
+          }
+        });
+      }
+
+      // Options Rendering
+      const selected = userAnswers[q.id];
+      const optLabels = ['A', 'B', 'C', 'D'];
+      const optHtml = q.options.map((opt, idx) => {
+        const isSel = selected === idx;
+        return '<div class="option-item ' + (isSel ? 'selected' : '') + '" onclick="selectOption(' + idx + ')">' +
+               '<div class="option-badge">' + optLabels[idx] + '</div>' +
+               '<div style="flex:1;">' + renderMathInString(opt) + '</div>' +
+               '</div>';
+      }).join('');
+      document.getElementById('optionsListContainer').innerHTML = optHtml;
+
+      document.getElementById('prevBtn').disabled = currentIndex === 0;
+
+      triggerKaTeXAutoRender();
+    }
+
+    function selectOption(optIndex) {
+      const q = questions[currentIndex];
+      userAnswers[q.id] = optIndex;
+      if (paletteStates[q.id] === 'marked-for-review' || paletteStates[q.id] === 'answered-and-marked') {
+        paletteStates[q.id] = 'answered-and-marked';
+      } else {
+        paletteStates[q.id] = 'answered';
+      }
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function handleClearResponse() {
+      const q = questions[currentIndex];
+      userAnswers[q.id] = null;
+      if (paletteStates[q.id] === 'answered-and-marked' || paletteStates[q.id] === 'marked-for-review') {
+        paletteStates[q.id] = 'marked-for-review';
+      } else {
+        paletteStates[q.id] = 'not-answered';
+      }
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function handleMarkForReview() {
+      recordTimeSpent();
+      const q = questions[currentIndex];
+      if (userAnswers[q.id] !== null && userAnswers[q.id] !== undefined) {
+        paletteStates[q.id] = 'answered-and-marked';
+      } else {
+        paletteStates[q.id] = 'marked-for-review';
+      }
+      advanceQuestion();
+    }
+
+    function handleSaveAndNext() {
+      recordTimeSpent();
+      const q = questions[currentIndex];
+      if (userAnswers[q.id] !== null && userAnswers[q.id] !== undefined) {
+        paletteStates[q.id] = 'answered';
+      } else {
+        paletteStates[q.id] = 'not-answered';
+      }
+      advanceQuestion();
+    }
+
+    function advanceQuestion() {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        const nextQ = questions[currentIndex];
+        if (paletteStates[nextQ.id] === 'not-visited') {
+          paletteStates[nextQ.id] = 'not-answered';
+        }
+        if (activeSubject !== nextQ.subject) {
+          activeSubject = nextQ.subject;
+          initSubjectTabs();
+        }
+        renderCurrentQuestion();
+        renderPalette();
+      } else {
+        showSubmitModal();
+      }
+    }
+
+    function handlePrevious() {
+      if (currentIndex > 0) {
+        recordTimeSpent();
+        currentIndex--;
+        const prevQ = questions[currentIndex];
+        if (paletteStates[prevQ.id] === 'not-visited') {
+          paletteStates[prevQ.id] = 'not-answered';
+        }
+        if (activeSubject !== prevQ.subject) {
+          activeSubject = prevQ.subject;
+          initSubjectTabs();
+        }
+        renderCurrentQuestion();
+        renderPalette();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      recordTimeSpent();
+      currentIndex = idx;
+      const targetQ = questions[currentIndex];
+      if (paletteStates[targetQ.id] === 'not-visited') {
+        paletteStates[targetQ.id] = 'not-answered';
+      }
+      if (activeSubject !== targetQ.subject) {
+        activeSubject = targetQ.subject;
+        initSubjectTabs();
+      }
+      renderCurrentQuestion();
+      renderPalette();
+      if (window.innerWidth < 768) {
+        closePaletteDrawer();
+      }
+    }
+
+    // ==========================================
+    // DRAWER QUESTION PALETTE (5-PER-ROW GRID)
+    // ==========================================
+    function renderPalette() {
+      let ans = 0, notAns = 0, mark = 0, ansMark = 0, notVis = 0;
+      questions.forEach(q => {
+        const s = paletteStates[q.id] || 'not-visited';
+        if (s === 'answered') ans++;
+        else if (s === 'not-answered') notAns++;
+        else if (s === 'marked-for-review') mark++;
+        else if (s === 'answered-and-marked') ansMark++;
+        else notVis++;
+      });
+
+      const elAns = document.getElementById('dCountAns');
+      const elNotAns = document.getElementById('dCountNotAns');
+      const elMark = document.getElementById('dCountMark');
+      const elAnsMark = document.getElementById('dCountAnsMark');
+      const elNotVis = document.getElementById('dCountNotVis');
+
+      if (elAns) elAns.textContent = ans;
+      if (elNotAns) elNotAns.textContent = notAns;
+      if (elMark) elMark.textContent = mark;
+      if (elAnsMark) elAnsMark.textContent = ansMark;
+      if (elNotVis) elNotVis.textContent = notVis;
+
+      const displayQuestions = paletteFilter === 'All' 
+        ? questions 
+        : questions.filter(q => q.subject === paletteFilter);
+
+      const grid = document.getElementById('drawerGrid');
+      if (!grid) return;
+
+      grid.innerHTML = displayQuestions.map(q => {
+        const state = paletteStates[q.id] || 'not-visited';
+        const actualIdx = questions.findIndex(item => item.id === q.id);
+        const isCurrent = actualIdx === currentIndex;
+        return '<button class="palette-btn state-' + state + ' ' + (isCurrent ? 'current' : '') + '" onclick="jumpToQuestion(' + actualIdx + ')">' +
+               (actualIdx + 1) +
+               '</button>';
+      }).join('');
+    }
+
+    function togglePaletteDrawer() {
+      const drawer = document.getElementById('paletteDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      if (!drawer || !backdrop) return;
+
+      const isOpen = drawer.classList.contains('open');
+      if (isOpen) {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+      } else {
+        renderPalette();
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+      }
+    }
+
+    function closePaletteDrawer() {
+      const drawer = document.getElementById('paletteDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      if (drawer) drawer.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+    }
+
+    // ==========================================
+    // EXAM TIMER & FULLSCREEN CONTROLS
+    // ==========================================
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (secondsRemaining > 0) {
+          secondsRemaining--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+          finalizeSubmission();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const h = Math.floor(secondsRemaining / 3600);
+      const m = Math.floor((secondsRemaining % 3600) / 60);
+      const s = secondsRemaining % 60;
+      const str = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      const el = document.getElementById('timerDisplay');
+      if (el) el.textContent = str;
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    // ==========================================
+    // SUBMISSION & SCORECARD ANALYTICS
+    // ==========================================
+    function showSubmitModal() {
+      let ans = 0, notAns = 0, mark = 0, ansMark = 0, notVis = 0;
+      questions.forEach(q => {
+        const s = paletteStates[q.id] || 'not-visited';
+        if (s === 'answered') ans++;
+        else if (s === 'not-answered') notAns++;
+        else if (s === 'marked-for-review') mark++;
+        else if (s === 'answered-and-marked') ansMark++;
+        else notVis++;
+      });
+
+      document.getElementById('mCountAns').textContent = ans;
+      document.getElementById('mCountNotAns').textContent = notAns;
+      document.getElementById('mCountMark').textContent = mark;
+      document.getElementById('mCountAnsMark').textContent = ansMark;
+      document.getElementById('mCountNotVis').textContent = notVis;
+
+      document.getElementById('submitModal').style.display = 'flex';
+    }
+
+    function hideSubmitModal() {
+      document.getElementById('submitModal').style.display = 'none';
+    }
+
+    function finalizeSubmission() {
+      recordTimeSpent();
+      if (timerInterval) clearInterval(timerInterval);
+      hideSubmitModal();
+      closePaletteDrawer();
+
+      document.getElementById('examScreen').style.display = 'none';
+      document.getElementById('examTimerBadge').style.display = 'none';
+      document.getElementById('btnHeaderPalette').style.display = 'none';
+      document.getElementById('btnRoughSheet').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+
+      // NTA Evaluation: Both 'answered' and 'answered-and-marked' are officially evaluated
+      let correct = 0, incorrect = 0, unattempted = 0;
+      questions.forEach(q => {
+        const userChoice = userAnswers[q.id];
+        if (userChoice !== null && userChoice !== undefined) {
+          if (userChoice === q.correctAnswer) correct++;
+          else incorrect++;
+        } else {
+          unattempted++;
+        }
+      });
+
+      const marking = (typeof testMetadata !== 'undefined' && testMetadata.markingScheme) ? testMetadata.markingScheme : { correct: 4, incorrect: -1, unattempted: 0 };
+      const totalScore = (correct * (marking.correct || 4)) + (incorrect * (marking.incorrect || -1));
+      const totalMarks = (typeof testMetadata !== 'undefined' && testMetadata.totalMarks) ? testMetadata.totalMarks : 720;
+      const totalAttempted = correct + incorrect;
+      const accuracy = totalAttempted > 0 ? Math.round((correct / totalAttempted) * 100) : 0;
+
+      document.getElementById('resScore').textContent = totalScore + ' / ' + totalMarks;
+      document.getElementById('resCorrect').textContent = correct;
+      document.getElementById('resIncorrect').textContent = incorrect;
+      document.getElementById('resUnattempted').textContent = unattempted;
+      document.getElementById('resAccuracy').textContent = accuracy + '%';
+
+      // Question-wise time statistics
+      const timesArray = questions.map(q => ({ id: q.id, time: timeSpent[q.id] || 0 }));
+      timesArray.sort((a, b) => a.time - b.time);
+      const fastest = timesArray[0] || { id: 1, time: 0 };
+      const slowest = timesArray[timesArray.length - 1] || { id: 1, time: 0 };
+      const totalTime = timesArray.reduce((acc, cur) => acc + cur.time, 0);
+      const avgTime = questions.length > 0 ? Math.round(totalTime / questions.length) : 0;
+
+      document.getElementById('resFastest').textContent = 'Q' + (questions.findIndex(q => q.id === fastest.id) + 1) + ' (' + fastest.time + 's)';
+      document.getElementById('resSlowest').textContent = 'Q' + (questions.findIndex(q => q.id === slowest.id) + 1) + ' (' + slowest.time + 's)';
+      document.getElementById('resAvg').textContent = avgTime + 's';
+
+      // Time analysis table
+      let timeTableHtml = '<table class="summary-table"><tr><th>Q#</th><th>Subject</th><th>Your Answer</th><th>Correct Answer</th><th>Time Spent</th><th>Outcome</th></tr>';
+      const optMap = ['A', 'B', 'C', 'D'];
+      questions.forEach((q, idx) => {
+        const ans = userAnswers[q.id];
+        const isCorrect = ans === q.correctAnswer;
+        const isAttempted = ans !== null && ans !== undefined;
+        let outcome = '<span style="color:#64748b;">Unattempted</span>';
+        if (isAttempted) {
+          outcome = isCorrect ? '<span style="color:#22c55e;font-weight:bold;">Correct (+4)</span>' : '<span style="color:#ef4444;font-weight:bold;">Incorrect (-1)</span>';
+        }
+        timeTableHtml += '<tr>' +
+          '<td>' + (idx + 1) + '</td>' +
+          '<td>' + q.subject + '</td>' +
+          '<td>' + (isAttempted ? optMap[ans] : '-') + '</td>' +
+          '<td><strong>' + (q.correctAnswer !== null ? optMap[q.correctAnswer] : '-') + '</strong></td>' +
+          '<td>' + (timeSpent[q.id] || 0) + 's</td>' +
+          '<td>' + outcome + '</td>' +
+          '</tr>';
+      });
+      timeTableHtml += '</table>';
+      document.getElementById('resTimeTableContainer').innerHTML = timeTableHtml;
+
+      // Detailed Step-by-Step Solutions
+      let solHtml = '';
+      questions.forEach((q, idx) => {
+        const userChoice = userAnswers[q.id];
+        const isCorrect = userChoice === q.correctAnswer;
+        const isAttempted = userChoice !== null && userChoice !== undefined;
+        const borderClass = isAttempted ? (isCorrect ? '#22c55e' : '#ef4444') : 'var(--border)';
+
+        solHtml += '<div style="border:1px solid ' + borderClass + ';border-radius:10px;padding:16px;margin-bottom:14px;background:var(--bg-card-subtle);">' +
+          '<div style="font-weight:700;font-size:14px;margin-bottom:6px;">Question ' + (idx + 1) + ' (' + q.subject + ')</div>' +
+          '<div style="font-size:14px;margin-bottom:10px;">' + renderMathInString(q.question) + '</div>' +
+          '<div style="display:flex;gap:12px;font-size:13px;margin-bottom:8px;">' +
+          '<div>Your Choice: <strong>' + (isAttempted ? optMap[userChoice] : 'Not Attempted') + '</strong></div>' +
+          '<div>Correct: <strong style="color:#22c55e;">' + (q.correctAnswer !== null ? optMap[q.correctAnswer] : '-') + '</strong></div>' +
+          '</div>' +
+          (q.solution ? '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px;font-size:13px;line-height:1.6;"><strong>Solution:</strong> ' + renderMathInString(q.solution) + '</div>' : '') +
+          '</div>';
+      });
+      document.getElementById('resSolutionsContainer').innerHTML = solHtml;
+
+      triggerKaTeXAutoRender();
+    }
+
+    // ==========================================
+    // SCRATCHPAD CANVAS
+    // ==========================================
+    var scratchCanvas, scratchCtx, drawing = false;
+
+    function initScratchpad() {
+      scratchCanvas = document.getElementById('scratchCanvas');
+      if (!scratchCanvas || !scratchCanvas.getContext) return;
+      scratchCtx = scratchCanvas.getContext('2d');
+      if (!scratchCtx) return;
+      resizeScratchpad();
+
+      function getPos(e) {
+        const rect = scratchCanvas.getBoundingClientRect();
+        const clientX = e.touches && e.touches.length > 0 ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches && e.touches.length > 0 ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - rect.left, y: clientY - rect.top };
+      }
+
+      function start(e) {
+        drawing = true;
+        const p = getPos(e);
+        scratchCtx.beginPath();
+        scratchCtx.moveTo(p.x, p.y);
+      }
+
+      function draw(e) {
+        if (!drawing) return;
+        const p = getPos(e);
+        scratchCtx.lineWidth = 2;
+        scratchCtx.lineCap = 'round';
+        scratchCtx.strokeStyle = '#0284c7';
+        scratchCtx.lineTo(p.x, p.y);
+        scratchCtx.stroke();
+      }
+
+      function stop() { drawing = false; }
+
+      scratchCanvas.addEventListener('mousedown', start);
+      scratchCanvas.addEventListener('mousemove', draw);
+      scratchCanvas.addEventListener('mouseup', stop);
+      scratchCanvas.addEventListener('touchstart', start, { passive: true });
+      scratchCanvas.addEventListener('touchmove', draw, { passive: true });
+      scratchCanvas.addEventListener('touchend', stop);
+    }
+
+    function toggleScratchpad() {
+      const box = document.getElementById('scratchWindow');
+      if (!box) return;
+      if (box.style.display === 'none') {
+        box.style.display = 'flex';
+        resizeScratchpad();
+      } else {
+        box.style.display = 'none';
+      }
+    }
+
+    function resizeScratchpad() {
+      if (scratchCanvas) {
+        scratchCanvas.width = scratchCanvas.offsetWidth;
+        scratchCanvas.height = scratchCanvas.offsetHeight;
+      }
+    }
+
+    function clearScratchpad() {
+      if (scratchCtx && scratchCanvas) {
+        scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      triggerKaTeXAutoRender();
+    });
+  
+  </script>
+</body>
+</html>
