@@ -368,6 +368,49 @@
 
 
       <!-- =================================================
+           TEST PLANNER BANNER
+           (always sits above the test list; shows/hides
+           itself depending on whether this batch has a
+           planner PDF configured in test-paper.js)
+      ================================================== -->
+
+      <div
+        class="planner-banner"
+        id="testPlannerBanner"
+        style="display: none;"
+      >
+
+        <div class="planner-banner-text">
+
+          <span class="planner-banner-kicker">
+            STUDY SCHEDULE
+          </span>
+
+          <h3 id="plannerBannerTitle">
+            Test Planner
+          </h3>
+
+          <p id="plannerBannerSubtitle">
+            Download the complete test schedule for this batch.
+          </p>
+
+        </div>
+
+        <a
+          href="#"
+          id="plannerBannerButton"
+          class="planner-button"
+          target="_blank"
+          rel="noopener"
+        >
+          📄 View Test Planner PDF
+        </a>
+
+      </div>
+
+
+
+      <!-- =================================================
            DYNAMIC TEST LIST
       ================================================== -->
 
@@ -442,6 +485,53 @@
     </div>
 
   </footer>
+
+
+
+  <!-- =====================================================
+       SYLLABUS MODAL
+       (shared popup, opened by the "View Syllabus"
+       button on any test card)
+  ====================================================== -->
+
+  <div
+    class="syllabus-modal"
+    id="syllabusModal"
+    hidden
+  >
+
+    <div
+      class="syllabus-modal-backdrop"
+      id="syllabusModalBackdrop"
+    ></div>
+
+    <div class="syllabus-modal-box">
+
+      <button
+        type="button"
+        class="syllabus-modal-close"
+        id="syllabusModalClose"
+        aria-label="Close syllabus"
+      >
+        ✕
+      </button>
+
+      <span class="syllabus-modal-kicker">
+        SYLLABUS
+      </span>
+
+      <h3 id="syllabusModalTitle">
+        Test 01
+      </h3>
+
+      <ul
+        class="syllabus-modal-list"
+        id="syllabusModalList"
+      ></ul>
+
+    </div>
+
+  </div>
 
 
 
