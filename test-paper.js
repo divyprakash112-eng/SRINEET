@@ -51,6 +51,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterButtons =
     document.querySelectorAll(".filter-button");
 
+  const plannerBanner =
+    document.getElementById("testPlannerBanner");
+
+  const plannerBannerTitle =
+    document.getElementById("plannerBannerTitle");
+
+  const plannerBannerButton =
+    document.getElementById("plannerBannerButton");
+
+  const syllabusModal =
+    document.getElementById("syllabusModal");
+
+  const syllabusModalBackdrop =
+    document.getElementById("syllabusModalBackdrop");
+
+  const syllabusModalClose =
+    document.getElementById("syllabusModalClose");
+
+  const syllabusModalTitle =
+    document.getElementById("syllabusModalTitle");
+
+  const syllabusModalList =
+    document.getElementById("syllabusModalList");
+
 
   /* =====================================================
      INSTITUTE DATA
@@ -92,7 +116,16 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Yakeen 1.0",
       year: "2027",
       description:
-        "NEET 2027 test practice. New tests will be added as they are uploaded."
+        "NEET 2027 test practice. New tests will be added as they are uploaded.",
+      /*
+       * Planner banner ke liye PDF ka path/link.
+       * Jab tak yahan value nahi hogi, banner
+       * apne aap hide rahega. PDF ko tests/pw/yakeen-1-0/
+       * folder mein daal kar yahan uska relative path
+       * de sakte ho, ya kisi bhi direct PDF link (Drive/
+       * hosted) ko bhi seedha yahan paste kar sakte ho.
+       */
+      plannerPdf: "tests/pw/yakeen-1-0/test-planner.pdf"
     },
 
     "pw-yakeen-2-0": {
@@ -100,7 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Yakeen 2.0",
       year: "2027",
       description:
-        "NEET 2027 test practice."
+        "NEET 2027 test practice.",
+      plannerPdf: null
     },
 
     "pw-neet-dropper": {
@@ -108,7 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "NEET Dropper",
       year: "2027",
       description:
-        "Focused NEET preparation and test practice."
+        "Focused NEET preparation and test practice.",
+      plannerPdf: null
     },
 
     "pw-real-test": {
@@ -116,7 +151,8 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Real Test",
       year: "2027",
       description:
-        "Real exam-style NEET practice."
+        "Real exam-style NEET practice.",
+      plannerPdf: null
     }
 
   };
@@ -186,6 +222,162 @@ document.addEventListener("DOMContentLoaded", () => {
       `NEET ${batch.year} • CBT Practice`;
 
   }
+
+
+  renderPlannerBanner(batch);
+
+
+  /* =====================================================
+     TEST PLANNER BANNER
+     (always shown above the test list, if the batch
+     has a plannerPdf configured above)
+  ===================================================== */
+
+  function renderPlannerBanner(currentBatch) {
+
+    if (!plannerBanner || !plannerBannerButton) {
+      return;
+    }
+
+    if (!currentBatch.plannerPdf) {
+
+      plannerBanner.style.display =
+        "none";
+
+      return;
+
+    }
+
+    plannerBannerButton.href =
+      currentBatch.plannerPdf;
+
+    if (plannerBannerTitle) {
+
+      plannerBannerTitle.textContent =
+        `${currentBatch.name} Test Planner`;
+
+    }
+
+    plannerBanner.style.display =
+      "flex";
+
+  }
+
+
+  /* =====================================================
+     SYLLABUS MODAL
+     (shared popup opened by the "View Syllabus"
+     button on any test card)
+  ===================================================== */
+
+  function openSyllabusModal(test) {
+
+    if (!syllabusModal) {
+      return;
+    }
+
+    if (syllabusModalTitle) {
+
+      syllabusModalTitle.textContent =
+        test.title ||
+        `Test ${String(test.number).padStart(2, "0")}`;
+
+    }
+
+    if (syllabusModalList) {
+
+      syllabusModalList.innerHTML =
+        "";
+
+      const topics =
+        Array.isArray(test.syllabus)
+          ? test.syllabus
+          : [];
+
+      if (topics.length === 0) {
+
+        const empty =
+          document.createElement("li");
+
+        empty.textContent =
+          "Syllabus will be added soon.";
+
+        syllabusModalList.appendChild(empty);
+
+      } else {
+
+        topics.forEach(
+          topic => {
+
+            const item =
+              document.createElement("li");
+
+            item.textContent =
+              topic;
+
+            syllabusModalList.appendChild(item);
+
+          }
+        );
+
+      }
+
+    }
+
+    syllabusModal.hidden =
+      false;
+
+  }
+
+
+  function closeSyllabusModal() {
+
+    if (syllabusModal) {
+
+      syllabusModal.hidden =
+        true;
+
+    }
+
+  }
+
+
+  if (syllabusModalBackdrop) {
+
+    syllabusModalBackdrop.addEventListener(
+      "click",
+      closeSyllabusModal
+    );
+
+  }
+
+
+  if (syllabusModalClose) {
+
+    syllabusModalClose.addEventListener(
+      "click",
+      closeSyllabusModal
+    );
+
+  }
+
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "Escape" &&
+        syllabusModal &&
+        !syllabusModal.hidden
+      ) {
+
+        closeSyllabusModal();
+
+      }
+
+    }
+  );
 
 
   /* =====================================================
@@ -337,6 +529,36 @@ document.addEventListener("DOMContentLoaded", () => {
       action.appendChild(badge);
 
     }
+
+
+    /*
+     * VIEW SYLLABUS BUTTON
+     *
+     * Har test card par hamesha dikhta hai.
+     * tests.json mein us test ke "syllabus" array
+     * (topics ki list) se popup bharta hai. Agar
+     * syllabus field nahi diya, to popup mein
+     * "Syllabus will be added soon" dikhega.
+     */
+
+    const syllabusButton =
+      document.createElement("button");
+
+    syllabusButton.type =
+      "button";
+
+    syllabusButton.className =
+      "syllabus-button";
+
+    syllabusButton.textContent =
+      "View Syllabus";
+
+    syllabusButton.addEventListener(
+      "click",
+      () => openSyllabusModal(test)
+    );
+
+    action.appendChild(syllabusButton);
 
 
     /*
