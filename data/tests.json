@@ -7,6 +7,7 @@
     "title": "Short Practice Test 1",
     "questions": 48,
     "duration": 60,
+    "date": "3 May 2026",
     "category": "full",
     "status": "available",
     "file": "tests/pw/yakeen-1-0/test-01.html",
@@ -25,6 +26,7 @@
     "title": "Practice Test 1",
     "questions": 180,
     "duration": 180,
+    "date": "17 May 2026",
     "category": "full",
     "status": "available",
     "file": "tests/pw/yakeen-1-0/test-02.html",
@@ -43,6 +45,7 @@
     "title": "Short Practice Test 2",
     "questions": 48,
     "duration": 60,
+    "date": "31 May 2026",
     "category": "full",
     "status": "available",
     "file": "tests/pw/yakeen-1-0/test-03.html",
@@ -51,6 +54,25 @@
       "Chemistry: Redox Reaction (Complete Chapter)",
       "Botany: Cell - The Unit of Life (Complete Chapter)",
       "Zoology: Animal Kingdom (Complete Chapter)"
+    ]
+  },
+  {
+    "id": "pw-yakeen-1-0-test-04",
+    "instituteId": "pw",
+    "batchId": "pw-yakeen-1-0",
+    "number": 4,
+    "title": "Practice Test 2",
+    "questions": 180,
+    "duration": 180,
+    "date": "14 June 2026",
+    "category": "full",
+    "status": "available",
+    "file": "tests/pw/yakeen-1-0/test-04.html",
+    "syllabus": [
+      "Physics: Vectors (Complete Chapter), Units & Measurements (Except Measuring Instruments)",
+      "Chemistry: Solutions (Complete Chapter)",
+      "Botany: Cell Cycle and Cell Division (Complete Chapter)",
+      "Zoology: Breathing and Exchange of Gases: Introduction to Breathing and Respiration, Respiratory organs, Human respiratory system, Mechanism of Breathing, Respiratory volumes and Capacities, Exchange of gases"
     ]
   }
 ]
