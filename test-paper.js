@@ -494,9 +494,16 @@ document.addEventListener("DOMContentLoaded", () => {
       "Physics • Chemistry • Biology";
 
 
+    const dateHtml =
+      test.date
+        ? `<span>${test.date}</span>`
+        : "";
+
+
     info.innerHTML = `
       <span>${test.questions || 0} Questions</span>
       <span>${test.duration || 0} Minutes</span>
+      ${dateHtml}
       <span>${subjects}</span>
     `;
 
