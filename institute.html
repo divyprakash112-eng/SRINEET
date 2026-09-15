@@ -58,6 +58,13 @@
     href="telegram-popup.css"
   >
 
+  <link
+    rel="stylesheet"
+    href="theme.css"
+  >
+
+  <link rel="manifest" href="manifest.json">
+
 </head>
 
 
@@ -113,9 +120,16 @@
       </a>
 
 
-      <!-- HEADER SPACER -->
+      <!-- DARK MODE TOGGLE -->
 
-      <div class="header-spacer"></div>
+      <button
+        type="button"
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Toggle dark mode"
+      >
+        🌙
+      </button>
 
     </div>
 
@@ -430,6 +444,8 @@
 ====================================================== -->
 
 <script src="institute.js"></script>
+<script src="theme.js"></script>
+<script src="pwa.js"></script>
 
 
 
