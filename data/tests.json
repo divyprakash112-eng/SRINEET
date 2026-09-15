@@ -112,5 +112,24 @@
       "Botany: The Living World (Complete Chapter), Biological Classification (Complete Chapter)",
       "Zoology: Breathing and Exchange of Gases (Complete Chapter), Structural Organization in Animals: Tissues, Animal Tissues, Epithelium Tissue, Cell Junctions, Connective Tissue, Muscular Tissue, Nervous Tissue"
     ]
+  },
+  {
+    "id": "pw-yakeen-1-0-test-07",
+    "instituteId": "pw",
+    "batchId": "pw-yakeen-1-0",
+    "number": 7,
+    "title": "Practice Test 4",
+    "questions": 180,
+    "duration": 180,
+    "date": "26 July 2026",
+    "category": "full",
+    "status": "available",
+    "file": "tests/pw/yakeen-1-0/test-07.html",
+    "syllabus": [
+      "Physics: Motion in a plane (Complete Chapter)",
+      "Chemistry: Electrochemistry (Complete Chapter)",
+      "Botany: Plant Kingdom (Complete Chapter)",
+      "Zoology: Structural Organization in Animals (Complete Chapter)"
+    ]
   }
 ]
