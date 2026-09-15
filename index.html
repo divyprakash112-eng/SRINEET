@@ -41,12 +41,24 @@
 
 
   <!-- =====================================================
+       PWA MANIFEST
+  ====================================================== -->
+
+  <link rel="manifest" href="manifest.json">
+
+
+  <!-- =====================================================
        MAIN CSS
   ====================================================== -->
 
   <link
     rel="stylesheet"
     href="style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="theme.css"
   >
 
 </head>
@@ -156,6 +168,30 @@
 
             <span class="bell-dot" aria-hidden="true"></span>
 
+          </button>
+
+
+          <!-- My Progress + Streak -->
+
+          <a
+            href="progress.html"
+            class="streak-pill"
+            id="headerStreakPill"
+            aria-label="My Progress"
+          >
+            🔥 <span id="headerStreakCount">0</span>
+          </a>
+
+
+          <!-- Dark Mode Toggle -->
+
+          <button
+            type="button"
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+          >
+            🌙
           </button>
 
         </div>
@@ -334,6 +370,28 @@
 
           <span>
             Chapterwise Practice
+          </span>
+
+        </a>
+
+
+
+        <!-- MY PROGRESS -->
+
+        <a
+          href="progress.html"
+          class="menu-link"
+        >
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            🔥
+          </span>
+
+          <span>
+            My Progress
           </span>
 
         </a>
@@ -1309,7 +1367,29 @@
        MAIN JAVASCRIPT
   ====================================================== -->
 
+  <script src="progress-tracker.js"></script>
+  <script src="streak.js"></script>
+  <script src="theme.js"></script>
+  <script src="pwa.js"></script>
   <script src="main.js"></script>
+
+  <script>
+    "use strict";
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const headerStreakCount =
+        document.getElementById("headerStreakCount");
+
+      if (headerStreakCount && window.SrineetStreak) {
+
+        headerStreakCount.textContent =
+          String(window.SrineetStreak.getStreak());
+
+      }
+
+    });
+  </script>
 
 </body>
 </html>
