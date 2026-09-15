@@ -1,0 +1,96 @@
+/* =========================================================
+   SRINEET — SHARED DARK MODE
+   Ek hi file, har page par kaam karti hai.
+   Technique: poore <html> par color invert + hue-rotate,
+   isliye kisi bhi page ki existing CSS (colors/buttons)
+   todni nahi padti — automatically dark ho jata hai.
+========================================================= */
+
+html[data-theme="dark"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/*
+ * Agar future mein koi real photo/logo image add ho
+ * (jo invert nahi hona chahiye), us par ye class laga dena:
+ * <img class="no-invert" ...>
+ */
+html[data-theme="dark"] .no-invert {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+
+/* =========================
+   LAYOUT HELPER
+   (header-right ko flex banate hain taaki naya
+   theme-toggle button sahi se align ho)
+========================= */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* =========================
+   THEME TOGGLE BUTTON
+========================= */
+
+.theme-toggle {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  margin-left: 10px;
+
+  border: 1px solid var(--card-edge, #E9DFC9);
+  border-radius: 14px;
+
+  color: var(--wine, #0B3B34);
+  background: var(--white, #ffffff);
+
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-soft, #D4AF6A);
+  box-shadow: 0 10px 20px -8px rgba(185, 133, 63, 0.35);
+}
+
+
+/* =========================
+   STREAK PILL (homepage header)
+========================= */
+
+.streak-pill {
+  height: 46px;
+  padding: 0 14px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  border: 1px solid var(--gold-soft, #D4AF6A);
+  border-radius: 40px;
+
+  background: linear-gradient(150deg, var(--gold-hi, #F3E3B8), #FBF3DE);
+  color: var(--wine, #0B3B34);
+
+  font-size: 13px;
+  font-weight: 800;
+
+  transition: transform .2s ease;
+}
+
+.streak-pill:hover {
+  transform: translateY(-2px);
+}
