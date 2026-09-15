@@ -504,25 +504,25 @@ button {
 .test-card {
   position: relative;
 
-  min-height: 108px;
+  min-height: 128px;
 
-  padding: 20px 22px;
+  padding: 26px 28px;
 
   display: grid;
 
-  grid-template-columns: 58px minmax(180px, 1fr) 105px;
+  grid-template-columns: 60px minmax(180px, 1fr) auto;
 
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 
-  border: 1px solid var(--card-edge);
-  border-radius: 20px;
+  border: 1px solid rgba(11, 59, 52, 0.07);
+  border-radius: 22px;
 
   background:
-    radial-gradient(180px 120px at var(--mx, 10%) var(--my, 0%), rgba(212, 175, 106, .10), transparent 65%),
+    radial-gradient(200px 130px at var(--mx, 10%) var(--my, 0%), rgba(212, 175, 106, .06), transparent 65%),
     var(--white);
 
-  box-shadow: 0 8px 25px rgba(11, 59, 52, 0.06);
+  box-shadow: 0 6px 16px rgba(11, 59, 52, 0.04);
 
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
 }
@@ -586,12 +586,19 @@ button {
 
 .test-action {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.secondary-actions {
+  display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 8px;
 }
 
-.syllabus-button {
+.syllabus-button,
+.omr-button {
   min-width: 100px;
 
   padding: 10px 14px;
@@ -610,32 +617,35 @@ button {
   font-size: 9px;
   font-weight: 800;
 
+  text-decoration: none;
   cursor: pointer;
   transition: transform .22s ease, border-color .22s ease;
 }
 
-.syllabus-button:hover {
+.syllabus-button:hover,
+.omr-button:hover {
   transform: translateY(-2px);
   border-color: var(--gold-soft);
 }
 
 .start-button {
-  min-width: 100px;
+  min-width: 150px;
+  min-height: 100%;
 
-  padding: 12px 14px;
+  padding: 22px 26px;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
 
-  border-radius: 12px;
+  border-radius: 16px;
 
   color: var(--wine);
 
   background: linear-gradient(150deg, var(--gold-hi), var(--gold-soft));
 
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 800;
 
   box-shadow: 0 10px 20px -8px rgba(185, 133, 63, 0.45);
@@ -906,6 +916,21 @@ button {
 
   .test-card {
     grid-template-columns: 52px 1fr auto;
+    gap: 18px;
+  }
+
+  .test-action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .secondary-actions {
+    flex-direction: row;
+  }
+
+  .start-button {
+    padding: 16px 22px;
   }
 
   .footer-inner {
@@ -972,7 +997,7 @@ button {
   .test-card {
     grid-template-columns: 48px 1fr;
     gap: 13px;
-    padding: 16px;
+    padding: 18px;
     border-radius: 17px;
   }
 
@@ -988,13 +1013,28 @@ button {
 
   .test-action {
     grid-column: 1 / -1;
+    flex-direction: column;
     align-items: stretch;
-    margin-top: 4px;
+    margin-top: 8px;
+  }
+
+  .secondary-actions {
+    flex-direction: row;
   }
 
   .start-button,
-  .syllabus-button {
+  .syllabus-button,
+  .omr-button {
     width: 100%;
+  }
+
+  .secondary-actions .syllabus-button,
+  .secondary-actions .omr-button {
+    flex: 1;
+  }
+
+  .start-button {
+    padding: 18px 20px;
   }
 
   .planner-banner {
