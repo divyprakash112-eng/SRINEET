@@ -3,9 +3,16 @@
 /*
 =========================================================
 SRINEET — DARK MODE TOGGLE
-Har page par yahi ek file include karo. Agar us page
-par #themeToggle button hoga to wo kaam karega, warna
-ye script bas saved theme apply kar dega (silent).
+Har page par yahi ek file include karo.
+
+Do tarah se kaam karta hai:
+1) Simple button:  <button id="themeToggle">🌙</button>
+2) Sidebar row:     <button id="themeToggle">
+                       <span id="themeToggleIcon">🌙</span>
+                       <span>Dark Mode</span>
+                       <span id="themeToggleSwitch"></span>
+                     </button>
+Dono cases mein sahi se icon/switch update hota hai.
 =========================================================
 */
 
@@ -23,16 +30,21 @@ ye script bas saved theme apply kar dega (silent).
     const toggleButton =
       document.getElementById("themeToggle");
 
-    if (theme === "dark") {
+    const toggleIcon =
+      document.getElementById("themeToggleIcon");
+
+    const toggleSwitch =
+      document.getElementById("themeToggleSwitch");
+
+    const isDark =
+      theme === "dark";
+
+    if (isDark) {
 
       root.setAttribute(
         "data-theme",
         "dark"
       );
-
-      if (toggleButton) {
-        toggleButton.textContent = "☀️";
-      }
 
     } else {
 
@@ -40,9 +52,35 @@ ye script bas saved theme apply kar dega (silent).
         "data-theme"
       );
 
-      if (toggleButton) {
-        toggleButton.textContent = "🌙";
-      }
+    }
+
+
+    const icon =
+      isDark ? "☀️" : "🌙";
+
+    if (toggleIcon) {
+
+      /* Sidebar version — sirf icon span badlo */
+
+      toggleIcon.textContent =
+        icon;
+
+    } else if (toggleButton) {
+
+      /* Simple button version — pura button text hi icon hai */
+
+      toggleButton.textContent =
+        icon;
+
+    }
+
+
+    if (toggleSwitch) {
+
+      toggleSwitch.classList.toggle(
+        "is-on",
+        isDark
+      );
 
     }
 
@@ -66,7 +104,7 @@ ye script bas saved theme apply kar dega (silent).
       const toggleButton =
         document.getElementById("themeToggle");
 
-      /* Icon sync (page load ke baad element milta hai) */
+      /* Icon/switch sync (page load ke baad element milta hai) */
 
       applyTheme(
         localStorage.getItem(STORAGE_KEY) === "dark"
