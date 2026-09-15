@@ -58,6 +58,13 @@
     href="telegram-popup.css"
   >
 
+  <link
+    rel="stylesheet"
+    href="theme.css"
+  >
+
+  <link rel="manifest" href="manifest.json">
+
 </head>
 
 
@@ -118,6 +125,15 @@
         <span class="header-label">
           TEST PAPERS
         </span>
+
+        <button
+          type="button"
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle dark mode"
+        >
+          🌙
+        </button>
 
       </div>
 
@@ -540,6 +556,11 @@
   ====================================================== -->
 
   <script src="test-paper.js"></script>
+
+  <script src="progress-tracker.js"></script>
+  <script src="streak.js"></script>
+  <script src="theme.js"></script>
+  <script src="pwa.js"></script>
 
 
 
