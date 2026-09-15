@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YAKEEN 1.0 TEST - 01 - SRINEET Offline CBT</title>
+  <!-- KaTeX Math & Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onload="if(typeof onKatexLoaded==='function')onKatexLoaded()"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="if(typeof triggerKaTeXAutoRender==='function')triggerKaTeXAutoRender()"></script>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-dark: #075985;
+      --bg-main: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-focus: #0284c7;
+      --nta-not-visited: #e2e8f0;
+      --nta-not-answered: #ef4444;
+      --nta-answered: #22c55e;
+      --nta-marked: #8b5cf6;
+      --nta-marked-answered: #7c3aed;
+    }
+    body.dark {
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
+      --bg-main: #0b132b;
+      --bg-card: #1c2541;
+      --bg-card-subtle: #131b31;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --border-focus: #38bdf8;
+      --nta-not-visited: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Universal Header */
+    .header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 16px;
+    }
+    .brand-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+    }
+    .brand-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+    .timer-badge {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    body.dark .timer-badge {
+      background: #450a0a;
+      color: #fca5a5;
+      border-color: #7f1d1d;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .btn-primary { background: #0284c7; color: #ffffff; }
+    .btn-primary:hover { background: #0369a1; }
+    .btn-success { background: #16a34a; color: #ffffff; }
+    .btn-success:hover { background: #15803d; }
+    .btn-purple { background: #7c3aed; color: #ffffff; }
+    .btn-purple:hover { background: #6d28d9; }
+    .btn-outline { background: var(--bg-card); color: var(--text-main); border-color: var(--border); }
+    .btn-outline:hover { background: var(--bg-card-subtle); }
+    .btn-palette-toggle {
+      background: #f3e8ff;
+      color: #7e22ce;
+      border-color: #d8b4fe;
+    }
+    body.dark .btn-palette-toggle {
+      background: #3b0764;
+      color: #d8b4fe;
+      border-color: #6b21a8;
+    }
+    .btn-palette-toggle:hover { background: #e9d5ff; }
+
+    /* Main Container */
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px;
+      flex: 1;
+    }
+
+    /* CBT Workspace Card */
+    .cbt-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 580px;
+    }
+
+    /* Subject Tabs Bar */
+    .subject-nav {
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      overflow-x: auto;
+    }
+    .subject-tab-list {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .subject-tab {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .subject-tab.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+    .subject-badge {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.08);
+    }
+    .subject-tab.active .subject-badge {
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* Question Meta Header */
+    .q-meta-bar {
+      padding: 10px 16px;
+      background: rgba(2, 132, 199, 0.05);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+    .q-num-title {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 14px;
+    }
+    .marks-badge {
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .marks-pos { background: #dcfce7; color: #15803d; }
+    .marks-neg { background: #fee2e2; color: #b91c1c; }
+
+    /* Question Content Area */
+    .q-content {
+      padding: 24px;
+      flex: 1;
+      overflow-y: auto;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Specialized Question Type Formatters */
+    .ar-card {
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 12px 0;
+      border: 1px solid transparent;
+    }
+    .ar-assertion {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+      border-left: 4px solid #f59e0b;
+    }
+    .ar-reason {
+      background: rgba(2, 132, 199, 0.08);
+      border-color: rgba(2, 132, 199, 0.3);
+      border-left: 4px solid #0284c7;
+    }
+    .ar-label {
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .ar-assertion .ar-label { color: #d97706; }
+    .ar-reason .ar-label { color: #0284c7; }
+
+    .statement-item {
+      padding: 12px 16px;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+
+    .match-table-wrapper {
+      margin: 16px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    .match-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .match-table th, .match-table td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .match-table th {
+      background: var(--bg-card-subtle);
+      font-weight: 700;
+    }
+
+    /* Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      font-size: 14px;
+    }
+    .option-item:hover {
+      border-color: #38bdf8;
+      background: rgba(2, 132, 199, 0.04);
+    }
+    .option-item.selected {
+      border-color: #0284c7;
+      background: rgba(2, 132, 199, 0.1);
+      box-shadow: 0 0 0 2px #0284c7;
+      font-weight: 600;
+    }
+    .option-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .option-item.selected .option-badge {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+
+    /* Bottom Action Bar */
+    .action-bar {
+      padding: 12px 16px;
+      background: var(--bg-card-subtle);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ======================================================== */
+    /* SLIDE-OVER QUESTION PALETTE DRAWER                       */
+    /* ======================================================== */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(2px);
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .palette-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 380px;
+      max-width: 90vw;
+      background: var(--bg-card);
+      border-left: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .palette-drawer.open {
+      transform: translateX(0);
+    }
+    .drawer-header {
+      padding: 14px 16px;
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .drawer-title {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+    }
+    .btn-close {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .drawer-candidate {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+    }
+    .drawer-legends {
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.02);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 11px;
+    }
+    .legend-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 11px;
+      color: #fff;
+    }
+    .box-ans { background: #22c55e; }
+    .box-not-ans { background: #ef4444; }
+    .box-mark { background: #8b5cf6; border-radius: 50%; }
+    .box-not-vis { background: var(--border); color: var(--text-main); }
+    .box-ans-mark {
+      background: #8b5cf6;
+      border-radius: 50%;
+      position: relative;
+    }
+    .box-ans-mark::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1.5px solid #fff;
+    }
+
+    .drawer-filter {
+      padding: 8px 12px;
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+    }
+    .drawer-filter-btn {
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      cursor: pointer;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+    .drawer-filter-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+
+    .drawer-grid-container {
+      padding: 14px;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .palette-grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .palette-btn {
+      height: 38px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.1s ease;
+      position: relative;
+      user-select: none;
+    }
+    .palette-btn.current {
+      outline: 2.5px solid #0284c7;
+      outline-offset: 2px;
+      font-weight: 900;
+      transform: scale(1.04);
+      z-index: 2;
+    }
+    .palette-btn.state-not-visited {
+      background: var(--bg-card-subtle);
+      border-color: var(--border);
+      color: var(--text-main);
+    }
+    .palette-btn.state-not-answered {
+      background: #ef4444;
+      color: #ffffff;
+    }
+    .palette-btn.state-answered {
+      background: #22c55e;
+      color: #ffffff;
+    }
+    .palette-btn.state-marked-for-review {
+      background: #8b5cf6;
+      color: #ffffff;
+      border-radius: 50%;
+    }
+    .palette-btn.state-answered-and-marked {
+      background: #8b5cf6;
+      color: #ffffff;
+      border-radius: 50%;
+    }
+    .palette-btn.state-answered-and-marked::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1px solid #ffffff;
+    }
+
+    .drawer-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-card-subtle);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+    .modal-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 480px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+    .summary-table th, .summary-table td {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .summary-table th { background: var(--bg-card-subtle); }
+
+    /* Results */
+    .results-hero {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #fff;
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    /* Scratchpad Canvas */
+    .scratch-window {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 380px;
+      height: 320px;
+      background: #ffffff;
+      border: 2px solid #0284c7;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .scratch-header {
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .scratch-canvas {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      cursor: crosshair;
+    }
+  </style>
+</head>
+<body>
+  <!-- Universal Header -->
+  <header class="header">
+    <div class="brand-group">
+      <div class="brand-badge">SR</div>
+      <div>
+        <div class="brand-title">SRINEET</div>
+        <div class="brand-sub">Offline CBT Engine</div>
+      </div>
+    </div>
+
+    <!-- Exam Timer -->
+    <div id="examTimerBadge" class="timer-badge" style="display:none;">
+      ⏱️ <span id="timerDisplay">03:00:00</span>
+    </div>
+
+    <div class="header-actions">
+      <!-- Question Palette Trigger -->
+      <button id="btnHeaderPalette" class="btn btn-palette-toggle" style="display:none;" onclick="togglePaletteDrawer()">
+        📑 Question Palette
+      </button>
+
+      <!-- Digital Rough Sheet -->
+      <button id="btnRoughSheet" class="btn btn-outline" style="display:none;" onclick="toggleScratchpad()">
+        ✏️ Rough Sheet
+      </button>
+
+      <!-- Dark Mode -->
+      <button class="btn btn-outline" onclick="toggleDarkMode()" title="Toggle Dark/Light Mode">
+        🌓
+      </button>
+
+      <!-- Fullscreen -->
+      <button class="btn btn-outline" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+        ⛶
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- 1. INSTRUCTIONS SCREEN -->
+    <div id="instructionsScreen" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+      <h2 style="font-size:22px;font-weight:800;color:var(--primary);margin-bottom:8px;">YAKEEN 1.0 TEST - 01</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Duration: 180 Minutes | Total Questions: 180 | Maximum Marks: 720</p>
+
+      <div style="background:var(--bg-card-subtle);border-left:4px solid #0284c7;padding:14px 16px;border-radius:0 8px 8px 0;margin-bottom:20px;font-size:13px;">
+        <strong>Important Exam Instructions:</strong>
+        <ul style="margin:8px 0 0 20px;line-height:1.7;">
+          <li>Each correct answer fetches <strong>+4 marks</strong>.</li>
+          <li>Each incorrect answer results in <strong>-1 mark</strong> deduction.</li>
+          <li>Unattempted questions receive <strong>0 marks</strong>.</li>
+          <li>Questions 'Answered and Marked for Review' <strong>WILL BE EVALUATED</strong> for score calculation.</li>
+          <li>Click on the <strong>Question Palette</strong> button at any time to open the question drawer.</li>
+        </ul>
+      </div>
+
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin:20px 0;cursor:pointer;">
+        <input type="checkbox" id="termsCheck" onchange="document.getElementById('startExamBtn').disabled = !this.checked">
+        <span>I have read and understood all the instructions and am ready to begin the test.</span>
+      </label>
+
+      <button id="startExamBtn" class="btn btn-primary" style="padding:10px 28px;font-size:14px;" disabled onclick="startTest()">
+        I am ready to begin
+      </button>
+    </div>
+
+    <!-- 2. CBT EXAM SCREEN -->
+    <div id="examScreen" class="cbt-card" style="display:none;">
+      <!-- Subject Navigation -->
+      <div class="subject-nav">
+        <div class="subject-tab-list" id="subjectTabContainer"></div>
+        <button class="btn btn-palette-toggle" onclick="togglePaletteDrawer()">
+          📑 Palette (<span id="btnPaletteCount">Q1</span>)
+        </button>
+      </div>
+
+      <!-- Question Meta -->
+      <div class="q-meta-bar">
+        <div>
+          <span id="qDisplayNumber" class="q-num-title">Question 1</span>
+          <span style="color:var(--text-muted);font-size:12px;" id="qSubjectBadge">/ 180</span>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <span class="marks-badge marks-pos">+4 Marks</span>
+          <span class="marks-badge marks-neg">-1 Mark</span>
+        </div>
+      </div>
+
+      <!-- Question Body Content -->
+      <div id="qContentArea" class="q-content">
+        <div id="qStemContainer"></div>
+        <div id="qVisualContainer"></div>
+        <div id="optionsListContainer" class="options-list"></div>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <div class="action-group">
+          <button class="btn btn-outline" onclick="handleClearResponse()">Clear Response</button>
+          <button class="btn btn-purple" onclick="handleMarkForReview()">Mark for Review & Next</button>
+        </div>
+        <div class="action-group">
+          <button class="btn btn-outline" id="prevBtn" onclick="handlePrevious()">Previous</button>
+          <button class="btn btn-primary" id="saveNextBtn" onclick="handleSaveAndNext()">Save & Next</button>
+          <button class="btn btn-success" onclick="showSubmitModal()">Submit Test</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. RESULTS SCREEN -->
+    <div id="resultsScreen" style="display:none;">
+      <div class="results-hero">
+        <h2 style="font-size:24px;font-weight:800;margin-bottom:6px;">Exam Completed & Submitted</h2>
+        <div style="font-size:44px;font-weight:900;" id="resScore">0 / 720</div>
+        <p style="font-size:13px;opacity:0.9;">SRINEET Performance & Accuracy Analysis</p>
+      </div>
+
+      <div class="analytics-grid">
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#22c55e;" id="resCorrect">0</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Correct</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#ef4444;" id="resIncorrect">0</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Incorrect</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#64748b;" id="resUnattempted">0</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Unattempted</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#0284c7;" id="resAccuracy">0%</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Accuracy</div>
+        </div>
+      </div>
+
+      <!-- Time Analysis -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:20px;">
+        <h3 style="font-size:15px;font-weight:800;margin-bottom:12px;">Per-Question Time & Speed Analysis</h3>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-size:13px;">
+          <div>Fastest: <strong id="resFastest">-</strong></div>
+          <div>Slowest: <strong id="resSlowest">-</strong></div>
+          <div>Average: <strong id="resAvg">-</strong></div>
+        </div>
+        <div id="resTimeTableContainer" style="overflow-x:auto;"></div>
+      </div>
+
+      <!-- Detailed Solutions -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px;">
+        <h3 style="font-size:16px;font-weight:800;margin-bottom:14px;">Detailed Solutions & Explanations</h3>
+        <div id="resSolutionsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE-OVER QUESTION PALETTE DRAWER                       -->
+  <!-- ======================================================== -->
+  <div id="drawerBackdrop" class="drawer-backdrop" onclick="closePaletteDrawer()"></div>
+
+  <aside id="paletteDrawer" class="palette-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Question Palette</div>
+      <button class="btn-close" onclick="closePaletteDrawer()">✕</button>
+    </div>
+
+    <!-- Candidate Profile -->
+    <div class="drawer-candidate">
+      <div style="width:32px;height:32px;border-radius:50%;background:#0284c7;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;">
+        SR
+      </div>
+      <div style="flex:1;">
+        <div style="font-weight:700;">NEET Aspirant</div>
+        <div style="font-size:10px;color:var(--text-muted);">Roll No: 2026-NEET-SRI</div>
+      </div>
+      <span style="background:#dcfce7;color:#15803d;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px;">ACTIVE</span>
+    </div>
+
+    <!-- NTA Visual Legends with Live Counts -->
+    <div class="drawer-legends">
+      <div class="legend-chip">
+        <div class="legend-box box-ans" id="dCountAns">0</div>
+        <span>Answered</span>
+      </div>
+      <div class="legend-chip">
+        <div class="legend-box box-not-ans" id="dCountNotAns">0</div>
+        <span>Not Answered</span>
+      </div>
+      <div class="legend-chip">
+        <div class="legend-box box-mark" id="dCountMark">0</div>
+        <span>Marked Review</span>
+      </div>
+      <div class="legend-chip">
+        <div class="legend-box box-not-vis" id="dCountNotVis">0</div>
+        <span>Not Visited</span>
+      </div>
+      <div class="legend-chip" style="grid-column: span 2; padding-top:4px; border-top: 1px solid var(--border);">
+        <div class="legend-box box-ans-mark" id="dCountAnsMark">0</div>
+        <span>Answered & Marked (Evaluated)</span>
+      </div>
+    </div>
+
+    <!-- Subject Filters inside Drawer -->
+    <div class="drawer-filter" id="drawerFilterContainer"></div>
+
+    <!-- 5-Questions Per Row Grid -->
+    <div class="drawer-grid-container">
+      <div class="palette-grid-5" id="drawerGrid"></div>
+    </div>
+
+    <!-- Drawer Footer Submit -->
+    <div class="drawer-footer">
+      <button class="btn btn-success" style="width:100%;padding:10px;" onclick="closePaletteDrawer();showSubmitModal();">
+        Submit Examination
+      </button>
+    </div>
+  </aside>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="submitModal" class="modal-overlay" style="display:none;">
+    <div class="modal-card">
+      <h3 style="font-size:17px;font-weight:800;margin-bottom:8px;">Submit Examination Confirmation</h3>
+      <p style="font-size:13px;color:var(--text-muted);">Please review your answers summary. You cannot change your answers after final submission.</p>
+
+      <table class="summary-table">
+        <tr><th>Exam Status</th><th>Question Count</th></tr>
+        <tr><td>Answered</td><td id="mCountAns" style="font-weight:bold;color:#22c55e;">0</td></tr>
+        <tr><td>Not Answered</td><td id="mCountNotAns" style="font-weight:bold;color:#ef4444;">0</td></tr>
+        <tr><td>Marked for Review</td><td id="mCountMark" style="font-weight:bold;color:#8b5cf6;">0</td></tr>
+        <tr><td>Answered & Marked</td><td id="mCountAnsMark" style="font-weight:bold;color:#7c3aed;">0</td></tr>
+        <tr><td>Not Visited</td><td id="mCountNotVis" style="font-weight:bold;color:#64748b;">0</td></tr>
+      </table>
+
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;">
+        <button class="btn btn-outline" onclick="hideSubmitModal()">Resume Test</button>
+        <button class="btn btn-primary" onclick="finalizeSubmission()">Yes, Submit Exam</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Digital Rough Sheet Overlay -->
+  <div id="scratchWindow" class="scratch-window" style="display:none;">
+    <div class="scratch-header">
+      <span>SRINEET Digital Scratchpad</span>
+      <div style="display:flex;gap:4px;">
+        <button class="btn btn-outline" style="padding:1px 6px;font-size:10px;height:20px;" onclick="clearScratchpad()">Clear</button>
+        <button class="btn btn-outline" style="padding:1px 6px;font-size:10px;height:20px;" onclick="toggleScratchpad()">✕</button>
+      </div>
+    </div>
+    <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+  </div>
+
+  <script>
+    // Embedded Data
+    var testMetadata = {"testId":"yakeen-test-01","title":"YAKEEN 1.0 TEST - 01","subtitle":"Physics: Units & Measurements • Chemistry: Some Basic Concepts • Botany: Cell The Unit of Life • Zoology: Animal Kingdom","durationMinutes":180,"totalQuestions":180,"totalMarks":720,"markingScheme":{"correct":4,"incorrect":-1,"unattempted":0},"instructions":["The test is of 180 minutes duration and contains 180 multiple choice questions (four options with a single correct answer).","Physics (Q1 to Q45), Chemistry (Q46 to Q90), Botany (Q91 to Q135), and Zoology (Q136 to Q180). All 180 questions are compulsory.","Each correct answer gives +4 marks while 1 mark will be deducted for a wrong MCQ response (-1). Unattempted questions receive 0 marks.","Total maximum marks are 720.","Use the on-screen Question Palette on the right to navigate between questions.","A digital rough work scratchpad is available via the \"Rough Sheet\" button at the top bar.","Do not refresh or close this browser window during the active test session."],"sections":[{"id":"sec-phy","name":"Physics","subject":"Physics","totalQuestions":45},{"id":"sec-chem","name":"Chemistry","subject":"Chemistry","totalQuestions":45},{"id":"sec-bot","name":"Botany","subject":"Botany","totalQuestions":45},{"id":"sec-zoo","name":"Zoology","subject":"Zoology","totalQuestions":45}]};
+    var questions = [{"id":1,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Find the approximate value of $(1 + x)^3$, if $|x| \\ll 1$.","options":["$1 + x$","$1 - 3x$","$1 + 3x$","$1 + 3x + 3x^2 + x^3$"],"correctAnswer":2,"solution":"$(1 + x)^3 = 1 + 3x + 3x^2 + x^3$.\nSince $|x| \\ll 1$, higher order powers $x^2$ and $x^3$ can be neglected.\nTherefore, $(1 + x)^3 \\approx 1 + 3x$."},{"id":2,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The equation $\\sqrt{x} = 2y$ represents that graph between $x$ and $y$ is a :","options":["Straight line","Parabola","Hyperbola","Circle"],"correctAnswer":1,"solution":"Given $\\sqrt{x} = 2y$.\nSquaring both sides: $x = 4y^2 \\implies y^2 = \\frac{1}{4}x$.\nThis is the standard equation of a parabola opening along the positive x-axis."},{"id":3,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If $x = -5y^2$, then the correct graph is:","options":["Parabola opening towards negative x-axis (leftwards)","Parabola opening upwards along +y-axis","Parabola opening towards positive x-axis (rightwards)","Parabola opening downwards along -y-axis"],"correctAnswer":0,"solution":"For $x = -5y^2$, since $y^2 \\ge 0$ for all real $y$, $x$ is always $\\le 0$.\nHence the parabola has its vertex at $(0,0)$ and opens towards the negative x-axis (leftwards).","assets":[{"id":"q3_graph","type":"svg","data":"\u003csvg viewBox='0 0 240 160' class='w-56 h-36 mx-auto'\u003e\u003cline x1='20' y1='80' x2='220' y2='80' stroke='#64748b' stroke-width='1.5'/\u003e\u003cline x1='180' y1='10' x2='180' y2='150' stroke='#64748b' stroke-width='1.5'/\u003e\u003cpath d='M 40 20 Q 180 80 40 140' fill='none' stroke='#0284c7' stroke-width='2.5'/\u003e\u003ctext x='225' y='84' font-size='12' fill='#64748b'\u003ex\u003c/text\u003e\u003ctext x='176' y='18' font-size='12' fill='#64748b'\u003ey\u003c/text\u003e\u003ccircle cx='180' cy='80' r='3' fill='#0f172a'/\u003e\u003ctext x='185' y='95' font-size='11' fill='#0f172a'\u003eO\u003c/text\u003e\u003ctext x='60' y='65' font-size='11' fill='#0284c7'\u003ex = -5y²\u003c/text\u003e\u003c/svg\u003e","caption":"Graph of x = -5y² (Parabola opening left)"}]},{"id":4,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If in a right angle triangle, $\\sin A = \\frac{3}{5}$, then find $\\tan A$.","options":["$\\frac{3}{4}$","$\\frac{3}{5}$","$\\frac{4}{3}$","$\\frac{4}{5}$"],"correctAnswer":0,"solution":"In a right triangle:\n$\\sin A = \\frac{\\text{Perpendicular}}{\\text{Hypotenuse}} = \\frac{3}{5}$.\nBy Pythagoras theorem: $\\text{Base} = \\sqrt{5^2 - 3^2} = \\sqrt{16} = 4$.\nTherefore, $\\tan A = \\frac{\\text{Perpendicular}}{\\text{Base}} = \\frac{3}{4}$."},{"id":5,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Distance between points $(2, 3, -7)$ and $(-2, 0, 5)$ is","options":["5","13","$\\sqrt{145}$","$\\sqrt{119}$"],"correctAnswer":1,"solution":"$d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}$\n$= \\sqrt{(-2 - 2)^2 + (0 - 3)^2 + (5 - (-7))^2}$\n$= \\sqrt{(-4)^2 + (-3)^2 + (12)^2} = \\sqrt{16 + 9 + 144} = \\sqrt{169} = 13$."},{"id":6,"subject":"Physics","topic":"Mathematical Tools","type":"match-the-column","question":"Match List-I with List-II.","matchColumn":{"col1Title":"List-I","col2Title":"List-II","col1":[{"key":"(A)","text":"$\\sin 30^\\circ$"},{"key":"(B)","text":"$\\tan 30^\\circ$"},{"key":"(C)","text":"$\\cos 30^\\circ$"},{"key":"(D)","text":"$\\cot 30^\\circ$"}],"col2":[{"key":"(I)","text":"$\\sqrt{3}$"},{"key":"(II)","text":"$\\frac{\\sqrt{3}}{2}$"},{"key":"(III)","text":"$\\frac{1}{2}$"},{"key":"(IV)","text":"$\\frac{1}{\\sqrt{3}}$"}]},"options":["A-I, B-III, C-IV, D-II","A-IV, B-II, C-III, D-I","A-II, B-I, C-IV, D-III","A-III, B-IV, C-II, D-I"],"correctAnswer":3,"solution":"Standard trigonometric values:\n• $\\sin 30^\\circ = \\frac{1}{2}$ (III)\n• $\\tan 30^\\circ = \\frac{1}{\\sqrt{3}}$ (IV)\n• $\\cos 30^\\circ = \\frac{\\sqrt{3}}{2}$ (II)\n• $\\cot 30^\\circ = \\sqrt{3}$ (I)\nHence, A-III, B-IV, C-II, D-I."},{"id":7,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The maximum value of $y = 4\\sin x + 3\\cos x$ is:","options":["5","10","7","$7/2$"],"correctAnswer":0,"solution":"For expression of the form $a\\sin x + b\\cos x$, the maximum value is $\\sqrt{a^2 + b^2}$.\nHere $a = 4, b = 3$.\n$y_{\\max} = \\sqrt{4^2 + 3^2} = \\sqrt{16 + 9} = \\sqrt{25} = 5$."},{"id":8,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Find the value of $(8)^{5/3}$?","options":["16","8","32","4"],"correctAnswer":2,"solution":"$(8)^{5/3} = (2^3)^{5/3} = 2^{3 \\times (5/3)} = 2^5 = 32$."},{"id":9,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The equation $x^2 + 8x + 12 = 0$ has:","options":["No root","One root","Two roots","Four roots"],"correctAnswer":2,"solution":"$x^2 + 8x + 12 = 0$\n$\\implies (x + 6)(x + 2) = 0 \\implies x = -6, -2$.\nThe equation is quadratic and has two distinct real roots."},{"id":10,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If $y = x^2 - 4x + 3$ then find $y$ at $x = 4$.","options":["0","7","4","3"],"correctAnswer":3,"solution":"Substitute $x = 4$ into $y = x^2 - 4x + 3$:\n$y(4) = (4)^2 - 4(4) + 3 = 16 - 16 + 3 = 3$."},{"id":11,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"At point P (the vertex/minimum point of the parabola), the value of slope is:","options":["Zero","Positive","Negative","Infinite"],"correctAnswer":0,"solution":"At point P, the tangent to the curve is horizontal (parallel to the x-axis).\nTherefore, $\\frac{dy}{dx} = \\tan 0^\\circ = 0$. The slope is zero.","assets":[{"id":"q11_slope","type":"svg","data":"\u003csvg viewBox='0 0 220 150' class='w-52 h-36 mx-auto'\u003e\u003cline x1='20' y1='120' x2='200' y2='120' stroke='#64748b' stroke-width='1.5'/\u003e\u003cline x1='40' y1='10' x2='40' y2='135' stroke='#64748b' stroke-width='1.5'/\u003e\u003cpath d='M 50 25 Q 120 130 190 25' fill='none' stroke='#0284c7' stroke-width='2.5'/\u003e\u003ccircle cx='120' cy='78' r='4' fill='#ef4444'/\u003e\u003cline x1='80' y1='78' x2='160' y2='78' stroke='#ef4444' stroke-dasharray='4,4' stroke-width='1.5'/\u003e\u003ctext x='125' y='73' font-size='12' font-weight='bold' fill='#ef4444'\u003eP\u003c/text\u003e\u003ctext x='205' y='124' font-size='12' fill='#64748b'\u003ex\u003c/text\u003e\u003ctext x='34' y='16' font-size='12' fill='#64748b'\u003ey\u003c/text\u003e\u003c/svg\u003e","caption":"Point P at minimum of curve"}]},{"id":12,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If $y = \\frac{\\tan \\theta}{\\theta}$, then find the value of $y$ at $\\theta = 1^\\circ$.","options":["$10^\\circ$","0","1","$\\sqrt{3}$"],"correctAnswer":2,"solution":"For small angles $\\theta$, $\\tan \\theta \\approx \\theta$ (in radians).\nTherefore, $\\lim_{\\theta \\to 0} \\frac{\\tan \\theta}{\\theta} = 1$.\nAt $\\theta = 1^\\circ$, $y \\approx 1$."},{"id":13,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The graph for the equation $y = 3$ is:","options":["A straight line parallel to x-axis at distance 3","A straight line parallel to y-axis at distance 3","A straight line passing through origin with slope 3","A parabola passing through (0,3)"],"correctAnswer":0,"solution":"$y = 3$ can be written as $y = 0 \\cdot x + 3$.\nThis represents a straight line with slope $m = 0$ and y-intercept $c = 3$, which is parallel to the x-axis.","assets":[{"id":"q13_line","type":"svg","data":"\u003csvg viewBox='0 0 200 140' class='w-48 h-32 mx-auto'\u003e\u003cline x1='20' y1='100' x2='180' y2='100' stroke='#64748b' stroke-width='1.5'/\u003e\u003cline x1='50' y1='20' x2='50' y2='125' stroke='#64748b' stroke-width='1.5'/\u003e\u003cline x1='20' y1='50' x2='180' y2='50' stroke='#0284c7' stroke-width='2.5'/\u003e\u003ccircle cx='50' cy='50' r='3' fill='#0f172a'/\u003e\u003ctext x='32' y='54' font-size='11' font-weight='bold' fill='#0f172a'\u003e3\u003c/text\u003e\u003ctext x='185' y='104' font-size='11' fill='#64748b'\u003ex\u003c/text\u003e\u003ctext x='46' y='16' font-size='11' fill='#64748b'\u003ey\u003c/text\u003e\u003ctext x='90' y='42' font-size='11' fill='#0284c7'\u003ey = 3\u003c/text\u003e\u003c/svg\u003e","caption":"Graph of y = 3"}]},{"id":14,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The sum of the series $1 + \\frac{1}{4} + \\frac{1}{16} + \\frac{1}{64} + \\dots \\infty$ is","options":["$\\frac{8}{7}$","$\\frac{6}{5}$","$\\frac{5}{4}$","$\\frac{4}{3}$"],"correctAnswer":3,"solution":"This is an infinite geometric progression (G.P.) with first term $a = 1$ and common ratio $r = \\frac{1}{4}$.\n$S_\\infty = \\frac{a}{1 - r} = \\frac{1}{1 - 1/4} = \\frac{1}{3/4} = \\frac{4}{3}$."},{"id":15,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If acceleration due to gravity ($g$) at height $h \\ll R$ (where $R$ is radius of earth) is $g_h = g_0\\left(1 + \\frac{h}{R}\\right)^{-2}$, then using binomial theorem which is correct","options":["$g_h = g_0$","$g_h = g_0\\left(1 - \\frac{2h}{R}\\right)$","$g_h = g_0\\left(1 + \\frac{2h}{R}\\right)$","$g_h = g_0\\left(1 - \\frac{h}{2R}\\right)$"],"correctAnswer":1,"solution":"By binomial theorem: $(1 + x)^n \\approx 1 + nx$ when $|x| \\ll 1$.\nHere $x = \\frac{h}{R} \\ll 1$ and $n = -2$.\nTherefore, $\\left(1 + \\frac{h}{R}\\right)^{-2} \\approx 1 - 2\\left(\\frac{h}{R}\\right)$.\nHence, $g_h = g_0\\left(1 - \\frac{2h}{R}\\right)$."},{"id":16,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Find the value of hypotenuse $H$ for a right angled triangle with base $B = 4\\text{ m}$ and perpendicular $P = 3\\text{ m}$:","options":["$6\\text{ m}$","$1\\text{ m}$","$5\\text{ m}$","$7\\text{ m}$"],"correctAnswer":2,"solution":"By Pythagoras theorem: $H = \\sqrt{P^2 + B^2} = \\sqrt{3^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\\text{ m}$.","assets":[{"id":"q16_triangle","type":"svg","data":"\u003csvg viewBox='0 0 200 150' class='w-48 h-36 mx-auto'\u003e\u003cpolygon points='40,120 160,120 40,30' fill='#f1f5f9' stroke='#0284c7' stroke-width='2'/\u003e\u003crect x='40' y='108' width='12' height='12' fill='none' stroke='#0284c7'/\u003e\u003ctext x='90' y='136' font-size='12' font-weight='bold' fill='#0f172a'\u003eBase = 4 m\u003c/text\u003e\u003ctext x='8' y='80' font-size='12' font-weight='bold' fill='#0f172a'\u003eP = 3 m\u003c/text\u003e\u003ctext x='110' y='70' font-size='12' font-weight='bold' fill='#ef4444'\u003eH = ?\u003c/text\u003e\u003c/svg\u003e","caption":"Right angled triangle"}]},{"id":17,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"$\\sin(A - B)$ is equal to:","options":["$\\sin A \\cos B + \\cos A \\sin B$","$\\sin A \\cos B - \\cos A \\sin B$","$\\cos A \\sin B - \\sin A \\cos B$","$\\cos A \\cos B + \\sin A \\sin B$"],"correctAnswer":1,"solution":"Standard trigonometric formula:\n$\\sin(A - B) = \\sin A \\cos B - \\cos A \\sin B$."},{"id":18,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The slope of $v - t$ is zero at point:","options":["A","B","C","D"],"correctAnswer":1,"solution":"Slope of $v-t$ curve is $\\frac{dv}{dt}$ (acceleration).\nAt point A the slope is positive, at point C the slope is negative.\nAt point B, the curve is horizontal (parallel to t-axis), so the slope is zero.","assets":[{"id":"q18_vt","type":"svg","data":"\u003csvg viewBox='0 0 240 140' class='w-56 h-32 mx-auto'\u003e\u003cline x1='20' y1='110' x2='220' y2='110' stroke='#64748b' stroke-width='1.5'/\u003e\u003cline x1='30' y1='20' x2='30' y2='120' stroke='#64748b' stroke-width='1.5'/\u003e\u003cpath d='M 30 110 Q 70 40 100 40 L 150 40 Q 180 40 210 110' fill='none' stroke='#0284c7' stroke-width='2.5'/\u003e\u003ccircle cx='65' cy='65' r='3' fill='#0f172a'/\u003e\u003ctext x='58' y='55' font-size='11' font-weight='bold' fill='#0f172a'\u003eA\u003c/text\u003e\u003ccircle cx='125' cy='40' r='3' fill='#ef4444'/\u003e\u003ctext x='122' y='32' font-size='11' font-weight='bold' fill='#ef4444'\u003eB\u003c/text\u003e\u003ccircle cx='185' cy='65' r='3' fill='#0f172a'/\u003e\u003ctext x='188' y='55' font-size='11' font-weight='bold' fill='#0f172a'\u003eC\u003c/text\u003e\u003ctext x='225' y='114' font-size='11' fill='#64748b'\u003et\u003c/text\u003e\u003ctext x='24' y='16' font-size='11' fill='#64748b'\u003ev\u003c/text\u003e\u003c/svg\u003e","caption":"v-t graph"}]},{"id":19,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Convert angle from radian to degree $\\frac{\\pi}{2}\\text{ rad}$:","options":["$60^\\circ$","$30^\\circ$","$90^\\circ$","$0^\\circ$"],"correctAnswer":2,"solution":"Angle in degrees $= \\text{Angle in radians} \\times \\frac{180^\\circ}{\\pi} = \\frac{\\pi}{2} \\times \\frac{180^\\circ}{\\pi} = 90^\\circ$."},{"id":20,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The slope of the line passing through $(0, 4)$ and $(3, 0)$ is:","options":["$-\\frac{4}{3}$","$\\frac{4}{3}$","$\\frac{3}{4}$","$-\\frac{3}{4}$"],"correctAnswer":0,"solution":"Slope $m = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{0 - 4}{3 - 0} = -\\frac{4}{3}$.","assets":[{"id":"q20_line","type":"svg","data":"\u003csvg viewBox='0 0 200 150' class='w-48 h-36 mx-auto'\u003e\u003cline x1='20' y1='120' x2='180' y2='120' stroke='#64748b' stroke-width='1.5'/\u003e\u003cline x1='50' y1='10' x2='50' y2='135' stroke='#64748b' stroke-width='1.5'/\u003e\u003cline x1='35' y1='20' x2='160' y2='130' stroke='#0284c7' stroke-width='2'/\u003e\u003ccircle cx='50' cy='33' r='3.5' fill='#ef4444'/\u003e\u003ctext x='58' y='36' font-size='11' font-weight='bold' fill='#0f172a'\u003e(0, 4)\u003c/text\u003e\u003ccircle cx='145' cy='120' r='3.5' fill='#ef4444'/\u003e\u003ctext x='136' y='136' font-size='11' font-weight='bold' fill='#0f172a'\u003e(3, 0)\u003c/text\u003e\u003ctext x='185' y='124' font-size='11' fill='#64748b'\u003ex\u003c/text\u003e\u003ctext x='44' y='16' font-size='11' fill='#64748b'\u003ey\u003c/text\u003e\u003c/svg\u003e","caption":"Line through (0,4) and (3,0)"}]},{"id":21,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Find the value of $\\cos(330^\\circ)$","options":["$\\sin 45^\\circ$","$-\\cos 30^\\circ$","$\\cos 60^\\circ$","$\\sin 60^\\circ$"],"correctAnswer":3,"solution":"$\\cos(330^\\circ) = \\cos(360^\\circ - 30^\\circ) = \\cos(30^\\circ) = \\frac{\\sqrt{3}}{2}$.\nSince $\\sin(60^\\circ) = \\frac{\\sqrt{3}}{2}$, $\\cos(330^\\circ) = \\sin 60^\\circ$."},{"id":22,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Find the value of perpendicular $P$ for a right angled triangle with base $B = 8$ and base angle $\\theta = 30^\\circ$:","options":["$\\frac{\\sqrt{3}}{8}$","8","$\\frac{8}{\\sqrt{3}}$","0"],"correctAnswer":2,"solution":"In right triangle: $\\tan 30^\\circ = \\frac{\\text{Perpendicular}}{\\text{Base}} = \\frac{P}{8}$.\n$\\implies \\frac{1}{\\sqrt{3}} = \\frac{P}{8} \\implies P = \\frac{8}{\\sqrt{3}}$."},{"id":23,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Which graph is the best representation for the given equation, $y \\propto x^2$","options":["Parabolic curve opening upwards with slope increasing as x increases","Curve with decreasing slope opening downwards","Rectangular hyperbola curving towards axes","Straight line passing through the origin"],"correctAnswer":0,"solution":"For $y \\propto x^2$, the graph is a parabola symmetric about the y-axis with vertex at $(0,0)$. The slope $\\frac{dy}{dx} = 2kx$ increases with $x$."},{"id":24,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"What is the value of $(\\sin 30^\\circ \\cos 15^\\circ) + (\\cos 30^\\circ \\sin 15^\\circ)$?","options":["$\\frac{1}{2}$","0","1","$\\frac{1}{\\sqrt{2}}$"],"correctAnswer":3,"solution":"Using identity $\\sin(A + B) = \\sin A \\cos B + \\cos A \\sin B$:\n$\\sin(30^\\circ + 15^\\circ) = \\sin 45^\\circ = \\frac{1}{\\sqrt{2}}$."},{"id":25,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Write the equation of this graph where $a = 7\\text{ m}$ is the horizontal semi-minor axis and $b = 10\\text{ m}$ is the vertical semi-major axis:","options":["$\\frac{x^2}{10^2} + \\frac{y^2}{7^2} = 1$","$\\frac{x^2}{7} + \\frac{y^2}{10} = 1$","$\\frac{x^2}{7^2} + \\frac{y^2}{10^2} = 1$","$\\frac{x^2}{7^2} + \\frac{y^2}{10^2} = 4$"],"correctAnswer":2,"solution":"Standard equation of an ellipse centered at origin is $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$.\nHere $a = 7\\text{ m}$ (along x-axis) and $b = 10\\text{ m}$ (along y-axis).\nTherefore, $\\frac{x^2}{7^2} + \\frac{y^2}{10^2} = 1$."},{"id":26,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The equation of a straight line is $2x + 3y = 5$. What is the slope of this line?","options":["$\\frac{3}{2}$","$\\frac{2}{3}$","$-\\frac{2}{3}$","$-\\frac{3}{2}$"],"correctAnswer":2,"solution":"$2x + 3y = 5 \\implies 3y = -2x + 5 \\implies y = -\\frac{2}{3}x + \\frac{5}{3}$.\nComparing with $y = mx + c$, slope $m = -\\frac{2}{3}$."},{"id":27,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"$\\log_e 15$ is equal to:","options":["$\\log_e 3 + \\log_e 5$","$\\log_e 5 - \\log_e 3$","$\\log_e 10 + \\log_e 5$","$\\log_e 10 - \\log_e 5$"],"correctAnswer":0,"solution":"Using logarithm product rule $\\log(mn) = \\log m + \\log n$:\n$\\log_e 15 = \\log_e(3 \\times 5) = \\log_e 3 + \\log_e 5$."},{"id":28,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If $\\sin \\theta = -\\frac{1}{\\sqrt{2}}$ and $\\tan \\theta = 1$, then $\\theta$ lies in which quadrant?","options":["First","Second","Third","Fourth"],"correctAnswer":2,"solution":"• $\\sin \\theta \u003c 0$ in the 3rd and 4th quadrants.\n• $\\tan \\theta \u003e 0$ in the 1st and 3rd quadrants.\nThe common quadrant satisfying both conditions is the Third quadrant."},{"id":29,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If $y = \\sin 2\\theta$, then find '$\\theta$' for which $y$ is maximum.","options":["$90^\\circ$","$60^\\circ$","$45^\\circ$","$32^\\circ$"],"correctAnswer":2,"solution":"The maximum value of the sine function is 1.\n$\\sin 2\\theta = 1 \\implies 2\\theta = 90^\\circ \\implies \\theta = 45^\\circ$."},{"id":30,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If linear momentum $P = \\frac{h}{\\lambda}$, then what will be graph between $P$ and $\\lambda$? ($h$ is Planck's constant)","options":["Parabola opening rightwards","Parabola opening upwards","Rectangular hyperbola ($P \\propto 1/\\lambda$)","Straight line with negative slope"],"correctAnswer":2,"solution":"$P = \\frac{h}{\\lambda} \\implies P \\cdot \\lambda = h = \\text{constant}$.\nThis represents a rectangular hyperbola in the first quadrant where $P \\to \\infty$ as $\\lambda \\to 0$ and $P \\to 0$ as $\\lambda \\to \\infty$."},{"id":31,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Find the value of $\\log_{10} 10^{35}$","options":["28","32","36","35"],"correctAnswer":3,"solution":"Using $\\log_b(a^k) = k \\log_b a$:\n$\\log_{10} 10^{35} = 35 \\log_{10} 10 = 35 \\times 1 = 35$."},{"id":32,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The slope of the line joining $P(-4, 7)$ and $Q(2, 3)$ is:","options":["$-\\frac{2}{3}$","$\\frac{2}{3}$","$-\\frac{3}{2}$","$\\frac{3}{2}$"],"correctAnswer":0,"solution":"Slope $m = \\frac{y_2 - y_1}{x_2 - x_1} = \\frac{3 - 7}{2 - (-4)} = \\frac{-4}{6} = -\\frac{2}{3}$."},{"id":33,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Correct value of $\\cos(2^\\circ)$ is approximately:","options":["$2^\\circ$","$\\frac{\\pi}{50}$","1","0"],"correctAnswer":2,"solution":"For small angles $\\theta$ near $0$, $\\cos \\theta \\approx 1 - \\frac{\\theta^2}{2} \\approx 1$.\nHence $\\cos(2^\\circ) \\approx 1$."},{"id":34,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If $y = \\log_e x + \\sin x + e^x$ then $\\frac{dy}{dx}$ is","options":["$\\frac{1}{x} + \\sin x + e^x$","$\\frac{1}{x} - \\cos x + e^x$","$\\frac{1}{x} + \\cos x + e^x$","$-\\sin x$"],"correctAnswer":2,"solution":"Differentiating term by term:\n$\\frac{dy}{dx} = \\frac{d}{dx}(\\ln x) + \\frac{d}{dx}(\\sin x) + \\frac{d}{dx}(e^x) = \\frac{1}{x} + \\cos x + e^x$."},{"id":35,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"$\\frac{d}{dx}(\\sin 30^\\circ)$ is equal to","options":["$\\cos 30^\\circ$","$\\text{cosec } 30^\\circ$","0","$\\sin 30^\\circ$"],"correctAnswer":2,"solution":"$\\sin 30^\\circ = \\frac{1}{2}$ is a constant.\nThe derivative of any constant with respect to $x$ is 0."},{"id":36,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The slope of straight line $\\sqrt{3}y = 3x + 4$ is","options":["3","$\\sqrt{3}$","$\\frac{1}{\\sqrt{3}}$","$\\frac{1}{3}$"],"correctAnswer":1,"solution":"$\\sqrt{3}y = 3x + 4 \\implies y = \\frac{3}{\\sqrt{3}}x + \\frac{4}{\\sqrt{3}} = \\sqrt{3}x + \\frac{4}{\\sqrt{3}}$.\nComparing with $y = mx + c$, slope $m = \\sqrt{3}$."},{"id":37,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The equation of straight line having slope $\\sqrt{3}$ and $y$ intercept of $-2$ will be:","options":["$y = \\sqrt{3}x + 2$","$y = \\sqrt{3}x - 2$","$y = -\\sqrt{3}x - 2$","$y = -\\sqrt{3}x + 2$"],"correctAnswer":1,"solution":"Slope-intercept form: $y = mx + c$.\nGiven $m = \\sqrt{3}$ and $c = -2$.\nTherefore, $y = \\sqrt{3}x - 2$."},{"id":38,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Convert angle from degree to radian: $30^\\circ$ to radian is:","options":["$\\frac{\\pi}{2}$","$\\frac{\\pi}{4}$","$\\frac{\\pi}{6}$","$\\frac{\\pi}{3}$"],"correctAnswer":2,"solution":"Angle in radians $= 30^\\circ \\times \\frac{\\pi}{180^\\circ} = \\frac{\\pi}{6}\\text{ rad}$."},{"id":39,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If $\\tan \\theta = \\frac{4}{3}$. Find the value of $\\sin \\theta$","options":["$\\frac{3}{5}$","$\\frac{4}{3}$","$\\frac{4}{5}$","$\\frac{5}{4}$"],"correctAnswer":2,"solution":"$\\tan \\theta = \\frac{\\text{Opposite}}{\\text{Adjacent}} = \\frac{4}{3}$.\n$\\text{Hypotenuse} = \\sqrt{4^2 + 3^2} = \\sqrt{25} = 5$.\nTherefore, $\\sin \\theta = \\frac{\\text{Opposite}}{\\text{Hypotenuse}} = \\frac{4}{5}$."},{"id":40,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"The spring force is given by $F = -kx$, here $k$ is a positive constant and $x$ is deformation of spring. The $F-x$ graph is:","options":["Parabolic curve curving upwards","Straight line with positive slope passing through origin","Straight line passing through the origin with negative slope","Parabola opening downwards"],"correctAnswer":2,"solution":"The equation $F = -kx$ is of the form $y = mx$ with slope $m = -k \u003c 0$.\nIt is a straight line passing through the origin $(0,0)$ and sloping downwards from top-left to bottom-right."},{"id":41,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"$\\frac{d}{dx}(e^x) = ?$","options":["$e^x$","0","1","None of these"],"correctAnswer":0,"solution":"The derivative of the natural exponential function $e^x$ is itself: $\\frac{d}{dx}(e^x) = e^x$."},{"id":42,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"Most appropriate graph for the equation $x = 2y - 3$ is:","options":["Line with positive slope and positive y-intercept ($y = \\frac{1}{2}x + \\frac{3}{2}$)","Line with negative slope and positive y-intercept","Line with negative slope and negative y-intercept","Line with positive slope and negative y-intercept"],"correctAnswer":0,"solution":"$x = 2y - 3 \\implies 2y = x + 3 \\implies y = \\frac{1}{2}x + \\frac{3}{2}$.\nHere slope $m = \\frac{1}{2} \u003e 0$ and y-intercept $c = \\frac{3}{2} \u003e 0$."},{"id":43,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"$\\int 3x^2 dx$ :","options":["$x^3 + C$","$6x + C$","$2x^2 + C$","$x^2 + C$"],"correctAnswer":0,"solution":"$\\int 3x^2 dx = 3 \\left(\\frac{x^3}{3}\\right) + C = x^3 + C$."},{"id":44,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"$\\int (x^2 + \\sin x + 3) dx$ :","options":["$\\frac{x^3}{3} + \\cos x + 3x + C$","$\\frac{x^3}{3} - \\cos x + 3x + C$","$\\frac{x^3}{3} + \\cos x - 3x + C$","$\\frac{x^3}{3} - \\cos x - 3x + C$"],"correctAnswer":1,"solution":"Integrating term by term:\n$\\int x^2 dx = \\frac{x^3}{3}$\n$\\int \\sin x dx = -\\cos x$\n$\\int 3 dx = 3x$\nAdding constant of integration gives $\\frac{x^3}{3} - \\cos x + 3x + C$."},{"id":45,"subject":"Physics","topic":"Mathematical Tools","type":"single-choice","question":"If $\\frac{\\sin \\theta + \\cos \\theta}{\\sin \\theta - \\cos \\theta} = \\frac{7}{3}$ then find $\\tan \\theta$?","options":["$\\frac{3}{5}$","$\\frac{5}{2}$","$\\frac{5}{3}$","$\\frac{2}{5}$"],"correctAnswer":1,"solution":"Divide numerator and denominator by $\\cos \\theta$:\n$\\frac{\\tan \\theta + 1}{\\tan \\theta - 1} = \\frac{7}{3}$\n$\\implies 3(\\tan \\theta + 1) = 7(\\tan \\theta - 1)$\n$\\implies 3\\tan \\theta + 3 = 7\\tan \\theta - 7$\n$\\implies 4\\tan \\theta = 10 \\implies \\tan \\theta = \\frac{10}{4} = \\frac{5}{2}$."},{"id":46,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The pair of species having same empirical formula among the following is;","options":["$\\text{C}_6\\text{H}_{12}\\text{O}_6$ and $\\text{CH}_3\\text{COOH}$","$\\text{CH}_3\\text{CH}_2\\text{OH}$ and $\\text{HCOOH}$","$\\text{CH}_3\\text{OH}$ and $\\text{CH}_3\\text{OC}_2\\text{H}_5$","$\\text{CH}_3\\text{CHO}$ and $\\text{CH}_3\\text{CH}_2\\text{OH}$"],"correctAnswer":0,"solution":"Glucose: $\\text{C}_6\\text{H}_{12}\\text{O}_6 \\to$ simplest ratio is $\\text{CH}_2\\text{O}$.\nAcetic acid: $\\text{CH}_3\\text{COOH} = \\text{C}_2\\text{H}_4\\text{O}_2 \\to$ simplest ratio is $\\text{CH}_2\\text{O}$.\nBoth have the same empirical formula $\\text{CH}_2\\text{O}$."},{"id":47,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The number of water molecules is maximum in:","options":["$1.8\\text{ g}$ of water.","$18\\text{ g}$ of water.","$18\\text{ moles}$ of water.","18 molecules of water."],"correctAnswer":2,"solution":"(1) $1.8\\text{ g} = 0.1\\text{ mol} = 0.1 N_A$ molecules.\n(2) $18\\text{ g} = 1\\text{ mol} = 1 N_A$ molecules.\n(3) $18\\text{ moles} = 18 N_A \\approx 1.08 \\times 10^{25}$ molecules.\n(4) 18 molecules.\nHence $18\\text{ moles}$ has maximum molecules."},{"id":48,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The mass of $2.5\\text{ g atom}$ of oxygen is;","options":["$10\\text{ g}$","$40\\text{ g}$","$22\\text{ g}$","$20\\text{ g}$"],"correctAnswer":1,"solution":"$1\\text{ g-atom}$ of oxygen $= 16\\text{ g}$.\nMass of $2.5\\text{ g-atoms} = 2.5 \\times 16 = 40.0\\text{ g}$."},{"id":49,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The number of significant figures in $1.0001$ are","options":["1","2","4","5"],"correctAnswer":3,"solution":"All zeroes between two non-zero digits are significant.\nIn $1.0001$, there are 5 significant figures."},{"id":50,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"In one molal solution that contains $0.5\\text{ mole}$ of a solute, there is:","options":["$1000\\text{ g}$ of solvent","$500\\text{ mL}$ of solvent","$500\\text{ g}$ of solvent","$100\\text{ mL}$ of solvent"],"correctAnswer":2,"solution":"$\\text{Molality} = \\frac{\\text{Moles of solute}}{\\text{Mass of solvent (kg)}}$\n$1 = \\frac{0.5}{W_{\\text{kg}}} \\implies W_{\\text{kg}} = 0.5\\text{ kg} = 500\\text{ g}$ of solvent."},{"id":51,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The chemical formula for aspirin is $\\text{C}_9\\text{H}_8\\text{O}_4$. How many oxygen atoms are there in a $480\\text{ mg}$ tablet? (Molar mass in $\\text{g/mol}$ of $\\text{C}=12, \\text{H}=1, \\text{O}=16$)","options":["$1.204 \\times 10^{23}$","$1.204 \\times 10^{24}$","$4.81 \\times 10^{21}$","$6.40 \\times 10^{21}$"],"correctAnswer":3,"solution":"Molar mass of $\\text{C}_9\\text{H}_8\\text{O}_4 = 9(12) + 8(1) + 4(16) = 180\\text{ g/mol}$.\nMoles of aspirin $= \\frac{480 \\times 10^{-3}\\text{ g}}{180} = 2.667 \\times 10^{-3}\\text{ mol}$.\nMoles of O atoms $= 4 \\times 2.667 \\times 10^{-3} = 1.0667 \\times 10^{-2}\\text{ mol}$.\nNumber of O atoms $= 1.0667 \\times 10^{-2} \\times 6.022 \\times 10^{23} = 6.40 \\times 10^{21}$."},{"id":52,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"match-the-column","question":"Match List-I with List-II.","matchColumn":{"col1Title":"List-I","col2Title":"List-II","col1":[{"key":"(A)","text":"$3\\text{ mole of Fe}_3\\text{S}_2$"},{"key":"(B)","text":"$1\\text{ mole of FeSO}_4$"},{"key":"(C)","text":"$3\\text{ mole of O}_3$"},{"key":"(D)","text":"$1.5\\text{ mole of K}_2\\text{CO}_3$"}],"col2":[{"key":"(I)","text":"$6\\text{ mole of sulphur atoms}$"},{"key":"(II)","text":"$1\\text{ mole of iron atoms}$"},{"key":"(III)","text":"$9\\text{ mole of oxygen atoms}$"},{"key":"(IV)","text":"$3\\text{ mole of potassium atoms}$"}]},"options":["A-I, B-II, C-III, D-IV","A-II, B-III, C-I, D-IV","A-III, B-IV, C-II, D-I","A-IV, B-II, C-III, D-I"],"correctAnswer":0,"solution":"(A) $3\\text{ mol Fe}_3\\text{S}_2 \\implies 3 \\times 2 = 6\\text{ mol S atoms}$ (I)\n(B) $1\\text{ mol FeSO}_4 \\implies 1\\text{ mol Fe atoms}$ (II)\n(C) $3\\text{ mol O}_3 \\implies 3 \\times 3 = 9\\text{ mol O atoms}$ (III)\n(D) $1.5\\text{ mol K}_2\\text{CO}_3 \\implies 1.5 \\times 2 = 3\\text{ mol K atoms}$ (IV)\nHence, A-I, B-II, C-III, D-IV."},{"id":53,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"$20\\text{ g}$ of $\\text{CaCO}_3$ on heating gave $8.8\\text{ g}$ of $\\text{CO}_2$ and $11.2\\text{ g}$ of $\\text{CaO}$. This is in accordance with:","options":["The law of conservation of mass.","The law of constant composition.","The law of reciprocal proportions.","None of these"],"correctAnswer":0,"solution":"Mass of reactant $= 20\\text{ g}$.\nTotal mass of products $= 8.8 + 11.2 = 20.0\\text{ g}$.\nSince mass of reactants equals mass of products, this illustrates the Law of Conservation of Mass."},{"id":54,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The empirical formula of a compound of molecular mass 120 is $\\text{CH}_2\\text{O}$. What will be the molecular formula of the compound?","options":["$\\text{C}_2\\text{H}_4\\text{O}_2$","$\\text{C}_4\\text{H}_8\\text{O}_4$","$\\text{C}_3\\text{H}_6\\text{O}$","$\\text{C}_5\\text{H}_{10}\\text{O}_5$"],"correctAnswer":1,"solution":"Empirical formula mass of $\\text{CH}_2\\text{O} = 12 + 2(1) + 16 = 30$.\n$n = \\frac{\\text{Molecular mass}}{\\text{Empirical formula mass}} = \\frac{120}{30} = 4$.\nMolecular formula $= (\\text{CH}_2\\text{O})_4 = \\text{C}_4\\text{H}_8\\text{O}_4$."},{"id":55,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"match-the-column","question":"Match List-I with List-II.","matchColumn":{"col1Title":"List-I (Quantity)","col2Title":"List-II (Units)","col1":[{"key":"(A)","text":"Density"},{"key":"(B)","text":"Pressure"},{"key":"(C)","text":"Length"},{"key":"(D)","text":"Energy"}],"col2":[{"key":"(I)","text":"$\\text{bar}$"},{"key":"(II)","text":"$\\text{kg m}^{-3}$"},{"key":"(III)","text":"$\\text{eV}$"},{"key":"(IV)","text":"$\\text{A}^\\circ$"}]},"options":["A-II, B-I, C-IV, D-III","A-IV, B-III, C-II, D-I","A-II, B-III, C-IV, D-I","A-II, B-I, C-III, D-IV"],"correctAnswer":0,"solution":"• Density has unit $\\text{kg m}^{-3}$ (II)\n• Pressure has unit $\\text{bar}$ (I)\n• Length has unit $\\text{A}^\\circ$ (IV)\n• Energy has unit $\\text{eV}$ (III)\nHence, A-II, B-I, C-IV, D-III."},{"id":56,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Among the following pairs of compounds, the one that illustrates the law of multiple proportions is;","options":["$\\text{Cu}$ and $\\text{CuSO}_4$","$\\text{CuO}$ and $\\text{Cu}_2\\text{O}$","$\\text{H}_2\\text{S}$ and $\\text{SO}_2$","$\\text{NH}_3$ and $\\text{NCl}_3$"],"correctAnswer":1,"solution":"Law of multiple proportions applies when two elements combine to form more than one compound.\nIn $\\text{CuO}$ and $\\text{Cu}_2\\text{O}$, copper and oxygen combine in different fixed ratios."},{"id":57,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"$62435 \\to$ Express this number in scientific notation:","options":["$6.2435 \\times 10^5$","$6.2435 \\times 10^{-5}$","$6.2435 \\times 10^{-4}$","$6.2435 \\times 10^4$"],"correctAnswer":3,"solution":"$62435 = 6.2435 \\times 10^4$."},{"id":58,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"A solution is prepared by adding $5\\text{ g}$ of a substance x to $18\\text{ g}$ of solvent calculate the mass percentage of the solute:","options":["$21.74\\%$","$19\\%$","$25\\%$","$40\\%$"],"correctAnswer":0,"solution":"Mass $\\%$ of solute $= \\frac{\\text{Mass of solute}}{\\text{Mass of solution}} \\times 100$\n$= \\frac{5}{5 + 18} \\times 100 = \\frac{5}{23} \\times 100 = 21.74\\%$."},{"id":59,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"How many moles of hydrogen atoms present in $34\\text{ g}$ of $\\text{NH}_3$?","options":["6","5","4","7"],"correctAnswer":0,"solution":"Molar mass of $\\text{NH}_3 = 17\\text{ g/mol}$.\nMoles of $\\text{NH}_3 = \\frac{34}{17} = 2\\text{ mol}$.\nEach $\\text{NH}_3$ contains 3 H atoms, so moles of H atoms $= 2 \\times 3 = 6\\text{ mol}$."},{"id":60,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Which of the following temperature will read the same value on Celsius and Fahrenheit scales.","options":["$-40$","$+40$","$-800$","$-200$"],"correctAnswer":0,"solution":"$F = \\frac{9}{5}C + 32$.\nSet $F = C = x$:\n$x = \\frac{9}{5}x + 32 \\implies -\\frac{4}{5}x = 32 \\implies x = -40$."},{"id":61,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"How many molecules are present in $10\\text{ L}$ of a liquid whose molar mass and density are $154\\text{ g/mol}$ and $1.54\\text{ g cm}^{-3}$ respectively?","options":["$100\\text{ N}_A$","$120\\text{ N}_A$","$2\\text{ N}_A$","$12\\text{ N}_A$"],"correctAnswer":0,"solution":"$V = 10\\text{ L} = 10,000\\text{ cm}^3$.\n$\\text{Mass} = V \\times d = 10,000 \\times 1.54 = 15,400\\text{ g}$.\n$\\text{Moles} = \\frac{15,400}{154} = 100\\text{ moles}$.\n$\\text{Number of molecules} = 100 N_A$."},{"id":62,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Select the correct statement regarding Dalton's atomic theory.","options":["Matter consists of divisible atoms.","Chemical reaction involves reorganization of atoms.","Compounds are formed when atoms of same elements combine in a fixed ratio.","All atoms of a given element have different properties."],"correctAnswer":1,"solution":"According to Dalton's atomic theory, chemical reactions involve reorganization of atoms. Atoms are neither created nor destroyed in a chemical reaction."},{"id":63,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The simplest formula of a compound containing $50\\%$ of element X (atomic mass 10) and $50\\%$ of element Y (atomic mass 20) is:","options":["$\\text{XY}$","$\\text{X}_2\\text{Y}$","$\\text{XY}_3$","$\\text{X}_2\\text{Y}_3$"],"correctAnswer":1,"solution":"Moles of X $= \\frac{50}{10} = 5$.\nMoles of Y $= \\frac{50}{20} = 2.5$.\nSimplest molar ratio $= \\frac{5}{2.5} : \\frac{2.5}{2.5} = 2 : 1$.\nEmpirical formula is $\\text{X}_2\\text{Y}$."},{"id":64,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The atomic weight of $\\text{Cu}$ is $63.546$. There are only two naturally occurring isotopes of copper $^{63}\\text{Cu}$ and $^{65}\\text{Cu}$. The natural abundance of the $^{63}\\text{Cu}$ isotope must be approximately :","options":["$10\\%$","$30\\%$","$50\\%$","$73\\%$"],"correctAnswer":3,"solution":"Let abundance of $^{63}\\text{Cu}$ be $x\\%$, then $^{65}\\text{Cu}$ is $(100 - x)\\%$.\n$63.546 = \\frac{63x + 65(100 - x)}{100} \\implies 6354.6 = 6500 - 2x \\implies 2x = 145.4 \\implies x = 72.7\\% \\approx 73\\%$."},{"id":65,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"$1.80\\text{ g}$ of glucose ($\\text{C}_6\\text{H}_{12}\\text{O}_6$) was dissolved in $36\\text{ g}$ of water. The number of oxygen atoms in solution are:","options":["$6.68 \\times 10^{23}$","$12.40 \\times 10^{22}$","$6.68 \\times 10^{22}$","$12.40 \\times 10^{23}$"],"correctAnswer":3,"solution":"Moles of glucose $= \\frac{1.8}{180} = 0.01\\text{ mol}$. O from glucose $= 0.01 \\times 6 = 0.06\\text{ mol}$.\nMoles of water $= \\frac{36}{18} = 2\\text{ mol}$. O from water $= 2 \\times 1 = 2\\text{ mol}$.\nTotal moles of O $= 2 + 0.06 = 2.06\\text{ mol}$.\nTotal O atoms $= 2.06 \\times 6.022 \\times 10^{23} = 1.240 \\times 10^{24} = 12.40 \\times 10^{23}$."},{"id":66,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Calculate the number of moles in $12.044 \\times 10^{23}$ He atoms.","options":["1","2","3","4"],"correctAnswer":1,"solution":"$\\text{Moles} = \\frac{\\text{Number of atoms}}{N_A} = \\frac{12.044 \\times 10^{23}}{6.022 \\times 10^{23}} = 2\\text{ moles}$."},{"id":67,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Which statement is incorrect for the reaction given below?\n$2\\text{ZnS} + 3\\text{O}_2 \\to 2\\text{ZnO} + 2\\text{SO}_2$","options":["One mole of $\\text{ZnS}$ will produce one mole of $\\text{SO}_2$.","One mole of $\\text{O}_2$ will produce $0.66\\text{ mole}$ of $\\text{ZnO}$.","Nine moles of oxygen requires four moles of $\\text{ZnS}$.","Nine moles of oxygen will produce six moles of $\\text{SO}_2$."],"correctAnswer":2,"solution":"From the stoichiometry: $3\\text{ moles of O}_2$ reacts with $2\\text{ moles of ZnS}$.\nTherefore, $9\\text{ moles of O}_2$ requires $\\frac{2}{3} \\times 9 = 6\\text{ moles of ZnS}$ (not 4 moles)."},{"id":68,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Number of molecules in $100\\text{ mL}$ of each of $\\text{O}_2, \\text{NH}_3$ and $\\text{CO}_2$ at STP are:","options":["In the order $\\text{CO}_2 \u003c \\text{O}_2 \u003c \\text{NH}_3$","In the order $\\text{NH}_3 \u003c \\text{O}_2 \u003c \\text{CO}_2$","The same","$\\text{NH}_3 = \\text{CO}_2 \u003c \\text{O}_2$"],"correctAnswer":2,"solution":"According to Avogadro's hypothesis, equal volumes of all gases under the same conditions of temperature and pressure contain equal number of molecules."},{"id":69,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"How many molecules of $\\text{CO}_2$ will be needed to obtain $1.8\\text{ g}$ of glucose according to given reaction.\nReaction : $6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\to \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2$\n[Molecular weight $\\text{C}_6\\text{H}_{12}\\text{O}_6 = 180\\text{ g mol}^{-1}$]","options":["$0.6 \\times 6.022 \\times 10^{23}$","$6 \\times 6.022 \\times 10^{23}$","$0.06 \\times 6.022 \\times 10^{23}$","$60 \\times 6.022 \\times 10^{23}$"],"correctAnswer":2,"solution":"Moles of glucose $= \\frac{1.8}{180} = 0.01\\text{ mol}$.\nFrom equation, $1\\text{ mol glucose}$ requires $6\\text{ mol CO}_2$.\nMoles of $\\text{CO}_2 = 6 \\times 0.01 = 0.06\\text{ mol}$.\nNumber of molecules $= 0.06 \\times 6.022 \\times 10^{23}$."},{"id":70,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Using the rules for significant figures, the correct answer for the expression $\\frac{0.02858 \\times 0.112}{0.5702}$ is:","options":["$0.005613$","$0.00561$","$0.0056$","$0.006$"],"correctAnswer":1,"solution":"The number with least significant figures is $0.112$ (3 significant figures).\nCalculating: $\\frac{0.02858 \\times 0.112}{0.5702} = 0.00561298...$\nRounding to 3 significant figures gives $0.00561$."},{"id":71,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The number of oxygen atoms present in $2.8\\text{ L}$ of $\\text{NO}_2(\\text{g})$ at STP is:","options":["$\\frac{N_A}{2}$","$\\frac{N_A}{8}$","$\\frac{N_A}{6}$","$\\frac{N_A}{4}$"],"correctAnswer":3,"solution":"Moles of $\\text{NO}_2 = \\frac{2.8}{22.4} = \\frac{1}{8}\\text{ mol}$.\nEach molecule has 2 O atoms.\nTotal O atoms $= \\frac{1}{8} \\times 2 \\times N_A = \\frac{N_A}{4}$."},{"id":72,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"A chloride salt of rhenium contains $63.6\\%$ Re by mass. What is its empirical formula? (Atomic mass of $\\text{Re} = 186\\text{ amu}, \\text{Cl} = 35.5\\text{ amu}$)","options":["$\\text{ReCl}$","$\\text{ReCl}_2$","$\\text{ReCl}_3$","$\\text{ReCl}_5$"],"correctAnswer":2,"solution":"Moles of Re $= \\frac{63.6}{186} = 0.342$.\nMoles of Cl $= \\frac{100 - 63.6}{35.5} = \\frac{36.4}{35.5} = 1.025$.\nRatio $= \\frac{0.342}{0.342} : \\frac{1.025}{0.342} = 1 : 3$.\nEmpirical formula is $\\text{ReCl}_3$."},{"id":73,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"How many atoms of gold are present in $19.7\\text{ kg}$ of gold? (At wt. of $\\text{Au} = 197$):","options":["$6.022 \\times 10^{24}$","$6.022 \\times 10^{23}$","$6.022 \\times 10^{25}$","$6.022 \\times 10^{21}$"],"correctAnswer":2,"solution":"Mass $= 19.7\\text{ kg} = 19,700\\text{ g}$.\nMoles of Au $= \\frac{19,700}{197} = 100\\text{ mol}$.\nNumber of atoms $= 100 \\times 6.022 \\times 10^{23} = 6.022 \\times 10^{25}$."},{"id":74,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"_______ is the sum of average atomic masses of the atoms of the elements which constitute the molecule.","options":["Molecular mass","Atomic weight","Percentage weight","Percentage volume"],"correctAnswer":0,"solution":"Molecular mass is defined as the sum of atomic masses of the elements present in a molecule."},{"id":75,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"How many moles of aluminium sulphate, $\\text{Al}_2(\\text{SO}_4)_3$ will contain $0.24\\text{ mole}$ of oxygen atoms?","options":["$2.0 \\times 10^2$","$2.0 \\times 10^{-2}$","$3.0 \\times 10^3$","$1.5 \\times 10^{-2}$"],"correctAnswer":1,"solution":"$1\\text{ mole of Al}_2(\\text{SO}_4)_3$ contains $4 \\times 3 = 12\\text{ moles of oxygen atoms}$.\nMoles of $\\text{Al}_2(\\text{SO}_4)_3 = \\frac{0.24}{12} = 0.02 = 2.0 \\times 10^{-2}\\text{ mol}$."},{"id":76,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"If $40\\text{ g}$ of $\\text{CaCO}_3$ is treated with $40\\text{ g}$ of $\\text{HCl}$, which of the following reactants will act as limiting reagent?\n$\\text{CaCO}_3 + 2\\text{HCl} \\to \\text{CaCl}_2 + \\text{H}_2\\text{O} + \\text{CO}_2$","options":["$\\text{CaCO}_3$","$\\text{HCl}$","Both $\\text{CaCO}_3$ and $\\text{HCl}$","Neither $\\text{CaCO}_3$ nor $\\text{HCl}$"],"correctAnswer":0,"solution":"Molar mass: $\\text{CaCO}_3 = 100\\text{ g/mol}, 2\\text{HCl} = 73\\text{ g/mol}$.\n$100\\text{ g CaCO}_3$ reacts with $73\\text{ g HCl}$.\n$40\\text{ g CaCO}_3$ requires $\\frac{73}{100} \\times 40 = 29.2\\text{ g HCl}$.\nSince we have $40\\text{ g HCl}$, $\\text{HCl}$ is in excess and $\\text{CaCO}_3$ is the limiting reagent."},{"id":77,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"\"A given compound always contains exactly the same proportion of elements by weight\" is a statement of ________.","options":["Law of combining volumes of gases","Law of conservation of mass","Law of multiple proportion","Law of definite proportion"],"correctAnswer":3,"solution":"This is Joseph Proust's Law of Definite Proportions (or Law of Constant Composition)."},{"id":78,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"match-the-column","question":"Match Column-I with Column-II:","matchColumn":{"col1Title":"Column-I","col2Title":"Column-II","col1":[{"key":"(A)","text":"$1\\text{ mole of O}_2(\\text{g})$"},{"key":"(B)","text":"$1\\text{ mole of SO}_2(\\text{g})$"},{"key":"(C)","text":"$1\\text{ g of H}_2(\\text{g})$"},{"key":"(D)","text":"$0.5\\text{ mole of O}_3(\\text{g})$"}],"col2":[{"key":"(P)","text":"$32\\text{ g}$"},{"key":"(Q)","text":"$64\\text{ g}$"},{"key":"(R)","text":"$11.2\\text{ L at STP}$"},{"key":"(S)","text":"$1.5 \\times 6.023 \\times 10^{23}\\text{ atoms}$"}]},"options":["A-P, B-Q, C-R, D-S","A-S, B-R, C-P, D-Q","A-S, B-R, C-Q, D-P","A-R, B-S, C-P, D-Q"],"correctAnswer":0,"solution":"• $1\\text{ mol O}_2 = 32\\text{ g}$ (P)\n• $1\\text{ mol SO}_2 = 64\\text{ g}$ (Q)\n• $1\\text{ g H}_2 = 0.5\\text{ mol} = 11.2\\text{ L at STP}$ (R)\n• $0.5\\text{ mol O}_3 = 0.5 \\times 3 = 1.5\\text{ mol atoms} = 1.5 N_A\\text{ atoms}$ (S)\nHence, A-P, B-Q, C-R, D-S."},{"id":79,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Formula unit mass of $\\text{NaHCO}_3$ is:","options":["$84\\text{ u}$","$76\\text{ u}$","$52\\text{ u}$","$64\\text{ u}$"],"correctAnswer":0,"solution":"$\\text{Mass} = 23 (\\text{Na}) + 1 (\\text{H}) + 12 (\\text{C}) + 3 \\times 16 (\\text{O}) = 84\\text{ u}$."},{"id":80,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"An element, X has the following isotopic composition:\n$^{200}\\text{X} : 90\\%, ^{199}\\text{X} : 8.0\\%, ^{202}\\text{X} : 2.0\\%$\nThe weighted average atomic mass of the naturally occurring element X is close to:","options":["$200\\text{ amu}$","$201\\text{ amu}$","$202\\text{ amu}$","$199\\text{ amu}$"],"correctAnswer":0,"solution":"$\\bar{A} = \\frac{200 \\times 90 + 199 \\times 8 + 202 \\times 2}{100} = \\frac{18000 + 1592 + 404}{100} = \\frac{19996}{100} = 199.96 \\approx 200\\text{ amu}$."},{"id":81,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"According to which law different proportions of oxygen exist in oxides of nitrogen?","options":["Law of constant composition","Law of combining weight","Law of multiple proportion","None of these"],"correctAnswer":2,"solution":"Nitrogen forms multiple oxides ($\\text{N}_2\\text{O}, \\text{NO}, \\text{N}_2\\text{O}_3, \\text{NO}_2, \\text{N}_2\\text{O}_5$) where a fixed mass of nitrogen combines with oxygen in simple whole number ratios, which is the Law of Multiple Proportions."},{"id":82,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"According to the reaction, $\\text{Mg}(\\text{s}) + 2\\text{HCl}(\\text{aq}) \\to \\text{MgCl}_2(\\text{aq}) + \\text{H}_2(\\text{g})\\uparrow$.\nCalculate the mass of $\\text{Mg}$ required to liberate $4.48\\text{ dm}^3\\text{ H}_2$ at STP?\n(Molar mass of $\\text{Mg} = 24\\text{ g mol}^{-1}$)","options":["$12\\text{ g}$","$4.8\\text{ g}$","$6\\text{ g}$","$2.4\\text{ g}$"],"correctAnswer":1,"solution":"Moles of $\\text{H}_2 = \\frac{4.48}{22.4} = 0.2\\text{ mol}$.\n$1\\text{ mol Mg}$ gives $1\\text{ mol H}_2$.\nMass of $\\text{Mg} = 0.2 \\times 24 = 4.8\\text{ g}$."},{"id":83,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Which of the following reactions is incorrect according to the law of conservation of mass?","options":["$\\text{P}_4(\\text{s}) + 5\\text{O}_2(\\text{g}) \\to \\text{P}_4\\text{O}_{10}(\\text{s})$","$\\text{C}_3\\text{H}_8(\\text{g}) + \\text{O}_2(\\text{g}) \\to \\text{CO}_2(\\text{g}) + \\text{H}_2\\text{O}(\\text{g})$","$2\\text{Mg}(\\text{s}) + \\text{O}_2(\\text{g}) \\to 2\\text{MgO}(\\text{s})$","$\\text{CH}_4(\\text{g}) + 2\\text{O}_2(\\text{g}) \\to \\text{CO}_2(\\text{g}) + 2\\text{H}_2\\text{O}(\\text{g})$"],"correctAnswer":1,"solution":"Option (2) is completely unbalanced (3 carbons on left, 1 on right; 8 hydrogens on left, 2 on right), violating the conservation of mass."},{"id":84,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The percentage of $\\text{N}$ in $\\text{NH}_3$ molecule is:","options":["$53\\%$","$25\\%$","$72.35\\%$","$82.35\\%$"],"correctAnswer":3,"solution":"Molar mass of $\\text{NH}_3 = 14 + 3 = 17\\text{ g/mol}$.\n$\\%\\text{N} = \\frac{14}{17} \\times 100 = 82.35\\%$."},{"id":85,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The number of $\\text{F}^-$ ions in $4.2\\text{ g AlF}_3$ is: (Molar mass of $\\text{Al} = 27\\text{ g/mol}$, Molar mass of $\\text{F} = 19\\text{ g/mol}$)","options":["$0.05$","$9.033 \\times 10^{22}$","$3.011 \\times 10^{22}$","$0.15$"],"correctAnswer":1,"solution":"Molar mass of $\\text{AlF}_3 = 27 + 3(19) = 84\\text{ g/mol}$.\nMoles of $\\text{AlF}_3 = \\frac{4.2}{84} = 0.05\\text{ mol}$.\nNumber of $\\text{F}^-$ ions $= 3 \\times 0.05 \\times 6.022 \\times 10^{23} = 0.15 \\times 6.022 \\times 10^{23} = 9.033 \\times 10^{22}$."},{"id":86,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The human body temperature $37^\\circ\\text{C}$ in $^\\circ\\text{F}$ is:","options":["$98.6^\\circ\\text{F}$","$99^\\circ\\text{F}$","$100^\\circ\\text{F}$","$95^\\circ\\text{F}$"],"correctAnswer":0,"solution":"$^\\circ\\text{F} = \\frac{9}{5}(^\\circ\\text{C}) + 32 = \\frac{9}{5}(37) + 32 = 66.6 + 32 = 98.6^\\circ\\text{F}$."},{"id":87,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"statement-type","question":"Given below are two statements:\nStatement I: One atomic mass unit is defined as $1/12$ of the mass of one carbon-12 atom.\nStatement II: Carbon-12 isotope is the most abundant isotope of carbon and has been chosen as standard.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","statements":["One atomic mass unit is defined as 1/12 of the mass of one carbon-12 atom.","Carbon-12 isotope is the most abundant isotope of carbon and has been chosen as standard."],"options":["Statement I and Statement II both are correct.","Statement I is correct, but Statement II is incorrect.","Statement I is incorrect, but Statement II is correct.","Statement I and Statement II both are incorrect."],"correctAnswer":0,"solution":"Both statements are correct facts according to NCERT Chemistry."},{"id":88,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Which of the following has largest intermolecular forces of attraction?","options":["Solid","Liquid","Gas","All the above"],"correctAnswer":0,"solution":"Constituent particles in solids are closely packed and held together by strong intermolecular attractive forces."},{"id":89,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"The amount of $\\text{NaOH}$ required to prepare $250\\text{ mL}$ of $0.1\\text{ M}$ solution is (molar mass of $\\text{NaOH} = 40\\text{ g/mol}$);","options":["$1\\text{ g}$","$10\\text{ g}$","$4\\text{ g}$","$6\\text{ g}$"],"correctAnswer":0,"solution":"$\\text{Moles} = M \\times V(\\text{L}) = 0.1 \\times 0.250 = 0.025\\text{ mol}$.\n$\\text{Mass} = 0.025 \\times 40 = 1.0\\text{ g}$."},{"id":90,"subject":"Chemistry","topic":"Some Basic Concepts of Chemistry","type":"single-choice","question":"Which set of figures will be obtained after rounding the given measurements upto three significant figures?\n$1.386, 4.334, 2.808$?","options":["$1.39, 4.34, 2.809$","$1.39, 4.33, 2.81$","$1.38, 4.34, 2.800$","$1.39, 4.34, 2.80$"],"correctAnswer":1,"solution":"• $1.386 \\to 1.39$ (since 6 \u003e 5)\n• $4.334 \\to 4.33$ (since 4 \u003c 5)\n• $2.808 \\to 2.81$ (since 8 \u003e 5)\nHence, $1.39, 4.33, 2.81$."},{"id":91,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Which statement correctly differentiates plant and animal cells?","options":["Animal cells have plastids and large vacuoles; plant cells do not.","Plant cells possess cell walls and plastids; animal cells do not.","Both plant and animal cells contain cell walls.","Animal cells contain plastids but lack mitochondria."],"correctAnswer":1,"solution":"Plant cells possess cell walls, plastids, and a large central vacuole which are absent in animal cells."},{"id":92,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"_______ first saw and described a live cell.","options":["Rudolf Virchow","Antonie Von Leeuwenhoek","Robert Brown","Theodore Schwann"],"correctAnswer":1,"solution":"Antonie van Leeuwenhoek first saw and described a live cell under microscope."},{"id":93,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Microbodies are:","options":["found in prokaryotic cells only.","absent in plant cells.","absent in animal cells.","minute vesicles that contain various enzymes."],"correctAnswer":3,"solution":"Many membrane bound minute vesicles called microbodies that contain various enzymes are present in both plant and animal cells."},{"id":94,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Identify the cells given in the following figure (amoeboid, irregular shape with lobed nuclei):","options":["Nerve cells","White blood cells","Columnar epithelial cells","Red blood cells"],"correctAnswer":1,"solution":"The figure illustrates white blood cells (WBCs), which have an amoeboid and irregular shape.","assets":[{"id":"q94_wbc","type":"svg","data":"\u003csvg viewBox='0 0 200 140' class='w-48 h-32 mx-auto'\u003e\u003cpath d='M 40 70 Q 30 30 70 35 Q 110 20 140 45 Q 170 50 165 85 Q 170 120 125 115 Q 80 130 50 105 Z' fill='#e0f2fe' stroke='#0284c7' stroke-width='2'/\u003e\u003ccircle cx='85' cy='65' r='14' fill='#7c3aed'/\u003e\u003ccircle cx='110' cy='75' r='12' fill='#7c3aed'/\u003e\u003cpath d='M 85 65 Q 100 80 110 75' stroke='#7c3aed' stroke-width='8'/\u003e\u003ctext x='55' y='132' font-size='11' font-weight='bold' fill='#0f172a'\u003eWhite Blood Cells\u003c/text\u003e\u003c/svg\u003e","caption":"Amoeboid cell"}]},{"id":95,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Perinuclear space is:","options":["space between plasma membrane and nuclear membrane ($1-50\\text{ nm}$).","space between outer and inner nuclear membrane ($10-50\\text{ nm}$).","space between two nuclear pores ($5-15\\text{ nm}$).","space between inner and outer nuclear membrane ($5-15\\text{ nm}$)."],"correctAnswer":1,"solution":"The perinuclear space is the space between the outer and inner nuclear membranes, measuring about 10 to 50 nm."},{"id":96,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"All the given statements about plasmodesmata are true, except:","options":["they connect the cytoplasm of adjacent plant cells.","they allow the transport of molecules between cells.","they are present in both plant and animal cells.","they help in communication between cells."],"correctAnswer":2,"solution":"Plasmodesmata are cytoplasmic bridges found exclusively in plant cells, not in animal cells."},{"id":97,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Organelle in eukaryotic cell that has an organisation like a cartwheel:","options":["has peripheral doublets.","is surrounded by membrane.","is surrounded by amorphous pericentriolar materials.","occurs in pair lying parallel to each other."],"correctAnswer":2,"solution":"The centriole has a cartwheel-like organization of peripheral triplets (not doublets), lacks a membrane, and is surrounded by amorphous pericentriolar material."},{"id":98,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Which of the following statements is not correct?","options":["Lysosomes have numerous hydrolytic enzymes.","The hydrolytic enzymes of lysosomes are active under acidic pH.","Lysosomes are membrane bound structures.","Lysosomes are formed by the process of packaging in the endoplasmic reticulum."],"correctAnswer":3,"solution":"Lysosomes are formed by the process of packaging in the Golgi apparatus, not directly in the endoplasmic reticulum."},{"id":99,"subject":"Botany","topic":"Cell - The Unit of Life","type":"match-the-column","question":"Match List-I with List-II.","matchColumn":{"col1Title":"List-I","col2Title":"List-II","col1":[{"key":"(A)","text":"Smooth endoplasmic reticulum"},{"key":"(B)","text":"Golgi apparatus"},{"key":"(C)","text":"Lysosomes"},{"key":"(D)","text":"Ribosomes"}],"col2":[{"key":"(I)","text":"Site of formation of glycoproteins and glycolipids"},{"key":"(II)","text":"Site of synthesis of steroidal hormones in animals"},{"key":"(III)","text":"Contains enzymes for digestion of carbohydrates, proteins, lipids and nucleic acids"},{"key":"(IV)","text":"Protein synthesis"}]},"options":["A-II, B-IV, C-I, D-III","A-II, B-I, C-III, D-IV","A-I, B-III, C-II, D-IV","A-I, B-IV, C-II, D-III"],"correctAnswer":1,"solution":"• Smooth ER $\\to$ Synthesis of lipids and steroidal hormones (II)\n• Golgi apparatus $\\to$ Glycoproteins and glycolipids formation (I)\n• Lysosomes $\\to$ Hydrolytic digestive enzymes (III)\n• Ribosomes $\\to$ Protein synthesis (IV)\nHence, A-II, B-I, C-III, D-IV."},{"id":100,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Identify from the following which are the constituents of chromatin.","options":["DNA and RNA only","DNA and some basic proteins only","DNA, histones, non-histone proteins and RNA","Only DNA"],"correctAnswer":2,"solution":"Chromatin contains DNA and some basic proteins called histones, some non-histone proteins and also RNA."},{"id":101,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"The important cell organelle responsible for the formation of glycoproteins and glycolipids:","options":["Is responsible for synthesis of cellular energy.","Is the largest organelle of plant cell.","Was first observed by Camillo Golgi.","Is minute membrane bound vesicles called microbodies."],"correctAnswer":2,"solution":"The Golgi apparatus is the site of formation of glycoproteins and glycolipids. It was first observed by Camillo Golgi in 1898."},{"id":102,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Choose the correct statements from the codes given below.\n(I) Matthias Schleiden studies were based on different kinds of plant cells and tissues.\n(II) An incomplete cell structure does not ensure independent living.\n(III) Cell wall is a non living rigid structure.\n(IV) Human cheek cells do not possess a cell wall.\nChoose the most appropriate answer from the options given below:","options":["II and III only","I and II only","I, III and IV only","I, II, III and IV"],"correctAnswer":3,"solution":"All four statements (I, II, III, and IV) are correct according to NCERT."},{"id":103,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Identify the incorrect statement regarding eukaryotic cells.","options":["Fungi, protists, plants, and animals are all composed of eukaryotic cells.","Cells that have membrane bound nuclei are called eukaryotic cells.","All plant and animal cells contain centrioles and plastids.","The cytoplasm in eukaryotes is divided into compartments by organelle membranes."],"correctAnswer":2,"solution":"Animal cells lack plastids, and higher plant cells lack centrioles. Thus not all plant and animal cells contain both."},{"id":104,"subject":"Botany","topic":"Cell - The Unit of Life","type":"statement-type","question":"Given below are two statements.\nStatement-I: In plants, the cell wall consists of cellulose, hemicellulose, pectins and proteins.\nStatement-II: The middle lamella acts as glue between primary wall and Plasma membrane.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","statements":["In plants, the cell wall consists of cellulose, hemicellulose, pectins and proteins.","The middle lamella acts as glue between primary wall and Plasma membrane."],"options":["Statement-I is correct and Statement-II is incorrect.","Statement-I is incorrect and Statement-II is correct.","Both Statement-I and Statement-II are correct.","Both Statement-I and Statement-II are incorrect."],"correctAnswer":0,"solution":"Statement-I is correct. Statement-II is incorrect because the middle lamella is a layer mainly of calcium pectate which holds or glues the neighbouring plant cells together."},{"id":105,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Which of the following statement about mesosome is incorrect?","options":["They help in respiration and secretion processes.","It is formed by the extensions of plasma membrane out of the cell.","They help in cell wall formation, DNA replication and distribution to daughter cells.","They can be in the form of vesicles, tubules and lamellae."],"correctAnswer":1,"solution":"Mesosomes are formed by the extensions of plasma membrane INTO the cell (invaginations), not out of the cell."},{"id":106,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Identify the mismatched pair.","options":["Cristae - Infoldings of inner mitochondrial membrane","Inclusion bodies - Stores reserve materials in prokaryotes","Chromoplast - Contains carotenoid pigments","Cisternae - Flat membranous sacs in stroma"],"correctAnswer":3,"solution":"Thylakoids are flat membranous sacs present in the stroma of chloroplasts. Cisternae are disc-shaped sacs in Golgi apparatus."},{"id":107,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Arrange the different layers of plant cell wall A, B and C from outside to inside.\nA - This layer is capable of growth and diminishes gradually as the cell matures.\nB - Formed towards membrane side of the cell.\nC - This layer holds or glues different neighbouring cells together.","options":["B $\\to$ C $\\to$ A","C $\\to$ A $\\to$ B","A $\\to$ B $\\to$ C","B $\\to$ A $\\to$ C"],"correctAnswer":1,"solution":"From outside to inside:\n• C: Middle lamella (outermost cementing layer)\n• A: Primary wall (capable of growth)\n• B: Secondary wall (formed towards the inner/membrane side)\nSequence is C $\\to$ A $\\to$ B."},{"id":108,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"_______ are found in blue green and purple and green photosynthetic bacteria.","options":["Food vacuole","Gas vacuole","Contractile vacuole","Sap vacuole"],"correctAnswer":1,"solution":"Gas vacuoles are found in blue-green and purple and green photosynthetic bacteria."},{"id":109,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Read the following steps related to the functioning of the Golgi apparatus and choose the correct sequence:\n(I) Proteins are synthesised by ribosomes on the endoplasmic reticulum.\n(II) Modified materials are released from the trans face.\n(III) Proteins are modified in the cisternae of the Golgi apparatus.\n(IV) Vesicles containing materials bud off from the ER and fuse with the cis face of the Golgi apparatus.","options":["I $\\to$ II $\\to$ III $\\to$ IV","II $\\to$ I $\\to$ III $\\to$ IV","I $\\to$ IV $\\to$ III $\\to$ II","II $\\to$ III $\\to$ I $\\to$ IV"],"correctAnswer":2,"solution":"Correct sequence: Proteins made on ER (I) $\\to$ Vesicles bud and fuse with cis face of Golgi (IV) $\\to$ Modified in cisternae (III) $\\to$ Released from trans face (II). Thus I $\\to$ IV $\\to$ III $\\to$ II."},{"id":110,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"How many of the following structure(s) is/are found only in animal cells?\nCell wall, Centriole, Chloroplast, Mitochondria, ribosomes\nSelect the correct option.","options":["One","Two","Three","Four"],"correctAnswer":0,"solution":"Among the given list, only one structure (Centriole) is found typically only in animal cells (among higher plants)."},{"id":111,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Which of the following components is structurally similar in bacteria as well as in eukaryotic cell?","options":["Plasma membrane","Vacuoles","Flagella","Cell wall"],"correctAnswer":0,"solution":"The plasma membrane is structurally similar (lipid bilayer with embedded proteins) in both prokaryotes and eukaryotes."},{"id":112,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Read the following statements and choose the correct option.\n(I) Cell wall gives shape to the cell and protects the cell from mechanical damage and infection.\n(II) In higher plants, cell wall is made of cellulose, galactans, mannans and minerals like calcium carbonate.\n(III) In algae, cell wall is made of cellulose, hemicellulose, pectins and proteins.\n(IV) Cell wall helps in cell-to-cell interaction and provides barrier to undesirable macromolecules.","options":["I and III are correct","II and III are incorrect","III and IV are correct","I and IV are incorrect"],"correctAnswer":1,"solution":"Statements II and III have their descriptions interchanged. Algae have cellulose, galactans, mannans and calcium carbonate. Plants have cellulose, hemicellulose, pectins and proteins. Hence II and III are incorrect."},{"id":113,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Read the following statements and select the correct ones regarding cell organelles and structures:\n(I) Chloroplasts contain circular DNA, 70S ribosomes, and enzymes for protein synthesis.\n(II) The membrane of the thylakoids enclose a space known as the lumen.\n(III) In eukaryotes, cilia and flagella are hair-like outgrowths of the cell wall.\n(IV) The cytoskeleton consists of microtubules, microfilaments, and intermediate filaments, and it helps in maintaining cell shape and internal organisation.","options":["I, II, and IV only","I and III only","II, III, and IV only","All I, II, III, and IV"],"correctAnswer":0,"solution":"Statement III is incorrect because cilia and flagella are outgrowths of the cell membrane, not the cell wall. Statements I, II, and IV are correct."},{"id":114,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Select the incorrect statement(s) w.r.t plasma membrane of eukaryotic cell.\n(I) The lipids are arranged within the membrane with the polar head towards the inner sides.\n(II) In human red blood cell (RBC) membrane, in addition to phospholipids membrane also contains cholesterol.\n(III) The peripheral proteins are partially or totally buried in the membrane.\n(IV) The integral proteins lie on the surface of membrane.\n(V) The ratio of protein and lipid varies considerably in different cell types.","options":["I, III and IV only","II and V only","III and IV only","I, IV and V only"],"correctAnswer":0,"solution":"• (I) is incorrect: polar head is towards the outer sides.\n• (III) is incorrect: integral proteins are partially or totally buried.\n• (IV) is incorrect: peripheral proteins lie on the surface.\nHence I, III, and IV are incorrect."},{"id":115,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Read the following and identify the incorrect statement(s).\n(I) Both the cilium and flagellum emerge from centriole-like structure called the basal bodies.\n(II) Flagella are small structures which work like oars, causing the movement of either the cell or the surrounding fluid.\n(III) Cilia are comparatively longer than flagella and responsible for cell movement.\n(IV) The prokaryotic bacteria possess flagella but these are structurally different from that of the eukaryotic flagella.","options":["I only","II and III only","I, II and III only","IV only"],"correctAnswer":1,"solution":"Statements II and III are swapped: cilia are small structures that work like oars, while flagella are comparatively longer. Thus II and III are incorrect."},{"id":116,"subject":"Botany","topic":"Cell - The Unit of Life","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R):\nAssertion (A): In plants, concentration of ions and other materials is significantly higher in the vacuole than in the cytoplasm.\nReason (R): In plants, the tonoplast facilitates the transport of a number of ions and other materials against concentration gradients into the vacuole.","assertion":"In plants, concentration of ions and other materials is significantly higher in the vacuole than in the cytoplasm.","reason":"In plants, the tonoplast facilitates the transport of a number of ions and other materials against concentration gradients into the vacuole.","options":["A is true but R is false.","A is false but R is true.","Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A."],"correctAnswer":2,"solution":"Both Assertion and Reason are true, and because tonoplast actively pumps ions into the vacuole against gradient, its concentration is higher in the vacuole."},{"id":117,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"The leucoplasts are:","options":["responsible for trapping light energy essential for photosynthesis.","the plastids containing pigments like carotene, xanthophylls.","responsible for giving the part of the plant a yellow, orange or red colour.","the colourless plastids of varied shapes and sizes with stored nutrients."],"correctAnswer":3,"solution":"Leucoplasts are colourless plastids of varied shapes and sizes with stored nutrients (e.g. amyloplasts, elaioplasts, aleuroplasts)."},{"id":118,"subject":"Botany","topic":"Cell - The Unit of Life","type":"match-the-column","question":"Match List-I with List-II.","matchColumn":{"col1Title":"List-I","col2Title":"List-II","col1":[{"key":"(A)","text":"Fluid Mosaic model"},{"key":"(B)","text":"Bound by Tonoplast"},{"key":"(C)","text":"Double-membrane bound organelle"},{"key":"(D)","text":"Formed by the process of packaging in golgi apparatus"}],"col2":[{"key":"(I)","text":"Vacuole"},{"key":"(II)","text":"Chloroplast"},{"key":"(III)","text":"Lysosome"},{"key":"(IV)","text":"Plasma membrane"}]},"options":["A-II, B-IV, C-III, D-I","A-III, B-IV, C-I, D-II","A-I, B-II, C-IV, D-III","A-IV, B-I, C-II, D-III"],"correctAnswer":3,"solution":"• Fluid mosaic model $\\to$ Plasma membrane (IV)\n• Bound by tonoplast $\\to$ Vacuole (I)\n• Double-membrane bound $\\to$ Chloroplast (II)\n• Formed by Golgi packaging $\\to$ Lysosome (III)\nHence, A-IV, B-I, C-II, D-III."},{"id":119,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Identify the incorrect statement.","options":["Contractile vacuole found in Amoeba helps in osmoregulation and excretion.","Food vacuoles in protists are formed by engulfing food particles.","Gas vacuole has a membrane and is found in cyanobacteria.","The vacuole in plant cells can occupy up to 90 percent of the volume of the cell."],"correctAnswer":2,"solution":"Gas vacuoles are not bounded by any lipid membrane; they are protein-shelled non-membrane bound structures found in cyanobacteria."},{"id":120,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Which of the following are functions supported by the fluid nature of the plasma membrane?\n(I) Cell growth\n(II) Formation of intercellular junctions\n(III) Endocytosis\n(IV) Secretion","options":["I and III only","I, II, and IV only","III and IV only","I, II, III and IV"],"correctAnswer":3,"solution":"The fluid nature of the membrane is important for functions like cell growth, formation of intercellular junctions, secretion, endocytosis, and cell division."},{"id":121,"subject":"Botany","topic":"Cell - The Unit of Life","type":"match-the-column","question":"Match List-I with List-II.","matchColumn":{"col1Title":"List-I","col2Title":"List-II","col1":[{"key":"(A)","text":"Basal body"},{"key":"(B)","text":"Axoneme"},{"key":"(C)","text":"Centrioles"},{"key":"(D)","text":"Cilia"}],"col2":[{"key":"(I)","text":"$9 + 2$ microtubular organisation"},{"key":"(II)","text":"Centriole-like structure"},{"key":"(III)","text":"Spindle fibres formation"},{"key":"(IV)","text":"Work like oars"}]},"options":["A-I, B-II, C-IV, D-III","A-I, B-III, C-II, D-IV","A-II, B-I, C-III, D-IV","A-I, B-II, C-III, D-IV"],"correctAnswer":2,"solution":"• Basal body $\\to$ Centriole-like structure (II)\n• Axoneme $\\to$ 9+2 microtubular organization (I)\n• Centrioles $\\to$ Spindle fibres formation (III)\n• Cilia $\\to$ Work like oars (IV)\nHence, A-II, B-I, C-III, D-IV."},{"id":122,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Molecules which are transported across the membrane against their concentration gradient, i.e., from the lower to higher concentration. Such a transport is called:","options":["active transport, e.g., diffusion.","passive transport, e.g., diffusion.","active transport, e.g., $\\text{Na}^+/\\text{K}^+$ pump.","osmosis, a type of simple diffusion."],"correctAnswer":2,"solution":"Transport against concentration gradient requiring ATP is active transport, e.g., the $\\text{Na}^+/\\text{K}^+$ pump."},{"id":123,"subject":"Botany","topic":"Cell - The Unit of Life","type":"statement-type","question":"Given below are two statements:\nStatement I: Animal cells contain another non-membrane bound organelle called the centrosome.\nStatement II: Centrosome helps in cell division in animal cells.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","statements":["Animal cells contain another non-membrane bound organelle called the centrosome.","Centrosome helps in cell division in animal cells."],"options":["Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct.","Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":2,"solution":"Both statements are correct. Centrosome is non-membrane bound and organizes spindle fibres during animal cell division."},{"id":124,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Identify the incorrect function related to the cytoskeleton.","options":["Synthesis of carbohydrates.","Maintenance of the shape of the cell.","Mechanical support to the cell.","Cell motility."],"correctAnswer":0,"solution":"The cytoskeleton provides mechanical support, motility, and maintenance of cell shape. Synthesis of carbohydrates is performed by chloroplasts."},{"id":125,"subject":"Botany","topic":"Cell - The Unit of Life","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R:\nAssertion A: Mitochondria are the sites of anaerobic respiration.\nReason R: Mitochondria produce cellular energy in the form of ATP.\nIn the light of the above statements, choose the correct answer from the options given below:","assertion":"Mitochondria are the sites of anaerobic respiration.","reason":"Mitochondria produce cellular energy in the form of ATP.","options":["A is true but R is false.","A is false but R is true.","Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A."],"correctAnswer":1,"solution":"Assertion is false because mitochondria are the sites of AEROBIC respiration. Reason is true."},{"id":126,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"The cell organelles in animals which are not bound by any membrane are:","options":["ribosome and gas vacuole.","centrosome and chromatophore.","ribosome and peroxisome.","centrosome and ribosome."],"correctAnswer":3,"solution":"Centrosomes and ribosomes are non-membrane bound organelles present in animal cells."},{"id":127,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"In prokaryotes, chromatophores are:","options":["specialised granules responsible for food storage within the cells.","structures responsible for maintaining the shape of the organism.","lying free inside the cells for carrying out various metabolic activities.","membranous extensions into the cytoplasm which contain pigments."],"correctAnswer":3,"solution":"In some prokaryotes like cyanobacteria, there are other membranous extensions into the cytoplasm called chromatophores which contain pigments."},{"id":128,"subject":"Botany","topic":"Cell - The Unit of Life","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R):\nAssertion (A): Centrosome is an organelle usually containing two cylindrical structures called centrioles.\nReason (R): Centrosomes are surrounded by amorphous pericentriolar materials.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","assertion":"Centrosome is an organelle usually containing two cylindrical structures called centrioles.","reason":"Centrosomes are surrounded by amorphous pericentriolar materials.","options":["A is true but R is false.","A is false but R is true.","Both A and R are correct and R is the correct explanation of A.","Both A and R are correct but R is NOT the correct explanation of A."],"correctAnswer":3,"solution":"Both statements are correct facts about the centrosome, but Reason is not the explanation of Assertion."},{"id":129,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Which of the following is incorrect w.r.t. fimbriae of bacteria?","options":["They are surface structures.","They may be used for attachment to rocks.","They are small bristle like fibres sprouting out of the bacterial cell.","They contain photosynthetic pigments."],"correctAnswer":3,"solution":"Fimbriae are bristle-like proteinaceous appendages used for attachment; they do not contain photosynthetic pigments."},{"id":130,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Which of the following statements about bacterial flagella is correct?","options":["They are filamentous extension from their cell membrane.","They do not play a role in motility.","They show a range in the number and arrangement of flagella.","They are made up of hook and filament only."],"correctAnswer":2,"solution":"Bacterial flagella show a range in number and arrangement. They consist of three parts: filament, hook, and basal body."},{"id":131,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"From the statements given below choose the correct option.\n(I) The eukaryotic ribosomes are 80S and prokaryotic ribosomes are 70S.\n(II) Each ribosome has two sub-units.\n(III) The two sub-units of 80S ribosome are 60S and 40S while that of 70S are 50S and 30S.\n(IV) The two sub-units of 80S ribosome are 60S and 20S and that of 70S are 50S and 20S.\n(V) The two sub-units of 80S ribosome are 60S and 30S and that of 70S are 50S and 30S.","options":["I, II, III are true","I, II, IV are true","I, II, V are true","II, IV, V are true"],"correctAnswer":0,"solution":"Statements I, II, and III are true. 80S dissociates into 60S and 40S; 70S dissociates into 50S and 30S."},{"id":132,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"What is the function of the nuclear pores, and what spherical structures within the nucleoplasm are the sites for active ribosomal RNA synthesis?","options":["Nuclear pores regulate the passage of lipids only; the site of rRNA synthesis is the chromatin.","Nuclear pores are passages for the movement of RNA and protein molecules between the nucleus and cytoplasm; the nucleoli are the sites of active rRNA synthesis.","Nuclear pores are the passage for transporting substances in and out; rRNA synthesis occurs on the outer nuclear membrane.","Nuclear pores connect the nucleus to the vacuole; rRNA synthesis takes place in the perinuclear space."],"correctAnswer":1,"solution":"Nuclear pores facilitate bidirectional movement of RNA and proteins between nucleus and cytoplasm; nucleoli synthesize ribosomal RNA (rRNA)."},{"id":133,"subject":"Botany","topic":"Cell - The Unit of Life","type":"statement-type","question":"Given below are two statements:\nStatement-I: Bacteria that take up the gram stain are Gram positive and the others that do not are called Gram negative.\nStatement-II: Capsule is the membranous structure in bacteria formed by the extensions of plasma membrane into the cell.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","statements":["Bacteria that take up the gram stain are Gram positive and the others that do not are called Gram negative.","Capsule is the membranous structure in bacteria formed by the extensions of plasma membrane into the cell."],"options":["Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct.","Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":0,"solution":"Statement I is correct. Statement II is incorrect because mesosomes (not capsule) are formed by plasma membrane extensions into the cell."},{"id":134,"subject":"Botany","topic":"Cell - The Unit of Life","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R):\nAssertion (A): The endoplasmic reticulum is a network of tiny tubular structures scattered in the cytoplasm.\nReason (R): Endoplasmic reticulum contains tubules or cisternae.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","assertion":"The endoplasmic reticulum is a network of tiny tubular structures scattered in the cytoplasm.","reason":"Endoplasmic reticulum contains tubules or cisternae.","options":["A is true but R is false.","A is false but R is true.","Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A."],"correctAnswer":3,"solution":"Both statements are correct descriptions of the ER, but Reason is not the causal explanation of Assertion."},{"id":135,"subject":"Botany","topic":"Cell - The Unit of Life","type":"single-choice","question":"Read the following statement w.r.t mitochondria.\n(I) Sausage shaped / cylindrical.\n(II) Diameter $0.2 - 1.0\\ \\mu\\text{m}$ (average $0.5\\ \\mu\\text{m}$) and length $1.0 - 4.1\\ \\mu\\text{m}$.\n(III) The mitochondria divide by fission.\n(IV) It is site of anaerobic respiration.\n(V) Both membranes have their own specific enzymes.\nHow many features are correct?","options":["Three","two","Four","Five"],"correctAnswer":2,"solution":"Four features (I, II, III, and V) are correct. Feature IV is incorrect because mitochondria are the sites of AEROBIC respiration."},{"id":136,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which of the following cells are specialized for osmoregulation and excretion in Platyhelminthes?","options":["Choanocytes","Flame cells","Cnidocytes","Nephridia"],"correctAnswer":1,"solution":"Specialised cells called flame cells help in osmoregulation and excretion in Platyhelminthes."},{"id":137,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"In Porifera, the body is supported by a skeleton made up of:","options":["Spongin fibers only","Spicules only","Either spicules or spongin fibers","Calcareous shells"],"correctAnswer":2,"solution":"Sponges have a skeleton made up of spicules or spongin fibres."},{"id":138,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"The property of bioluminescence is well marked in which of the following phyla?","options":["Cnidaria","Ctenophora","Porifera","Mollusca"],"correctAnswer":1,"solution":"Bioluminescence (the property of a living organism to emit light) is well-marked in ctenophores."},{"id":139,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"In which of the following animals are the sexes not separate or monoecious?","options":["Nereis","Cockroach","Earthworm","Prawn"],"correctAnswer":2,"solution":"Earthworms and leeches are monoecious (hermaphrodites). Nereis is dioecious."},{"id":140,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which of the following is a characteristic feature of Phylum Mollusca?","options":["Presence of a water vascular system","Presence of a mantle cavity and a radula","Metameric segmentation","Presence of jointed appendages"],"correctAnswer":1,"solution":"Molluscs have a soft, unsegmented body covered by a mantle, a mantle cavity with gills, and a rasping radula for feeding."},{"id":141,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"The basic fundamental feature(s) that enable us to broadly classify the animal kingdom is/are","options":["Level of organization and coelom","Cell organization and symmetry","Segmentation and notochord","All of the above"],"correctAnswer":3,"solution":"Classification of animals is based on levels of organisation, symmetry, diploblastic/triploblastic nature, coelom, segmentation, and notochord."},{"id":142,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"All triploblastic animals are primarily","options":["bilateral symmetrical","possess true coelom","undergo reproduction with sexual dimorphism","possess regeneration power"],"correctAnswer":0,"solution":"All triploblastic animals are primarily bilaterally symmetrical (with secondary radial symmetry evolving only in adult echinoderms)."},{"id":143,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which of the following is not included in 'multicellular grade' of organisms?","options":["Vertebrates","Sponges","Prokaryotes","Coelenterates"],"correctAnswer":2,"solution":"Prokaryotes are unicellular organisms (Kingdom Monera), not multicellular animals."},{"id":144,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which of the following is not the common fundamental feature for animal classification?","options":["Germinal layers","Pathway of water transport","Pattern of organisation of cells","Serial repetition of the segments"],"correctAnswer":1,"solution":"Pathway of water transport (canal system) is specific to sponges, not a universal fundamental criterion for classifying all animal phyla."},{"id":145,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which of the following is a gregarious pest?","options":["Apis","Culex","Locusta","Bombyx"],"correctAnswer":2,"solution":"Locusta (Locust) is a gregarious pest belonging to Phylum Arthropoda."},{"id":146,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Canal system of porifera is not connected with:","options":["Food gathering.","Respiratory gas exchange.","Removal of waste.","Locomotion."],"correctAnswer":3,"solution":"Sponges are sessile organisms; the water transport canal system is used for food gathering, respiration, and waste removal, not locomotion."},{"id":147,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Digestive system in phylum Platyhelminthes:","options":["has two openings to the outside of the body.","has one opening to the outside of the body.","opens through excretory pore to the inside of the body.","Both (1) and (2)"],"correctAnswer":1,"solution":"Platyhelminthes have an incomplete digestive system with only a single opening to the outside of the body that serves as both mouth and anus."},{"id":148,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"True coelom appeared first in the course of evolution of","options":["Aschelminthes","Chordata","Echinodermata","Annelida"],"correctAnswer":3,"solution":"Annelida are the first eucoelomate (true coelomate) animals to appear in animal evolution."},{"id":149,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"All of the following animals belong to phylum Echinodermata except:","options":["Aplysia.","Cucumaria.","Antedon.","Asterias."],"correctAnswer":0,"solution":"Aplysia (sea-hare) belongs to phylum Mollusca. Cucumaria, Antedon, and Asterias are echinoderms."},{"id":150,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Phylum Mollusca is differentiated from other invertebrates by having:","options":["Bilateral symmetry and external skeleton","Metameric segmentation and jointed appendages","A water vascular system and calcareous ossicles","An unsegmented body with a distinct visceral hump and a mantle"],"correctAnswer":3,"solution":"Molluscs have an unsegmented body with a distinct head, muscular foot and visceral hump covered by a spongy mantle."},{"id":151,"subject":"Zoology","topic":"Animal Kingdom","type":"statement-type","question":"Given below are two statements.\nStatement I: Nereis is monoecious.\nStatement II: Scypha have cellular level of body organisation.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","statements":["Nereis is monoecious.","Scypha have cellular level of body organisation."],"options":["Statement I is correct, but Statement II is incorrect.","Statement I is incorrect, but Statement II is correct.","Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":1,"solution":"Statement I is incorrect because Nereis is dioecious (unisexual). Statement II is correct because Scypha (sponge) has cellular level of organization."},{"id":152,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which of the following are economically important insects?","options":["Bombyx and Apis","Laccifer and Anopheles","Locusta and Limulus","All of these"],"correctAnswer":0,"solution":"Bombyx (silkworm) and Apis (honeybee) are economically beneficial insects yielding silk and honey."},{"id":153,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which of the following statements is incorrect?","options":["Mesoglea is present in between ectoderm and endoderm in Obelia.","Adult Asterias exhibits radial symmetry.","Fasciola is a pseudocoelomate animal.","Taenia is a triploblastic animal."],"correctAnswer":2,"solution":"Fasciola (liver fluke) belongs to Platyhelminthes, which are acoelomate animals (no body cavity), not pseudocoelomates."},{"id":154,"subject":"Zoology","topic":"Animal Kingdom","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R):\nAssertion (A): Poriferans show indirect development.\nReason (R): Larval form of sponges is similar to their adult.","assertion":"Poriferans show indirect development.","reason":"Larval form of sponges is similar to their adult.","options":["Both Assertion (A) and Reason (R) are the true, and Reason (R) is a correct explanation of Assertion (A).","Both Assertion (A) and Reason (R) are the true, but Reason (R) is not a correct explanation of Assertion (A).","Assertion (A) is true, and Reason (R) is false.","Assertion (A) is false, and Reason (R) is true."],"correctAnswer":2,"solution":"Sponges have indirect development involving a larval stage which is morphologically distinct from the adult. Thus Assertion is true, Reason is false."},{"id":155,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Water vascular system and tube feet is the characteristic of -","options":["Arthropoda","Echinodermata","Molluscs","Bony fishes"],"correctAnswer":1,"solution":"The most distinctive feature of echinoderms is the presence of a water vascular system with tube feet (podia)."},{"id":156,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"The unique feature of the phylum Ctenophora is;","options":["presence of cnidoblasts on the tentacles.","presence of eight external rows of ciliated comb plates.","presence of a water vascular system.","exhibition of alternation of generations."],"correctAnswer":1,"solution":"Ctenophores bear eight external rows of ciliated comb plates that help in locomotion."},{"id":157,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"In flatworms, all of the given adaptations are present except:","options":["Presence of hooks and suckers for attachment.","Direct absorption of nutrients through the body surface.","Separate sexes and external fertilization.","High regeneration capacity in some members like Planaria."],"correctAnswer":2,"solution":"Sexes are not separate in flatworms (they are hermaphrodites) and fertilization is internal, not external."},{"id":158,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which of the following is false for the water vascular system in echinoderms?","options":["It aids in locomotion.","It assists in food capture.","It helps in excretion.","It aids in respiration."],"correctAnswer":2,"solution":"An excretory system is completely absent in echinoderms; excretory wastes diffuse directly into the surrounding water through general body surfaces and gills."},{"id":159,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Read the following characteristics:\n1. Tissue level of organisation and are diploblastic\n2. Mouth on hypostome\n3. Exhibit two body forms polyp and medusa\nWhich of the following organisms belong to the phylum described above?","options":["Meandrina","Euspongia","Ctenoplana","Spongilla"],"correctAnswer":0,"solution":"These are diagnostic characteristics of Phylum Coelenterata (Cnidaria). Meandrina (brain coral) belongs to Cnidaria."},{"id":160,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"The larval and adult stages of echinoderms exhibit:","options":["radial and bilateral symmetry, respectively.","bilateral and radial symmetry, respectively.","both have radial symmetry, respectively.","both have bilateral symmetry, respectively."],"correctAnswer":1,"solution":"Adult echinoderms are radially symmetrical, but larvae are bilaterally symmetrical."},{"id":161,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which of the following features is not present in the Phylum- Arthropoda?","options":["Chitinous exoskeleton","Metameric segmentation","Parapodia","Jointed appendages"],"correctAnswer":2,"solution":"Parapodia are lateral appendages found in aquatic annelids like Nereis, not in arthropods."},{"id":162,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Indicate the correct statement pertaining to Platyhelminthes:","options":["Some members like Planaria possess high regeneration capacity.","They are diploblastic and radially symmetrical animals.","They possess a complete digestive system with two openings.","Sexes are separate and fertilisation is external."],"correctAnswer":0,"solution":"Planaria possesses extraordinary powers of regeneration."},{"id":163,"subject":"Zoology","topic":"Animal Kingdom","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R:\nAssertion (A): Annelids show metagenesis.\nReason (R): Alternation of generation, i.e., polyps produce medusae asexually and medusae form the polyps sexually is called metagenesis.","assertion":"Annelids show metagenesis.","reason":"Alternation of generation, i.e., polyps produce medusae asexually and medusae form the polyps sexually is called metagenesis.","options":["Both Assertion (A) and Reason (R) are the true, and Reason (R) is a correct explanation of Assertion (A).","Both Assertion (A) and Reason (R) are the true, but Reason (R) is not a correct explanation of Assertion (A).","Assertion (A) is true, and Reason (R) is false.","Assertion (A) is false, and Reason (R) is true."],"correctAnswer":3,"solution":"Metagenesis (alternation of generation between polyp and medusa) is shown by cnidarians like Obelia, not annelids. Assertion is false, Reason is true."},{"id":164,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Read four statements (A - D) w.r.t coelenterata.\nA. Digestion is extracellular and intracellular.\nB. Medusa is free swimming and umbrella shaped form.\nC. Medusae are produced sexually by polyp.\nD. Corals have a skeleton composed of calcium carbonate.\nHow many of the above statements are incorrect?","options":["One","Two","Three","Four"],"correctAnswer":0,"solution":"Only Statement C is incorrect (polyps produce medusae ASEXUALLY, and medusae form polyps sexually). Hence only 1 statement is incorrect."},{"id":165,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Read the following four statements (I-IV) for Ctenophora.\nI. Diploblastic with tissue level of organisation.\nII. The body bears eight external rows of ciliated comb plates.\nIII. Digestion is both extracellular and intracellular.\nIV. Reproduction takes place only by sexual means.\nHow many of the above statements are correct?","options":["Four","Three","Two","One"],"correctAnswer":0,"solution":"All four statements (I, II, III, and IV) are correct characteristics of Phylum Ctenophora."},{"id":166,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Diagrams of two animals are given below (Aurelia and Hydra). Identify the common character in them.","options":["Both exhibit the intracellular and extracellular digestion","Both having the water canal system","Both exhibit a tissue level of organisation.","Both are aquatic invertebrate animals lacking a true coelom."],"correctAnswer":3,"solution":"Both Aurelia and Hydra are aquatic cnidarians that lack a coelom (acoelomates).","assets":[{"id":"q166_cnidaria","type":"svg","data":"\u003csvg viewBox='0 0 240 140' class='w-56 h-32 mx-auto'\u003e\u003cg transform='translate(20, 20)'\u003e\u003cpath d='M 10 30 Q 45 5 80 30 Q 45 40 10 30' fill='#e0f2fe' stroke='#0284c7' stroke-width='2'/\u003e\u003cpath d='M 25 35 Q 20 65 30 80 M 45 38 Q 45 70 45 85 M 65 35 Q 70 65 60 80' stroke='#0284c7' stroke-width='1.5'/\u003e\u003ctext x='25' y='98' font-size='11' font-weight='bold' fill='#0f172a'\u003eA: Aurelia\u003c/text\u003e\u003c/g\u003e\u003cg transform='translate(130, 20)'\u003e\u003cpath d='M 40 40 L 40 85 Q 40 90 45 90 Q 50 90 50 85 L 50 40' fill='#f0fdf4' stroke='#16a34a' stroke-width='2'/\u003e\u003cpath d='M 45 40 Q 25 20 20 10 M 45 40 Q 35 15 40 5 M 45 40 Q 55 15 50 5 M 45 40 Q 65 20 70 10' stroke='#16a34a' stroke-width='1.5'/\u003e\u003ctext x='28' y='98' font-size='11' font-weight='bold' fill='#0f172a'\u003eB: Hydra\u003c/text\u003e\u003c/g\u003e\u003c/svg\u003e","caption":"A: Aurelia (medusa) and B: Hydra (polyp)"}]},{"id":167,"subject":"Zoology","topic":"Animal Kingdom","type":"match-the-column","question":"Match List-I with List-II.","matchColumn":{"col1Title":"List-I (Division of Labour)","col2Title":"List-II (Animal)","col1":[{"key":"(A)","text":"Organ level"},{"key":"(B)","text":"Cellular aggregate level"},{"key":"(C)","text":"Tissue level"},{"key":"(D)","text":"Organ system level"}],"col2":[{"key":"(I)","text":"Pheretima"},{"key":"(II)","text":"Fasciola"},{"key":"(III)","text":"Spongilla"},{"key":"(IV)","text":"Obelia"}]},"options":["A-II, B-III, C-IV, D-I","A-II, B-IV, C-III, D-I","A-IV, B-I, C-II, D-III","A-I, B-IV, C-III, D-II"],"correctAnswer":0,"solution":"• Organ level $\\to$ Fasciola (II)\n• Cellular aggregate $\\to$ Spongilla (III)\n• Tissue level $\\to$ Obelia (IV)\n• Organ system level $\\to$ Pheretima (I)\nHence, A-II, B-III, C-IV, D-I."},{"id":168,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Choose the correct statement(s) for starfish.\nI. Sexes are separate and reproduction is sexual.\nII. Development is direct without a free-swimming larva.\nIII. The digestive system is complete with mouth on the lower (ventral) side and anus on the upper (dorsal) side.\nIV. They possess an excretory system for waste removal.","options":["I and III","I, II and IV","I, II and III","III and IV"],"correctAnswer":0,"solution":"Statements I and III are correct. Development is indirect with free-swimming larva (II is false); excretory system is absent (IV is false)."},{"id":169,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Book lungs act as respiratory organs in:","options":["Taenia","Ascaris","Scorpion","Nereis"],"correctAnswer":2,"solution":"Book lungs are respiratory organs found in arachnids such as scorpions and spiders."},{"id":170,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Choose the correct option.","options":["Phylum-Mollusca is the third largest phylum","Phylum-Arthropoda is the second largest phylum","Phylum-Mollusca is the smallest phylum","Phylum-Arthropoda is the largest phylum of Animalia"],"correctAnswer":3,"solution":"Over two-thirds of all named species on earth are arthropods, making Arthropoda the largest phylum."},{"id":171,"subject":"Zoology","topic":"Animal Kingdom","type":"match-the-column","question":"Match List-I with List-II to find out the correct option.","matchColumn":{"col1Title":"List I","col2Title":"List II","col1":[{"key":"(a)","text":"Economically important insect"},{"key":"(b)","text":"Vector"},{"key":"(c)","text":"Gregarious pest"},{"key":"(d)","text":"Living fossil"}],"col2":[{"key":"(I)","text":"Limulus"},{"key":"(II)","text":"Locusta"},{"key":"(III)","text":"Anopheles"},{"key":"(IV)","text":"Bombyx"}]},"options":["a - (I), b - (II), c - (III), d - (IV)","a - (IV), b - (III), c - (II), d - (I)","a - (III), b - (IV), c - (II), d - (I)","a - (II), b - (IV), c - (I), d - (III)"],"correctAnswer":1,"solution":"• Economically important $\\to$ Bombyx (IV)\n• Vector $\\to$ Anopheles (III)\n• Gregarious pest $\\to$ Locusta (II)\n• Living fossil $\\to$ Limulus (I)\nHence, a - (IV), b - (III), c - (II), d - (I)."},{"id":172,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Metagenesis refers to:","options":["Alternation of generation between asexual and sexual phases of an organisms","Occurrence of a drastic change in form during postembryonic development","Presence of a segmented body and parthenogenetic mode of reproduction","Presence of different morphic forms"],"correctAnswer":0,"solution":"Metagenesis is the alternation of generations between asexual polyp form and sexual medusa form, as seen in Obelia."},{"id":173,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Ascaris is characterized by;","options":["absence of true coelom but presence of metamerism.","presence of neither true coelom nor metamerism.","presence of true coelom but absence of metamerism.","presence of true coelom and metamerism."],"correctAnswer":1,"solution":"Ascaris is a roundworm (Aschelminthes) with a pseudocoelom (no true coelom) and an unsegmented body (no metamerism)."},{"id":174,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Identify the set of correct statements regarding parasitic flatworms.\n(A) Parasitic forms possess hooks and suckers for attachment to the host.\n(B) Some of them absorb nutrients from the host directly through their body surface.\n(C) Ancylostoma and Hirudinaria are both examples of parasitic Platyhelminthes.\n(D) All parasites exhibit direct development without intermediate hosts.\nChoose the correct option:","options":["A and B only","B and C only","A, B, and C only","A, B, C and D"],"correctAnswer":0,"solution":"Statements A and B are correct. Ancylostoma is a roundworm and Hirudinaria is an annelid (C is false). Flatworms often have complex indirect life cycles (D is false)."},{"id":175,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which one of the following statements about certain given animals is correct?","options":["Round worms (Aschelminthes) are pseudocoelomates","Molluscs are acoelomates","Insects are pseudocoelomates","Flat worms (Platyhelminthes) are coelomates"],"correctAnswer":0,"solution":"Aschelminthes (roundworms) have a body cavity not lined by mesoderm, making them pseudocoelomates."},{"id":176,"subject":"Zoology","topic":"Animal Kingdom","type":"match-the-column","question":"Match List-I with List-II:","matchColumn":{"col1Title":"List-I","col2Title":"List-II","col1":[{"key":"(A)","text":"Pila"},{"key":"(B)","text":"Pinctada"},{"key":"(C)","text":"Sepia"},{"key":"(D)","text":"Loligo"}],"col2":[{"key":"(I)","text":"Squid"},{"key":"(II)","text":"Cuttlefish"},{"key":"(III)","text":"Apple snail"},{"key":"(IV)","text":"Pearl oyster"}]},"options":["A-I, B-IV, C-II, D-III","A-II, B-I, C-IV, D-III","A-III, B-IV, C-II, D-I","A-IV, B-III, C-II, D-I"],"correctAnswer":2,"solution":"• Pila $\\to$ Apple snail (III)\n• Pinctada $\\to$ Pearl oyster (IV)\n• Sepia $\\to$ Cuttlefish (II)\n• Loligo $\\to$ Squid (I)\nHence, A-III, B-IV, C-II, D-I."},{"id":177,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which one of the following statements is false?","options":["In Molluscs, gills have respiratory and excretory functions.","In Molluscs, the head has sensory tentacles.","Molluscs are dioecious, oviparous with indirect development","None of these."],"correctAnswer":3,"solution":"Statements (1), (2), and (3) are all correct facts regarding molluscs. Hence 'None of these' is the correct answer."},{"id":178,"subject":"Zoology","topic":"Animal Kingdom","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R):\nAssertion (A): Members of phylum Aschelminthes are pseudocoelomates.\nReason (R): In aschelminthes, the body cavity is not lined by mesoderm, instead, the mesoderm is present as scattered pouches in between the ectoderm and endoderm.","assertion":"Members of phylum Aschelminthes are pseudocoelomates.","reason":"In aschelminthes, the body cavity is not lined by mesoderm, instead, the mesoderm is present as scattered pouches in between the ectoderm and endoderm.","options":["Both Assertion (A) and Reason (R) are the true, and Reason (R) is a correct explanation of Assertion (A).","Both Assertion (A) and Reason (R) are the true, but Reason (R) is not a correct explanation of Assertion (A).","Assertion (A) is true, and Reason (R) is false.","Assertion (A) is false, and Reason (R) is true."],"correctAnswer":0,"solution":"Both Assertion and Reason are true, and Reason correctly explains why they are called pseudocoelomates."},{"id":179,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"Which of the following statement is correct?","options":["Closed circulatory system is present in annelids.","Leech is an aquatic annelid.","Reproduction can be sexual and asexual in annelids.","All of these"],"correctAnswer":0,"solution":"Annelids possess a closed circulatory system (blood is pumped by a heart into closed vessels)."},{"id":180,"subject":"Zoology","topic":"Animal Kingdom","type":"single-choice","question":"In molluscs, the mouth contains a file like rasping organ for feeding, called:","options":["operculum.","mantle.","gizzard.","radula."],"correctAnswer":3,"solution":"The mouth of molluscs contains a file-like rasping organ called the radula for feeding."}];
+
+    
+    // State Variables
+    var currentIndex = 0;
+    var activeSubject = 'Physics';
+    var paletteFilter = 'All';
+    var userAnswers = {};
+    var paletteStates = {};
+    var timeSpent = {};
+    var questionOpenTimestamp = Date.now();
+    var secondsRemaining = (typeof testMetadata !== 'undefined' && testMetadata.durationMinutes ? testMetadata.durationMinutes : 180) * 60;
+    var timerInterval = null;
+    var isExamActive = false;
+
+    // Initialize Question States
+    if (typeof questions !== 'undefined' && Array.isArray(questions)) {
+      questions.forEach((q, idx) => {
+        paletteStates[q.id] = idx === 0 ? 'not-answered' : 'not-visited';
+        userAnswers[q.id] = null;
+        timeSpent[q.id] = 0;
+      });
+    }
+
+    // ==========================================
+    // MATHEMATICAL TYPESETTING ENGINE (OFFLINE + KATEX)
+    // ==========================================
+    function formatLatexFallback(latex) {
+      if (!latex) return '';
+      let s = String(latex);
+
+      // 1. Text & Formatting Macros
+      s = s.replace(/\\text\{([^}]+)\}/g, '$1');
+      s = s.replace(/\\mathrm\{([^}]+)\}/g, '$1');
+      s = s.replace(/\\mathbf\{([^}]+)\}/g, '<strong>$1</strong>');
+      s = s.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
+
+      // 2. Vectors and Unit Vectors
+      s = s.replace(/\\hat\{i\}/g, '<b style="font-family:monospace;">î</b>');
+      s = s.replace(/\\hat\{j\}/g, '<b style="font-family:monospace;">ĵ</b>');
+      s = s.replace(/\\hat\{k\}/g, '<b style="font-family:monospace;">k̂</b>');
+      s = s.replace(/\\vec\{([^}]+)\}/g, '<span style="font-family:serif;font-style:italic;">$1&#x20D7;</span>');
+
+      // 3. Fractions & Roots
+      s = s.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1 / $2)');
+      s = s.replace(/\\sqrt\{([^}]+)\}/g, '&radic;($1)');
+      s = s.replace(/\\sqrt/g, '&radic;');
+
+      // 4. Delimiters & Spacing via Split/Join (zero regex syntax risk)
+      s = s.split('\\left(').join('(').split('\\right)').join(')');
+      s = s.split('\\left[').join('[').split('\\right]').join(']');
+      s = s.split('\\left\\{').join('{').split('\\right\\}').join('}');
+      s = s.split('\\left|').join('|').split('\\right|').join('|');
+      s = s.split('\\,').join(' ');
+      s = s.split('\\;').join('  ');
+      s = s.split('\\quad').join('    ');
+      s = s.split('\\\\').join('<br/>');
+
+      // 5. Common Scientific & Mathematical Symbols
+      const symList = [
+        ['^{\\circ}\\text{C}', '°C'],
+        ['^{\\circ}', '°'],
+        ['^\\circ', '°'],
+        ['\\times', '×'],
+        ['\\cdot', '·'],
+        ['\\pm', '±'],
+        ['\\approx', '≈'],
+        ['\\ne', '≠'],
+        ['\\le', '≤'],
+        ['\\ge', '≥'],
+        ['\\to', '→'],
+        ['\\implies', '⇒'],
+        ['\\Delta', 'Δ'],
+        ['\\Omega', 'Ω'],
+        ['\\alpha', 'α'],
+        ['\\beta', 'β'],
+        ['\\gamma', 'γ'],
+        ['\\delta', 'δ'],
+        ['\\theta', 'θ'],
+        ['\\mu', 'μ'],
+        ['\\lambda', 'λ'],
+        ['\\pi', 'π'],
+        ['\\phi', 'φ'],
+        ['\\sigma', 'σ'],
+        ['\\tau', 'τ'],
+        ['\\omega', 'ω'],
+        ['\\eta', 'η'],
+        ['\\varepsilon', 'ε'],
+        ['\\sin', 'sin'],
+        ['\\cos', 'cos'],
+        ['\\tan', 'tan']
+      ];
+
+      for (let i = 0; i < symList.length; i++) {
+        s = s.split(symList[i][0]).join(symList[i][1]);
+      }
+
+      // 6. Superscripts & Subscripts
+      s = s.replace(/\^\{([^}]+)\}/g, '<sup>$1</sup>');
+      s = s.replace(/\^([0-9a-zA-Z+-])/g, '<sup>$1</sup>');
+      s = s.replace(/_\{([^}]+)\}/g, '<sub>$1</sub>');
+      s = s.replace(/_([0-9a-zA-Z])/g, '<sub>$1</sub>');
+
+      // 7. Strip leftover macro braces
+      s = s.replace(/[{}]/g, '');
+
+      return s;
+    }
+
+    function renderMathInString(content) {
+      if (!content) return '';
+      let clean = String(content)
+        .replace(/[\uFFFD\u25A1\u25A0\uFFFC]/g, '')
+        .replace(/□/g, '');
+
+      const hasKatex = typeof window !== 'undefined' && window.katex && typeof window.katex.renderToString === 'function';
+
+      function renderLatex(latex, isDisplay) {
+        const trimmed = latex.trim();
+        if (hasKatex) {
+          try {
+            return window.katex.renderToString(trimmed, {
+              displayMode: isDisplay,
+              throwOnError: false
+            });
+          } catch (e) {}
+        }
+        const fallback = formatLatexFallback(trimmed);
+        if (isDisplay) {
+          return '<div style="margin:8px 0;text-align:center;font-family:serif;font-weight:600;">' + fallback + '</div>';
+        }
+        return '<span style="font-family:serif;">' + fallback + '</span>';
+      }
+
+      // 1. Display math: $$...$$
+      clean = clean.replace(/\$\$([\s\S]*?)\$\$/g, function(_, match) {
+        return renderLatex(match, true);
+      });
+      // Display math: \[...\]
+      clean = clean.replace(/\\\[([\s\S]*?)\\\]/g, function(_, match) {
+        return renderLatex(match, true);
+      });
+
+      // 2. Inline math: $...$
+      clean = clean.replace(/\$([^$\r\n]+?)\$/g, function(_, match) {
+        return renderLatex(match, false);
+      });
+      // Inline math: \(...\)
+      clean = clean.replace(/\\\(([\s\S]*?)\\\)/g, function(_, match) {
+        return renderLatex(match, false);
+      });
+
+      // 3. Fallback for unbracketed LaTeX commands if any left
+      if (clean.indexOf('\\') !== -1) {
+        clean = formatLatexFallback(clean);
+      }
+
+      return clean;
+    }
+
+    function onKatexLoaded() {
+      if (isExamActive) {
+        renderCurrentQuestion();
+      }
+      triggerKaTeXAutoRender();
+    }
+
+    function triggerKaTeXAutoRender() {
+      if (typeof window !== 'undefined' && window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch(e) {}
+      }
+    }
+
+    // ==========================================
+    // EXAM LIFECYCLE & NAVIGATION
+    // ==========================================
+    function startTest() {
+      document.getElementById('instructionsScreen').style.display = 'none';
+      document.getElementById('examScreen').style.display = 'flex';
+      document.getElementById('examTimerBadge').style.display = 'flex';
+      document.getElementById('btnHeaderPalette').style.display = 'inline-flex';
+      document.getElementById('btnRoughSheet').style.display = 'inline-flex';
+
+      isExamActive = true;
+      questionOpenTimestamp = Date.now();
+      initSubjectTabs();
+      initDrawerSubjectFilter();
+      renderCurrentQuestion();
+      renderPalette();
+      startTimer();
+      initScratchpad();
+      triggerKaTeXAutoRender();
+    }
+
+    function initSubjectTabs() {
+      const subs = [...new Set(questions.map(q => q.subject))];
+      if (!subs.includes(activeSubject) && subs.length > 0) activeSubject = subs[0];
+
+      const container = document.getElementById('subjectTabContainer');
+      if (!container) return;
+
+      container.innerHTML = subs.map(sub => {
+        const count = questions.filter(q => q.subject === sub).length;
+        const isActive = activeSubject === sub;
+        const safeSub = sub.replace(/'/g, "\\'");
+        return '<button class="subject-tab ' + (isActive ? 'active' : '') + '" onclick="switchSubject(\'' + safeSub + '\')">' +
+               '<span>' + sub.toUpperCase() + '</span>' +
+               '<span class="subject-badge">' + count + '</span>' +
+               '</button>';
+      }).join('');
+    }
+
+    function initDrawerSubjectFilter() {
+      const subs = [...new Set(questions.map(q => q.subject))];
+      const container = document.getElementById('drawerFilterContainer');
+      if (!container) return;
+
+      let html = '<button class="drawer-filter-btn ' + (paletteFilter === 'All' ? 'active' : '') + '" onclick="setDrawerFilter(\'All\')">ALL (' + questions.length + ')</button>';
+      subs.forEach(s => {
+        const count = questions.filter(q => q.subject === s).length;
+        const safeSub = s.replace(/'/g, "\\'");
+        html += '<button class="drawer-filter-btn ' + (paletteFilter === s ? 'active' : '') + '" onclick="setDrawerFilter(\'' + safeSub + '\')">' + s.toUpperCase() + ' (' + count + ')</button>';
+      });
+      container.innerHTML = html;
+    }
+
+    function setDrawerFilter(sub) {
+      paletteFilter = sub;
+      initDrawerSubjectFilter();
+      renderPalette();
+    }
+
+    function switchSubject(sub) {
+      recordTimeSpent();
+      activeSubject = sub;
+      const firstIdx = questions.findIndex(q => q.subject === sub);
+      if (firstIdx !== -1) {
+        currentIndex = firstIdx;
+        if (paletteStates[questions[currentIndex].id] === 'not-visited') {
+          paletteStates[questions[currentIndex].id] = 'not-answered';
+        }
+      }
+      initSubjectTabs();
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function recordTimeSpent() {
+      const now = Date.now();
+      const elapsed = Math.max(0, Math.floor((now - questionOpenTimestamp) / 1000));
+      const currentQ = questions[currentIndex];
+      if (currentQ) {
+        timeSpent[currentQ.id] = (timeSpent[currentQ.id] || 0) + elapsed;
+      }
+      questionOpenTimestamp = now;
+    }
+
+    function renderCurrentQuestion() {
+      const q = questions[currentIndex];
+      if (!q) return;
+
+      document.getElementById('qDisplayNumber').textContent = 'Question ' + (currentIndex + 1);
+      document.getElementById('qSubjectBadge').textContent = '/ ' + questions.length + ' (' + q.subject + ')';
+      document.getElementById('btnPaletteCount').textContent = 'Q' + (currentIndex + 1);
+
+      let html = '';
+      const text = q.question || '';
+
+      // Assertion-Reason Detection
+      const arRegex = /(?:Assertion\s*(?:\(A\)|A)?\s*:?)([\s\S]*?)(?:Reason\s*(?:\(R\)|R)?\s*:?)([\s\S]*)$/i;
+      if (q.type === 'assertion-reason' || q.assertion || arRegex.test(text)) {
+        let intro = text;
+        let assertion = q.assertion || '';
+        let reason = q.reason || '';
+
+        if (!assertion && !reason && arRegex.test(text)) {
+          const match = text.match(arRegex);
+          const splitIdx = text.search(/Assertion\s*(?:\(A\)|A)?\s*:?/i);
+          intro = text.substring(0, splitIdx).trim();
+          assertion = match[1].trim();
+          reason = match[2].trim();
+        }
+
+        assertion = assertion.replace(/^Assertion\s*(?:\(A\)|A)?\s*:?\s*/i, '').trim();
+        reason = reason.replace(/^Reason\s*(?:\(R\)|R)?\s*:?\s*/i, '').trim();
+
+        if (intro) html += '<div style="margin-bottom:12px;font-weight:600;">' + renderMathInString(intro) + '</div>';
+        if (assertion) {
+          html += '<div class="ar-card ar-assertion">' +
+                  '<div class="ar-label">Assertion (A)</div>' +
+                  '<div>' + renderMathInString(assertion) + '</div>' +
+                  '</div>';
+        }
+        if (reason) {
+          html += '<div class="ar-card ar-reason">' +
+                  '<div class="ar-label">Reason (R)</div>' +
+                  '<div>' + renderMathInString(reason) + '</div>' +
+                  '</div>';
+        }
+      }
+      // Statement Type Detection
+      else if (q.type === 'statement-type' || (q.statements && q.statements.length > 0) || /Statement\s+(?:I|II|1|2)\s*:/i.test(text)) {
+        let intro = text;
+        let statements = q.statements ? [...q.statements] : [];
+
+        if (statements.length === 0 && /Statement\s+(?:I|II|1|2)\s*:/i.test(text)) {
+          const stmtRegex = /(Statement\s+(?:I|II|III|IV|1|2|3|4)\s*:[\s\S]*?)(?=(Statement\s+(?:I|II|III|IV|1|2|3|4)\s*:|$))/gi;
+          const matches = Array.from(text.matchAll(stmtRegex));
+          if (matches.length > 0) {
+            const firstIdx = text.search(/Statement\s+(?:I|II|1|2)\s*:/i);
+            intro = text.substring(0, firstIdx).trim();
+            statements = matches.map(m => m[1].trim());
+          }
+        }
+
+        if (intro) html += '<div style="margin-bottom:12px;font-weight:600;">' + renderMathInString(intro) + '</div>';
+        statements.forEach(stmt => {
+          html += '<div class="statement-item">' + renderMathInString(stmt) + '</div>';
+        });
+      }
+      // Match the Column Detection
+      else if (q.type === 'match-the-column' && q.matchColumn) {
+        html += '<div style="margin-bottom:12px;font-weight:600;">' + renderMathInString(text) + '</div>';
+        html += '<div class="match-table-wrapper"><table class="match-table">';
+        html += '<tr><th>' + renderMathInString(q.matchColumn.col1Title || 'Column I') + '</th><th>' + renderMathInString(q.matchColumn.col2Title || 'Column II') + '</th></tr>';
+        const maxLen = Math.max(q.matchColumn.col1.length, q.matchColumn.col2.length);
+        for (let i = 0; i < maxLen; i++) {
+          const c1 = q.matchColumn.col1[i] ? '<strong>' + q.matchColumn.col1[i].key + '.</strong> ' + renderMathInString(q.matchColumn.col1[i].text) : '';
+          const c2 = q.matchColumn.col2[i] ? '<strong>' + q.matchColumn.col2[i].key + '.</strong> ' + renderMathInString(q.matchColumn.col2[i].text) : '';
+          html += '<tr><td>' + c1 + '</td><td>' + c2 + '</td></tr>';
+        }
+        html += '</table></div>';
+      }
+      // Standard MCQ Question
+      else {
+        html += '<div style="font-weight:600;">' + renderMathInString(text) + '</div>';
+      }
+
+      document.getElementById('qStemContainer').innerHTML = html;
+
+      // Diagrams & Visual Assets
+      const visualBox = document.getElementById('qVisualContainer');
+      visualBox.innerHTML = '';
+      if (q.assets && q.assets.length > 0) {
+        q.assets.forEach(a => {
+          if (a.type === 'svg') {
+            visualBox.innerHTML += '<div style="text-align:center;margin:16px 0;">' + a.data + (a.caption ? '<p style="font-size:12px;color:var(--text-muted);">' + escapeHtml(a.caption) + '</p>' : '') + '</div>';
+          } else if (a.type === 'image') {
+            visualBox.innerHTML += '<div style="text-align:center;margin:16px 0;"><img src="' + a.data + '" style="max-height:280px;border-radius:8px;"/></div>';
+          }
+        });
+      }
+
+      // Options Rendering
+      const selected = userAnswers[q.id];
+      const optLabels = ['A', 'B', 'C', 'D'];
+      const optHtml = q.options.map((opt, idx) => {
+        const isSel = selected === idx;
+        return '<div class="option-item ' + (isSel ? 'selected' : '') + '" onclick="selectOption(' + idx + ')">' +
+               '<div class="option-badge">' + optLabels[idx] + '</div>' +
+               '<div style="flex:1;">' + renderMathInString(opt) + '</div>' +
+               '</div>';
+      }).join('');
+      document.getElementById('optionsListContainer').innerHTML = optHtml;
+
+      document.getElementById('prevBtn').disabled = currentIndex === 0;
+
+      triggerKaTeXAutoRender();
+    }
+
+    function selectOption(optIndex) {
+      const q = questions[currentIndex];
+      userAnswers[q.id] = optIndex;
+      if (paletteStates[q.id] === 'marked-for-review' || paletteStates[q.id] === 'answered-and-marked') {
+        paletteStates[q.id] = 'answered-and-marked';
+      } else {
+        paletteStates[q.id] = 'answered';
+      }
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function handleClearResponse() {
+      const q = questions[currentIndex];
+      userAnswers[q.id] = null;
+      if (paletteStates[q.id] === 'answered-and-marked' || paletteStates[q.id] === 'marked-for-review') {
+        paletteStates[q.id] = 'marked-for-review';
+      } else {
+        paletteStates[q.id] = 'not-answered';
+      }
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function handleMarkForReview() {
+      recordTimeSpent();
+      const q = questions[currentIndex];
+      if (userAnswers[q.id] !== null && userAnswers[q.id] !== undefined) {
+        paletteStates[q.id] = 'answered-and-marked';
+      } else {
+        paletteStates[q.id] = 'marked-for-review';
+      }
+      advanceQuestion();
+    }
+
+    function handleSaveAndNext() {
+      recordTimeSpent();
+      const q = questions[currentIndex];
+      if (userAnswers[q.id] !== null && userAnswers[q.id] !== undefined) {
+        paletteStates[q.id] = 'answered';
+      } else {
+        paletteStates[q.id] = 'not-answered';
+      }
+      advanceQuestion();
+    }
+
+    function advanceQuestion() {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        const nextQ = questions[currentIndex];
+        if (paletteStates[nextQ.id] === 'not-visited') {
+          paletteStates[nextQ.id] = 'not-answered';
+        }
+        if (activeSubject !== nextQ.subject) {
+          activeSubject = nextQ.subject;
+          initSubjectTabs();
+        }
+        renderCurrentQuestion();
+        renderPalette();
+      } else {
+        showSubmitModal();
+      }
+    }
+
+    function handlePrevious() {
+      if (currentIndex > 0) {
+        recordTimeSpent();
+        currentIndex--;
+        const prevQ = questions[currentIndex];
+        if (paletteStates[prevQ.id] === 'not-visited') {
+          paletteStates[prevQ.id] = 'not-answered';
+        }
+        if (activeSubject !== prevQ.subject) {
+          activeSubject = prevQ.subject;
+          initSubjectTabs();
+        }
+        renderCurrentQuestion();
+        renderPalette();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      recordTimeSpent();
+      currentIndex = idx;
+      const targetQ = questions[currentIndex];
+      if (paletteStates[targetQ.id] === 'not-visited') {
+        paletteStates[targetQ.id] = 'not-answered';
+      }
+      if (activeSubject !== targetQ.subject) {
+        activeSubject = targetQ.subject;
+        initSubjectTabs();
+      }
+      renderCurrentQuestion();
+      renderPalette();
+      if (window.innerWidth < 768) {
+        closePaletteDrawer();
+      }
+    }
+
+    // ==========================================
+    // DRAWER QUESTION PALETTE (5-PER-ROW GRID)
+    // ==========================================
+    function renderPalette() {
+      let ans = 0, notAns = 0, mark = 0, ansMark = 0, notVis = 0;
+      questions.forEach(q => {
+        const s = paletteStates[q.id] || 'not-visited';
+        if (s === 'answered') ans++;
+        else if (s === 'not-answered') notAns++;
+        else if (s === 'marked-for-review') mark++;
+        else if (s === 'answered-and-marked') ansMark++;
+        else notVis++;
+      });
+
+      const elAns = document.getElementById('dCountAns');
+      const elNotAns = document.getElementById('dCountNotAns');
+      const elMark = document.getElementById('dCountMark');
+      const elAnsMark = document.getElementById('dCountAnsMark');
+      const elNotVis = document.getElementById('dCountNotVis');
+
+      if (elAns) elAns.textContent = ans;
+      if (elNotAns) elNotAns.textContent = notAns;
+      if (elMark) elMark.textContent = mark;
+      if (elAnsMark) elAnsMark.textContent = ansMark;
+      if (elNotVis) elNotVis.textContent = notVis;
+
+      const displayQuestions = paletteFilter === 'All' 
+        ? questions 
+        : questions.filter(q => q.subject === paletteFilter);
+
+      const grid = document.getElementById('drawerGrid');
+      if (!grid) return;
+
+      grid.innerHTML = displayQuestions.map(q => {
+        const state = paletteStates[q.id] || 'not-visited';
+        const actualIdx = questions.findIndex(item => item.id === q.id);
+        const isCurrent = actualIdx === currentIndex;
+        return '<button class="palette-btn state-' + state + ' ' + (isCurrent ? 'current' : '') + '" onclick="jumpToQuestion(' + actualIdx + ')">' +
+               (actualIdx + 1) +
+               '</button>';
+      }).join('');
+    }
+
+    function togglePaletteDrawer() {
+      const drawer = document.getElementById('paletteDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      if (!drawer || !backdrop) return;
+
+      const isOpen = drawer.classList.contains('open');
+      if (isOpen) {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+      } else {
+        renderPalette();
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+      }
+    }
+
+    function closePaletteDrawer() {
+      const drawer = document.getElementById('paletteDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      if (drawer) drawer.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+    }
+
+    // ==========================================
+    // EXAM TIMER & FULLSCREEN CONTROLS
+    // ==========================================
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (secondsRemaining > 0) {
+          secondsRemaining--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+          finalizeSubmission();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const h = Math.floor(secondsRemaining / 3600);
+      const m = Math.floor((secondsRemaining % 3600) / 60);
+      const s = secondsRemaining % 60;
+      const str = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      const el = document.getElementById('timerDisplay');
+      if (el) el.textContent = str;
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    // ==========================================
+    // SUBMISSION & SCORECARD ANALYTICS
+    // ==========================================
+    function showSubmitModal() {
+      let ans = 0, notAns = 0, mark = 0, ansMark = 0, notVis = 0;
+      questions.forEach(q => {
+        const s = paletteStates[q.id] || 'not-visited';
+        if (s === 'answered') ans++;
+        else if (s === 'not-answered') notAns++;
+        else if (s === 'marked-for-review') mark++;
+        else if (s === 'answered-and-marked') ansMark++;
+        else notVis++;
+      });
+
+      document.getElementById('mCountAns').textContent = ans;
+      document.getElementById('mCountNotAns').textContent = notAns;
+      document.getElementById('mCountMark').textContent = mark;
+      document.getElementById('mCountAnsMark').textContent = ansMark;
+      document.getElementById('mCountNotVis').textContent = notVis;
+
+      document.getElementById('submitModal').style.display = 'flex';
+    }
+
+    function hideSubmitModal() {
+      document.getElementById('submitModal').style.display = 'none';
+    }
+
+    function finalizeSubmission() {
+      recordTimeSpent();
+      if (timerInterval) clearInterval(timerInterval);
+      hideSubmitModal();
+      closePaletteDrawer();
+
+      document.getElementById('examScreen').style.display = 'none';
+      document.getElementById('examTimerBadge').style.display = 'none';
+      document.getElementById('btnHeaderPalette').style.display = 'none';
+      document.getElementById('btnRoughSheet').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+
+      // NTA Evaluation: Both 'answered' and 'answered-and-marked' are officially evaluated
+      let correct = 0, incorrect = 0, unattempted = 0;
+      questions.forEach(q => {
+        const userChoice = userAnswers[q.id];
+        if (userChoice !== null && userChoice !== undefined) {
+          if (userChoice === q.correctAnswer) correct++;
+          else incorrect++;
+        } else {
+          unattempted++;
+        }
+      });
+
+      const marking = (typeof testMetadata !== 'undefined' && testMetadata.markingScheme) ? testMetadata.markingScheme : { correct: 4, incorrect: -1, unattempted: 0 };
+      const totalScore = (correct * (marking.correct || 4)) + (incorrect * (marking.incorrect || -1));
+      const totalMarks = (typeof testMetadata !== 'undefined' && testMetadata.totalMarks) ? testMetadata.totalMarks : 720;
+      const totalAttempted = correct + incorrect;
+      const accuracy = totalAttempted > 0 ? Math.round((correct / totalAttempted) * 100) : 0;
+
+      document.getElementById('resScore').textContent = totalScore + ' / ' + totalMarks;
+      document.getElementById('resCorrect').textContent = correct;
+      document.getElementById('resIncorrect').textContent = incorrect;
+      document.getElementById('resUnattempted').textContent = unattempted;
+      document.getElementById('resAccuracy').textContent = accuracy + '%';
+
+      // Question-wise time statistics
+      const timesArray = questions.map(q => ({ id: q.id, time: timeSpent[q.id] || 0 }));
+      timesArray.sort((a, b) => a.time - b.time);
+      const fastest = timesArray[0] || { id: 1, time: 0 };
+      const slowest = timesArray[timesArray.length - 1] || { id: 1, time: 0 };
+      const totalTime = timesArray.reduce((acc, cur) => acc + cur.time, 0);
+      const avgTime = questions.length > 0 ? Math.round(totalTime / questions.length) : 0;
+
+      document.getElementById('resFastest').textContent = 'Q' + (questions.findIndex(q => q.id === fastest.id) + 1) + ' (' + fastest.time + 's)';
+      document.getElementById('resSlowest').textContent = 'Q' + (questions.findIndex(q => q.id === slowest.id) + 1) + ' (' + slowest.time + 's)';
+      document.getElementById('resAvg').textContent = avgTime + 's';
+
+      // Time analysis table
+      let timeTableHtml = '<table class="summary-table"><tr><th>Q#</th><th>Subject</th><th>Your Answer</th><th>Correct Answer</th><th>Time Spent</th><th>Outcome</th></tr>';
+      const optMap = ['A', 'B', 'C', 'D'];
+      questions.forEach((q, idx) => {
+        const ans = userAnswers[q.id];
+        const isCorrect = ans === q.correctAnswer;
+        const isAttempted = ans !== null && ans !== undefined;
+        let outcome = '<span style="color:#64748b;">Unattempted</span>';
+        if (isAttempted) {
+          outcome = isCorrect ? '<span style="color:#22c55e;font-weight:bold;">Correct (+4)</span>' : '<span style="color:#ef4444;font-weight:bold;">Incorrect (-1)</span>';
+        }
+        timeTableHtml += '<tr>' +
+          '<td>' + (idx + 1) + '</td>' +
+          '<td>' + q.subject + '</td>' +
+          '<td>' + (isAttempted ? optMap[ans] : '-') + '</td>' +
+          '<td><strong>' + (q.correctAnswer !== null ? optMap[q.correctAnswer] : '-') + '</strong></td>' +
+          '<td>' + (timeSpent[q.id] || 0) + 's</td>' +
+          '<td>' + outcome + '</td>' +
+          '</tr>';
+      });
+      timeTableHtml += '</table>';
+      document.getElementById('resTimeTableContainer').innerHTML = timeTableHtml;
+
+      // Detailed Step-by-Step Solutions
+      let solHtml = '';
+      questions.forEach((q, idx) => {
+        const userChoice = userAnswers[q.id];
+        const isCorrect = userChoice === q.correctAnswer;
+        const isAttempted = userChoice !== null && userChoice !== undefined;
+        const borderClass = isAttempted ? (isCorrect ? '#22c55e' : '#ef4444') : 'var(--border)';
+
+        solHtml += '<div style="border:1px solid ' + borderClass + ';border-radius:10px;padding:16px;margin-bottom:14px;background:var(--bg-card-subtle);">' +
+          '<div style="font-weight:700;font-size:14px;margin-bottom:6px;">Question ' + (idx + 1) + ' (' + q.subject + ')</div>' +
+          '<div style="font-size:14px;margin-bottom:10px;">' + renderMathInString(q.question) + '</div>' +
+          '<div style="display:flex;gap:12px;font-size:13px;margin-bottom:8px;">' +
+          '<div>Your Choice: <strong>' + (isAttempted ? optMap[userChoice] : 'Not Attempted') + '</strong></div>' +
+          '<div>Correct: <strong style="color:#22c55e;">' + (q.correctAnswer !== null ? optMap[q.correctAnswer] : '-') + '</strong></div>' +
+          '</div>' +
+          (q.solution ? '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px;font-size:13px;line-height:1.6;"><strong>Solution:</strong> ' + renderMathInString(q.solution) + '</div>' : '') +
+          '</div>';
+      });
+      document.getElementById('resSolutionsContainer').innerHTML = solHtml;
+
+      triggerKaTeXAutoRender();
+    }
+
+    // ==========================================
+    // SCRATCHPAD CANVAS
+    // ==========================================
+    var scratchCanvas, scratchCtx, drawing = false;
+
+    function initScratchpad() {
+      scratchCanvas = document.getElementById('scratchCanvas');
+      if (!scratchCanvas || !scratchCanvas.getContext) return;
+      scratchCtx = scratchCanvas.getContext('2d');
+      if (!scratchCtx) return;
+      resizeScratchpad();
+
+      function getPos(e) {
+        const rect = scratchCanvas.getBoundingClientRect();
+        const clientX = e.touches && e.touches.length > 0 ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches && e.touches.length > 0 ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - rect.left, y: clientY - rect.top };
+      }
+
+      function start(e) {
+        drawing = true;
+        const p = getPos(e);
+        scratchCtx.beginPath();
+        scratchCtx.moveTo(p.x, p.y);
+      }
+
+      function draw(e) {
+        if (!drawing) return;
+        const p = getPos(e);
+        scratchCtx.lineWidth = 2;
+        scratchCtx.lineCap = 'round';
+        scratchCtx.strokeStyle = '#0284c7';
+        scratchCtx.lineTo(p.x, p.y);
+        scratchCtx.stroke();
+      }
+
+      function stop() { drawing = false; }
+
+      scratchCanvas.addEventListener('mousedown', start);
+      scratchCanvas.addEventListener('mousemove', draw);
+      scratchCanvas.addEventListener('mouseup', stop);
+      scratchCanvas.addEventListener('touchstart', start, { passive: true });
+      scratchCanvas.addEventListener('touchmove', draw, { passive: true });
+      scratchCanvas.addEventListener('touchend', stop);
+    }
+
+    function toggleScratchpad() {
+      const box = document.getElementById('scratchWindow');
+      if (!box) return;
+      if (box.style.display === 'none') {
+        box.style.display = 'flex';
+        resizeScratchpad();
+      } else {
+        box.style.display = 'none';
+      }
+    }
+
+    function resizeScratchpad() {
+      if (scratchCanvas) {
+        scratchCanvas.width = scratchCanvas.offsetWidth;
+        scratchCanvas.height = scratchCanvas.offsetHeight;
+      }
+    }
+
+    function clearScratchpad() {
+      if (scratchCtx && scratchCanvas) {
+        scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      triggerKaTeXAutoRender();
+    });
+  
+  </script>
+</body>
+</html>
