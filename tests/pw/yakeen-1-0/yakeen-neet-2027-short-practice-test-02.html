@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yakeen NEET (2027) - Short Practice Test - 02 - SRINEET Offline CBT</title>
+  <!-- KaTeX Math & Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onload="if(typeof onKatexLoaded==='function')onKatexLoaded()"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="if(typeof triggerKaTeXAutoRender==='function')triggerKaTeXAutoRender()"></script>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-dark: #075985;
+      --bg-main: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-focus: #0284c7;
+      --nta-not-visited: #e2e8f0;
+      --nta-not-answered: #ef4444;
+      --nta-answered: #22c55e;
+      --nta-marked: #8b5cf6;
+      --nta-marked-answered: #7c3aed;
+    }
+    body.dark {
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
+      --bg-main: #0b132b;
+      --bg-card: #1c2541;
+      --bg-card-subtle: #131b31;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --border-focus: #38bdf8;
+      --nta-not-visited: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Universal Header */
+    .header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 16px;
+    }
+    .brand-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+    }
+    .brand-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+    .timer-badge {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    body.dark .timer-badge {
+      background: #450a0a;
+      color: #fca5a5;
+      border-color: #7f1d1d;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .btn-primary { background: #0284c7; color: #ffffff; }
+    .btn-primary:hover { background: #0369a1; }
+    .btn-success { background: #16a34a; color: #ffffff; }
+    .btn-success:hover { background: #15803d; }
+    .btn-purple { background: #7c3aed; color: #ffffff; }
+    .btn-purple:hover { background: #6d28d9; }
+    .btn-outline { background: var(--bg-card); color: var(--text-main); border-color: var(--border); }
+    .btn-outline:hover { background: var(--bg-card-subtle); }
+    .btn-palette-toggle {
+      background: #f3e8ff;
+      color: #7e22ce;
+      border-color: #d8b4fe;
+    }
+    body.dark .btn-palette-toggle {
+      background: #3b0764;
+      color: #d8b4fe;
+      border-color: #6b21a8;
+    }
+    .btn-palette-toggle:hover { background: #e9d5ff; }
+    /* Main Container */
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px;
+      flex: 1;
+    }
+    /* CBT Workspace Card */
+    .cbt-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 580px;
+    }
+    /* Subject Tabs Bar */
+    .subject-nav {
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      overflow-x: auto;
+    }
+    .subject-tab-list {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .subject-tab {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .subject-tab.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+    .subject-badge {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.08);
+    }
+    .subject-tab.active .subject-badge {
+      background: rgba(255,255,255,0.25);
+    }
+    /* Question Meta Header */
+    .q-meta-bar {
+      padding: 10px 16px;
+      background: rgba(2, 132, 199, 0.05);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+    .q-num-title {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 14px;
+    }
+    .marks-badge {
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .marks-pos { background: #dcfce7; color: #15803d; }
+    .marks-neg { background: #fee2e2; color: #b91c1c; }
+    /* Question Content Area */
+    .q-content {
+      padding: 24px;
+      flex: 1;
+      overflow-y: auto;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .ar-card {
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 12px 0;
+      border: 1px solid transparent;
+    }
+    .ar-assertion {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+      border-left: 4px solid #f59e0b;
+    }
+    .ar-reason {
+      background: rgba(2, 132, 199, 0.08);
+      border-color: rgba(2, 132, 199, 0.3);
+      border-left: 4px solid #0284c7;
+    }
+    .ar-label {
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .ar-assertion .ar-label { color: #d97706; }
+    .ar-reason .ar-label { color: #0284c7; }
+    .statement-item {
+      padding: 12px 16px;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    .match-table-wrapper {
+      margin: 18px 0;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      overflow-x: auto;
+      background: var(--bg-card);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+    .match-table {
+      width: 100%;
+      min-width: 480px;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+    .match-table th {
+      background: rgba(2, 132, 199, 0.08);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 12px 18px;
+      border-bottom: 2px solid var(--border);
+      border-right: 1.5px solid var(--border);
+      text-align: left;
+      width: 50%;
+    }
+    .match-table th:last-child {
+      border-right: none;
+    }
+    .match-table td {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      border-right: 1.5px solid var(--border);
+      vertical-align: top;
+      width: 50%;
+    }
+    .match-table td:last-child {
+      border-right: none;
+    }
+    .match-table tr:last-child td {
+      border-bottom: none;
+    }
+    .match-table tr:hover td {
+      background: rgba(2, 132, 199, 0.02);
+    }
+    body.dark .match-table th {
+      background: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+    }
+    body.dark .match-table tr:hover td {
+      background: rgba(56, 189, 248, 0.03);
+    }
+    .match-col-key {
+      display: inline-block;
+      min-width: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      margin-right: 6px;
+    }
+    body.dark .match-col-key {
+      color: #38bdf8;
+    }
+    /* Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      font-size: 14px;
+    }
+    .option-item:hover {
+      border-color: #38bdf8;
+      background: rgba(2, 132, 199, 0.04);
+    }
+    .option-item.selected {
+      border-color: #0284c7;
+      background: rgba(2, 132, 199, 0.1);
+      box-shadow: 0 0 0 2px #0284c7;
+      font-weight: 600;
+    }
+    .option-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .option-item.selected .option-badge {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+    /* Bottom Action Bar */
+    .action-bar {
+      padding: 12px 16px;
+      background: var(--bg-card-subtle);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    /* SLIDE-OVER QUESTION PALETTE DRAWER */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(2px);
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .palette-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 380px;
+      max-width: 90vw;
+      background: var(--bg-card);
+      border-left: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .palette-drawer.open {
+      transform: translateX(0);
+    }
+    .drawer-header {
+      padding: 14px 16px;
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .drawer-title {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+    }
+    .btn-close {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .drawer-candidate {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+    }
+    .drawer-legends {
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.02);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 11px;
+    }
+    .legend-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 11px;
+      color: #fff;
+    }
+    .box-ans { background: #22c55e; }
+    .box-not-ans { background: #ef4444; }
+    .box-mark { background: #8b5cf6; border-radius: 50%; }
+    .box-not-vis { background: var(--border); color: var(--text-main); }
+    .box-ans-mark {
+      background: #8b5cf6;
+      border-radius: 50%;
+      position: relative;
+    }
+    .box-ans-mark::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1.5px solid #fff;
+    }
+    .drawer-filter {
+      padding: 8px 12px;
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+    }
+    .drawer-filter-btn {
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      cursor: pointer;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+    .drawer-filter-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+    .drawer-grid-container {
+      padding: 14px;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .palette-grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .palette-btn {
+      height: 38px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.1s ease;
+      position: relative;
+      user-select: none;
+    }
+    .palette-btn.current {
+      outline: 2.5px solid #0284c7;
+      outline-offset: 2px;
+      font-weight: 900;
+      transform: scale(1.04);
+      z-index: 2;
+    }
+    .palette-btn.state-not-visited {
+      background: var(--bg-card-subtle);
+      border-color: var(--border);
+      color: var(--text-main);
+    }
+    .palette-btn.state-not-answered {
+      background: #ef4444;
+      color: #ffffff;
+    }
+    .palette-btn.state-answered {
+      background: #22c55e;
+      color: #ffffff;
+    }
+    .palette-btn.state-marked-for-review {
+      background: #8b5cf6;
+      color: #ffffff;
+      border-radius: 50%;
+    }
+    .palette-btn.state-answered-and-marked {
+      background: #8b5cf6;
+      color: #ffffff;
+      border-radius: 50%;
+    }
+    .palette-btn.state-answered-and-marked::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 1px solid #ffffff;
+    }
+    .drawer-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-card-subtle);
+    }
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+    .modal-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 480px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+    .summary-table th, .summary-table td {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .summary-table th { background: var(--bg-card-subtle); }
+    /* Results */
+    .results-hero {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #fff;
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    /* Scratchpad Canvas */
+    .scratch-window {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 380px;
+      height: 320px;
+      background: #ffffff;
+      border: 2px solid #0284c7;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .scratch-header {
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .scratch-canvas {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      cursor: crosshair;
+    }
+  </style>
+</head>
+<body>
+  <!-- Universal Header -->
+  <header class="header">
+    <div class="brand-group">
+      <div class="brand-badge">SR</div>
+      <div>
+        <div class="brand-title">SRINEET</div>
+        <div class="brand-sub">Offline CBT Engine</div>
+      </div>
+    </div>
+    <!-- Exam Timer -->
+    <div id="examTimerBadge" class="timer-badge" style="display:none;">
+      ⏱️ <span id="timerDisplay">01:00:00</span>
+    </div>
+    <div class="header-actions">
+      <!-- Question Palette Trigger -->
+      <button id="btnHeaderPalette" class="btn btn-palette-toggle" style="display:none;" onclick="togglePaletteDrawer()">
+        📑 Question Palette
+      </button>
+      <!-- Digital Rough Sheet -->
+      <button id="btnRoughSheet" class="btn btn-outline" style="display:none;" onclick="toggleScratchpad()">
+        ✏️ Rough Sheet
+      </button>
+      <!-- Dark Mode -->
+      <button class="btn btn-outline" onclick="toggleDarkMode()" title="Toggle Dark/Light Mode">
+        🌓
+      </button>
+      <!-- Fullscreen -->
+      <button class="btn btn-outline" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+        ⛶
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- 1. INSTRUCTIONS SCREEN -->
+    <div id="instructionsScreen" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+      <h2 style="font-size:22px;font-weight:800;color:var(--primary);margin-bottom:8px;">Yakeen NEET (2027) - Short Practice Test - 02</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Duration: 60 Minutes | Total Questions: 48 | Maximum Marks: 192</p>
+      <div style="background:var(--bg-card-subtle);border-left:4px solid #0284c7;padding:14px 16px;border-radius:0 8px 8px 0;margin-bottom:20px;font-size:13px;">
+        <strong>Important Exam Instructions:</strong>
+        <ul style="margin:8px 0 0 20px;line-height:1.7;">
+          <li>Each correct answer fetches <strong>+4 marks</strong>.</li>
+          <li>Each incorrect answer results in <strong>-1 mark</strong> deduction.</li>
+          <li>Unattempted questions receive <strong>0 marks</strong>.</li>
+          <li>Questions 'Answered and Marked for Review' <strong>WILL BE EVALUATED</strong> for score calculation.</li>
+          <li>Click on the <strong>Question Palette</strong> button at any time to open the question drawer.</li>
+        </ul>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin:20px 0;cursor:pointer;">
+        <input type="checkbox" id="termsCheck" onchange="document.getElementById('startExamBtn').disabled = !this.checked">
+        <span>I have read and understood all the instructions and am ready to begin the test.</span>
+      </label>
+      <button id="startExamBtn" class="btn btn-primary" style="padding:10px 28px;font-size:14px;" disabled onclick="startTest()">
+        I am ready to begin
+      </button>
+    </div>
+
+    <!-- 2. CBT EXAM SCREEN -->
+    <div id="examScreen" class="cbt-card" style="display:none;">
+      <!-- Subject Navigation -->
+      <div class="subject-nav">
+        <div class="subject-tab-list" id="subjectTabContainer"></div>
+        <button class="btn btn-palette-toggle" onclick="togglePaletteDrawer()">
+          📑 Palette (<span id="btnPaletteCount">Q1</span>)
+        </button>
+      </div>
+      <!-- Question Meta -->
+      <div class="q-meta-bar">
+        <div>
+          <span id="qDisplayNumber" class="q-num-title">Question 1</span>
+          <span style="color:var(--text-muted);font-size:12px;" id="qSubjectBadge">/ 48</span>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <span class="marks-badge marks-pos">+4 Marks</span>
+          <span class="marks-badge marks-neg">-1 Mark</span>
+        </div>
+      </div>
+      <!-- Question Body Content -->
+      <div id="qContentArea" class="q-content">
+        <div id="qStemContainer"></div>
+        <div id="qVisualContainer"></div>
+        <div id="optionsListContainer" class="options-list"></div>
+      </div>
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <div class="action-group">
+          <button class="btn btn-outline" onclick="handleClearResponse()">Clear Response</button>
+          <button class="btn btn-purple" onclick="handleMarkForReview()">Mark for Review & Next</button>
+        </div>
+        <div class="action-group">
+          <button class="btn btn-outline" id="prevBtn" onclick="handlePrevious()">Previous</button>
+          <button class="btn btn-primary" id="saveNextBtn" onclick="handleSaveAndNext()">Save & Next</button>
+          <button class="btn btn-success" onclick="showSubmitModal()">Submit Test</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. RESULTS SCREEN -->
+    <div id="resultsScreen" style="display:none;">
+      <div class="results-hero">
+        <h2 style="font-size:24px;font-weight:800;margin-bottom:6px;">Exam Completed & Submitted</h2>
+        <div style="font-size:44px;font-weight:900;" id="resScore">0 / 192</div>
+        <p style="font-size:13px;opacity:0.9;">SRINEET Performance & Accuracy Analysis</p>
+      </div>
+      <div class="analytics-grid">
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#22c55e;" id="resCorrect">0</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Correct</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#ef4444;" id="resIncorrect">0</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Incorrect</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#64748b;" id="resUnattempted">0</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Unattempted</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:24px;font-weight:800;color:#0284c7;" id="resAccuracy">0%</div>
+          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;">Accuracy</div>
+        </div>
+      </div>
+
+      <!-- Time Analysis -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:20px;">
+        <h3 style="font-size:15px;font-weight:800;margin-bottom:12px;">Per-Question Time & Speed Analysis</h3>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-size:13px;">
+          <div>Fastest: <strong id="resFastest">-</strong></div>
+          <div>Slowest: <strong id="resSlowest">-</strong></div>
+          <div>Average: <strong id="resAvg">-</strong></div>
+        </div>
+        <div id="resTimeTableContainer" style="overflow-x:auto;"></div>
+      </div>
+
+      <!-- Detailed Solutions -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px;">
+        <h3 style="font-size:16px;font-weight:800;margin-bottom:14px;">Detailed Solutions & Explanations</h3>
+        <div id="resSolutionsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE-OVER QUESTION PALETTE DRAWER -->
+  <div id="drawerBackdrop" class="drawer-backdrop" onclick="closePaletteDrawer()"></div>
+  <aside id="paletteDrawer" class="palette-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Question Palette</div>
+      <button class="btn-close" onclick="closePaletteDrawer()">✕</button>
+    </div>
+    <!-- Candidate Profile -->
+    <div class="drawer-candidate">
+      <div style="width:32px;height:32px;border-radius:50%;background:#0284c7;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;">
+        SR
+      </div>
+      <div style="flex:1;">
+        <div style="font-weight:700;">NEET Aspirant</div>
+        <div style="font-size:10px;color:var(--text-muted);">Roll No: 2026-NEET-SRI</div>
+      </div>
+      <span style="background:#dcfce7;color:#15803d;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px;">ACTIVE</span>
+    </div>
+
+    <!-- NTA Visual Legends with Live Counts -->
+    <div class="drawer-legends">
+      <div class="legend-chip">
+        <div class="legend-box box-ans" id="dCountAns">0</div>
+        <span>Answered</span>
+      </div>
+      <div class="legend-chip">
+        <div class="legend-box box-not-ans" id="dCountNotAns">0</div>
+        <span>Not Answered</span>
+      </div>
+      <div class="legend-chip">
+        <div class="legend-box box-mark" id="dCountMark">0</div>
+        <span>Marked Review</span>
+      </div>
+      <div class="legend-chip">
+        <div class="legend-box box-not-vis" id="dCountNotVis">0</div>
+        <span>Not Visited</span>
+      </div>
+      <div class="legend-chip" style="grid-column: span 2; padding-top:4px; border-top: 1px solid var(--border);">
+        <div class="legend-box box-ans-mark" id="dCountAnsMark">0</div>
+        <span>Answered & Marked (Evaluated)</span>
+      </div>
+    </div>
+
+    <!-- Subject Filters inside Drawer -->
+    <div class="drawer-filter" id="drawerFilterContainer"></div>
+
+    <!-- 5-Questions Per Row Grid -->
+    <div class="drawer-grid-container">
+      <div class="palette-grid-5" id="drawerGrid"></div>
+    </div>
+
+    <!-- Drawer Footer Submit -->
+    <div class="drawer-footer">
+      <button class="btn btn-success" style="width:100%;padding:10px;" onclick="closePaletteDrawer();showSubmitModal();">
+        Submit Examination
+      </button>
+    </div>
+  </aside>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="submitModal" class="modal-overlay" style="display:none;">
+    <div class="modal-card">
+      <h3 style="font-size:17px;font-weight:800;margin-bottom:8px;">Submit Examination Confirmation</h3>
+      <p style="font-size:13px;color:var(--text-muted);">Please review your answers summary. You cannot change your answers after final submission.</p>
+      <table class="summary-table">
+        <tr><th>Exam Status</th><th>Question Count</th></tr>
+        <tr><td>Answered</td><td id="mCountAns" style="font-weight:bold;color:#22c55e;">0</td></tr>
+        <tr><td>Not Answered</td><td id="mCountNotAns" style="font-weight:bold;color:#ef4444;">0</td></tr>
+        <tr><td>Marked for Review</td><td id="mCountMark" style="font-weight:bold;color:#8b5cf6;">0</td></tr>
+        <tr><td>Answered & Marked</td><td id="mCountAnsMark" style="font-weight:bold;color:#7c3aed;">0</td></tr>
+        <tr><td>Not Visited</td><td id="mCountNotVis" style="font-weight:bold;color:#64748b;">0</td></tr>
+      </table>
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;">
+        <button class="btn btn-outline" onclick="hideSubmitModal()">Resume Test</button>
+        <button class="btn btn-primary" onclick="finalizeSubmission()">Yes, Submit Exam</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Digital Rough Sheet Overlay -->
+  <div id="scratchWindow" class="scratch-window" style="display:none;">
+    <div class="scratch-header">
+      <span>SRINEET Digital Scratchpad</span>
+      <div style="display:flex;gap:4px;">
+        <button class="btn btn-outline" style="padding:1px 6px;font-size:10px;height:20px;" onclick="clearScratchpad()">Clear</button>
+        <button class="btn btn-outline" style="padding:1px 6px;font-size:10px;height:20px;" onclick="toggleScratchpad()">✕</button>
+      </div>
+    </div>
+    <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+  </div>
+
+  <script>
+    // Embedded Data
+    var testMetadata = {"id":"yakeen-neet-2027-spt-02","testId":"yakeen-neet-2027-spt-02","title":"Yakeen NEET (2027) - Short Practice Test - 02","subtitle":"Vectors, Redox Reactions, Cell: The Unit of Life, Animal Kingdom","durationMinutes":60,"totalQuestions":48,"totalMarks":192,"markingScheme":{"correct":4,"incorrect":-1,"unattempted":0},"instructions":["The test is of 60 minutes duration.","The test booklet consists of 48 questions across Physics, Chemistry, Biology, and Zoology.","Maximum marks are 192.","Each correct response fetches +4 marks.","Each incorrect response fetches -1 mark (Negative Marking).","Questions Answered and Marked for Review will be evaluated for scoring."],"sections":[{"id":"sec-phy","name":"Physics","subject":"Physics","totalQuestions":12,"questionCount":12,"startQuestionIndex":0},{"id":"sec-chem","name":"Chemistry","subject":"Chemistry","totalQuestions":12,"questionCount":12,"startQuestionIndex":12},{"id":"sec-bio","name":"Biology","subject":"Biology","totalQuestions":12,"questionCount":12,"startQuestionIndex":24},{"id":"sec-zoo","name":"Zoology","subject":"Zoology","totalQuestions":12,"questionCount":12,"startQuestionIndex":36}]};
+    var questions = [{"id":1,"subject":"Physics","topic":"Vectors - Physical Quantity & Direction","type":"single-choice","question":"A physical quantity which has a direction:","options":["Must be a vector","May be a vector","Must be a scalar","None of the above"],"correctAnswer":1,"solution":"A physical quantity having a \"direction\" need not always be a true vector (i.e., it might not obey vector addition laws). For instance, electric current has a \"direction\" but is not treated as a vector in the vector-addition sense. Hence, a direction-bearing quantity may be a vector, but is not necessarily one."},{"id":2,"subject":"Physics","topic":"Vectors - Position Vector","type":"single-choice","question":"Position of a particle in a rectangular co-ordinate system is $(3, 2, 5)$. Then its position vector will be:","options":["$3\\hat{i} + 5\\hat{j} + 2\\hat{k}$","$3\\hat{i} + 2\\hat{j} + 5\\hat{k}$","$5\\hat{i} + 3\\hat{j} + 2\\hat{k}$","None of these"],"correctAnswer":1,"solution":"The position of the particle is $(3, 2, 5)$. So its position vector will be:\n$$\\vec{r} = 3\\hat{i} + 2\\hat{j} + 5\\hat{k}$$"},{"id":3,"subject":"Physics","topic":"Vectors - Unit Vector","type":"single-choice","question":"If $\\hat{n}$ is a unit vector in the direction of the vector $\\vec{A}$, then:","options":["$\\hat{n} = \\frac{\\vec{A}}{|\\vec{A}|}$","$\\hat{n} = \\vec{A}|\\vec{A}|$","$\\hat{n} = \\frac{|\\vec{A}|}{\\vec{A}}$","None of the above"],"correctAnswer":0,"solution":"A unit vector $\\hat{n}$ in the direction of $\\vec{A}$ is obtained by dividing the vector $\\vec{A}$ by its magnitude $|\\vec{A}|$, i.e.:\n$$\\hat{n} = \\frac{\\vec{A}}{|\\vec{A}|}$$"},{"id":4,"subject":"Physics","topic":"Vectors - Unit Vector Calculation","type":"single-choice","question":"The unit vector along $2\\hat{i} - 3\\hat{j} + \\hat{k}$ is:","options":["$\\frac{2\\hat{i} - 3\\hat{j} + \\hat{k}}{\\sqrt{14}}$","$\\frac{2\\hat{i} - 3\\hat{j} + \\hat{k}}{5}$","$\\frac{2\\hat{i} - 3\\hat{j} + \\hat{k}}{\\sqrt{15}}$","None of these"],"correctAnswer":0,"solution":"Given vector $\\vec{v} = 2\\hat{i} - 3\\hat{j} + \\hat{k}$.\nFirst find the magnitude:\n$$|\\vec{v}| = \\sqrt{2^2 + (-3)^2 + 1^2} = \\sqrt{4 + 9 + 1} = \\sqrt{14}$$\nHence the unit vector is:\n$$\\hat{v} = \\frac{2\\hat{i} - 3\\hat{j} + \\hat{k}}{\\sqrt{14}}$$"},{"id":5,"subject":"Physics","topic":"Vectors - Resultant Angle Comparison","type":"single-choice","question":"The resultant of $\\vec{A}$ and $\\vec{B}$ makes an angle $\\alpha$ with $\\vec{A}$ and $\\beta$ with $\\vec{B}$, then:","options":["$\\alpha \u003c \\beta$","$\\alpha \u003c \\beta$ if $|\\vec{A}| \u003c |\\vec{B}|$","$\\alpha \u003c \\beta$ if $|\\vec{A}| \u003e |\\vec{B}|$","$\\alpha \u003c \\beta$ if $|\\vec{A}| = |\\vec{B}|$"],"correctAnswer":2,"solution":"The resultant $\\vec{R} = \\vec{A} + \\vec{B}$ inclines more toward the vector having the larger magnitude.\nIf $|\\vec{A}| \u003e |\\vec{B}|$, the resultant is closer to $\\vec{A}$, so the angle it makes with $\\vec{A}$ is smaller than the angle it makes with $\\vec{B}$:\n$$\\alpha \u003c \\beta \\quad \\text{if} \\quad |\\vec{A}| \u003e |\\vec{B}|$$"},{"id":6,"subject":"Physics","topic":"Vectors - Sum of Two Vectors","type":"single-choice","question":"The value of the sum of two vectors $\\vec{A}$ and $\\vec{B}$ with $\\theta$ as the angle between them is:","options":["$\\sqrt{A^2 + B^2 + 2AB\\cos\\theta}$","$\\sqrt{A^2 - B^2 + 2AB\\cos\\theta}$","$\\sqrt{A^2 + B^2 - 2AB\\sin\\theta}$","$\\sqrt{A^2 + B^2 + 2AB\\sin\\theta}$"],"correctAnswer":0,"solution":"By the law of vector addition, the magnitude of the resultant of two vectors $\\vec{A}$ and $\\vec{B}$ inclined at angle $\\theta$ is:\n$$R = \\sqrt{A^2 + B^2 + 2AB\\cos\\theta}$$"},{"id":7,"subject":"Physics","topic":"Vectors - Maximum Resultant","type":"single-choice","question":"For the resultant of two vectors to be maximum, what must be the angle between them?","options":["$0^\\circ$","$60^\\circ$","$90^\\circ$","$180^\\circ$"],"correctAnswer":0,"solution":"The resultant of two vectors is maximum when $\\cos\\theta = 1$, which occurs when $\\theta = 0^\\circ$. The vectors then point in the same direction, giving $R_{\\max} = A + B$."},{"id":8,"subject":"Physics","topic":"Vectors - Maximum Resultant Force","type":"single-choice","question":"Two forces of $12\\text{ N}$ and $8\\text{ N}$ act upon a body. The resultant force on the body has maximum value of:","options":["$4\\text{ N}$","$0\\text{ N}$","$20\\text{ N}$","$8\\text{ N}$"],"correctAnswer":2,"solution":"$$R_{\\max} = A + B$$\nFor $\\theta = 0^\\circ$,\n$$R_{\\max} = 12\\text{ N} + 8\\text{ N} = 20\\text{ N}$$"},{"id":9,"subject":"Physics","topic":"Vectors - Components of a Vector","type":"single-choice","question":"Find x-component of vector $\\vec{A}$ shown in the figure below:","assets":[{"type":"svg","caption":"Vector A of magnitude 100 making 53° with the positive y-axis","data":"\u003csvg viewBox=\"0 0 320 240\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width: 100%; height: auto; font-family: -apple-system, sans-serif;\"\u003e\n          \u003cdefs\u003e\n            \u003cmarker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"\u003e\n              \u003cpath d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#0284c7\"/\u003e\n            \u003c/marker\u003e\n            \u003cmarker id=\"arrow-axis\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"\u003e\n              \u003cpath d=\"M 0 1 L 10 5 L 0 9 z\" fill=\"#475569\"/\u003e\n            \u003c/marker\u003e\n          \u003c/defs\u003e\n          \u003c!-- Grid Background --\u003e\n          \u003crect width=\"320\" height=\"240\" fill=\"#f8fafc\" rx=\"8\" stroke=\"#e2e8f0\"/\u003e\n          \n          \u003c!-- Axes --\u003e\n          \u003cline x1=\"50\" y1=\"200\" x2=\"280\" y2=\"200\" stroke=\"#475569\" stroke-width=\"2\" marker-end=\"url(#arrow-axis)\"/\u003e\n          \u003cline x1=\"50\" y1=\"200\" x2=\"50\" y2=\"30\" stroke=\"#475569\" stroke-width=\"2\" marker-end=\"url(#arrow-axis)\"/\u003e\n          \n          \u003c!-- Axis Labels --\u003e\n          \u003ctext x=\"290\" y=\"204\" fill=\"#334155\" font-size=\"14\" font-weight=\"bold\"\u003ex\u003c/text\u003e\n          \u003ctext x=\"46\" y=\"24\" fill=\"#334155\" font-size=\"14\" font-weight=\"bold\"\u003ey\u003c/text\u003e\n          \u003ctext x=\"36\" y=\"216\" fill=\"#64748b\" font-size=\"12\"\u003eO\u003c/text\u003e\n          \n          \u003c!-- Vector A --\u003e\n          \u003c!-- 37 deg with x-axis: cos(37)=0.8, sin(37)=0.6. Length = 180px. dx = 144, dy = -108 --\u003e\n          \u003cline x1=\"50\" y1=\"200\" x2=\"194\" y2=\"92\" stroke=\"#0284c7\" stroke-width=\"3\" marker-end=\"url(#arrow)\"/\u003e\n          \n          \u003c!-- Vector Label --\u003e\n          \u003ctext x=\"145\" y=\"85\" fill=\"#0284c7\" font-size=\"14\" font-weight=\"bold\"\u003eA = 100\u003c/text\u003e\n          \n          \u003c!-- Angle Arc with y-axis (53 deg) --\u003e\n          \u003c!-- y-axis is at 90 deg (dy=-1, dx=0), vector is at 37 deg from x, which is 53 deg from y --\u003e\n          \u003cpath d=\"M 50 145 A 55 55 0 0 1 83 156\" fill=\"none\" stroke=\"#dc2626\" stroke-width=\"2\"/\u003e\n          \u003ctext x=\"64\" y=\"142\" fill=\"#dc2626\" font-size=\"13\" font-weight=\"bold\"\u003e53°\u003c/text\u003e\n        \u003c/svg\u003e"}],"options":["80","60","40","none"],"correctAnswer":0,"solution":"From the diagram, the vector of magnitude $100$ makes a $53^\\circ$ angle with the $y$-axis, so its angle from the positive $x$-axis is:\n$$\\theta = 90^\\circ - 53^\\circ = 37^\\circ$$\nThus the $x$-component is:\n$$A_x = 100\\cos(37^\\circ)$$\nUsing $\\cos(37^\\circ) = \\frac{4}{5}$:\n$$A_x = 100 \\times \\frac{4}{5} = 80$$"},{"id":10,"subject":"Physics","topic":"Vectors - Direction Cosines","type":"single-choice","question":"Vector $\\vec{P}$ makes angles $\\alpha$, $\\beta$, & $\\lambda$ with the $X$, $Y$, and $Z$ axes respectively, then:\n$$\\cos^2\\alpha + \\cos^2\\beta + \\cos^2\\lambda = ?$$","options":["0","1","2","3"],"correctAnswer":1,"solution":"For any vector in three-dimensional space, the direction cosines satisfy the fundamental identity:\n$$\\cos^2\\alpha + \\cos^2\\beta + \\cos^2\\lambda = 1$$\n[New NCERT Class 11 Page No. 70]"},{"id":11,"subject":"Physics","topic":"Vectors - Work Done by Dot Product","type":"single-choice","question":"A force $(2\\hat{i} + 2\\hat{j})\\text{ N}$ displaces an object through a displacement $(2\\hat{i} - 3\\hat{j})\\text{ m}$. The work ($W = \\vec{F} \\cdot \\vec{S}$) done is:","options":["$2\\text{ J}$","$-2\\text{ J}$","$5\\text{ J}$","$13\\text{ J}$"],"correctAnswer":1,"solution":"Work done is given by the scalar product:\n$$W = \\vec{F} \\cdot \\vec{S}$$\n$$W = (2\\hat{i} + 2\\hat{j}) \\cdot (2\\hat{i} - 3\\hat{j})$$\n$$W = (2 \\times 2) + (2 \\times (-3)) = 4 - 6 = -2\\text{ J}$$\n[New NCERT Class 11 Page No. 117]"},{"id":12,"subject":"Physics","topic":"Vectors - Cross Product & Linear Velocity","type":"single-choice","question":"What is the value of linear velocity, if $\\vec{\\omega} = 3\\hat{i} - 4\\hat{j} + \\hat{k}$ and $\\vec{r} = 5\\hat{i} - 6\\hat{j} + 6\\hat{k}$?","options":["$6\\hat{i} - 2\\hat{j} + 3\\hat{k}$","$6\\hat{i} - 2\\hat{j} + 8\\hat{k}$","$4\\hat{i} - 13\\hat{j} + 6\\hat{k}$","$-18\\hat{i} - 13\\hat{j} + 2\\hat{k}$"],"correctAnswer":3,"solution":"Linear velocity is given by the cross product:\n$$\\vec{v} = \\vec{\\omega} \\times \\vec{r}$$\nComputing the determinant:\n$$\\vec{\\omega} \\times \\vec{r} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 3 & -4 & 1 \\\\ 5 & -6 & 6 \\end{vmatrix}$$\n$$= \\hat{i}[(-4)(6) - (1)(-6)] - \\hat{j}[(3)(6) - (1)(5)] + \\hat{k}[(3)(-6) - (-4)(5)]$$\n$$= \\hat{i}[-24 + 6] - \\hat{j}[18 - 5] + \\hat{k}[-18 + 20]$$\n$$= -18\\hat{i} - 13\\hat{j} + 2\\hat{k}$$"},{"id":13,"subject":"Chemistry","topic":"Redox Reaction - Disproportionation Reaction","type":"single-choice","question":"Which statement is correct regarding the reaction?\n$$2\\text{H}_2\\text{O}_2(\\text{aq}) \\rightarrow 2\\text{H}_2\\text{O}(l) + \\text{O}_2(\\text{g})$$","options":["Hydrogen experiences disproportionation in the reaction.","Oxygen experiences disproportionation in the reaction.","Hydrogen oxidation number changes from +1 to 0.","Oxygen oxidation number changes from –2 to –1."],"correctAnswer":1,"solution":"In $2\\text{H}_2\\text{O}_2$, oxygen is in the –1 oxidation state. In $\\text{H}_2\\text{O}$, oxygen is in the –2 oxidation state (reduction), and in $\\text{O}_2$, oxygen is in the 0 oxidation state (oxidation). Since the same element (oxygen) is simultaneously reduced and oxidized, oxygen experiences disproportionation."},{"id":14,"subject":"Chemistry","topic":"Redox Reaction - Oxidation State of Sulphur","type":"single-choice","question":"The oxidation states of Sulphur in the anions $\\text{SO}_3^{2-}$, $\\text{S}_2\\text{O}_4^{2-}$ and $\\text{S}_2\\text{O}_6^{2-}$ follow the order:","options":["$\\text{S}_2\\text{O}_6^{2-} \u003c \\text{S}_2\\text{O}_4^{2-} \u003c \\text{SO}_3^{2-}$","$\\text{S}_2\\text{O}_4^{2-} \u003c \\text{SO}_3^{2-} \u003c \\text{S}_2\\text{O}_6^{2-}$","$\\text{SO}_3^{2-} \u003c \\text{S}_2\\text{O}_4^{2-} \u003c \\text{S}_2\\text{O}_6^{2-}$","$\\text{S}_2\\text{O}_4^{2-} \u003c \\text{S}_2\\text{O}_6^{2-} \u003c \\text{SO}_3^{2-}$"],"correctAnswer":1,"solution":"Determining the oxidation states of sulphur:\n1. In $\\text{S}_2\\text{O}_4^{2-}$: $2x + 4(-2) = -2 \\implies 2x = +6 \\implies x = +3$\n2. In $\\text{SO}_3^{2-}$: $x + 3(-2) = -2 \\implies x = +4$\n3. In $\\text{S}_2\\text{O}_6^{2-}$: $2x + 6(-2) = -2 \\implies 2x = +10 \\implies x = +5$\n\nHence, the correct increasing order is:\n$$\\text{S}_2\\text{O}_4^{2-} (+3) \u003c \\text{SO}_3^{2-} (+4) \u003c \\text{S}_2\\text{O}_6^{2-} (+5)$$"},{"id":15,"subject":"Chemistry","topic":"Redox Reaction - Nitric Oxide as Reducing Agent","type":"single-choice","question":"Nitric oxide acts as a reducing agent in the reaction:","options":["$4\\text{NH}_3 + 5\\text{O}_2 \\rightarrow 4\\text{NO} + 6\\text{H}_2\\text{O}$","$2\\text{NO} + 3\\text{I}_2 + 4\\text{H}_2\\text{O} \\rightarrow 2\\text{NO}_3^- + 6\\text{I}^- + 8\\text{H}^+$","$2\\text{NO} + \\text{H}_2\\text{SO}_3 \\rightarrow \\text{N}_2\\text{O} + \\text{H}_2\\text{SO}_4$","$2\\text{NO} + \\text{H}_2\\text{S} \\rightarrow \\text{N}_2\\text{O} + \\text{S} + \\text{H}_2\\text{O}$"],"correctAnswer":1,"solution":"A substance acts as a reducing agent when it is itself oxidized (oxidation state increases).\nIn reaction (2):\n$$2\\text{NO} + 3\\text{I}_2 + 4\\text{H}_2\\text{O} \\rightarrow 2\\text{NO}_3^- + 6\\text{I}^- + 8\\text{H}^+$$\nNitrogen goes from $+2$ in $\\text{NO}$ to $+5$ in $\\text{NO}_3^-$, losing electrons. Therefore, $\\text{NO}$ acts as a reducing agent."},{"id":16,"subject":"Chemistry","topic":"Redox Reaction - Balancing in Basic Medium","type":"single-choice","question":"For the redox reaction,\n$$\\text{Zn} + \\text{NO}_3^- + \\text{H}_2\\text{O} \\rightarrow \\text{Zn}^{2+} + \\text{NH}_4^+ + \\text{OH}^-$$\nsum of coefficients of $\\text{Zn}$, $\\text{NO}_3^-$ and $\\text{OH}^-$ in the balanced equation is:","options":["15","14","16","10"],"correctAnswer":0,"solution":"The balanced equation in alkaline medium is:\n$$4\\text{Zn} + \\text{NO}_3^- + 7\\text{H}_2\\text{O} \\rightarrow 4\\text{Zn}^{2+} + \\text{NH}_4^+ + 10\\text{OH}^-$$\n- Coefficient of $\\text{Zn} = 4$\n- Coefficient of $\\text{NO}_3^- = 1$\n- Coefficient of $\\text{OH}^- = 10$\n\nSum of coefficients $= 4 + 1 + 10 = 15$.\n[NCERT Ed. 2025-26, 11th, Part-2, Page No. 240]"},{"id":17,"subject":"Chemistry","topic":"Redox Reaction - Oxidation State of Chromium","type":"single-choice","question":"Compound(s) in which chromium is not present in +6 oxidation state is/are:\nI. $\\text{K}_2\\text{Cr}_2\\text{O}_7$\nII. $\\text{CrO}_3$\nIII. $\\text{CrO}_5$\nIV. $\\text{Na}_2\\text{CrO}_4$\nV. $\\text{Cr}_2(\\text{SO}_4)_3$\nVI. $\\text{CrCl}_2$","options":["III, V and VI","V and VI","II, III, V and VI","I, III, IV and V"],"correctAnswer":1,"solution":"Checking the oxidation states of Cr:\n- $\\text{K}_2\\text{Cr}_2\\text{O}_7$: $2(+1) + 2x + 7(-2) = 0 \\implies x = +6$\n- $\\text{CrO}_3$: $x + 3(-2) = 0 \\implies x = +6$\n- $\\text{CrO}_5$: Peroxide butterfly structure: $x + 1(-2) + 4(-1) = 0 \\implies x = +6$\n- $\\text{Na}_2\\text{CrO}_4$: $2(+1) + x + 4(-2) = 0 \\implies x = +6$\n- $\\text{Cr}_2(\\text{SO}_4)_3$: $2x + 3(-2) = 0 \\implies x = +3$\n- $\\text{CrCl}_2$: $x + 2(-1) = 0 \\implies x = +2$\n\nTherefore, chromium is not in +6 in V and VI.\n[NCERT Ed. 2025-26, 11th, Part-2, Page No. 237]"},{"id":18,"subject":"Chemistry","topic":"Redox Reaction - Concept of Oxidation","type":"single-choice","question":"In the following reaction $2\\text{Mg}(\\text{s}) + \\text{O}_2(\\text{g}) \\rightarrow 2\\text{MgO}(\\text{s})$ with respect to $\\text{Mg}$, the process is called:","options":["oxidation","reduction","redox reaction","none of these"],"correctAnswer":0,"solution":"In the reaction $2\\text{Mg}(\\text{s}) + \\text{O}_2(\\text{g}) \\rightarrow 2\\text{MgO}(\\text{s})$, magnesium combines with oxygen and its oxidation state increases from 0 to +2 by loss of electrons. Hence, with respect to Mg, the process is called oxidation."},{"id":19,"subject":"Chemistry","topic":"Redox Reaction - Oxidant and Reductant Definitions","type":"statement-type","question":"Given below are two statements:\nStatement I: In a redox reaction, the oxidation number of oxidant decreases while that of reductant increases.\nStatement II: Oxidant loses electron(s) and reductant gains electron(s).\nIn the light of the above statements, choose the most appropriate answer from the options given below:","statements":["Statement I: In a redox reaction, the oxidation number of oxidant decreases while that of reductant increases.","Statement II: Oxidant loses electron(s) and reductant gains electron(s)."],"options":["Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct.","Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":0,"solution":"During a redox reaction:\n- An oxidant (oxidizing agent) gains electrons and is reduced; hence its oxidation number decreases (Statement I is correct).\n- A reductant (reducing agent) loses electrons and is oxidized; hence its oxidation number increases.\nStatement II states that oxidant loses electrons, which is incorrect."},{"id":20,"subject":"Chemistry","topic":"Redox Reaction - Equivalent Weight","type":"single-choice","question":"The equivalent weight of $\\text{H}_2\\text{SO}_4$ in the reaction:\n$$2\\text{KMnO}_4 + 3\\text{H}_2\\text{SO}_4 + 10\\text{HCl} \\rightarrow 2\\text{MnSO}_4 + \\text{K}_2\\text{SO}_4 + 5\\text{Cl}_2 + 8\\text{H}_2\\text{O}$$\nis:","options":["$\\frac{M}{2}$","$M$","$\\frac{3M}{10}$","$\\frac{3M}{5}$"],"correctAnswer":0,"solution":"In this reaction, $\\text{H}_2\\text{SO}_4$ acts only as an acid (providing sulfate ions $\\text{SO}_4^{2-}$ without any change in the oxidation number of sulphur). For an acid:\n$$\\text{Equivalent Weight} = \\frac{\\text{Molar Mass } (M)}{\\text{Basicity}}$$\nSince $\\text{H}_2\\text{SO}_4$ is a dibasic acid (basicity = 2):\n$$\\text{Equivalent Weight} = \\frac{M}{2}$$\n[New NCERT Class 11th Page No. 17]"},{"id":21,"subject":"Chemistry","topic":"Redox Reaction - Oxidation State in Peroxide","type":"single-choice","question":"In the compound $\\text{H}_2\\text{O}_2$ (hydrogen peroxide), what is the oxidation state of oxygen?","options":["+1","–1","0","–2"],"correctAnswer":1,"solution":"In hydrogen peroxide ($\\text{H}_2\\text{O}_2$), the structure is $\\text{H}-\\text{O}-\\text{O}-\\text{H}$ with an $\\text{O}-\\text{O}$ single peroxide linkage. Each hydrogen has an oxidation number of $+1$, so each oxygen atom has an oxidation number of $-1$."},{"id":22,"subject":"Chemistry","topic":"Redox Reaction - Balancing Coefficients","type":"single-choice","question":"For the redox reaction,\n$$\\text{HgCl}_2 + \\text{SnCl}_2 \\rightarrow \\text{Hg} + \\text{SnCl}_4$$\nthe correct coefficient of reactants for the balanced equation are:","options":["1, 1","1, 2","2, 2","2, 1"],"correctAnswer":0,"solution":"Balancing the atoms and oxidation states:\n$$\\text{HgCl}_2 + \\text{SnCl}_2 \\rightarrow \\text{Hg} + \\text{SnCl}_4$$\n- Hg: 1 on both sides\n- Sn: 1 on both sides\n- Cl: $2 + 2 = 4$ on reactant side and 4 on product side.\nThe coefficients of reactants $\\text{HgCl}_2$ and $\\text{SnCl}_2$ are 1, 1."},{"id":23,"subject":"Chemistry","topic":"Redox Reaction - Identification of Non-Redox Reaction","type":"single-choice","question":"Which reaction is not a redox reaction?","options":["$\\text{MnO}_4^- \\rightarrow \\text{MnO}_2 + \\text{O}_2$","$\\text{Cl}_2 + \\text{H}_2\\text{O} \\rightarrow \\text{HCl} + \\text{HClO}$","$\\text{CrO}_4^{2-} + 2\\text{H}^+ \\rightarrow \\text{Cr}_2\\text{O}_7^{2-} + \\text{H}_2\\text{O}$","$\\text{MnO}_4^- + \\text{H}^+ + \\text{Ag} \\rightarrow \\text{Mn}^{2+} + \\text{Ag}^+ + \\text{H}_2\\text{O}$"],"correctAnswer":2,"solution":"Checking the oxidation states:\n1. $\\text{MnO}_4^- (+7) \\rightarrow \\text{MnO}_2 (+4) + \\text{O}_2 (0)$ : Redox\n2. $\\text{Cl}_2 (0) + \\text{H}_2\\text{O} \\rightarrow \\text{HCl} (-1) + \\text{HClO} (+1)$ : Redox\n3. $\\text{CrO}_4^{2-} (+6) + 2\\text{H}^+ \\rightarrow \\text{Cr}_2\\text{O}_7^{2-} (+6) + \\text{H}_2\\text{O}$ : No change in oxidation states of any element. Hence, it is not a redox reaction.\n4. $\\text{MnO}_4^- (+7) + \\text{Ag} (0) \\rightarrow \\text{Mn}^{2+} (+2) + \\text{Ag}^+ (+1)$ : Redox"},{"id":24,"subject":"Chemistry","topic":"Redox Reaction - Disproportionation of Bromine","type":"single-choice","question":"In the following equation\n$$2\\text{Br}_2 + 6\\text{CO}_3^{2-} + 3\\text{H}_2\\text{O} \\rightarrow 5\\text{Br}^- + \\text{BrO}_3^- + 6\\text{HCO}_3^-$$","options":["Bromine is oxidised and carbonate is reduced.","Bromine is reduced and carbonate is oxidised.","Bromine is neither reduced nor oxidised.","Bromine is reduced as well oxidised."],"correctAnswer":3,"solution":"In $\\text{Br}_2$, the oxidation state of bromine is 0.\n- In $\\text{Br}^-$, the oxidation state of bromine is –1 (reduction).\n- In $\\text{BrO}_3^-$, the oxidation state of bromine is +5 (oxidation).\nCarbonate (C in +4) remains unchanged as bicarbonate (C in +4). Therefore, bromine is simultaneously reduced and oxidised (disproportionation)."},{"id":25,"subject":"Biology","topic":"Cell - The Unit of Life (Endomembrane System)","type":"single-choice","question":"How are the Rough Endoplasmic Reticulum (RER) and the Golgi apparatus functionally linked in the processing of secreted proteins?","options":["SER synthesises proteins which are then modified and packaged by the Golgi apparatus.","Proteins are synthesised on RER, transported to the Golgi where they are modified, and then packaged into vesicles from its trans face for secretion.","The Golgi synthesises proteins and sends them to the RER for modification and packaging.","Proteins from the RER fuse with the trans face of the Golgi and exit from the cis face after modification."],"correctAnswer":1,"solution":"The RER, studded with ribosomes, is the site of synthesis for proteins destined for secretion. These proteins then move to the Golgi apparatus (entering via the forming/cis face). Within the Golgi cisternae, they are chemically modified, sorted, and finally packaged into vesicles that bud from the maturing/trans face to be transported to intracellular targets or secreted outside the cell."},{"id":26,"subject":"Biology","topic":"Cell - The Unit of Life (Vacuoles)","type":"single-choice","question":"In Amoeba, the contractile vacuole is important for:","options":["respiration and osmoregulation.","excretion and respiration.","osmoregulation and excretion.","excretion and digestion."],"correctAnswer":2,"solution":"In Amoeba, the contractile vacuole is important for osmoregulation and excretion of metabolic wastes.\n[NCERT Edition 2025-26 Class 11th Page No. 96]"},{"id":27,"subject":"Biology","topic":"Cell - The Unit of Life (Inclusion Bodies)","type":"single-choice","question":"Which of the following statements about inclusion bodies is incorrect?","options":["They are not bound by any membrane.","These are involved in ingestion of food particles.","They lie free in the cytoplasm.","These represent reserve material in cytoplasm."],"correctAnswer":1,"solution":"Reserve materials in prokaryotic cells are stored in the cytoplasm in the form of inclusion bodies. These are not bound by any membrane system and lie free in the cytoplasm (e.g., phosphate granules, cyanophycean granules, glycogen granules). They are not involved in ingestion of food particles."},{"id":28,"subject":"Biology","topic":"Cell - The Unit of Life (Ribosomes)","type":"single-choice","question":"Select the correct option stating true (T) and false (F) w.r.t. ribosomes.\n(A) Protein synthesis in eukaryotic cell occurs in the ribosomes of nucleus only.\n(B) Ribosomes are the granular structures first observed under the electron microscope.\n(C) The sedimentation coefficient is indirect measure of density and size.\n(D) They are composed of RNA (ribonucleic acid) and protein.","options":["A - T, B - T, C - T, D - F","A - F, B - F, C - F, D - T","A - T, B - F, C - T, D - T","A - F, B - F, C - T, D - T"],"correctAnswer":3,"solution":"(A) False — Protein synthesis in eukaryotic cells occurs on ribosomes in the cytoplasm and on the rough endoplasmic reticulum, not inside the nucleus.\n(B) False — Ribosomes were first observed as dense particles under the electron microscope by George Palade (1953).\n(C) True — S (Svedberg unit) represents sedimentation coefficient, which is an indirect measure of density and size.\n(D) True — Ribosomes are composed of ribosomal RNA (rRNA) and proteins and are not surrounded by any membrane.\n[NCERT 11th Edition (2025-26) Page No. 98]"},{"id":29,"subject":"Biology","topic":"Cell - The Unit of Life (Cell Wall)","type":"single-choice","question":"The cell wall is the outermost covering in plant cell which:\n(I) protects the cell from infection.\n(II) shows the selectively permeable nature.\n(III) helps in cell-to-cell interaction.\n(IV) gives shape to the cell.\nWhich of the above statement(s) is/are correct?","options":["I and II only","II and III only","Only III","I, III and IV only"],"correctAnswer":3,"solution":"Statements (I), (III), and (IV) are correct:\n- The cell wall gives shape to the cell and protects the cell from mechanical damage and infection.\n- It helps in cell-to-cell interaction and provides a barrier to undesirable macromolecules.\n- Statement (II) is incorrect because the cell wall is freely permeable, while the plasma membrane is selectively permeable.\n[NCERT 11th Edition (2025-26) Page No. 94]"},{"id":30,"subject":"Biology","topic":"Cell - The Unit of Life (Nucleolus)","type":"statement-type","question":"Given below are two statements:\nStatement I: Nucleolus is a membrane bound structure.\nStatement II: Nucleolus is present in the cytoplasm.\nIn the light of the above statements, choose the most appropriate answer from the options given below:","statements":["Statement I: Nucleolus is a membrane bound structure.","Statement II: Nucleolus is present in the cytoplasm."],"options":["Statement I is correct but Statement II is incorrect.","Statement I is incorrect but Statement II is correct.","Both Statement I and Statement II are correct.","Both Statement I and Statement II are incorrect."],"correctAnswer":3,"solution":"Both Statement I and Statement II are incorrect.\nThe nucleolus is a non-membrane-bound spherical structure present within the nucleoplasm of the nucleus (not in the cytoplasm). Its content is continuous with the rest of the nucleoplasm.\n[New NCERT Class 11th Page No. 100]"},{"id":31,"subject":"Biology","topic":"Cell - The Unit of Life (Prokaryotic Ribosomes)","type":"single-choice","question":"Select the incorrect statement about prokaryotic ribosomes.","options":["50S and 30S subunits unite to form 70S ribosomes.","Polyribosome consists of many ribosomes only.","Ribosome is the site of protein synthesis.","The ribosomes of a polysome translate the mRNA into proteins."],"correctAnswer":1,"solution":"Statement (2) is incorrect because several ribosomes attach to a single mRNA strand to form a chain called a polyribosome or polysome. It consists of multiple ribosomes bound along an mRNA molecule, not ribosomes alone.\n[NCERT 11th Edition 2024-25 Page No. 91]"},{"id":32,"subject":"Biology","topic":"Cell - The Unit of Life (Chloroplast Structure)","type":"match-the-column","question":"Match the List-I with List-II.","matchColumn":{"col1Title":"List-I","col2Title":"List-II","col1":[{"key":"A","text":"Thylakoid"},{"key":"B","text":"Stroma"},{"key":"C","text":"Grana"}],"col2":[{"key":"I","text":"Flattened membranous sac contain chlorophyll pigments"},{"key":"II","text":"Site of enzyme activity"},{"key":"III","text":"Stacks of thylakoids"}]},"options":["A–I, B–II, C–III","A–III, B–I, C–II","A–II, B–I, C–III","A–II, B–III, C–I"],"correctAnswer":0,"solution":"Correct matching:\n- (A) Thylakoid → (I): Flattened membranous sacs containing chlorophyll pigments, site of light reactions.\n- (B) Stroma → (II): Space limited by inner chloroplast membrane containing enzymes required for carbohydrate and protein synthesis (dark reactions).\n- (C) Grana → (III): Disc-like thylakoids arranged in stacks like piles of coins.\n[NCERT 11th Edition (2025-26) Page No. 98]"},{"id":33,"subject":"Biology","topic":"Cell - The Unit of Life (Bacterial Cell Envelope & Appendages)","type":"single-choice","question":"Which is mismatched pair?","options":["Capsule – Thick and tough glycocalyx","Slime layer – Loose glycocalyx","Pili – Motility organ","Bacterial cells – Motile or nonmotile"],"correctAnswer":2,"solution":"Pili are elongated tubular structures made of a special protein (pilin). They do not play a role in motility; rather, bacterial flagella are the organs of motility. Pili function in conjugation/adhesion.\n[NCERT 12th/11th Edition 2024-25 Page No. 91]"},{"id":34,"subject":"Biology","topic":"Cell - The Unit of Life (Microbodies)","type":"assertion-reason","question":"Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R:\nAssertion A: Microbodies are membrane bound minute vesicles.\nReason R: Microbodies are present in plant and animal cells.\nIn the light of the above statements, choose the correct answer from the options given below:","assertion":"Microbodies are membrane bound minute vesicles.","reason":"Microbodies are present in plant and animal cells.","options":["A is true but R is false.","A is false but R is true.","Both A and R are true and R is the correct explanation of A.","Both A and R are true but R is NOT the correct explanation of A."],"correctAnswer":3,"solution":"Both Assertion A and Reason R are correct statements:\n- Microbodies are minute, membrane-bound vesicles that contain various hydrolytic and oxidative enzymes.\n- They are present in both plant and animal cells (e.g., peroxisomes, glyoxysomes).\nHowever, their presence in plant and animal cells does not explain why they are membrane-bound minute vesicles. Hence, R is not the correct explanation of A.\n[New NCERT Class 11th Page No. 102]"},{"id":35,"subject":"Biology","topic":"Cell - The Unit of Life (Golgi Apparatus & Eukaryotic Structure)","type":"single-choice","question":"Read the following statements and choose the correct option.\n(I) The Golgi cisternae are randomly scattered throughout the cytoplasm and not associated with the nucleus.\n(II) In the prokaryotes, the semifluid matrix filling the cell is the cytoplasm.\n(III) All eukaryotic cells are identical.\n(IV) Eukaryotic cells possess an organised nucleus with a nuclear envelope.","options":["I and III are incorrect.","II and III are correct.","III and IV are correct.","Only III is incorrect."],"correctAnswer":0,"solution":"Statements (I) and (III) are incorrect:\n- (I) is incorrect because Golgi cisternae are concentrically arranged near the nucleus with distinct convex cis/forming face and concave trans/maturing face.\n- (III) is incorrect because plant and animal cells are different (plants possess cell walls, plastids, and large central vacuoles which are absent in animal cells; animal cells possess centrioles which are absent in almost all higher plant cells).\n- Statements (II) and (IV) are correct.\n[NCERT 11th Edition 2025-26 Page No. 91, 95]"},{"id":36,"subject":"Biology","topic":"Cell - The Unit of Life (Prokaryotic Plasmids)","type":"single-choice","question":"Read the following statements related to prokaryotes.\nI. Many bacteria have small circular DNA outside the genomic DNA called plasmids.\nII. Plasmid DNA confers certain unique phenotypic characters such as resistance to antibiotics in bacteria.\nIII. The genetic material is basically naked and there is no well-defined nucleus.\nChoose the most appropriate answer from the options given below:","options":["I, II and III are correct.","I and II are incorrect only.","I and III are correct only.","I and III are incorrect only."],"correctAnswer":0,"solution":"All statements I, II, and III are correct:\n- Prokaryotes lack a nuclear membrane and their genomic DNA is not enclosed; the single chromosome is circular and naked.\n- Many bacteria have smaller extra-chromosomal circular DNA called plasmids.\n- Plasmids confer unique phenotypic characters like antibiotic resistance and are used in genetic engineering.\n[NCERT 11th Edition 2024-25 Page No. 90]"},{"id":37,"subject":"Zoology","topic":"Animal Kingdom - Phylum Comparison (Arthropoda vs Coelenterata)","type":"single-choice","question":"Refer to the following figure showing organisms (A) and (B):\n\nChoose the incorrect option regarding the figure (A) and (B).","assets":[{"type":"svg","caption":"Figure (A): Locust (Arthropoda), Figure (B): Adamsia / Sea Anemone (Coelenterata)","data":"\u003csvg viewBox=\"0 0 460 210\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-width: 100%; height: auto; font-family: -apple-system, sans-serif;\"\u003e\n          \u003crect width=\"460\" height=\"210\" fill=\"#f8fafc\" rx=\"10\" stroke=\"#e2e8f0\" stroke-width=\"1.5\"/\u003e\n          \n          \u003c!-- Organism A (Locust / Arthropod) --\u003e\n          \u003cg transform=\"translate(40, 20)\"\u003e\n            \u003c!-- Head & Antennae --\u003e\n            \u003cellipse cx=\"60\" cy=\"70\" rx=\"16\" ry=\"14\" fill=\"#65a30d\" stroke=\"#365314\" stroke-width=\"2\"/\u003e\n            \u003ccircle cx=\"56\" cy=\"66\" r=\"3\" fill=\"#1e293b\"/\u003e\n            \u003cpath d=\"M 52 58 Q 40 40 30 36\" fill=\"none\" stroke=\"#365314\" stroke-width=\"2\"/\u003e\n            \u003cpath d=\"M 58 58 Q 50 38 46 32\" fill=\"none\" stroke=\"#365314\" stroke-width=\"2\"/\u003e\n            \n            \u003c!-- Thorax & Wings --\u003e\n            \u003cellipse cx=\"90\" cy=\"75\" rx=\"20\" ry=\"15\" fill=\"#84cc16\" stroke=\"#365314\" stroke-width=\"2\"/\u003e\n            \u003cpath d=\"M 80 65 Q 120 50 160 58 Q 130 85 95 80 Z\" fill=\"#bef264\" opacity=\"0.8\" stroke=\"#4d7c0f\" stroke-width=\"1.5\"/\u003e\n            \n            \u003c!-- Abdomen (segmented) --\u003e\n            \u003cpath d=\"M 105 76 C 120 74 140 76 155 84 C 145 92 120 90 105 84 Z\" fill=\"#a3e635\" stroke=\"#365314\" stroke-width=\"1.5\"/\u003e\n            \u003cline x1=\"118\" y1=\"75\" x2=\"116\" y2=\"88\" stroke=\"#365314\" stroke-width=\"1\"/\u003e\n            \u003cline x1=\"130\" y1=\"76\" x2=\"128\" y2=\"87\" stroke=\"#365314\" stroke-width=\"1\"/\u003e\n            \u003cline x1=\"142\" y1=\"78\" x2=\"140\" y2=\"86\" stroke=\"#365314\" stroke-width=\"1\"/\u003e\n            \n            \u003c!-- Jointed Legs --\u003e\n            \u003c!-- Front Leg --\u003e\n            \u003cpath d=\"M 75 88 L 65 110 L 55 125\" fill=\"none\" stroke=\"#365314\" stroke-width=\"2.5\" stroke-linecap=\"round\"/\u003e\n            \u003c!-- Middle Leg --\u003e\n            \u003cpath d=\"M 90 88 L 92 112 L 85 130\" fill=\"none\" stroke=\"#365314\" stroke-width=\"2.5\" stroke-linecap=\"round\"/\u003e\n            \u003c!-- Jumping Hind Leg (Large) --\u003e\n            \u003cpath d=\"M 102 85 L 125 50 L 145 125\" fill=\"none\" stroke=\"#365314\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\n            \n            \u003ctext x=\"85\" y=\"165\" font-size=\"14\" font-weight=\"bold\" fill=\"#334155\" text-anchor=\"middle\"\u003e(A) Locust (Arthropoda)\u003c/text\u003e\n          \u003c/g\u003e\n\n          \u003c!-- Divider --\u003e\n          \u003cline x1=\"220\" y1=\"20\" x2=\"220\" y2=\"190\" stroke=\"#cbd5e1\" stroke-dasharray=\"4 4\" stroke-width=\"1.5\"/\u003e\n\n          \u003c!-- Organism B (Adamsia / Sea Anemone polyp) --\u003e\n          \u003cg transform=\"translate(260, 20)\"\u003e\n            \u003c!-- Basal disc --\u003e\n            \u003cellipse cx=\"90\" cy=\"130\" rx=\"34\" ry=\"10\" fill=\"#f43f5e\" opacity=\"0.9\" stroke=\"#be123c\" stroke-width=\"2\"/\u003e\n            \n            \u003c!-- Cylindrical Body column --\u003e\n            \u003cpath d=\"M 62 128 C 66 90 68 70 65 50 L 115 50 C 112 70 114 90 118 128 Z\" fill=\"#fda4af\" stroke=\"#be123c\" stroke-width=\"2\"/\u003e\n            \u003c!-- Body stripes --\u003e\n            \u003cline x1=\"77\" y1=\"52\" x2=\"78\" y2=\"126\" stroke=\"#e11d48\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/\u003e\n            \u003cline x1=\"90\" y1=\"52\" x2=\"90\" y2=\"128\" stroke=\"#e11d48\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/\u003e\n            \u003cline x1=\"103\" y1=\"52\" x2=\"102\" y2=\"126\" stroke=\"#e11d48\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/\u003e\n            \n            \u003c!-- Oral disc & Tentacles --\u003e\n            \u003cellipse cx=\"90\" cy=\"50\" rx=\"26\" ry=\"7\" fill=\"#fb7185\" stroke=\"#be123c\" stroke-width=\"1.5\"/\u003e\n            \u003c!-- Tentacles crowning mouth --\u003e\n            \u003cpath d=\"M 66 48 Q 50 30 45 15\" fill=\"none\" stroke=\"#e11d48\" stroke-width=\"2.5\" stroke-linecap=\"round\"/\u003e\n            \u003cpath d=\"M 72 46 Q 60 25 58 10\" fill=\"none\" stroke=\"#e11d48\" stroke-width=\"2.5\" stroke-linecap=\"round\"/\u003e\n            \u003cpath d=\"M 80 44 Q 74 20 72 8\" fill=\"none\" stroke=\"#e11d48\" stroke-width=\"2.5\" stroke-linecap=\"round\"/\u003e\n            \u003cpath d=\"M 88 44 Q 88 18 88 6\" fill=\"none\" stroke=\"#e11d48\" stroke-width=\"2.5\" stroke-linecap=\"round\"/\u003e\n            \u003cpath d=\"M 96 44 Q 102 20 104 8\" fill=\"none\" stroke=\"#e11d48\" stroke-width=\"2.5\" stroke-linecap=\"round\"/\u003e\n            \u003cpath d=\"M 104 46 Q 116 25 120 10\" fill=\"none\" stroke=\"#e11d48\" stroke-width=\"2.5\" stroke-linecap=\"round\"/\u003e\n            \u003cpath d=\"M 112 48 Q 128 30 135 15\" fill=\"none\" stroke=\"#e11d48\" stroke-width=\"2.5\" stroke-linecap=\"round\"/\u003e\n            \n            \u003ctext x=\"90\" y=\"165\" font-size=\"14\" font-weight=\"bold\" fill=\"#334155\" text-anchor=\"middle\"\u003e(B) Adamsia (Coelenterata)\u003c/text\u003e\n          \u003c/g\u003e\n        \u003c/svg\u003e"}],"options":["A-Belongs to phylum arthropoda, B-Belongs to phylum Coelenterata","A-Posses haemocoel, B-Posses gastrovascular cavity","A-Triploblastic, B-Diploblastic","A-Water vascular system, B-Water canal system"],"correctAnswer":3,"solution":"Option (4) is incorrect because:\n- The water vascular (ambulacral) system is a characteristic feature of Phylum Echinodermata (e.g., Asterias/Starfish), not Arthropoda.\n- The water canal system is a characteristic feature of Phylum Porifera (sponges), not Coelenterata (Cnidaria).\nOrganism A is Locust (Arthropoda) and Organism B is Adamsia/Sea Anemone (Coelenterata)."},{"id":38,"subject":"Zoology","topic":"Animal Kingdom - Amphibian Heart","type":"single-choice","question":"Heart in amphibians is:","options":["Two-chambered with one auricle and one ventricle","Three-chambered with two auricles and one ventricle","Three-chambered with one auricle and two ventricles","Four-chambered with two auricles and two ventricles"],"correctAnswer":1,"solution":"Amphibians have a three-chambered heart consisting of two atria (auricles) and one ventricle. The left atrium receives oxygenated blood from gills/lungs/skin and the right atrium receives deoxygenated blood from the rest of the body, which mix in the single ventricle (incomplete double circulation)."},{"id":39,"subject":"Zoology","topic":"Animal Kingdom - Characteristics & Habitats","type":"match-the-column","question":"Match List-I with List-II.","matchColumn":{"col1Title":"List-I","col2Title":"List-II","col1":[{"key":"A","text":"Bufo and Bangarus"},{"key":"B","text":"Gorgonia and Adamsia"},{"key":"C","text":"Struthio and Macaca"},{"key":"D","text":"Sycon and Spongilla"}],"col2":[{"key":"I","text":"Marine habitat"},{"key":"II","text":"Poikilotherms"},{"key":"III","text":"Monoecious"},{"key":"IV","text":"Homeotherms"}]},"options":["A-II, B-I, C-IV, D-III","A-II, B-IV, C-III, D-I","A-I, B-II, C-III, D-IV","A-IV, B-III, C-II, D-I"],"correctAnswer":0,"solution":"Correct matching:\n- (A) Bufo (Toad, Amphibia) and Bangarus (Krait, Reptilia) → (II) Poikilotherms (cold-blooded animals, body temperature varies with environment).\n- (B) Gorgonia (Sea fan) and Adamsia (Sea anemone) → (I) Marine habitat (coelenterates exclusively or mostly marine).\n- (C) Struthio (Ostrich, Aves) and Macaca (Monkey, Mammalia) → (IV) Homeotherms (warm-blooded animals, maintain constant body temperature).\n- (D) Sycon and Spongilla (Sponges, Porifera) → (III) Monoecious (hermaphrodites, sexes are not separate).\n[New NCERT Class 11th Page No. 49, 50]"},{"id":40,"subject":"Zoology","topic":"Animal Kingdom - Chordata Characteristics","type":"single-choice","question":"Read the following statements and choose correct ones.\nA. Chordata is the largest phylum on earth.\nB. Notochord is persistent throughout life in Amphioxus.\nC. Dorsal tubular nerve cord lies above the notochord","options":["A & B only","A & C only","B & C only","A, B & C"],"correctAnswer":2,"solution":"Statements B and C are correct:\n- B: In subphylum Cephalochordata (Amphioxus or Lancelet), the notochord extends from head to tail region and is persistent throughout their life.\n- C: A primary diagnostic feature of chordates is a dorsal hollow tubular nerve cord lying dorsal to (above) the notochord.\n- Statement A is incorrect because Arthropoda, not Chordata, is the largest phylum of Animalia, containing over two-thirds of all named species on Earth."},{"id":41,"subject":"Zoology","topic":"Animal Kingdom - Phylum Platyhelminthes","type":"single-choice","question":"In Platyhelminthes:","options":["the embryonic layers ectoderm and endoderm, are separated by mesoglea.","they are asymmetrical.","they exhibit tissue level of organisation.","the body cavity is absent."],"correctAnswer":3,"solution":"Animals belonging to phylum Platyhelminthes (flatworms) are bilaterally symmetrical, triploblastic, and acoelomate animals (the body cavity/coelom is absent) with an organ/organ-system level of organisation.\n[New NCERT Class 11th Page No. 42]"},{"id":42,"subject":"Zoology","topic":"Animal Kingdom - General Characteristics of Phyla","type":"single-choice","question":"Read the following statements (I - IV).\nI. An excretory tube removes body wastes from the body cavity through the excretory pore in roundworms.\nII. Reproduction in ctenophores is only by asexual means.\nIII. Cnidarians have a central gastro-vascular cavity with a single opening, mouth on hypostome.\nIV. In amphibians, the alimentary canal, urinary tract, and reproductive tract open into a common chamber called the cloaca.\n\nChoose the option with the correct statements.","options":["I, II and III only","II, III and IV only","I, III and IV only","I, II and IV only"],"correctAnswer":2,"solution":"Statements I, III, and IV are correct.\n- Statement II is incorrect because reproduction in ctenophores takes place only by sexual means (they do not reproduce asexually).\n- I is correct (excretory system in Aschelminthes consists of an excretory tube and pore).\n- III is correct (Cnidarians possess a central gastro-vascular cavity with a single opening on the hypostome).\n- IV is correct (cloaca in amphibians receives digestive, urinary, and genital ducts and opens to the exterior)."},{"id":43,"subject":"Zoology","topic":"Animal Kingdom - Phylum Annelida","type":"single-choice","question":"Which of the following features is a characteristic of Phylum Annelida?","options":["Pseudocoelomate body plan","Metameric segmentation","Presence of choanocytes","Jointed appendages"],"correctAnswer":1,"solution":"Phylum Annelida (e.g., Earthworms, Leeches) shows true metameric segmentation (metamerism), where the body surface is distinctly marked out into segments or metameres, with internal septa dividing the coelom and repetition of organs.\n- Pseudocoelom is found in Aschelminthes.\n- Choanocytes (collar cells) are found in Porifera.\n- Jointed appendages are found in Arthropoda."},{"id":44,"subject":"Zoology","topic":"Animal Kingdom - Flight Adaptations in Aves","type":"single-choice","question":"Pneumatic bones and the presence of air sacs connected to lungs are characteristic features of:","options":["Reptilia","Mammalia","Aves","Amphibia"],"correctAnswer":2,"solution":"Birds (Class Aves) possess pneumatic bones (long hollow bones with air cavities) to reduce body weight for flight. Air sacs connected to lungs supplement respiration and provide continuous oxygen supply during flight."},{"id":45,"subject":"Zoology","topic":"Animal Kingdom - Unique Characteristics of Mammals","type":"single-choice","question":"Chief features of mammals, which distinguish them from other vertebrates, are:","options":["Hair and oviparity","Mammary glands, hairs on skin and diaphragm","Pinna and teeth","Teeth and mammary glands"],"correctAnswer":1,"solution":"The most unique mammalian characteristics are:\n1. Mammary glands (milk-producing glands to nourish the young).\n2. Presence of hairs on the skin.\n3. Muscular diaphragm separating the thoracic and abdominal cavities.\n(Oviparity is found in reptiles/birds and only primitive monotremes like Platypus; teeth and pinnae are not unique exclusively in this combination)."},{"id":46,"subject":"Zoology","topic":"Animal Kingdom - Common Names & Scientific Names","type":"single-choice","question":"Identify the incorrectly matched pair.\nI. Octopus - Dog fish\nII. Antedon - Sea lily\nIII. Ophiura – Brittle star\nIV. Hyla - Toad","options":["I and II only","II and III only","III and IV only","I and IV only"],"correctAnswer":3,"solution":"The incorrectly matched pairs are I and IV:\n- I is incorrect: Octopus is Devil fish (Dog fish is Scoliodon, a cartilaginous fish).\n- IV is incorrect: Hyla is Tree frog (Toad is Bufo).\n- II is correctly matched: Antedon is Sea lily (Echinodermata).\n- III is correctly matched: Ophiura is Brittle star (Echinodermata).\n[NCERT (2025-26) Class 11th Page No. 45, 48]"},{"id":47,"subject":"Zoology","topic":"Animal Kingdom - Phylum Ctenophora Bioluminescence","type":"single-choice","question":"The property of bioluminescence (emitting light from the body) is well-marked in which of the following phyla?","options":["Porifera","Ctenophora","Annelida","Mollusca"],"correctAnswer":1,"solution":"Bioluminescence (the ability of a living organism to emit light) is well-marked in ctenophores (comb jellies or sea walnuts, e.g., Pleurobrachia and Ctenoplana)."},{"id":48,"subject":"Zoology","topic":"Animal Kingdom - Phylum Arthropoda Characteristics","type":"single-choice","question":"Which one of the following phyla is correctly matched with its two general characteristics?","options":["Arthropoda - Body divided into head, thorax and abdomen and respiration by tracheae","Chordata - Notochord at some stage and separate anal and urinary openings to the outside","Echinodermata - Pentamerous radial symmetry and mostly internal fertilization","Mollusca - Normally oviparous and development through a trochophore or veliger larva"],"correctAnswer":0,"solution":"Option (1) is correctly matched:\n- Arthropoda body is divided into head, thorax, and abdomen (in insects), and respiration occurs via trachea, gills, book gills, or book lungs.\n- In Echinodermata, fertilization is usually external, not internal.\n- In many lower chordates (and amphibians/birds/reptiles), a cloaca is present rather than separate openings.\n- Option (1) represents defining characteristics of Arthropoda."}];
+    
+    // State Variables
+    var currentIndex = 0;
+    var activeSubject = 'Physics';
+    var paletteFilter = 'All';
+    var userAnswers = {};
+    var paletteStates = {};
+    var timeSpent = {};
+    var questionOpenTimestamp = Date.now();
+    var secondsRemaining = (typeof testMetadata !== 'undefined' && testMetadata.durationMinutes ? testMetadata.durationMinutes : 60) * 60;
+    var timerInterval = null;
+    var isExamActive = false;
+
+    // Initialize Question States
+    if (typeof questions !== 'undefined' && Array.isArray(questions)) {
+      questions.forEach((q, idx) => {
+        paletteStates[q.id] = idx === 0 ? 'not-answered' : 'not-visited';
+        userAnswers[q.id] = null;
+        timeSpent[q.id] = 0;
+      });
+    }
+
+    function replaceBalancedFractions(str) {
+      let s = str;
+      let prev = '';
+      while (s.indexOf('\\frac') !== -1 && s !== prev) {
+        prev = s;
+        const idx = s.indexOf('\\frac');
+        const numStart = s.indexOf('{', idx + 5);
+        if (numStart === -1) break;
+        let depth = 1;
+        let numEnd = -1;
+        for (let i = numStart + 1; i < s.length; i++) {
+          if (s[i] === '{') depth++;
+          else if (s[i] === '}') {
+            depth--;
+            if (depth === 0) { numEnd = i; break; }
+          }
+        }
+        if (numEnd === -1) break;
+        const denStart = s.indexOf('{', numEnd + 1);
+        if (denStart === -1) break;
+        depth = 1;
+        let denEnd = -1;
+        for (let i = denStart + 1; i < s.length; i++) {
+          if (s[i] === '{') depth++;
+          else if (s[i] === '}') {
+            depth--;
+            if (depth === 0) { denEnd = i; break; }
+          }
+        }
+        if (denEnd === -1) break;
+        const num = s.substring(numStart + 1, numEnd);
+        const den = s.substring(denStart + 1, denEnd);
+        s = s.substring(0, idx) + '(' + num + ' / ' + den + ')' + s.substring(denEnd + 1);
+      }
+      return s;
+    }
+
+    function formatLatexFallback(latex) {
+      if (!latex) return '';
+      let s = String(latex);
+      s = s.replace(/\\+([a-zA-Z]+)/g, '\\$1');
+      s = replaceBalancedFractions(s);
+      s = s.replace(/\\text\{([^}]+)\}/g, '$1');
+      s = s.replace(/\\mathrm\{([^}]+)\}/g, '$1');
+      s = s.replace(/\\mathbf\{([^}]+)\}/g, '<strong>$1</strong>');
+      s = s.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
+      s = s.replace(/\\hat\{?i\}?/g, '<b style="font-family:serif;">î</b>');
+      s = s.replace(/\\hat\{?j\}?/g, '<b style="font-family:serif;">ĵ</b>');
+      s = s.replace(/\\hat\{?k\}?/g, '<b style="font-family:serif;">k̂</b>');
+      s = s.replace(/\\hat\{([a-zA-Z])\}/g, '$1&#x0302;');
+      s = s.replace(/\\vec\{([^}]+)\}/g, '<span style="font-family:serif;font-style:italic;">$1&#x20D7;</span>');
+      s = s.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1 / $2)');
+      s = s.replace(/\\sqrt\{([^}]+)\}/g, '&radic;($1)');
+      s = s.replace(/\\sqrt/g, '&radic;');
+      s = s.split('\\left(').join('(').split('\\right)').join(')');
+      s = s.split('\\left[').join('[').split('\\right]').join(']');
+      s = s.split('\\left\\{').join('{').split('\\right\\}').join('}');
+      s = s.split('\\,').join(' ');
+      s = s.split('\\;').join('  ');
+      s = s.split('\\quad').join('    ');
+      s = s.split('\\\\').join('<br/>');
+
+      const symList = [
+        ['^{\\circ}\\text{C}', '°C'],
+        ['^{\\circ}', '°'],
+        ['^\\circ', '°'],
+        ['\\degree', '°'],
+        ['\\circ', '°'],
+        ['\\times', '×'],
+        ['\\cdot', '·'],
+        ['\\pm', '±'],
+        ['\\approx', '≈'],
+        ['\\neq', '≠'],
+        ['\\ne', '≠'],
+        ['\\leq', '≤'],
+        ['\\geq', '≥'],
+        ['\\le', '≤'],
+        ['\\ge', '≥'],
+        ['\\to', '→'],
+        ['\\implies', '⇒'],
+        ['\\pi', 'π'],
+        ['\\theta', 'θ'],
+        ['\\alpha', 'α'],
+        ['\\beta', 'β'],
+        ['\\gamma', 'γ'],
+        ['\\delta', 'δ'],
+        ['\\mu', 'μ'],
+        ['\\Delta', 'Δ'],
+        ['\\infty', '∞'],
+        ['\\sin', 'sin'],
+        ['\\cos', 'cos'],
+        ['\\tan', 'tan'],
+        ['\\cot', 'cot'],
+        ['\\sec', 'sec'],
+        ['\\csc', 'csc'],
+        ['\\ln', 'ln'],
+        ['\\log', 'log']
+      ];
+      for (let i = 0; i < symList.length; i++) {
+        s = s.split(symList[i][0]).join(symList[i][1]);
+      }
+      s = s.replace(/\^\{([^}]+)\}/g, '<sup>$1</sup>');
+      s = s.replace(/\^([0-9a-zA-Z+-])/g, '<sup>$1</sup>');
+      s = s.replace(/_\{([^}]+)\}/g, '<sub>$1</sub>');
+      s = s.replace(/_([0-9a-zA-Z])/g, '<sub>$1</sub>');
+      s = s.replace(/[{}]/g, '');
+      return s;
+    }
+
+    function renderMathInString(content) {
+      if (!content) return '';
+      let clean = String(content)
+        .replace(/[\uFFFD\u25A1\u25A0\uFFFC]/g, '')
+        .replace(/□/g, '');
+
+      clean = clean.replace(/\\(ne|neq|nu|nabla|notin)\b/g, '___LATEX_$1___');
+      clean = clean.replace(/\\r\\n/g, String.fromCharCode(10)).replace(/\\n/g, String.fromCharCode(10));
+      clean = clean.replace(/___LATEX_(ne|neq|nu|nabla|notin)___/g, '\\$1');
+      clean = clean.replace(/\\+([a-zA-Z]+)/g, '\\$1');
+      clean = clean.replace(/(^|[^\$])(\\frac\{[^{}]+\}\{[^{}]+\})([^\$]|$)/g, '$1$$$2$$$3');
+
+      const hasKatex = typeof window !== 'undefined' && window.katex && typeof window.katex.renderToString === 'function';
+
+      function renderLatex(latex, isDisplay) {
+        let trimmed = latex.trim().replace(/\\+([a-zA-Z]+)/g, '\\$1');
+        if (hasKatex) {
+          try {
+            return window.katex.renderToString(trimmed, {
+              displayMode: isDisplay,
+              throwOnError: false
+            });
+          } catch (e) {}
+        }
+        const fallback = formatLatexFallback(trimmed);
+        if (isDisplay) {
+          return '<div style="margin:8px 0;text-align:center;font-family:serif;font-weight:600;">' + fallback + '</div>';
+        }
+        return '<span style="font-family:serif;">' + fallback + '</span>';
+      }
+
+      clean = clean.replace(/\$\$([\s\S]*?)\$\$/g, function(_, match) {
+        return renderLatex(match, true);
+      });
+      clean = clean.replace(/\$([^$\r\n]+?)\$/g, function(_, match) {
+        return renderLatex(match, false);
+      });
+
+      if (clean.indexOf('\\') !== -1) {
+        clean = formatLatexFallback(clean);
+      }
+      return clean;
+    }
+
+    function onKatexLoaded() {
+      if (isExamActive) {
+        renderCurrentQuestion();
+      }
+      triggerKaTeXAutoRender();
+    }
+
+    function triggerKaTeXAutoRender() {
+      if (typeof window !== 'undefined' && window.renderMathInElement) {
+        try {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false }
+            ],
+            throwOnError: false
+          });
+        } catch(e) {}
+      }
+    }
+
+    // EXAM CONTROLS
+    function startTest() {
+      document.getElementById('instructionsScreen').style.display = 'none';
+      document.getElementById('examScreen').style.display = 'flex';
+      document.getElementById('examTimerBadge').style.display = 'flex';
+      document.getElementById('btnHeaderPalette').style.display = 'inline-flex';
+      document.getElementById('btnRoughSheet').style.display = 'inline-flex';
+      isExamActive = true;
+      questionOpenTimestamp = Date.now();
+      initSubjectTabs();
+      initDrawerSubjectFilter();
+      renderCurrentQuestion();
+      renderPalette();
+      startTimer();
+      initScratchpad();
+      triggerKaTeXAutoRender();
+    }
+
+    function initSubjectTabs() {
+      const subs = [...new Set(questions.map(q => q.subject))];
+      if (!subs.includes(activeSubject) && subs.length > 0) activeSubject = subs[0];
+      const container = document.getElementById('subjectTabContainer');
+      if (!container) return;
+      container.innerHTML = subs.map(sub => {
+        const count = questions.filter(q => q.subject === sub).length;
+        const isActive = activeSubject === sub;
+        const safeSub = sub.replace(/'/g, "\\'");
+        return '<button class="subject-tab ' + (isActive ? 'active' : '') + '" onclick="switchSubject(\'' + safeSub + '\')">' +
+               '<span>' + sub.toUpperCase() + '</span>' +
+               '<span class="subject-badge">' + count + '</span>' +
+               '</button>';
+      }).join('');
+    }
+
+    function initDrawerSubjectFilter() {
+      const subs = [...new Set(questions.map(q => q.subject))];
+      const container = document.getElementById('drawerFilterContainer');
+      if (!container) return;
+      let html = '<button class="drawer-filter-btn ' + (paletteFilter === 'All' ? 'active' : '') + '" onclick="setDrawerFilter(\'All\')">ALL (' + questions.length + ')</button>';
+      subs.forEach(s => {
+        const count = questions.filter(q => q.subject === s).length;
+        const safeSub = s.replace(/'/g, "\\'");
+        html += '<button class="drawer-filter-btn ' + (paletteFilter === s ? 'active' : '') + '" onclick="setDrawerFilter(\'' + safeSub + '\')">' + s.toUpperCase() + ' (' + count + ')</button>';
+      });
+      container.innerHTML = html;
+    }
+
+    function setDrawerFilter(sub) {
+      paletteFilter = sub;
+      initDrawerSubjectFilter();
+      renderPalette();
+    }
+
+    function switchSubject(sub) {
+      recordTimeSpent();
+      activeSubject = sub;
+      const firstIdx = questions.findIndex(q => q.subject === sub);
+      if (firstIdx !== -1) {
+        currentIndex = firstIdx;
+        if (paletteStates[questions[currentIndex].id] === 'not-visited') {
+          paletteStates[questions[currentIndex].id] = 'not-answered';
+        }
+      }
+      initSubjectTabs();
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function recordTimeSpent() {
+      const now = Date.now();
+      const elapsed = Math.max(0, Math.floor((now - questionOpenTimestamp) / 1000));
+      const currentQ = questions[currentIndex];
+      if (currentQ) {
+        timeSpent[currentQ.id] = (timeSpent[currentQ.id] || 0) + elapsed;
+      }
+      questionOpenTimestamp = now;
+    }
+
+    function renderCurrentQuestion() {
+      const q = questions[currentIndex];
+      if (!q) return;
+      document.getElementById('qDisplayNumber').textContent = 'Question ' + (currentIndex + 1);
+      document.getElementById('qSubjectBadge').textContent = '/ ' + questions.length + ' (' + q.subject + ')';
+      document.getElementById('btnPaletteCount').textContent = 'Q' + (currentIndex + 1);
+      let html = '';
+      const text = q.question || '';
+
+      const arRegex = /(?:Assertion\s*(?:\(A\)|A)?\s*:?)([\s\S]*?)(?:Reason\s*(?:\(R\)|R)?\s*:?)([\s\S]*)$/i;
+      if (q.type === 'assertion-reason' || q.assertion || arRegex.test(text)) {
+        let intro = text;
+        let assertion = q.assertion || '';
+        let reason = q.reason || '';
+        if (!assertion && !reason && arRegex.test(text)) {
+          const match = text.match(arRegex);
+          const splitIdx = text.search(/Assertion\s*(?:\(A\)|A)?\s*:?/i);
+          intro = text.substring(0, splitIdx).trim();
+          assertion = match[1].trim();
+          reason = match[2].trim();
+        }
+        assertion = assertion.replace(/^Assertion\s*(?:\(A\)|A)?\s*:?\s*/i, '').trim();
+        reason = reason.replace(/^Reason\s*(?:\(R\)|R)?\s*:?\s*/i, '').trim();
+        if (intro) html += '<div style="margin-bottom:12px;font-weight:600;white-space:pre-line;line-height:1.6;">' + renderMathInString(intro) + '</div>';
+        if (assertion) {
+          html += '<div class="ar-card ar-assertion">' +
+                  '<div class="ar-label">Assertion (A)</div>' +
+                  '<div style="white-space:pre-line;line-height:1.6;">' + renderMathInString(assertion) + '</div>' +
+                  '</div>';
+        }
+        if (reason) {
+          html += '<div class="ar-card ar-reason">' +
+                  '<div class="ar-label">Reason (R)</div>' +
+                  '<div style="white-space:pre-line;line-height:1.6;">' + renderMathInString(reason) + '</div>' +
+                  '</div>';
+        }
+      } else if (q.type === 'statement-type' || (q.statements && q.statements.length > 0) || /Statement\s+(?:I|II|1|2)\s*:/i.test(text)) {
+        let intro = text;
+        let statements = q.statements ? [...q.statements] : [];
+        if (statements.length === 0 && /Statement\s+(?:I|II|1|2)\s*:/i.test(text)) {
+          const stmtRegex = /(Statement\s+(?:I|II|III|IV|1|2|3|4)\s*:[\s\S]*?)(?=(Statement\s+(?:I|II|III|IV|1|2|3|4)\s*:|$))/gi;
+          const matches = Array.from(text.matchAll(stmtRegex));
+          if (matches.length > 0) {
+            const firstIdx = text.search(/Statement\s+(?:I|II|1|2)\s*:/i);
+            intro = text.substring(0, firstIdx).trim();
+            statements = matches.map(m => m[1].trim());
+          }
+        }
+        if (intro) html += '<div style="margin-bottom:12px;font-weight:600;white-space:pre-line;line-height:1.6;">' + renderMathInString(intro) + '</div>';
+        statements.forEach(stmt => {
+          html += '<div class="statement-item" style="white-space:pre-line;line-height:1.6;">' + renderMathInString(stmt) + '</div>';
+        });
+      } else if (q.type === 'match-the-column' && q.matchColumn) {
+        html += '<div style="margin-bottom:14px;font-weight:600;font-size:14.5px;white-space:pre-line;line-height:1.6;">' + renderMathInString(text) + '</div>';
+        html += '<div class="match-table-wrapper"><table class="match-table">';
+        html += '<thead><tr><th>' + renderMathInString(q.matchColumn.col1Title || 'Column I') + '</th><th>' + renderMathInString(q.matchColumn.col2Title || 'Column II') + '</th></tr></thead><tbody>';
+        const maxLen = Math.max(q.matchColumn.col1.length, q.matchColumn.col2.length);
+        for (let i = 0; i < maxLen; i++) {
+          const it1 = q.matchColumn.col1[i];
+          const it2 = q.matchColumn.col2[i];
+          const c1 = it1 ? '<span class="match-col-key">' + it1.key + (it1.key.endsWith('.') || it1.key.endsWith(')') ? '' : '.') + '</span>' + renderMathInString(it1.text) : '';
+          const c2 = it2 ? '<span class="match-col-key">' + it2.key + (it2.key.endsWith('.') || it2.key.endsWith(')') ? '' : '.') + '</span>' + renderMathInString(it2.text) : '';
+          html += '<tr><td>' + c1 + '</td><td>' + c2 + '</td></tr>';
+        }
+        html += '</tbody></table></div>';
+      } else {
+        html += '<div style="font-weight:600;white-space:pre-line;line-height:1.6;">' + renderMathInString(text) + '</div>';
+      }
+      document.getElementById('qStemContainer').innerHTML = html;
+
+      const visualBox = document.getElementById('qVisualContainer');
+      visualBox.innerHTML = '';
+      if (q.assets && q.assets.length > 0) {
+        q.assets.forEach(a => {
+          if (a.type === 'svg') {
+            visualBox.innerHTML += '<div style="text-align:center;margin:16px 0;">' + a.data + (a.caption ? '<p style="font-size:12px;color:var(--text-muted);">' + escapeHtml(a.caption) + '</p>' : '') + '</div>';
+          } else if (a.type === 'image') {
+            visualBox.innerHTML += '<div style="text-align:center;margin:16px 0;"><img src="' + a.data + '" style="max-height:280px;border-radius:8px;"/></div>';
+          }
+        });
+      }
+
+      const selected = userAnswers[q.id];
+      const optLabels = ['(1)', '(2)', '(3)', '(4)'];
+      const optHtml = q.options.map((opt, idx) => {
+        const isSel = selected === idx;
+        return '<div class="option-item ' + (isSel ? 'selected' : '') + '" onclick="selectOption(' + idx + ')">' +
+               '<div class="option-badge">' + optLabels[idx] + '</div>' +
+               '<div style="flex:1;">' + renderMathInString(opt) + '</div>' +
+               '</div>';
+      }).join('');
+      document.getElementById('optionsListContainer').innerHTML = optHtml;
+      document.getElementById('prevBtn').disabled = currentIndex === 0;
+      triggerKaTeXAutoRender();
+    }
+
+    function selectOption(optIndex) {
+      const q = questions[currentIndex];
+      userAnswers[q.id] = optIndex;
+      if (paletteStates[q.id] === 'marked-for-review' || paletteStates[q.id] === 'answered-and-marked') {
+        paletteStates[q.id] = 'answered-and-marked';
+      } else {
+        paletteStates[q.id] = 'answered';
+      }
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function handleClearResponse() {
+      const q = questions[currentIndex];
+      userAnswers[q.id] = null;
+      if (paletteStates[q.id] === 'answered-and-marked' || paletteStates[q.id] === 'marked-for-review') {
+        paletteStates[q.id] = 'marked-for-review';
+      } else {
+        paletteStates[q.id] = 'not-answered';
+      }
+      renderCurrentQuestion();
+      renderPalette();
+    }
+
+    function handleMarkForReview() {
+      recordTimeSpent();
+      const q = questions[currentIndex];
+      if (userAnswers[q.id] !== null && userAnswers[q.id] !== undefined) {
+        paletteStates[q.id] = 'answered-and-marked';
+      } else {
+        paletteStates[q.id] = 'marked-for-review';
+      }
+      advanceQuestion();
+    }
+
+    function handleSaveAndNext() {
+      recordTimeSpent();
+      const q = questions[currentIndex];
+      if (userAnswers[q.id] !== null && userAnswers[q.id] !== undefined) {
+        paletteStates[q.id] = 'answered';
+      } else {
+        paletteStates[q.id] = 'not-answered';
+      }
+      advanceQuestion();
+    }
+
+    function advanceQuestion() {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        const nextQ = questions[currentIndex];
+        if (paletteStates[nextQ.id] === 'not-visited') {
+          paletteStates[nextQ.id] = 'not-answered';
+        }
+        if (activeSubject !== nextQ.subject) {
+          activeSubject = nextQ.subject;
+          initSubjectTabs();
+        }
+        renderCurrentQuestion();
+        renderPalette();
+      } else {
+        showSubmitModal();
+      }
+    }
+
+    function handlePrevious() {
+      if (currentIndex > 0) {
+        recordTimeSpent();
+        currentIndex--;
+        const prevQ = questions[currentIndex];
+        if (paletteStates[prevQ.id] === 'not-visited') {
+          paletteStates[prevQ.id] = 'not-answered';
+        }
+        if (activeSubject !== prevQ.subject) {
+          activeSubject = prevQ.subject;
+          initSubjectTabs();
+        }
+        renderCurrentQuestion();
+        renderPalette();
+      }
+    }
+
+    function jumpToQuestion(idx) {
+      recordTimeSpent();
+      currentIndex = idx;
+      const targetQ = questions[currentIndex];
+      if (paletteStates[targetQ.id] === 'not-visited') {
+        paletteStates[targetQ.id] = 'not-answered';
+      }
+      if (activeSubject !== targetQ.subject) {
+        activeSubject = targetQ.subject;
+        initSubjectTabs();
+      }
+      renderCurrentQuestion();
+      renderPalette();
+      if (window.innerWidth < 768) {
+        closePaletteDrawer();
+      }
+    }
+
+    function renderPalette() {
+      let ans = 0, notAns = 0, mark = 0, ansMark = 0, notVis = 0;
+      questions.forEach(q => {
+        const s = paletteStates[q.id] || 'not-visited';
+        if (s === 'answered') ans++;
+        else if (s === 'not-answered') notAns++;
+        else if (s === 'marked-for-review') mark++;
+        else if (s === 'answered-and-marked') ansMark++;
+        else notVis++;
+      });
+      const elAns = document.getElementById('dCountAns');
+      const elNotAns = document.getElementById('dCountNotAns');
+      const elMark = document.getElementById('dCountMark');
+      const elAnsMark = document.getElementById('dCountAnsMark');
+      const elNotVis = document.getElementById('dCountNotVis');
+      if (elAns) elAns.textContent = ans;
+      if (elNotAns) elNotAns.textContent = notAns;
+      if (elMark) elMark.textContent = mark;
+      if (elAnsMark) elAnsMark.textContent = ansMark;
+      if (elNotVis) elNotVis.textContent = notVis;
+
+      const displayQuestions = paletteFilter === 'All' 
+        ? questions 
+        : questions.filter(q => q.subject === paletteFilter);
+
+      const grid = document.getElementById('drawerGrid');
+      if (!grid) return;
+      grid.innerHTML = displayQuestions.map(q => {
+        const state = paletteStates[q.id] || 'not-visited';
+        const actualIdx = questions.findIndex(item => item.id === q.id);
+        const isCurrent = actualIdx === currentIndex;
+        return '<button class="palette-btn state-' + state + ' ' + (isCurrent ? 'current' : '') + '" onclick="jumpToQuestion(' + actualIdx + ')">' +
+               (actualIdx + 1) +
+               '</button>';
+      }).join('');
+    }
+
+    function togglePaletteDrawer() {
+      const drawer = document.getElementById('paletteDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      if (!drawer || !backdrop) return;
+      const isOpen = drawer.classList.contains('open');
+      if (isOpen) {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+      } else {
+        renderPalette();
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+      }
+    }
+
+    function closePaletteDrawer() {
+      const drawer = document.getElementById('paletteDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      if (drawer) drawer.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (secondsRemaining > 0) {
+          secondsRemaining--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+          finalizeSubmission();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const h = Math.floor(secondsRemaining / 3600);
+      const m = Math.floor((secondsRemaining % 3600) / 60);
+      const s = secondsRemaining % 60;
+      const str = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      const el = document.getElementById('timerDisplay');
+      if (el) el.textContent = str;
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    function showSubmitModal() {
+      let ans = 0, notAns = 0, mark = 0, ansMark = 0, notVis = 0;
+      questions.forEach(q => {
+        const s = paletteStates[q.id] || 'not-visited';
+        if (s === 'answered') ans++;
+        else if (s === 'not-answered') notAns++;
+        else if (s === 'marked-for-review') mark++;
+        else if (s === 'answered-and-marked') ansMark++;
+        else notVis++;
+      });
+      document.getElementById('mCountAns').textContent = ans;
+      document.getElementById('mCountNotAns').textContent = notAns;
+      document.getElementById('mCountMark').textContent = mark;
+      document.getElementById('mCountAnsMark').textContent = ansMark;
+      document.getElementById('mCountNotVis').textContent = notVis;
+      document.getElementById('submitModal').style.display = 'flex';
+    }
+
+    function hideSubmitModal() {
+      document.getElementById('submitModal').style.display = 'none';
+    }
+
+    function finalizeSubmission() {
+      recordTimeSpent();
+      if (timerInterval) clearInterval(timerInterval);
+      hideSubmitModal();
+      closePaletteDrawer();
+      document.getElementById('examScreen').style.display = 'none';
+      document.getElementById('examTimerBadge').style.display = 'none';
+      document.getElementById('btnHeaderPalette').style.display = 'none';
+      document.getElementById('btnRoughSheet').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+
+      let correct = 0, incorrect = 0, unattempted = 0;
+      questions.forEach(q => {
+        const userChoice = userAnswers[q.id];
+        if (userChoice !== null && userChoice !== undefined) {
+          if (userChoice === q.correctAnswer) correct++;
+          else incorrect++;
+        } else {
+          unattempted++;
+        }
+      });
+      const marking = (typeof testMetadata !== 'undefined' && testMetadata.markingScheme) ? testMetadata.markingScheme : { correct: 4, incorrect: -1, unattempted: 0 };
+      const totalScore = (correct * (marking.correct || 4)) + (incorrect * (marking.incorrect || -1));
+      const totalMarks = (typeof testMetadata !== 'undefined' && testMetadata.totalMarks) ? testMetadata.totalMarks : 192;
+      const totalAttempted = correct + incorrect;
+      const accuracy = totalAttempted > 0 ? Math.round((correct / totalAttempted) * 100) : 0;
+
+      document.getElementById('resScore').textContent = totalScore + ' / ' + totalMarks;
+      document.getElementById('resCorrect').textContent = correct;
+      document.getElementById('resIncorrect').textContent = incorrect;
+      document.getElementById('resUnattempted').textContent = unattempted;
+      document.getElementById('resAccuracy').textContent = accuracy + '%';
+
+      const timesArray = questions.map(q => ({ id: q.id, time: timeSpent[q.id] || 0 }));
+      timesArray.sort((a, b) => a.time - b.time);
+      const fastest = timesArray[0] || { id: 1, time: 0 };
+      const slowest = timesArray[timesArray.length - 1] || { id: 1, time: 0 };
+      const totalTime = timesArray.reduce((acc, cur) => acc + cur.time, 0);
+      const avgTime = questions.length > 0 ? Math.round(totalTime / questions.length) : 0;
+
+      document.getElementById('resFastest').textContent = 'Q' + (questions.findIndex(q => q.id === fastest.id) + 1) + ' (' + fastest.time + 's)';
+      document.getElementById('resSlowest').textContent = 'Q' + (questions.findIndex(q => q.id === slowest.id) + 1) + ' (' + slowest.time + 's)';
+      document.getElementById('resAvg').textContent = avgTime + 's';
+
+      let timeTableHtml = '<table class="summary-table"><tr><th>Q#</th><th>Subject</th><th>Your Answer</th><th>Correct Answer</th><th>Time Spent</th><th>Outcome</th></tr>';
+      const optMap = ['(1)', '(2)', '(3)', '(4)'];
+      questions.forEach((q, idx) => {
+        const ans = userAnswers[q.id];
+        const isCorrect = ans === q.correctAnswer;
+        const isAttempted = ans !== null && ans !== undefined;
+        let outcome = '<span style="color:#64748b;">Unattempted</span>';
+        if (isAttempted) {
+          outcome = isCorrect ? '<span style="color:#22c55e;font-weight:bold;">Correct (+4)</span>' : '<span style="color:#ef4444;font-weight:bold;">Incorrect (-1)</span>';
+        }
+        timeTableHtml += '<tr>' +
+          '<td>' + (idx + 1) + '</td>' +
+          '<td>' + q.subject + '</td>' +
+          '<td>' + (isAttempted ? optMap[ans] : '-') + '</td>' +
+          '<td><strong>' + (q.correctAnswer !== null ? optMap[q.correctAnswer] : '-') + '</strong></td>' +
+          '<td>' + (timeSpent[q.id] || 0) + 's</td>' +
+          '<td>' + outcome + '</td>' +
+          '</tr>';
+      });
+      timeTableHtml += '</table>';
+      document.getElementById('resTimeTableContainer').innerHTML = timeTableHtml;
+
+      let solHtml = '';
+      questions.forEach((q, idx) => {
+        const userChoice = userAnswers[q.id];
+        const isCorrect = userChoice === q.correctAnswer;
+        const isAttempted = userChoice !== null && userChoice !== undefined;
+        const borderClass = isAttempted ? (isCorrect ? '#22c55e' : '#ef4444') : 'var(--border)';
+        let qBodyHtml = '<div style="font-size:14px;margin-bottom:10px;white-space:pre-line;line-height:1.6;">' + renderMathInString(q.question) + '</div>';
+        if (q.type === 'match-the-column' && q.matchColumn) {
+          qBodyHtml += '<div class="match-table-wrapper" style="margin:10px 0;"><table class="match-table"><thead><tr><th>' + renderMathInString(q.matchColumn.col1Title || 'Column I') + '</th><th>' + renderMathInString(q.matchColumn.col2Title || 'Column II') + '</th></tr></thead><tbody>';
+          const maxLen = Math.max(q.matchColumn.col1.length, q.matchColumn.col2.length);
+          for (let mi = 0; mi < maxLen; mi++) {
+            const it1 = q.matchColumn.col1[mi];
+            const it2 = q.matchColumn.col2[mi];
+            const c1 = it1 ? '<span class="match-col-key">' + it1.key + (it1.key.endsWith('.') || it1.key.endsWith(')') ? '' : '.') + '</span>' + renderMathInString(it1.text) : '';
+            const c2 = it2 ? '<span class="match-col-key">' + it2.key + (it2.key.endsWith('.') || it2.key.endsWith(')') ? '' : '.') + '</span>' + renderMathInString(it2.text) : '';
+            qBodyHtml += '<tr><td>' + c1 + '</td><td>' + c2 + '</td></tr>';
+          }
+          qBodyHtml += '</tbody></table></div>';
+        }
+        solHtml += '<div style="border:1px solid ' + borderClass + ';border-radius:10px;padding:16px;margin-bottom:14px;background:var(--bg-card-subtle);">' +
+          '<div style="font-weight:700;font-size:14px;margin-bottom:6px;">Question ' + (idx + 1) + ' (' + q.subject + ')</div>' +
+          qBodyHtml +
+          '<div style="display:flex;gap:12px;font-size:13px;margin-bottom:8px;">' +
+          '<div>Your Choice: <strong>' + (isAttempted ? optMap[userChoice] : 'Not Attempted') + '</strong></div>' +
+          '<div>Correct: <strong style="color:#22c55e;">' + (q.correctAnswer !== null ? optMap[q.correctAnswer] : '-') + '</strong></div>' +
+          '</div>' +
+          (q.solution ? '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:12px;font-size:13px;line-height:1.6;white-space:pre-line;"><strong>Solution:</strong> ' + renderMathInString(q.solution) + '</div>' : '') +
+          '</div>';
+      });
+      document.getElementById('resSolutionsContainer').innerHTML = solHtml;
+      triggerKaTeXAutoRender();
+    }
+
+    // SCRATCHPAD
+    var scratchCanvas, scratchCtx, drawing = false;
+    function initScratchpad() {
+      scratchCanvas = document.getElementById('scratchCanvas');
+      if (!scratchCanvas || !scratchCanvas.getContext) return;
+      scratchCtx = scratchCanvas.getContext('2d');
+      if (!scratchCtx) return;
+      resizeScratchpad();
+      function getPos(e) {
+        const rect = scratchCanvas.getBoundingClientRect();
+        const clientX = e.touches && e.touches.length > 0 ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches && e.touches.length > 0 ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - rect.left, y: clientY - rect.top };
+      }
+      function start(e) {
+        drawing = true;
+        const p = getPos(e);
+        scratchCtx.beginPath();
+        scratchCtx.moveTo(p.x, p.y);
+      }
+      function draw(e) {
+        if (!drawing) return;
+        const p = getPos(e);
+        scratchCtx.lineWidth = 2;
+        scratchCtx.lineCap = 'round';
+        scratchCtx.strokeStyle = '#0284c7';
+        scratchCtx.lineTo(p.x, p.y);
+        scratchCtx.stroke();
+      }
+      function stop() { drawing = false; }
+      scratchCanvas.addEventListener('mousedown', start);
+      scratchCanvas.addEventListener('mousemove', draw);
+      scratchCanvas.addEventListener('mouseup', stop);
+      scratchCanvas.addEventListener('touchstart', start, { passive: true });
+      scratchCanvas.addEventListener('touchmove', draw, { passive: true });
+      scratchCanvas.addEventListener('touchend', stop);
+    }
+    function toggleScratchpad() {
+      const box = document.getElementById('scratchWindow');
+      if (!box) return;
+      if (box.style.display === 'none') {
+        box.style.display = 'flex';
+        resizeScratchpad();
+      } else {
+        box.style.display = 'none';
+      }
+    }
+    function resizeScratchpad() {
+      if (scratchCanvas) {
+        scratchCanvas.width = scratchCanvas.offsetWidth;
+        scratchCanvas.height = scratchCanvas.offsetHeight;
+      }
+    }
+    function clearScratchpad() {
+      if (scratchCtx && scratchCanvas) {
+        scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+      }
+    }
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      triggerKaTeXAutoRender();
+    });
+  
+  </script>
+</body>
+</html>
