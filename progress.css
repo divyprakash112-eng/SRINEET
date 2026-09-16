@@ -230,7 +230,7 @@ button {
   margin: 30px auto 0;
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
 }
 
@@ -454,6 +454,19 @@ button {
   margin-left: auto;
   color: rgba(212, 175, 106, 0.6);
   font-size: 8px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 700px) {
+
+  .stats-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
 
 
