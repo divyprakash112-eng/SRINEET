@@ -22,6 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const statAvgScore =
     document.getElementById("statAvgScore");
 
+  const statTotalXP =
+    document.getElementById("statTotalXP");
+
+  const xpTotal =
+    document.getElementById("xpTotal");
+
+  const xpLevel =
+    document.getElementById("xpLevel");
+
   const historyList =
     document.getElementById("historyList");
 
@@ -40,6 +49,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     streakCount.textContent =
       String(window.SrineetStreak.getStreak());
+
+  }
+
+
+  /* =====================================================
+     XP COINS
+  ===================================================== */
+
+  if (window.SrineetXP) {
+
+    const totalXP =
+      window.SrineetXP.getXP();
+
+    const level =
+      window.SrineetXP.getLevel();
+
+    if (xpTotal) {
+      xpTotal.textContent = String(totalXP);
+    }
+
+    if (xpLevel) {
+      xpLevel.textContent = String(level);
+    }
+
+    if (statTotalXP) {
+      statTotalXP.textContent = String(totalXP);
+    }
 
   }
 
