@@ -36,12 +36,14 @@ const CORE_ASSETS = [
   "streak.js",
   "xp.js",
   "premium.js",
+  "updates.js",
   "telegram-popup.css",
   "telegram-popup.js",
   "manifest.json",
   "data/institutes.json",
   "data/batches.json",
-  "data/tests.json"
+  "data/tests.json",
+  "data/updates.json"
 ];
 
 
