@@ -452,3 +452,225 @@ html[data-theme="dark"] .no-invert {
   font-size: 10px;
   font-weight: 700;
 }
+
+
+/* =========================
+   BELL SHAKE (jab naya update ho)
+========================= */
+
+@keyframes bellShake {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(-14deg); }
+  30% { transform: rotate(11deg); }
+  45% { transform: rotate(-8deg); }
+  60% { transform: rotate(6deg); }
+  75% { transform: rotate(-3deg); }
+}
+
+.bell-button.has-unread svg {
+  animation: bellShake 0.7s ease;
+  animation-iteration-count: 2;
+  animation-delay: 0.4s;
+}
+
+
+/* =========================
+   BELL BADGE (count, replaces plain dot)
+========================= */
+
+.bell-dot {
+  transition: all .2s ease;
+  display: none;
+}
+
+.bell-dot.has-count {
+  width: auto;
+  min-width: 16px;
+  height: 16px;
+  top: 4px;
+  right: 2px;
+  padding: 0 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: linear-gradient(150deg, #E0543C, #C43A28);
+  box-shadow: 0 2px 6px rgba(196, 58, 40, .5), 0 0 0 2px var(--white, #fff);
+
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+
+/* =========================
+   WHAT'S NEW PANEL (premium dropdown)
+========================= */
+
+.updates-panel {
+  position: fixed;
+  top: 78px;
+  right: 16px;
+  z-index: 200;
+
+  width: min(340px, calc(100vw - 32px));
+  max-height: 70vh;
+  overflow-y: auto;
+
+  border: 1px solid var(--card-edge, #E9DFC9);
+  border-radius: 20px;
+
+  background: var(--white, #ffffff);
+  box-shadow: 0 25px 60px -10px rgba(11, 59, 52, 0.35);
+
+  opacity: 0;
+  transform: translateY(-14px) scale(0.95);
+  pointer-events: none;
+  transform-origin: top right;
+
+  transition: opacity .22s ease, transform .22s ease;
+}
+
+.updates-panel::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 26px;
+
+  width: 14px;
+  height: 14px;
+
+  background: var(--white, #ffffff);
+  border-left: 1px solid var(--card-edge, #E9DFC9);
+  border-top: 1px solid var(--card-edge, #E9DFC9);
+
+  transform: rotate(45deg);
+}
+
+.updates-panel.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.updates-panel-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--card-edge, #E9DFC9);
+  background: linear-gradient(150deg, var(--gold-hi, #F3E3B8), #FBF3DE);
+  border-radius: 20px 20px 0 0;
+}
+
+.updates-panel-header span {
+  color: var(--wine, #0B3B34);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+.updates-panel-list {
+  padding: 10px;
+}
+
+.updates-item {
+  padding: 14px 12px;
+  display: flex;
+  gap: 12px;
+
+  border-radius: 14px;
+  transition: background .2s ease;
+}
+
+.updates-item:hover {
+  background: var(--ivory-deep, #F1E8D8);
+}
+
+.updates-item + .updates-item {
+  margin-top: 4px;
+}
+
+.updates-item-icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 12px;
+  background: linear-gradient(145deg, var(--gold-soft, #D4AF6A), var(--gold, #B9853F));
+
+  font-size: 17px;
+}
+
+.updates-item-body {
+  min-width: 0;
+}
+
+.updates-item-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.updates-item-title {
+  color: var(--wine, #0B3B34);
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.updates-new-tag {
+  flex-shrink: 0;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: linear-gradient(150deg, #E0543C, #C43A28);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .05em;
+}
+
+.updates-item-message {
+  margin-top: 4px;
+  color: var(--ink-dim, #6B5F5C);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.updates-item-date {
+  margin-top: 6px;
+  color: var(--gold, #B9853F);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.updates-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--ink-dim, #6B5F5C);
+  font-size: 12px;
+  line-height: 2;
+}
+
+
+/* =========================
+   MOBILE — full-width panel
+========================= */
+
+@media (max-width: 460px) {
+
+  .updates-panel {
+    right: 8px;
+    left: 8px;
+    width: auto;
+  }
+
+  .updates-panel::before {
+    right: 34px;
+  }
+
+}
