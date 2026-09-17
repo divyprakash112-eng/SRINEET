@@ -29,6 +29,25 @@ const batchEmpty =
 const instituteError =
   document.getElementById("instituteError");
 
+const batchSearchInput =
+  document.getElementById("batchSearch");
+
+const batchSearchEmpty =
+  document.getElementById("batchSearchEmpty");
+
+
+/*
+ * SKELETON LOADING
+ * Data fetch hone tak ye dummy shimmer cards dikhte hain.
+ */
+
+if (batchGrid) {
+
+  batchGrid.innerHTML =
+    '<div class="skeleton-card"></div>'.repeat(4);
+
+}
+
 
 /* =========================
    URL PARAMETER
@@ -225,6 +244,22 @@ function renderBatches(batches) {
     }
   );
 
+
+  if (window.SrineetReveal) {
+    window.SrineetReveal.observe(batchGrid);
+  }
+
+  if (window.SrineetSearch && batchSearchInput) {
+
+    window.SrineetSearch.attach(
+      batchSearchInput,
+      batchGrid,
+      ".batch-card",
+      batchSearchEmpty
+    );
+
+  }
+
 }
 
 
@@ -242,7 +277,7 @@ function createBatchCard(
 
 
   card.className =
-    "batch-card";
+    "batch-card reveal";
 
 
   /*
