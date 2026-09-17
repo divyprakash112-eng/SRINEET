@@ -20,6 +20,12 @@ const instituteCount =
 const seriesError =
   document.getElementById("seriesError");
 
+const instituteSearchInput =
+  document.getElementById("instituteSearch");
+
+const instituteSearchEmpty =
+  document.getElementById("instituteSearchEmpty");
+
 
 /* =========================================================
    BUILT-IN INSTITUTE DATA
@@ -153,7 +159,7 @@ function createInstituteCard(institute) {
     document.createElement("a");
 
   card.className =
-    "institute-card";
+    "institute-card reveal";
 
 
   /*
@@ -244,6 +250,22 @@ function renderInstitutes(data) {
     instituteCount.textContent =
       String(sorted.length)
         .padStart(2, "0");
+
+  }
+
+
+  if (window.SrineetReveal) {
+    window.SrineetReveal.observe(instituteGrid);
+  }
+
+  if (window.SrineetSearch && instituteSearchInput) {
+
+    window.SrineetSearch.attach(
+      instituteSearchInput,
+      instituteGrid,
+      ".institute-card",
+      instituteSearchEmpty
+    );
 
   }
 
