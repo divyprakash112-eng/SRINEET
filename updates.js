@@ -13,6 +13,8 @@ Jab bhi koi student site khole aur unseen update ho:
 - ek number badge dikhega (kitne naye updates hain)
 - click karne par smooth panel khulega, har item par
   "NEW" tag hoga jo abhi tak nahi dekha
+- kisi bhi item pe click karo to pura message ek
+  premium popup mein khulega
 =========================================================
 */
 
@@ -145,13 +147,13 @@ Jab bhi koi student site khole aur unseen update ho:
 
     list.innerHTML =
       updatesCache
-        .map(update => {
+        .map((update, index) => {
 
           const isNew =
             (Number(update.id) || 0) > seenIdAtLoad;
 
           return `
-            <div class="updates-item">
+            <div class="updates-item" data-index="${index}">
               <div class="updates-item-icon">${update.icon || "🎉"}</div>
               <div class="updates-item-body">
                 <div class="updates-item-top">
@@ -166,6 +168,123 @@ Jab bhi koi student site khole aur unseen update ho:
 
         })
         .join("");
+
+    list
+      .querySelectorAll(".updates-item")
+      .forEach(item => {
+
+        item.addEventListener(
+          "click",
+          () => {
+
+            const index =
+              parseInt(item.dataset.index, 10);
+
+            const update =
+              updatesCache[index];
+
+            if (update) {
+              openDetailModal(update);
+            }
+
+          }
+        );
+
+      });
+
+  }
+
+
+  /* =====================================================
+     DETAIL MODAL (premium popup — full message)
+  ===================================================== */
+
+  let detailModalEl =
+    null;
+
+  function buildDetailModal() {
+
+    if (detailModalEl) {
+      return detailModalEl;
+    }
+
+    detailModalEl =
+      document.createElement("div");
+
+    detailModalEl.className =
+      "update-detail-modal";
+
+    detailModalEl.innerHTML = `
+      <div class="update-detail-backdrop"></div>
+      <div class="update-detail-box">
+        <button type="button" class="update-detail-close" aria-label="Close">✕</button>
+        <div class="update-detail-glow"></div>
+        <div class="update-detail-icon" id="updateDetailIcon">🎉</div>
+        <span class="update-detail-date" id="updateDetailDate"></span>
+        <h2 class="update-detail-title" id="updateDetailTitle"></h2>
+        <p class="update-detail-message" id="updateDetailMessage"></p>
+        <button type="button" class="update-detail-button">Got it</button>
+      </div>
+    `;
+
+    document.body.appendChild(detailModalEl);
+
+    const closeDetail =
+      () => detailModalEl.classList.remove("is-open");
+
+    detailModalEl
+      .querySelector(".update-detail-backdrop")
+      .addEventListener("click", closeDetail);
+
+    detailModalEl
+      .querySelector(".update-detail-close")
+      .addEventListener("click", closeDetail);
+
+    detailModalEl
+      .querySelector(".update-detail-button")
+      .addEventListener("click", closeDetail);
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          detailModalEl.classList.contains("is-open")
+        ) {
+          closeDetail();
+        }
+
+      }
+    );
+
+    return detailModalEl;
+
+  }
+
+
+  function openDetailModal(update) {
+
+    const modal =
+      buildDetailModal();
+
+    modal.querySelector("#updateDetailIcon").textContent =
+      update.icon || "🎉";
+
+    modal.querySelector("#updateDetailDate").textContent =
+      update.date || "";
+
+    modal.querySelector("#updateDetailTitle").textContent =
+      update.title || "";
+
+    modal.querySelector("#updateDetailMessage").textContent =
+      update.message || "";
+
+    closePanel();
+
+    requestAnimationFrame(() => {
+      modal.classList.add("is-open");
+    });
 
   }
 
