@@ -411,8 +411,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (testEmpty) {
 
-      testEmpty.textContent =
-        message;
+      testEmpty.innerHTML =
+        `<div class="empty-icon-badge" aria-hidden="true">📭</div>${message}`;
 
       testEmpty.style.display =
         "block";
@@ -447,7 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.createElement("article");
 
     card.className =
-      "test-card";
+      "test-card reveal";
 
 
     /* Number */
@@ -494,16 +494,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "Physics • Chemistry • Biology";
 
 
-    const dateHtml =
-      test.date
-        ? `<span>${test.date}</span>`
-        : "";
-
-
     info.innerHTML = `
       <span>${test.questions || 0} Questions</span>
       <span>${test.duration || 0} Minutes</span>
-      ${dateHtml}
       <span>${subjects}</span>
     `;
 
@@ -539,22 +532,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*
-     * SECONDARY BUTTONS GROUP
-     *
-     * "View Syllabus" aur "OMR Mode" — dono
-     * same size ke chhote buttons, saath mein
-     * group karke rakhe hain. Bada CBT button
-     * inke side mein alag se aayega.
-     */
-
-    const secondaryActions =
-      document.createElement("div");
-
-    secondaryActions.className =
-      "secondary-actions";
-
-
-    /*
      * VIEW SYLLABUS BUTTON
      *
      * Har test card par hamesha dikhta hai.
@@ -581,52 +558,11 @@ document.addEventListener("DOMContentLoaded", () => {
       () => openSyllabusModal(test)
     );
 
-    secondaryActions.appendChild(syllabusButton);
+    action.appendChild(syllabusButton);
 
 
     /*
-     * OMR MODE BUTTON (Test PDF)
-     *
-     * tests.json mein us test ke "pdfFile"
-     * field mein PDF ka direct link do —
-     * GitHub Release link ya koi bhi hosted
-     * PDF URL. Field na diya ho to ye button
-     * apne aap nahi dikhega.
-     *
-     * Example tests.json entry:
-     * "pdfFile": "https://github.com/USER/REPO/releases/download/TAG/test-01-omr.pdf"
-     */
-
-    if (test.pdfFile) {
-
-      const omrButton =
-        document.createElement("a");
-
-      omrButton.className =
-        "omr-button";
-
-      omrButton.href =
-        test.pdfFile;
-
-      omrButton.target =
-        "_blank";
-
-      omrButton.rel =
-        "noopener";
-
-      omrButton.textContent =
-        "OMR Mode";
-
-      secondaryActions.appendChild(omrButton);
-
-    }
-
-
-    action.appendChild(secondaryActions);
-
-
-    /*
-     * CBT HTML LINK (bada button, side mein)
+     * CBT HTML LINK
      *
      * This is the important part.
      *
@@ -648,7 +584,7 @@ document.addEventListener("DOMContentLoaded", () => {
       button.textContent =
         isCompleted(test.id)
           ? "Review Test"
-          : "CBT Mode";
+          : "Start Test";
 
 
       action.appendChild(button);
@@ -745,6 +681,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
     );
+
+    if (window.SrineetReveal) {
+      window.SrineetReveal.observe(testList);
+    }
 
   }
 
