@@ -1,0 +1,23 @@
+[
+  {
+    "id": 3,
+    "date": "17 Sep 2026",
+    "icon": "🪙",
+    "title": "XP Coins & Levels",
+    "message": "Har sahi answer par ab 4 XP milega. My Progress page par apna Level aur Total XP dekho!"
+  },
+  {
+    "id": 2,
+    "date": "16 Sep 2026",
+    "icon": "🌙",
+    "title": "Dark Mode",
+    "message": "Poori site ab dark mode mein bhi chalti hai — hamburger menu mein switch on karo."
+  },
+  {
+    "id": 1,
+    "date": "15 Sep 2026",
+    "icon": "🔥",
+    "title": "My Progress + Streak",
+    "message": "Ab apna test history, accuracy aur daily streak track kar sakte ho — My Progress page par."
+  }
+]
