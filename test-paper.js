@@ -82,25 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const institutes = {
 
-    pw: "Physics Wallah",
-
-    allen: "ALLEN",
-
-    aakash: "Aakash Institute",
-
-    narayana: "Narayana",
-
-    unacademy: "Unacademy",
-
-    motion: "Motion Education",
-
-    resonance: "Resonance",
-
-    vedantu: "Vedantu",
-
-    "sri-chaitanya": "Sri Chaitanya",
-
-    "career-point": "Career Point"
+    pw: "Physics Wallah"
 
   };
 
