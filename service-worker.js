@@ -35,6 +35,7 @@ const CORE_ASSETS = [
   "progress-tracker.js",
   "streak.js",
   "xp.js",
+  "premium.js",
   "telegram-popup.css",
   "telegram-popup.js",
   "manifest.json",
