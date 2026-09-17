@@ -806,6 +806,57 @@
 
 
       <!-- =================================================
+           CONTINUE WHERE YOU LEFT OFF
+           (SrineetContinue.getLastAttempt() se bharta hai;
+           agar koi test attempt nahi mila to hidden rehta hai)
+      ================================================== -->
+
+      <section
+        class="banner-section"
+        aria-label="Continue where you left off"
+      >
+
+        <div
+          class="continue-banner"
+          id="continueBanner"
+        >
+
+          <div>
+
+            <span class="continue-banner-kicker">
+              CONTINUE WHERE YOU LEFT OFF
+            </span>
+
+            <div
+              class="continue-banner-title"
+              id="continueBannerTitle"
+            >
+              Test
+            </div>
+
+            <div
+              class="continue-banner-sub"
+              id="continueBannerSub"
+            >
+              Score details
+            </div>
+
+          </div>
+
+          <a
+            href="progress.html"
+            class="continue-banner-button"
+          >
+            View Progress →
+          </a>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =================================================
            PREPARATION HUB
       ================================================== -->
 
@@ -865,7 +916,7 @@
 
           <a
             href="test-series.html"
-            class="feature-card card-test"
+            class="feature-card card-test reveal"
             aria-label="Open Test Series"
           >
 
@@ -935,7 +986,7 @@
 
           <a
             href="pyq.html"
-            class="feature-card card-pyq"
+            class="feature-card card-pyq reveal"
             aria-label="Open PYQ Chapterwise"
           >
 
@@ -1005,7 +1056,7 @@
 
           <a
             href="notes.html"
-            class="feature-card card-notes"
+            class="feature-card card-notes reveal"
             aria-label="Open Smart Notes"
           >
 
@@ -1075,7 +1126,7 @@
 
           <a
             href="practice.html"
-            class="feature-card card-practice"
+            class="feature-card card-practice reveal"
             aria-label="Open Chapterwise Practice"
           >
 
@@ -1145,7 +1196,7 @@
 
           <a
             href="progress.html"
-            class="feature-card card-progress"
+            class="feature-card card-progress reveal"
             aria-label="Open My Progress"
           >
 
@@ -1222,7 +1273,7 @@
         aria-label="Why choose SRINEET"
       >
 
-        <div class="why-card">
+        <div class="why-card reveal">
 
 
           <!-- Heading -->
@@ -1329,6 +1380,55 @@
             </div>
 
           </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =================================================
+           ABOUT SRINEET
+      ================================================== -->
+
+      <section
+        class="about-section reveal"
+        aria-label="About SRINEET"
+      >
+
+        <div class="about-card">
+
+          <span>
+            ABOUT SRINEET
+          </span>
+
+          <h2>
+            Built by a student, for students.
+          </h2>
+
+          <p>
+            SRINEET was started to bring scattered NEET
+            preparation resources — test series, PYQs,
+            notes and practice — into one simple, focused
+            place. No unnecessary noise, no clutter. Just
+            what a serious NEET aspirant actually needs.
+          </p>
+
+          <div class="privacy-note">
+            🔒 Your test scores and progress stay only on
+            your device — never uploaded anywhere.
+          </div>
+
+          <br>
+
+          <a
+            href="https://t.me/srineetofficial"
+            class="about-support"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            💬 Need help? Message us on Telegram
+          </a>
 
         </div>
 
@@ -1459,6 +1559,7 @@
   <script src="streak.js"></script>
   <script src="theme.js"></script>
   <script src="pwa.js"></script>
+  <script src="premium.js"></script>
   <script src="main.js"></script>
 
   <script>
@@ -1473,6 +1574,45 @@
 
         headerStreakCount.textContent =
           String(window.SrineetStreak.getStreak());
+
+      }
+
+
+      /* Continue Where You Left Off */
+
+      const continueBanner =
+        document.getElementById("continueBanner");
+
+      const continueBannerTitle =
+        document.getElementById("continueBannerTitle");
+
+      const continueBannerSub =
+        document.getElementById("continueBannerSub");
+
+      if (continueBanner && window.SrineetContinue) {
+
+        const lastAttempt =
+          window.SrineetContinue.getLastAttempt();
+
+        if (lastAttempt) {
+
+          if (continueBannerTitle) {
+
+            continueBannerTitle.textContent =
+              lastAttempt.title;
+
+          }
+
+          if (continueBannerSub) {
+
+            continueBannerSub.textContent =
+              `Last score: ${lastAttempt.score} / ${lastAttempt.totalMarks} • ${lastAttempt.accuracy}% accuracy`;
+
+          }
+
+          continueBanner.classList.add("is-visible");
+
+        }
 
       }
 
