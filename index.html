@@ -171,6 +171,17 @@
           </button>
 
 
+          <!-- Recently Added + Upcoming Tests -->
+
+          <button
+            class="tg-button calendar-button"
+            type="button"
+            aria-label="Recently added and upcoming tests"
+          >
+            🗓️
+          </button>
+
+
           <!-- My Progress + Streak -->
 
           <a
@@ -246,10 +257,34 @@
 
 
 
+      <!-- GLOBAL SEARCH -->
+
+      <div class="global-search-box">
+
+        <span class="search-icon" aria-hidden="true">🔍</span>
+
+        <input
+          type="text"
+          class="search-input"
+          id="globalSearchInput"
+          placeholder="Search institutes, tests..."
+          autocomplete="off"
+        >
+
+      </div>
+
+      <div
+        class="global-search-results"
+        id="globalSearchResults"
+      ></div>
+
+
+
       <!-- Navigation -->
 
       <nav
         class="menu-nav"
+        id="menuNav"
         aria-label="Study navigation"
       >
 
@@ -1430,6 +1465,14 @@
             💬 Need help? Message us on Telegram
           </a>
 
+          <button
+            type="button"
+            class="about-support"
+            id="inviteFriendBtn"
+          >
+            🤝 Invite a Friend
+          </button>
+
         </div>
 
       </section>
@@ -1561,6 +1604,8 @@
   <script src="pwa.js"></script>
   <script src="premium.js"></script>
   <script src="updates.js"></script>
+  <script src="whats-coming.js"></script>
+  <script src="global-search.js"></script>
   <script src="main.js"></script>
 
   <script>
@@ -1614,6 +1659,47 @@
           continueBanner.classList.add("is-visible");
 
         }
+
+      }
+
+
+      /* Invite a Friend */
+
+      const inviteFriendBtn =
+        document.getElementById("inviteFriendBtn");
+
+      if (inviteFriendBtn) {
+
+        inviteFriendBtn.addEventListener(
+          "click",
+          async () => {
+
+            const shareData = {
+              title: "SRINEET — Complete NEET Preparation",
+              text: "Maine SRINEET use kiya NEET prep ke liye — test series, PYQs, sab free mein. Tum bhi try karo:",
+              url: window.location.origin + window.location.pathname.replace("index.html", "")
+            };
+
+            if (navigator.share) {
+
+              try {
+                await navigator.share(shareData);
+              } catch (error) {
+                /* user cancelled share, ignore */
+              }
+
+            } else {
+
+              const whatsappUrl =
+                "https://wa.me/?text=" +
+                encodeURIComponent(shareData.text + " " + shareData.url);
+
+              window.open(whatsappUrl, "_blank");
+
+            }
+
+          }
+        );
 
       }
 
