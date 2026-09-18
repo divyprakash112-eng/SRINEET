@@ -1,98 +1,114 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
+/*
+=========================================================
+SRINEET — PROGRESS TRACKER
+Koi backend nahi — har test ka result is device ke
+localStorage mein history ki tarah save hota hai.
+Kisi bhi CBT test file (jaise tests/pw/yakeen-1-0/
+test-01.html) ke finalizeSubmission() ke andar
+SrineetProgress.saveAttempt({...}) call karo.
+=========================================================
+*/
+
+window.SrineetProgress = (function () {
+
+  const STORAGE_KEY =
+    "srineet_test_history";
 
 
   /* =====================================================
-     ELEMENTS
+     READ HISTORY
   ===================================================== */
 
-  const streakCount =
-    document.getElementById("streakCount");
+  function getHistory() {
 
-  const enableReminders =
-    document.getElementById("enableReminders");
+    try {
 
-  const statTestsTaken =
-    document.getElementById("statTestsTaken");
+      const raw =
+        localStorage.getItem(STORAGE_KEY);
 
-  const statAvgAccuracy =
-    document.getElementById("statAvgAccuracy");
+      const data =
+        raw ? JSON.parse(raw) : [];
 
-  const statAvgScore =
-    document.getElementById("statAvgScore");
+      return Array.isArray(data)
+        ? data
+        : [];
 
-  const statTotalXP =
-    document.getElementById("statTotalXP");
+    } catch (error) {
 
-  const xpTotal =
-    document.getElementById("xpTotal");
+      console.error(
+        "SRINEET Progress Read Error:",
+        error
+      );
 
-  const xpLevel =
-    document.getElementById("xpLevel");
+      return [];
 
-  const historyList =
-    document.getElementById("historyList");
-
-  const historyEmpty =
-    document.getElementById("historyEmpty");
-
-  const clearHistory =
-    document.getElementById("clearHistory");
-
-
-  /* =====================================================
-     STREAK
-  ===================================================== */
-
-  if (streakCount && window.SrineetStreak) {
-
-    streakCount.textContent =
-      String(window.SrineetStreak.getStreak());
-
-  }
-
-
-  /* =====================================================
-     XP COINS
-  ===================================================== */
-
-  if (window.SrineetXP) {
-
-    const totalXP =
-      window.SrineetXP.getXP();
-
-    const level =
-      window.SrineetXP.getLevel();
-
-    if (xpTotal) {
-      xpTotal.textContent = String(totalXP);
-    }
-
-    if (xpLevel) {
-      xpLevel.textContent = String(level);
-    }
-
-    if (statTotalXP) {
-      statTotalXP.textContent = String(totalXP);
     }
 
   }
 
 
-  if (enableReminders && window.SrineetStreak) {
+  /* =====================================================
+     SAVE ONE TEST ATTEMPT
+  ===================================================== */
 
-    enableReminders.addEventListener(
-      "click",
-      () => {
+  function saveAttempt(attempt) {
 
-        window.SrineetStreak.requestPermission();
+    const history =
+      getHistory();
 
-        enableReminders.textContent =
-          "🔔 Reminders Requested";
+    const record = {
+      testId: attempt.testId || "unknown",
+      title: attempt.title || "Untitled Test",
+      score: Number(attempt.score) || 0,
+      totalMarks: Number(attempt.totalMarks) || 0,
+      correct: Number(attempt.correct) || 0,
+      incorrect: Number(attempt.incorrect) || 0,
+      unattempted: Number(attempt.unattempted) || 0,
+      accuracy: Number(attempt.accuracy) || 0,
+      subjects: attempt.subjects || null,
+      date: new Date().toISOString()
+    };
 
-      }
-    );
+
+    /*
+     * Agar same test dobara diya, to purana record
+     * hata kar naya (latest attempt) rakho.
+     */
+
+    const existingIndex =
+      history.findIndex(
+        item => item.testId === record.testId
+      );
+
+    if (existingIndex !== -1) {
+
+      history.splice(existingIndex, 1);
+
+    }
+
+    history.push(record);
+
+
+    try {
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(history)
+      );
+
+    } catch (error) {
+
+      console.error(
+        "SRINEET Progress Save Error:",
+        error
+      );
+
+    }
+
+
+    return record;
 
   }
 
@@ -101,198 +117,146 @@ document.addEventListener("DOMContentLoaded", () => {
      SUMMARY STATS
   ===================================================== */
 
-  function renderSummary() {
+  function getSummary() {
 
-    if (!window.SrineetProgress) {
-      return;
-    }
+    const history =
+      getHistory();
 
-    const summary =
-      window.SrineetProgress.getSummary();
+    if (history.length === 0) {
 
-    if (statTestsTaken) {
-
-      statTestsTaken.textContent =
-        String(summary.testsTaken);
-
-    }
-
-    if (statAvgAccuracy) {
-
-      statAvgAccuracy.textContent =
-        `${summary.averageAccuracy}%`;
+      return {
+        testsTaken: 0,
+        averageAccuracy: 0,
+        averageScorePercent: 0,
+        bestTest: null,
+        weakestTest: null
+      };
 
     }
 
-    if (statAvgScore) {
+    let totalAccuracy = 0;
+    let totalScorePercent = 0;
 
-      statAvgScore.textContent =
-        `${summary.averageScorePercent}%`;
+    let bestTest = history[0];
+    let weakestTest = history[0];
 
-    }
+    history.forEach(record => {
+
+      totalAccuracy += record.accuracy;
+
+      const scorePercent =
+        record.totalMarks > 0
+          ? (record.score / record.totalMarks) * 100
+          : 0;
+
+      totalScorePercent += scorePercent;
+
+      if (record.accuracy > bestTest.accuracy) {
+        bestTest = record;
+      }
+
+      if (record.accuracy < weakestTest.accuracy) {
+        weakestTest = record;
+      }
+
+    });
+
+    return {
+      testsTaken: history.length,
+      averageAccuracy: Math.round(totalAccuracy / history.length),
+      averageScorePercent: Math.round(totalScorePercent / history.length),
+      bestTest,
+      weakestTest
+    };
 
   }
 
 
   /* =====================================================
-     HISTORY LIST
+     SUBJECT-WISE BREAKDOWN (weak topic report)
+     Har attempt ke "subjects" field ko combine karke
+     har subject ki overall accuracy nikalta hai.
   ===================================================== */
 
-  function formatDate(isoString) {
-
-    try {
-
-      return new Date(isoString).toLocaleDateString(
-        "en-IN",
-        {
-          day: "numeric",
-          month: "short",
-          year: "numeric"
-        }
-      );
-
-    } catch (error) {
-
-      return "";
-
-    }
-
-  }
-
-
-  function createHistoryCard(record) {
-
-    const card =
-      document.createElement("article");
-
-    card.className =
-      "history-card";
-
-
-    const scorePercent =
-      record.totalMarks > 0
-        ? Math.round(
-            (record.score / record.totalMarks) * 100
-          )
-        : 0;
-
-
-    const left =
-      document.createElement("div");
-
-    left.innerHTML = `
-      <div class="history-card-title">${record.title}</div>
-      <div class="history-card-meta">
-        ${formatDate(record.date)} •
-        ${record.correct} Correct •
-        ${record.incorrect} Incorrect •
-        ${record.unattempted} Unattempted
-      </div>
-      <div class="accuracy-bar-track">
-        <div class="accuracy-bar-fill" style="width: ${record.accuracy}%;"></div>
-      </div>
-    `;
-
-
-    const right =
-      document.createElement("div");
-
-    right.className =
-      "history-card-score";
-
-    right.innerHTML = `
-      <strong>${record.score} / ${record.totalMarks}</strong>
-      <span>${scorePercent}% score • ${record.accuracy}% accuracy</span>
-    `;
-
-
-    card.appendChild(left);
-    card.appendChild(right);
-
-
-    return card;
-
-  }
-
-
-  function renderHistory() {
-
-    if (!historyList || !window.SrineetProgress) {
-      return;
-    }
+  function getSubjectBreakdown() {
 
     const history =
-      window.SrineetProgress
-        .getHistory()
-        .slice()
-        .sort(
-          (a, b) =>
-            new Date(b.date) - new Date(a.date)
-        );
+      getHistory();
 
+    const totals = {};
 
-    historyList.innerHTML =
-      "";
+    history.forEach(record => {
 
-
-    if (history.length === 0) {
-
-      if (historyEmpty) {
-        historyEmpty.style.display = "block";
+      if (!record.subjects) {
+        return;
       }
 
-      return;
+      Object.keys(record.subjects).forEach(subject => {
 
-    }
+        const s =
+          record.subjects[subject];
 
+        if (!totals[subject]) {
 
-    if (historyEmpty) {
-      historyEmpty.style.display = "none";
-    }
+          totals[subject] = {
+            correct: 0,
+            incorrect: 0,
+            total: 0
+          };
 
+        }
 
-    history.forEach(
-      record => {
+        totals[subject].correct += Number(s.correct) || 0;
+        totals[subject].incorrect += Number(s.incorrect) || 0;
+        totals[subject].total += Number(s.total) || 0;
 
-        historyList.appendChild(
-          createHistoryCard(record)
-        );
+      });
 
-      }
-    );
+    });
+
+    return Object.keys(totals)
+      .map(subject => {
+
+        const t =
+          totals[subject];
+
+        const attempted =
+          t.correct + t.incorrect;
+
+        return {
+          subject,
+          accuracy:
+            attempted > 0
+              ? Math.round((t.correct / attempted) * 100)
+              : 0,
+          correct: t.correct,
+          incorrect: t.incorrect,
+          total: t.total
+        };
+
+      })
+      .sort((a, b) => a.accuracy - b.accuracy);
 
   }
 
 
-  if (clearHistory) {
+  /* =====================================================
+     CLEAR HISTORY
+  ===================================================== */
 
-    clearHistory.addEventListener(
-      "click",
-      () => {
+  function clearHistory() {
 
-        const confirmed =
-          window.confirm(
-            "Pura test history delete karna hai? Ye undo nahi ho sakta."
-          );
-
-        if (!confirmed) {
-          return;
-        }
-
-        if (window.SrineetProgress) {
-          window.SrineetProgress.clearHistory();
-        }
-
-        renderSummary();
-        renderHistory();
-
-      }
-    );
+    localStorage.removeItem(STORAGE_KEY);
 
   }
 
 
-  renderSummary();
-  renderHistory();
+  return {
+    getHistory,
+    saveAttempt,
+    getSummary,
+    getSubjectBreakdown,
+    clearHistory
+  };
 
-});
+})();
