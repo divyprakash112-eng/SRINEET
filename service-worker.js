@@ -37,6 +37,8 @@ const CORE_ASSETS = [
   "xp.js",
   "premium.js",
   "updates.js",
+  "whats-coming.js",
+  "global-search.js",
   "telegram-popup.css",
   "telegram-popup.js",
   "manifest.json",
