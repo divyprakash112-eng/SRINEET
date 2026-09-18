@@ -411,6 +411,7 @@ html[data-theme="dark"] .no-invert {
 
 .about-support {
   margin-top: 24px;
+  margin-right: 12px;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -419,6 +420,10 @@ html[data-theme="dark"] .no-invert {
 
   border: 1px solid var(--card-edge, #E9DFC9);
   border-radius: 12px;
+
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
 
   color: var(--wine, #0B3B34);
   font-size: 11px;
@@ -851,4 +856,99 @@ html[data-theme="dark"] .no-invert {
 .update-detail-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 18px 34px -10px rgba(11, 59, 52, 0.6);
+}
+
+
+/* =========================
+   CALENDAR BUTTON (Recent + Upcoming)
+========================= */
+
+.calendar-button {
+  font-size: 18px;
+  position: relative;
+}
+
+.calendar-button.has-unread {
+  border-color: var(--gold-soft, #D4AF6A);
+  box-shadow: 0 0 0 3px rgba(212, 175, 106, 0.25);
+}
+
+.coming-panel {
+  max-height: 75vh;
+}
+
+.coming-section + .coming-section {
+  border-top: 1px solid var(--card-edge, #E9DFC9);
+}
+
+.coming-section-title {
+  padding: 12px 16px 4px;
+  color: var(--gold, #B9853F);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+.coming-item {
+  cursor: default;
+}
+
+
+/* =========================
+   GLOBAL SEARCH (sidebar)
+========================= */
+
+.global-search-box {
+  margin: 18px 28px 0;
+  position: relative;
+}
+
+.global-search-box .search-input {
+  height: 46px;
+  font-size: 12px;
+}
+
+.global-search-box .search-icon {
+  left: 16px;
+  font-size: 14px;
+}
+
+.global-search-results {
+  margin: 8px 28px 0;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.global-search-results.is-visible {
+  display: flex;
+}
+
+.global-search-result {
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: var(--ink-dim, #6B5F5C);
+  font-size: 12px;
+  transition: background .2s ease;
+}
+
+.global-search-result:hover {
+  background: var(--ivory-deep, #F1E8D8);
+}
+
+.global-search-result strong {
+  display: block;
+  color: var(--wine, #0B3B34);
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.global-search-empty {
+  padding: 14px 12px;
+  color: var(--ink-dim, #6B5F5C);
+  font-size: 11px;
+  text-align: center;
 }
