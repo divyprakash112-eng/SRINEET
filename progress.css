@@ -390,120 +390,161 @@ button {
 
 
 /* =========================
-   FOOTER
+   ACHIEVEMENT BADGES
 ========================= */
 
-.progress-footer {
-  background: var(--wine);
-  color: #F8EFE9;
+.badges-section {
+  width: min(900px, calc(100% - 32px));
+  margin: 45px auto 0;
 }
 
-.footer-inner {
-  width: min(1180px, calc(100% - 32px));
-  margin: auto;
-  padding: 35px 0;
-
-  display: flex;
-  align-items: center;
-  gap: 30px;
+.badges-section h2 {
+  color: var(--wine);
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: clamp(22px, 3.5vw, 30px);
 }
 
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  min-width: 230px;
+.badges-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
 }
 
-.footer-logo {
-  width: 42px;
-  height: 42px;
+.badge-card {
+  padding: 18px 14px;
+  text-align: center;
+
+  border: 1px solid var(--card-edge);
+  border-radius: 16px;
+
+  background: var(--white);
+}
+
+.badge-card.is-locked {
+  opacity: 0.4;
+  filter: grayscale(1);
+}
+
+.badge-icon {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 10px;
+
   display: grid;
   place-items: center;
-  border-radius: 12px;
-  color: var(--wine);
+
+  border-radius: 14px;
   background: linear-gradient(145deg, var(--gold-soft), var(--gold));
-  font-family: "Fraunces", serif;
-  font-weight: 700;
+
+  font-size: 22px;
 }
 
-.footer-brand strong,
-.footer-brand small {
-  display: block;
-}
-
-.footer-brand strong {
+.badge-name {
+  color: var(--wine);
   font-family: "Fraunces", serif;
   font-weight: 600;
   font-size: 12px;
-  letter-spacing: .2em;
 }
 
-.footer-brand small {
-  margin-top: 3px;
-  color: rgba(248, 239, 233, 0.6);
-  font-size: 7px;
-}
-
-.footer-copy {
-  color: rgba(248, 239, 233, 0.7);
-  font-size: 10px;
-}
-
-.footer-year {
-  margin-left: auto;
-  color: rgba(212, 175, 106, 0.6);
-  font-size: 8px;
+.badge-desc {
+  margin-top: 4px;
+  color: var(--ink-dim);
+  font-size: 9px;
+  line-height: 1.4;
 }
 
 
 /* =========================
-   TABLET
+   SCORE TREND CHART
 ========================= */
 
-@media (max-width: 700px) {
+.trend-section {
+  width: min(900px, calc(100% - 32px));
+  margin: 45px auto 0;
+}
 
-  .stats-section {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.trend-section h2 {
+  color: var(--wine);
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: clamp(22px, 3.5vw, 30px);
+}
 
+.trend-section h2 span {
+  color: var(--gold);
+}
+
+.trend-chart-box {
+  margin-top: 18px;
+  padding: 22px;
+
+  border: 1px solid var(--card-edge);
+  border-radius: 18px;
+
+  background: var(--white);
+}
+
+.trend-chart-box .updates-empty {
+  border: none;
+  padding: 20px;
 }
 
 
 /* =========================
-   MOBILE
+   WEAK TOPIC REPORT
 ========================= */
 
-@media (max-width: 600px) {
-
-  .progress-header-inner {
-    width: calc(100% - 24px);
-  }
-
-  .header-label {
-    display: none;
-  }
-
-  .stats-section {
-    grid-template-columns: 1fr;
-  }
-
-  .history-card {
-    grid-template-columns: 1fr;
-  }
-
-  .history-card-score {
-    text-align: left;
-  }
-
-  .footer-inner {
-    width: calc(100% - 24px);
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .footer-year {
-    margin-left: 0;
-  }
-
+.weak-section {
+  width: min(900px, calc(100% - 32px));
+  margin: 45px auto 0;
 }
+
+.weak-section h2 {
+  color: var(--wine);
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: clamp(22px, 3.5vw, 30px);
+}
+
+.weak-section h2 span {
+  color: var(--gold);
+}
+
+.weak-list {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.weak-item {
+  padding: 16px 18px;
+
+  border: 1px solid var(--card-edge);
+  border-radius: 14px;
+
+  background: var(--white);
+}
+
+.weak-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.weak-item-subject {
+  color: var(--wine);
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.weak-item-accuracy {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.weak-item-bar-track {
+  margin-top
