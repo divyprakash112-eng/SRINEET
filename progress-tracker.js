@@ -67,6 +67,7 @@ window.SrineetProgress = (function () {
       incorrect: Number(attempt.incorrect) || 0,
       unattempted: Number(attempt.unattempted) || 0,
       accuracy: Number(attempt.accuracy) || 0,
+      subjects: attempt.subjects || null,
       date: new Date().toISOString()
     };
 
@@ -172,6 +173,74 @@ window.SrineetProgress = (function () {
 
 
   /* =====================================================
+     SUBJECT-WISE BREAKDOWN (weak topic report)
+     Har attempt ke "subjects" field ko combine karke
+     har subject ki overall accuracy nikalta hai.
+  ===================================================== */
+
+  function getSubjectBreakdown() {
+
+    const history =
+      getHistory();
+
+    const totals = {};
+
+    history.forEach(record => {
+
+      if (!record.subjects) {
+        return;
+      }
+
+      Object.keys(record.subjects).forEach(subject => {
+
+        const s =
+          record.subjects[subject];
+
+        if (!totals[subject]) {
+
+          totals[subject] = {
+            correct: 0,
+            incorrect: 0,
+            total: 0
+          };
+
+        }
+
+        totals[subject].correct += Number(s.correct) || 0;
+        totals[subject].incorrect += Number(s.incorrect) || 0;
+        totals[subject].total += Number(s.total) || 0;
+
+      });
+
+    });
+
+    return Object.keys(totals)
+      .map(subject => {
+
+        const t =
+          totals[subject];
+
+        const attempted =
+          t.correct + t.incorrect;
+
+        return {
+          subject,
+          accuracy:
+            attempted > 0
+              ? Math.round((t.correct / attempted) * 100)
+              : 0,
+          correct: t.correct,
+          incorrect: t.incorrect,
+          total: t.total
+        };
+
+      })
+      .sort((a, b) => a.accuracy - b.accuracy);
+
+  }
+
+
+  /* =====================================================
      CLEAR HISTORY
   ===================================================== */
 
@@ -186,6 +255,7 @@ window.SrineetProgress = (function () {
     getHistory,
     saveAttempt,
     getSummary,
+    getSubjectBreakdown,
     clearHistory
   };
 
