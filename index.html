@@ -729,6 +729,10 @@
 
           <div class="hero-visual" aria-hidden="true">
 
+            <div class="hero-tagline">
+              Better Preparation<br>Brighter Future
+            </div>
+
             <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" class="hero-visual-svg">
 
               <!-- ECG line -->
@@ -738,9 +742,11 @@
 
               <!-- Books stack -->
               <g>
+                <rect x="140" y="231" width="190" height="26" rx="4" fill="#04132F"/>
                 <rect x="150" y="205" width="180" height="26" rx="4" fill="#0B4FD8"/>
                 <rect x="160" y="179" width="160" height="26" rx="4" fill="#1687FF"/>
                 <rect x="150" y="153" width="180" height="26" rx="4" fill="#20C4E8"/>
+                <text x="235" y="248" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#F6F9FD">CHEMISTRY</text>
                 <text x="240" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#F6F9FD">NEET</text>
                 <text x="240" y="196" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#04132F">BIOLOGY</text>
                 <text x="240" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#04132F">PHYSICS</text>
@@ -766,302 +772,13 @@
         </div>
 
       </section>
-
-
-
-      <!-- =================================================
-           SRISHTI MEDICAL BANNER
-      ================================================== -->
-
-      <section
-        class="banner-section"
-        aria-label="SRISHTI medical banner"
-      >
-
-        <div class="srishti-banner">
-
-
-          <!-- Background Grid -->
-
-          <div
-            class="banner-grid"
-            aria-hidden="true"
-          ></div>
-
-
-          <!-- Decorative Orbits -->
-
-          <div
-            class="banner-orbit orbit-a"
-            aria-hidden="true"
-          ></div>
-
-          <div
-            class="banner-orbit orbit-b"
-            aria-hidden="true"
-          ></div>
-
-          <div
-            class="banner-orbit orbit-c"
-            aria-hidden="true"
-          ></div>
-
-
-          <!-- Medical Plus Symbols -->
-
-          <span
-            class="banner-plus plus-a"
-            aria-hidden="true"
-          >
-            +
-          </span>
-
-          <span
-            class="banner-plus plus-b"
-            aria-hidden="true"
-          >
-            +
-          </span>
-
-
-
-          <!-- Banner Content -->
-
-          <div class="banner-content">
-
-
-            <div class="banner-label">
-
-              <span aria-hidden="true"></span>
-
-              MEDICAL EXCELLENCE
-
-            </div>
-
-
-
-            <div class="banner-small-title">
-              DREAM • DISCIPLINE • DESTINATION
-            </div>
-
-
-
-            <div class="doctor-name">
-
-              <small>
-                DR
-              </small>
-
-              <strong>
-                SRISHTI
-              </strong>
-
-            </div>
-
-
-
-            <div class="banner-line"></div>
-
-
-
-            <p>
-              Study with purpose.<br>
-              Prepare with confidence.
-            </p>
-
-          </div>
-
-
-
-          <!-- ECG GRAPHIC -->
-
-          <div
-            class="ecg-area"
-            aria-hidden="true"
-          >
-
-            <svg
-              class="ecg"
-              viewBox="0 0 500 180"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-
-              <path
-                d="M5 95
-                   H120
-                   L155 95
-                   L180 45
-                   L205 142
-                   L235 95
-                   H300"
-                stroke="currentColor"
-                stroke-width="6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-
-            </svg>
-
-
-
-            <div class="ecg-plus">
-              +
-            </div>
-
-
-
-            <div class="ecg-node node-one"></div>
-
-            <div class="ecg-node node-two"></div>
-
-          </div>
-
-
-
-          <!-- FOCUS BADGE -->
-
-          <div class="focus-badge">
-
-            <span
-              class="focus-dot"
-              aria-hidden="true"
-            ></span>
-
-
-            <div>
-
-              <strong>
-                FOCUS
-              </strong>
-
-              <small>
-                ON YOUR DREAM
-              </small>
-
-            </div>
-
-          </div>
-
-
-
-          <!-- BANNER FOOTER -->
-
-          <div class="banner-footer-left">
-            SRINEET
-          </div>
-
-          <div class="banner-footer-right">
-            COMPLETE NEET PREPARATION
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =================================================
-           CONTINUE WHERE YOU LEFT OFF
-           (SrineetContinue.getLastAttempt() se bharta hai;
-           agar koi test attempt nahi mila to hidden rehta hai)
-      ================================================== -->
-
-      <section
-        class="banner-section"
-        aria-label="Continue where you left off"
-      >
-
-        <div
-          class="continue-banner"
-          id="continueBanner"
-        >
-
-          <div>
-
-            <span class="continue-banner-kicker">
-              CONTINUE WHERE YOU LEFT OFF
-            </span>
-
-            <div
-              class="continue-banner-title"
-              id="continueBannerTitle"
-            >
-              Test
-            </div>
-
-            <div
-              class="continue-banner-sub"
-              id="continueBannerSub"
-            >
-              Score details
-            </div>
-
-          </div>
-
-          <a
-            href="progress.html"
-            class="continue-banner-button"
-          >
-            View Progress →
-          </a>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =================================================
-           RECENTLY ADDED + UPCOMING TESTS
-           (data/tests.json se — addedDate / status:"upcoming"
-           wale fields se apne aap bharta hai)
-      ================================================== -->
-
-      <section
-        class="banner-section"
-        aria-label="Recently added and upcoming tests"
-      >
-
-        <div class="coming-cards" id="comingCards">
-
-          <div class="coming-card">
-
-            <div class="coming-card-heading">
-              <span>✨ RECENTLY ADDED</span>
-            </div>
-
-            <div class="coming-card-list" id="recentCardList">
-              <div class="coming-card-empty">Loading...</div>
-            </div>
-
-          </div>
-
-
-          <div class="coming-card">
-
-            <div class="coming-card-heading">
-              <span>⏳ UPCOMING TESTS</span>
-            </div>
-
-            <div class="coming-card-list" id="upcomingCardList">
-              <div class="coming-card-empty">Loading...</div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-
       <!-- =================================================
            PREPARATION HUB
       ================================================== -->
 
       <section
         class="hub-section"
+        id="quickAccess"
         aria-label="SRINEET preparation resources"
       >
 
@@ -1070,20 +787,26 @@
 
         <div class="hub-heading">
 
-          <span class="section-kicker">
-            YOUR PREPARATION HUB
-          </span>
+          <div class="hub-heading-top">
+
+            <div>
+
+              <span class="section-kicker">
+                QUICK ACCESS
+              </span>
 
 
-          <h2>
+              <h2>
+                Your Study. Just a Click Away.
+              </h2>
 
-            Everything you need.
+            </div>
 
-            <span>
-              Nothing you don't.
-            </span>
+            <a href="#quickAccess" class="hub-view-all">
+              View All →
+            </a>
 
-          </h2>
+          </div>
 
 
           <div
@@ -1465,8 +1188,448 @@
 
       </section>
 
+      <!-- =================================================
+           YOUR PREPARATION — live stats from
+           SrineetProgress.getSummary() + SrineetStreak.getStreak()
+      ================================================== -->
+
+      <section
+        class="prep-section reveal"
+        aria-label="Your preparation progress"
+      >
+
+        <div class="prep-card">
+
+          <div class="prep-head">
+
+            <div>
+
+              <span class="section-kicker">
+                YOUR PREPARATION
+              </span>
+
+              <h3>
+                Track your progress. Stay consistent. Achieve more.
+              </h3>
+
+            </div>
+
+            <a href="progress.html" class="prep-view-link">
+              View Details →
+            </a>
+
+          </div>
+
+          <div class="prep-stats" id="prepStats">
+
+            <div class="prep-stat">
+              <span class="prep-stat-icon" aria-hidden="true">📊</span>
+              <div class="prep-stat-body">
+                <span class="prep-stat-label">Tests Attempted</span>
+                <strong id="prepTestsAttempted">0 / 150</strong>
+                <div class="prep-bar"><i id="prepTestsBar"></i></div>
+              </div>
+            </div>
+
+            <div class="prep-stat">
+              <span class="prep-stat-icon" aria-hidden="true">🎯</span>
+              <div class="prep-stat-body">
+                <span class="prep-stat-label">Accuracy</span>
+                <strong id="prepAccuracy">0%</strong>
+                <div class="prep-bar"><i id="prepAccuracyBar"></i></div>
+              </div>
+            </div>
+
+            <div class="prep-stat">
+              <span class="prep-stat-icon" aria-hidden="true">🔥</span>
+              <div class="prep-stat-body">
+                <span class="prep-stat-label">Streak</span>
+                <strong id="prepStreakDays">0 days</strong>
+                <div class="prep-bar"><i id="prepStreakBar"></i></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================
+           SRISHTI MEDICAL BANNER
+      ================================================== -->
+
+      <section
+        class="banner-section"
+        aria-label="SRISHTI medical banner"
+      >
+
+        <div class="srishti-banner">
 
 
+          <!-- Background Grid -->
+
+          <div
+            class="banner-grid"
+            aria-hidden="true"
+          ></div>
+
+
+          <!-- Skyline silhouette (stand-in for a campus/city photo) -->
+
+          <svg
+            class="banner-skyline"
+            viewBox="0 0 900 220"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <rect x="0" y="150" width="70" height="70" fill="rgba(234,243,255,.07)"/>
+            <rect x="60" y="110" width="55" height="110" fill="rgba(234,243,255,.10)"/>
+            <rect x="120" y="140" width="80" height="80" fill="rgba(234,243,255,.06)"/>
+            <rect x="205" y="90" width="60" height="130" fill="rgba(234,243,255,.13)"/>
+            <rect x="270" y="120" width="90" height="100" fill="rgba(234,243,255,.08)"/>
+            <rect x="365" y="70" width="65" height="150" fill="rgba(234,243,255,.15)"/>
+            <rect x="435" y="115" width="70" height="105" fill="rgba(234,243,255,.09)"/>
+            <rect x="510" y="95" width="55" height="125" fill="rgba(234,243,255,.12)"/>
+            <g fill="rgba(246,233,201,.35)">
+              <rect x="380" y="90" width="6" height="6"/>
+              <rect x="396" y="90" width="6" height="6"/>
+              <rect x="380" y="106" width="6" height="6"/>
+              <rect x="396" y="106" width="6" height="6"/>
+              <rect x="380" y="122" width="6" height="6"/>
+              <rect x="396" y="122" width="6" height="6"/>
+            </g>
+            <text x="365" y="82" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="3" fill="rgba(255,255,255,.4)">AIIMS</text>
+            <circle cx="90" cy="150" r="26" fill="none" stroke="rgba(234,243,255,.18)" stroke-width="6"/>
+            <rect x="82" y="176" width="16" height="10" fill="rgba(234,243,255,.12)"/>
+          </svg>
+
+
+          <!-- Decorative Orbits -->
+
+          <div
+            class="banner-orbit orbit-a"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="banner-orbit orbit-b"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="banner-orbit orbit-c"
+            aria-hidden="true"
+          ></div>
+
+
+          <!-- Medical Plus Symbols -->
+
+          <span
+            class="banner-plus plus-a"
+            aria-hidden="true"
+          >
+            +
+          </span>
+
+          <span
+            class="banner-plus plus-b"
+            aria-hidden="true"
+          >
+            +
+          </span>
+
+
+
+          <!-- Banner Content -->
+
+          <div class="banner-content">
+
+
+            <div class="banner-label">
+
+              <span aria-hidden="true"></span>
+
+              MEDICAL EXCELLENCE
+
+            </div>
+
+
+
+            <div class="banner-small-title">
+              DREAM • DISCIPLINE • DESTINATION
+            </div>
+
+
+
+            <div class="doctor-name">
+
+              <small>
+                DR
+              </small>
+
+              <strong>
+                SRISHTI
+              </strong>
+
+            </div>
+
+
+
+            <div class="banner-line"></div>
+
+
+
+            <p>
+              Study with purpose.<br>
+              Prepare with confidence.
+            </p>
+
+            <span class="banner-pill">
+              NEET 2027
+            </span>
+
+          </div>
+
+
+
+          <!-- ECG GRAPHIC -->
+
+          <div
+            class="ecg-area"
+            aria-hidden="true"
+          >
+
+            <svg
+              class="ecg"
+              viewBox="0 0 500 180"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+
+              <path
+                d="M5 95
+                   H120
+                   L155 95
+                   L180 45
+                   L205 142
+                   L235 95
+                   H300"
+                stroke="currentColor"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+            </svg>
+
+
+
+            <div class="ecg-plus">
+              +
+            </div>
+
+
+
+            <div class="ecg-node node-one"></div>
+
+            <div class="ecg-node node-two"></div>
+
+          </div>
+
+
+
+          <!-- FOCUS BADGE -->
+
+          <div class="focus-badge">
+
+            <span
+              class="focus-dot"
+              aria-hidden="true"
+            ></span>
+
+
+            <div>
+
+              <strong>
+                FOCUS
+              </strong>
+
+              <small>
+                ON YOUR DREAM
+              </small>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- BANNER FOOTER -->
+
+          <div class="banner-footer-left">
+            SRINEET
+          </div>
+
+          <div class="banner-footer-right">
+            COMPLETE NEET PREPARATION
+          </div>
+
+
+          <!-- Decorative carousel controls (visual only — one banner today) -->
+
+          <button
+            type="button"
+            class="banner-arrow banner-arrow-left"
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            ‹
+          </button>
+
+          <button
+            type="button"
+            class="banner-arrow banner-arrow-right"
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            ›
+          </button>
+
+          <div class="banner-dots" aria-hidden="true">
+            <span class="banner-dot active"></span>
+            <span class="banner-dot"></span>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =================================================
+           TELEGRAM COMMUNITY BAR
+      ================================================== -->
+
+      <section
+        class="telegram-bar-section reveal"
+        aria-label="Join SRINEET on Telegram"
+      >
+
+        <a
+          href="https://t.me/srineetofficial"
+          class="telegram-bar"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="telegram-bar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M21.5 4.5L2.75 11.9c-1 .4-1 1.86.05 2.14l4.3 1.16 1.66 5.1c.3.9 1.5 1.1 2.1.35l2.4-2.95 4.55 3.35c.85.6 2.05.14 2.28-.87l3.1-14.2c.26-1.2-.98-2.15-2.14-1.53z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M8.7 14.9L18.3 7.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+
+          <span class="telegram-bar-text">
+            <strong>Join our Telegram Community</strong>
+            <small>Get updates, motivation, free resources &amp; more.</small>
+          </span>
+
+          <span class="telegram-bar-cta">
+            Join Now →
+          </span>
+
+        </a>
+
+      </section>
+
+      <!-- =================================================
+           CONTINUE WHERE YOU LEFT OFF
+           (SrineetContinue.getLastAttempt() se bharta hai;
+           agar koi test attempt nahi mila to hidden rehta hai)
+      ================================================== -->
+
+      <section
+        class="banner-section"
+        aria-label="Continue where you left off"
+      >
+
+        <div
+          class="continue-banner"
+          id="continueBanner"
+        >
+
+          <div>
+
+            <span class="continue-banner-kicker">
+              CONTINUE WHERE YOU LEFT OFF
+            </span>
+
+            <div
+              class="continue-banner-title"
+              id="continueBannerTitle"
+            >
+              Test
+            </div>
+
+            <div
+              class="continue-banner-sub"
+              id="continueBannerSub"
+            >
+              Score details
+            </div>
+
+          </div>
+
+          <a
+            href="progress.html"
+            class="continue-banner-button"
+          >
+            View Progress →
+          </a>
+
+        </div>
+
+      </section>
+      <!-- =================================================
+           RECENTLY ADDED + UPCOMING TESTS
+           (data/tests.json se — addedDate / status:"upcoming"
+           wale fields se apne aap bharta hai)
+      ================================================== -->
+
+      <section
+        class="banner-section"
+        aria-label="Recently added and upcoming tests"
+      >
+
+        <div class="coming-cards" id="comingCards">
+
+          <div class="coming-card">
+
+            <div class="coming-card-heading">
+              <span>✨ RECENTLY ADDED</span>
+            </div>
+
+            <div class="coming-card-list" id="recentCardList">
+              <div class="coming-card-empty">Loading...</div>
+            </div>
+
+          </div>
+
+
+          <div class="coming-card">
+
+            <div class="coming-card-heading">
+              <span>⏳ UPCOMING TESTS</span>
+            </div>
+
+            <div class="coming-card-list" id="upcomingCardList">
+              <div class="coming-card-empty">Loading...</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
       <!-- =================================================
            WHY SRINEET
       ================================================== -->
@@ -1490,6 +1653,10 @@
             <h2>
               Built for serious preparation.
             </h2>
+
+            <p class="why-subline">
+              Simple. Focused. Powerful.
+            </p>
 
           </div>
 
@@ -1584,12 +1751,28 @@
 
           </div>
 
+
+          <!-- Decorative side art (visual only) -->
+
+          <div class="why-decor" aria-hidden="true">
+
+            <span class="why-decor-watermark">SRINEET</span>
+
+            <svg class="why-decor-ecg" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 30 H60 L75 10 L92 50 L108 30 H195" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+            <div class="why-decor-icon">🩺</div>
+
+            <p class="why-decor-script">
+              Small steps<br>every day.<br>Big results<br>tomorrow.
+            </p>
+
+          </div>
+
         </div>
 
       </section>
-
-
-
       <!-- =================================================
            ABOUT SRINEET
       ================================================== -->
@@ -1600,6 +1783,20 @@
       >
 
         <div class="about-card">
+
+          <div class="about-decor" aria-hidden="true">
+
+            <span class="about-decor-s">S</span>
+
+            <svg class="about-decor-skyline" viewBox="0 0 400 220" preserveAspectRatio="none">
+              <rect x="20" y="150" width="55" height="70" fill="rgba(234,243,255,.06)"/>
+              <rect x="80" y="110" width="45" height="110" fill="rgba(234,243,255,.09)"/>
+              <rect x="130" y="140" width="65" height="80" fill="rgba(234,243,255,.05)"/>
+              <rect x="200" y="90" width="50" height="130" fill="rgba(234,243,255,.11)"/>
+              <rect x="260" y="120" width="70" height="100" fill="rgba(234,243,255,.07)"/>
+            </svg>
+
+          </div>
 
           <span>
             ABOUT SRINEET
@@ -1701,18 +1898,6 @@
           </p>
 
 
-          <!-- Footer navigation (visual addition, mirrors header nav) -->
-
-          <nav class="footer-nav" aria-label="Footer">
-            <a href="index.html">Home</a>
-            <a href="test-series.html">Test Series</a>
-            <a href="notes.html" data-coming-soon="Smart Notes">Notes</a>
-            <a href="pyq.html" data-coming-soon="PYQ Chapterwise">PYQ</a>
-            <a href="practice.html" data-coming-soon="Chapterwise Practice">Practice</a>
-          </nav>
-
-
-
           <!-- Footer Pills -->
 
           <div class="footer-pills">
@@ -1735,17 +1920,56 @@
 
 
 
-        <!-- Footer Message -->
+        <!-- Footer Connect (Follow Us + NEET 2027) -->
 
-        <div class="footer-message">
+        <div class="footer-connect">
 
-          <strong>
-            Prepare smart.
-          </strong>
-
-          <span>
-            Practice consistently.
+          <span class="footer-connect-label">
+            Follow Us
           </span>
+
+          <div class="footer-social">
+
+            <a
+              href="https://t.me/srineetofficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="SRINEET on Telegram"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M21.5 4.5L2.75 11.9c-1 .4-1 1.86.05 2.14l4.3 1.16 1.66 5.1c.3.9 1.5 1.1 2.1.35l2.4-2.95 4.55 3.35c.85.6 2.05.14 2.28-.87l3.1-14.2c.26-1.2-.98-2.15-2.14-1.53z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <span
+              class="footer-social-soon"
+              aria-label="YouTube — coming soon"
+              title="Coming soon"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2.5" y="6" width="19" height="12" rx="3" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M10.5 9.5L15 12l-4.5 2.5v-5z" fill="currentColor"/>
+              </svg>
+            </span>
+
+            <span
+              class="footer-social-soon"
+              aria-label="Instagram — coming soon"
+              title="Coming soon"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/>
+              </svg>
+            </span>
+
+          </div>
+
+          <div class="footer-connect-tag">
+            <strong>NEET 2027</strong>
+            <span>Dream • Study • Achieve</span>
+          </div>
 
         </div>
 
@@ -1799,6 +2023,62 @@
 
         headerStreakCount.textContent =
           String(window.SrineetStreak.getStreak());
+
+      }
+
+
+      /* Your Preparation — live stats */
+
+      const TOTAL_TESTS_TARGET = 150;
+      const STREAK_TARGET_DAYS = 30;
+
+      const prepTestsAttempted =
+        document.getElementById("prepTestsAttempted");
+
+      const prepTestsBar =
+        document.getElementById("prepTestsBar");
+
+      const prepAccuracy =
+        document.getElementById("prepAccuracy");
+
+      const prepAccuracyBar =
+        document.getElementById("prepAccuracyBar");
+
+      const prepStreakDays =
+        document.getElementById("prepStreakDays");
+
+      const prepStreakBar =
+        document.getElementById("prepStreakBar");
+
+      if (window.SrineetProgress && prepTestsAttempted) {
+
+        const summary =
+          window.SrineetProgress.getSummary();
+
+        prepTestsAttempted.textContent =
+          `${summary.testsTaken} / ${TOTAL_TESTS_TARGET}`;
+
+        prepTestsBar.style.width =
+          `${Math.min(100, (summary.testsTaken / TOTAL_TESTS_TARGET) * 100)}%`;
+
+        prepAccuracy.textContent =
+          `${summary.averageAccuracy}%`;
+
+        prepAccuracyBar.style.width =
+          `${Math.min(100, summary.averageAccuracy)}%`;
+
+      }
+
+      if (window.SrineetStreak && prepStreakDays) {
+
+        const streak =
+          window.SrineetStreak.getStreak();
+
+        prepStreakDays.textContent =
+          `${streak} day${streak === 1 ? "" : "s"}`;
+
+        prepStreakBar.style.width =
+          `${Math.min(100, (streak / STREAK_TARGET_DAYS) * 100)}%`;
 
       }
 
