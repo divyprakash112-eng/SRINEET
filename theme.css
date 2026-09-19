@@ -305,8 +305,12 @@ html[data-theme="dark"] .no-invert {
 
 /* ---- CONTINUE WHERE YOU LEFT OFF ---- */
 
+.continue-banner-section {
+  width: min(1180px, calc(100% - 40px));
+  margin: 22px auto 0;
+}
+
 .continue-banner {
-  margin-top: 26px;
   padding: 20px 24px;
 
   display: none;
@@ -365,6 +369,115 @@ html[data-theme="dark"] .no-invert {
 
 .continue-banner-button:hover {
   transform: translateY(-2px);
+}
+
+
+/* ---- RECENTLY ADDED / UPCOMING TESTS ----
+   Isse pehle ye class kahi bhi define nahi thi,
+   isliye plain unstyled text dikh raha tha aur
+   SRISHTI banner ke andar overlap ho raha tha. ---- */
+
+.coming-cards-section {
+  width: min(1180px, calc(100% - 40px));
+  margin: 22px auto 0;
+}
+
+.coming-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.coming-card {
+  padding: 20px;
+
+  border: 1px solid var(--gold-soft, #D4AF6A);
+  border-radius: 20px;
+
+  background: linear-gradient(150deg, var(--gold-hi, #F3E3B8), #FBF3DE);
+}
+
+.coming-card-heading span {
+  color: var(--wine, #0B3B34);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.coming-card-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.coming-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.55);
+  transition: transform .2s ease, background .2s ease;
+}
+
+a.coming-row:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.coming-row-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 10px;
+  background: var(--white, #ffffff);
+
+  font-size: 14px;
+}
+
+.coming-row-body {
+  min-width: 0;
+}
+
+.coming-row-body strong {
+  display: block;
+  color: var(--wine, #0B3B34);
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.coming-row-body small {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink-dim, #6B5F5C);
+  font-size: 10px;
+}
+
+.coming-card-empty {
+  padding: 16px 10px;
+  text-align: center;
+  color: var(--ink-dim, #6B5F5C);
+  font-size: 11px;
+}
+
+@media (max-width: 650px) {
+
+  .coming-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .coming-cards-section,
+  .continue-banner-section {
+    width: calc(100% - 24px);
+  }
+
 }
 
 
