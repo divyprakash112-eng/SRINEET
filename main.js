@@ -156,6 +156,11 @@ const minutesElement =
 const secondsText =
   document.getElementById("secondsText");
 
+/* Additive: dedicated seconds box in the redesigned countdown UI.
+   Purely visual — does not change the countdown calculation. */
+const secondsBoxElement =
+  document.getElementById("secondsBox");
+
 
 function padNumber(
   number,
@@ -196,6 +201,10 @@ function updateCountdown() {
     if (secondsText) {
       secondsText.textContent =
         "NEET 2027 has arrived";
+    }
+
+    if (secondsBoxElement) {
+      secondsBoxElement.textContent = "00";
     }
 
     return;
@@ -258,6 +267,14 @@ function updateCountdown() {
 
     secondsText.textContent =
       `${padNumber(seconds, 2)} seconds remaining`;
+
+  }
+
+
+  if (secondsBoxElement) {
+
+    secondsBoxElement.textContent =
+      padNumber(seconds, 2);
 
   }
 
