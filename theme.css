@@ -303,10 +303,69 @@ html[data-theme="dark"] .no-invert {
 }
 
 
-/* ---- CONTINUE WHERE YOU LEFT OFF ----
-   Styled in style.css now (matches the new blue theme).
-   Rules removed from here to avoid the two files
-   fighting over margin/background/colors. ---- */
+/* ---- CONTINUE WHERE YOU LEFT OFF ---- */
+
+.continue-banner {
+  margin-top: 26px;
+  padding: 20px 24px;
+
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  border: 1px solid var(--gold-soft, #D4AF6A);
+  border-radius: 20px;
+
+  background: linear-gradient(150deg, var(--wine, #0B3B34), var(--wine-2, #12564C));
+  color: #F8EFE9;
+
+  box-shadow: 0 14px 30px -12px rgba(11, 59, 52, 0.5);
+}
+
+.continue-banner.is-visible {
+  display: flex;
+}
+
+.continue-banner-kicker {
+  color: var(--gold-hi, #F3E3B8);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.continue-banner-title {
+  margin-top: 6px;
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.continue-banner-sub {
+  margin-top: 4px;
+  color: rgba(248, 239, 233, 0.75);
+  font-size: 11px;
+}
+
+.continue-banner-button {
+  flex-shrink: 0;
+  padding: 13px 20px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(150deg, var(--gold-hi, #F3E3B8), var(--gold-soft, #D4AF6A));
+  color: var(--wine, #0B3B34);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  transition: transform .2s ease;
+}
+
+.continue-banner-button:hover {
+  transform: translateY(-2px);
+}
 
 
 /* ---- ABOUT SECTION ---- */
