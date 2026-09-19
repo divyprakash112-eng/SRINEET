@@ -550,6 +550,50 @@ button {
   width: 100%;
   height: auto;
   filter: drop-shadow(0 20px 40px rgba(4, 19, 47, .45));
+  animation: heroVisualFloat 5s ease-in-out infinite;
+}
+
+@keyframes heroVisualFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero-ecg-line {
+  stroke-dasharray: 620;
+  stroke-dashoffset: 620;
+  animation: heroEcgDraw 3.2s ease-in-out infinite;
+}
+
+@keyframes heroEcgDraw {
+  0% { stroke-dashoffset: 620; opacity: 0; }
+  8% { opacity: 1; }
+  55% { stroke-dashoffset: 0; opacity: 1; }
+  75% { opacity: 0.3; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+.hero-ring {
+  transform-origin: 105px 150px;
+  animation: heroRingPulse 3s ease-out infinite;
+}
+
+.hero-ring-2 {
+  animation-delay: 0.6s;
+}
+
+@keyframes heroRingPulse {
+  0% { transform: scale(0.85); opacity: 0.45; }
+  70% { opacity: 0; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+
+.hero-chestpiece {
+  animation: heroChestpiecePulse 1.4s ease-in-out infinite;
+}
+
+@keyframes heroChestpiecePulse {
+  0%, 100% { r: 16; opacity: 1; }
+  50% { r: 19; opacity: 0.6; }
 }
 
 @media (min-width: 1050px) {
@@ -621,27 +665,27 @@ button {
 }
 
 .countdown-area {
-  min-width: 380px;
-  padding: 24px;
+  min-width: 0;
+  padding: 14px 16px;
   border: 1px solid rgba(32, 196, 232, .28);
-  border-radius: 22px;
+  border-radius: 16px;
   background: rgba(246, 249, 253, .07);
   box-shadow:
-    0 25px 70px rgba(0, 0, 0, .18),
+    0 15px 40px rgba(0, 0, 0, .16),
     inset 0 1px 0 rgba(255, 255, 255, .06);
   backdrop-filter: blur(15px);
 }
 
 .exam-date {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   color: var(--ivory-deep);
-  font-size: 10px;
+  font-size: 8.5px;
   font-weight: 800;
-  letter-spacing: 0.19em;
+  letter-spacing: 0.16em;
   text-align: center;
 }
 
@@ -649,26 +693,26 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .count-box {
   position: relative;
-  width: 74px;
-  height: 74px;
+  width: 46px;
+  height: 46px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 18px;
+  border-radius: 11px;
   border: 1px solid rgba(32, 196, 232, .35);
   background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.02));
-  box-shadow: 0 14px 28px -14px rgba(0, 0, 0, .55);
+  box-shadow: 0 8px 16px -10px rgba(0, 0, 0, .5);
   transition: transform .2s ease, border-color .2s ease;
 }
 
 .count-box:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--cyan);
 }
 
@@ -679,7 +723,7 @@ button {
   color: #ffffff;
   font-family: "Inter", sans-serif;
   font-weight: 800;
-  font-size: 24px;
+  font-size: 15px;
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -688,16 +732,16 @@ button {
   position: relative;
   z-index: 1;
   display: block;
-  margin-top: 6px;
+  margin-top: 3px;
   color: var(--cyan);
-  font-size: 8px;
+  font-size: 6px;
   font-weight: 800;
-  letter-spacing: .14em;
+  letter-spacing: .1em;
 }
 
 .count-separator {
   color: rgba(32, 196, 232, .5);
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 300;
 }
 
@@ -714,12 +758,12 @@ button {
 
 .srishti-banner {
   position: relative;
-  min-height: 240px;
+  min-height: 168px;
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: 24px;
   color: #EAF3FF;
   background: linear-gradient(155deg, var(--wine) 0%, var(--wine-2) 55%, var(--wine-3) 100%);
-  box-shadow: 0 25px 65px rgba(6, 26, 64, .35);
+  box-shadow: 0 20px 50px rgba(6, 26, 64, .3);
   isolation: isolate;
 }
 
@@ -900,7 +944,7 @@ button {
   position: relative;
   z-index: 3;
   width: 48%;
-  padding: 30px 0 27px 36px;
+  padding: 20px 0 19px 26px;
 }
 
 .banner-label {
@@ -908,35 +952,35 @@ button {
   align-items: center;
   gap: 8px;
   color: var(--gold-soft);
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 800;
   letter-spacing: .18em;
 }
 
 .banner-label span {
-  width: 19px;
+  width: 16px;
   height: 2px;
   background: var(--gold-soft);
 }
 
 .banner-small-title {
-  margin-top: 9px;
+  margin-top: 6px;
   color: rgba(234, 243, 255, .6);
-  font-size: 8px;
-  letter-spacing: .16em;
+  font-size: 7px;
+  letter-spacing: .14em;
   font-weight: 700;
 }
 
 .doctor-name {
-  margin-top: 13px;
+  margin-top: 9px;
   display: flex;
   align-items: baseline;
-  gap: 7px;
+  gap: 6px;
 }
 
 .doctor-name small {
   color: rgba(234, 243, 255, .65);
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
 }
 
@@ -944,22 +988,22 @@ button {
   color: #fff;
   font-family: "Fraunces", serif;
   font-weight: 600;
-  font-size: 38px;
+  font-size: 27px;
   line-height: 1;
   letter-spacing: -0.02em;
 }
 
 .banner-line {
-  width: 90px;
+  width: 64px;
   height: 1px;
-  margin: 11px 0;
+  margin: 8px 0;
   background: linear-gradient(90deg, var(--gold-soft), transparent);
 }
 
 .banner-content p {
   color: rgba(234, 243, 255, .75);
-  font-size: 10px;
-  line-height: 1.5;
+  font-size: 9px;
+  line-height: 1.45;
 }
 
 .ecg-area {
@@ -1842,6 +1886,11 @@ button {
   box-shadow: 0 10px 26px rgba(6, 26, 64, .06);
 }
 
+.continue-banner-section {
+  width: min(1180px, calc(100% - 40px));
+  margin: 22px auto 0;
+}
+
 .continue-banner.is-visible {
   display: flex;
 }
@@ -2192,25 +2241,25 @@ button {
 
   .countdown-area {
     width: 100%;
-    padding: 19px 12px;
-    border-radius: 20px;
+    padding: 12px 10px;
+    border-radius: 14px;
   }
 
   .countdown {
-    gap: 8px;
+    gap: 5px;
   }
 
   .count-box {
-    width: 78px;
-    height: 78px;
+    width: 42px;
+    height: 42px;
   }
 
   .count-box strong {
-    font-size: 22px;
+    font-size: 14px;
   }
 
   .count-separator {
-    font-size: 17px;
+    font-size: 12px;
   }
 
   .banner-section {
@@ -2218,18 +2267,23 @@ button {
     margin-top: -43px;
   }
 
+  .continue-banner-section {
+    width: calc(100% - 24px);
+    margin-top: 16px;
+  }
+
   .srishti-banner {
-    min-height: 225px;
-    border-radius: 22px;
+    min-height: 158px;
+    border-radius: 18px;
   }
 
   .banner-content {
     width: 62%;
-    padding: 27px 0 25px 22px;
+    padding: 18px 0 17px 16px;
   }
 
   .doctor-name strong {
-    font-size: 29px;
+    font-size: 21px;
   }
 
   .ecg-area {
@@ -2321,16 +2375,16 @@ button {
   }
 
   .count-box {
-    width: 66px;
-    height: 66px;
+    width: 36px;
+    height: 36px;
   }
 
   .count-box strong {
-    font-size: 19px;
+    font-size: 12px;
   }
 
   .count-box span {
-    font-size: 7px;
+    font-size: 5.5px;
   }
 
   .banner-content {
@@ -2338,6 +2392,6 @@ button {
   }
 
   .doctor-name strong {
-    font-size: 25px;
+    font-size: 18px;
   }
 }
