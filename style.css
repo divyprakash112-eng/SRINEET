@@ -2489,3 +2489,204 @@ button {
     padding-right: 6px;
   }
 }
+
+
+/* =========================================================
+   FINAL V2 HOMEPAGE TUNING
+   Compact hero + exactly four preparation cards.
+========================================================= */
+
+/* Keep the hero compact like the reference interface. */
+.hero {
+  min-height: 420px;
+}
+
+.hero-inner {
+  min-height: 420px;
+  padding: 34px 0 42px;
+  gap: 28px;
+}
+
+.hero-copy {
+  max-width: 590px;
+}
+
+.hero h1 {
+  margin-top: 12px;
+  font-size: clamp(39px, 5.7vw, 64px);
+}
+
+.hero-copy > p {
+  margin-top: 13px;
+  font-size: 15px;
+}
+
+.hero-status {
+  margin-top: 18px;
+}
+
+.hero-cta {
+  margin-top: 17px;
+  padding: 10px 13px 10px 14px;
+}
+
+.hero-visual {
+  width: 330px;
+  height: 330px;
+  right: 5px;
+}
+
+.countdown-area {
+  padding: 10px 12px;
+  border-radius: 15px;
+}
+
+.count-box {
+  width: 44px;
+  height: 44px;
+}
+
+.banner-section {
+  margin-top: -30px;
+}
+
+/* Four-card grid only — no fifth My Progress tile. */
+.feature-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.feature-card {
+  min-height: 380px;
+}
+
+/* The live premium progress dashboard remains below the four cards. */
+.prep-section {
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 395px;
+  }
+
+  .hero-inner {
+    min-height: 395px;
+    padding: 30px 0 38px;
+  }
+
+  .hero-visual {
+    width: 270px;
+    height: 270px;
+    right: -20px;
+    opacity: .52;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero {
+    min-height: 430px;
+  }
+
+  .hero-inner {
+    min-height: 430px;
+    padding: 38px 0 62px;
+    gap: 18px;
+  }
+
+  .hero h1 {
+    margin-top: 10px;
+    font-size: clamp(37px, 12.5vw, 54px);
+    max-width: 92%;
+  }
+
+  .hero-copy > p {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  .hero-status {
+    margin-top: 14px;
+  }
+
+  .hero-cta {
+    margin-top: 14px;
+  }
+
+  .hero-visual {
+    width: 230px;
+    height: 230px;
+    right: -48px;
+    top: 47%;
+    opacity: .32;
+  }
+
+  .countdown-area {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    padding: 9px 7px;
+  }
+
+  .countdown {
+    gap: 4px;
+  }
+
+  .count-box {
+    width: 41px;
+    height: 41px;
+  }
+
+  .count-box strong {
+    font-size: 12px;
+  }
+
+  .banner-section {
+    margin-top: -29px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .feature-card {
+    min-height: 320px;
+    padding: 19px;
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero {
+    min-height: 410px;
+  }
+
+  .hero-inner {
+    min-height: 410px;
+    padding-top: 30px;
+  }
+
+  .hero-visual {
+    width: 205px;
+    height: 205px;
+    right: -58px;
+  }
+
+  .count-box {
+    width: 38px;
+    height: 38px;
+  }
+
+  .count-box strong {
+    font-size: 11px;
+  }
+
+  .count-box span {
+    font-size: 5px;
+  }
+
+  .feature-card {
+    min-height: 300px;
+    padding: 16px;
+  }
+}
