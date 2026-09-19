@@ -596,14 +596,8 @@
                 aria-hidden="true"
               ></span>
 
-              <span id="secondsText">
-                09 seconds remaining
-              </span>
-
-              <i aria-hidden="true"></i>
-
               <span>
-                Keep going.
+                Keep going. Your preparation compounds.
               </span>
 
             </div>
@@ -738,10 +732,11 @@
               <!-- ECG line -->
               <polyline points="10,190 90,190 115,140 145,240 175,190 360,190"
                 fill="none" stroke="#20C4E8" stroke-width="4"
-                stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+                stroke-linecap="round" stroke-linejoin="round" opacity="0.85"
+                class="hero-ecg-line"/>
 
               <!-- Books stack -->
-              <g>
+              <g class="hero-books-group">
                 <rect x="140" y="231" width="190" height="26" rx="4" fill="#04132F"/>
                 <rect x="150" y="205" width="180" height="26" rx="4" fill="#0B4FD8"/>
                 <rect x="160" y="179" width="160" height="26" rx="4" fill="#1687FF"/>
@@ -753,17 +748,17 @@
               </g>
 
               <!-- Stethoscope -->
-              <g fill="none" stroke="#EAF3FF" stroke-width="5" stroke-linecap="round">
+              <g fill="none" stroke="#EAF3FF" stroke-width="5" stroke-linecap="round" class="hero-stethoscope-group">
                 <path d="M70 60 C70 100, 70 120, 105 130 C135 138, 150 120, 150 95 L150 75"/>
                 <path d="M70 60 C70 40, 90 40, 90 60"/>
                 <circle cx="150" cy="70" r="10" fill="#EAF3FF" stroke="none"/>
-                <circle cx="105" cy="150" r="16" fill="none" stroke="#EAF3FF"/>
+                <circle cx="105" cy="150" r="16" fill="none" stroke="#EAF3FF" class="hero-chestpiece"/>
                 <circle cx="105" cy="150" r="8" fill="#EAF3FF" stroke="none"/>
               </g>
 
               <!-- Subtle rings -->
-              <circle cx="105" cy="150" r="60" fill="none" stroke="#1687FF" stroke-width="1" opacity="0.35"/>
-              <circle cx="105" cy="150" r="90" fill="none" stroke="#20C4E8" stroke-width="1" opacity="0.2"/>
+              <circle cx="105" cy="150" r="60" fill="none" stroke="#1687FF" stroke-width="1" opacity="0.35" class="hero-ring hero-ring-1"/>
+              <circle cx="105" cy="150" r="90" fill="none" stroke="#20C4E8" stroke-width="1" opacity="0.2" class="hero-ring hero-ring-2"/>
 
             </svg>
 
@@ -1548,7 +1543,7 @@
       ================================================== -->
 
       <section
-        class="banner-section"
+        class="continue-banner-section"
         aria-label="Continue where you left off"
       >
 
