@@ -1,899 +1,468 @@
 "use strict";
 
-/*
-=========================================================
-SRINEET HOMEPAGE — FINAL PREMIUM MAIN JS
-=========================================================
-Keeps existing homepage functionality intact and adds:
-- NEET 2027 countdown
-- Countdown tick animation
-- Progress snapshot
-- Header streak sync
-- Continue-where-you-left-off sync
-- Mobile study menu
-- Keyboard accessibility
-- Premium reveal animation fallback
-- Reduced-motion support
-=========================================================
-*/
+/* SRINEET premium homepage — target interface build */
 
+(function () {
+  const menuButton = document.getElementById("menuButton");
+  const menuClose = document.getElementById("menuClose");
+  const menuOverlay = document.getElementById("menuOverlay");
+  const studyMenu = document.getElementById("studyMenu");
 
-/* =======================================================
-   MOBILE STUDY MENU
-======================================================= */
+  function openMenu() {
+    if (!studyMenu || !menuOverlay) return;
 
-const menuButton = document.getElementById("menuButton");
-const menuClose = document.getElementById("menuClose");
-const menuOverlay = document.getElementById("menuOverlay");
-const studyMenu = document.getElementById("studyMenu");
+    studyMenu.classList.add("open");
+    menuOverlay.classList.add("open");
 
+    studyMenu.setAttribute("aria-hidden", "false");
+    menuButton?.setAttribute("aria-expanded", "true");
 
-function openStudyMenu() {
-
-  if (!studyMenu || !menuOverlay) {
-    return;
+    document.body.classList.add("menu-open");
   }
 
-  studyMenu.classList.add("open");
-  menuOverlay.classList.add("open");
+  function closeMenu() {
+    if (!studyMenu || !menuOverlay) return;
 
-  studyMenu.setAttribute("aria-hidden", "false");
+    studyMenu.classList.remove("open");
+    menuOverlay.classList.remove("open");
 
-  if (menuButton) {
-    menuButton.setAttribute("aria-expanded", "true");
+    studyMenu.setAttribute("aria-hidden", "true");
+    menuButton?.setAttribute("aria-expanded", "false");
+
+    document.body.classList.remove("menu-open");
   }
 
-  document.body.classList.add("menu-open");
-  document.body.style.overflow = "hidden";
-}
+  menuButton?.addEventListener("click", openMenu);
+  menuClose?.addEventListener("click", closeMenu);
+  menuOverlay?.addEventListener("click", closeMenu);
 
-
-function closeStudyMenu() {
-
-  if (!studyMenu || !menuOverlay) {
-    return;
-  }
-
-  studyMenu.classList.remove("open");
-  menuOverlay.classList.remove("open");
-
-  studyMenu.setAttribute("aria-hidden", "true");
-
-  if (menuButton) {
-    menuButton.setAttribute("aria-expanded", "false");
-  }
-
-  document.body.classList.remove("menu-open");
-  document.body.style.overflow = "";
-}
-
-
-if (menuButton) {
-  menuButton.addEventListener(
-    "click",
-    openStudyMenu
-  );
-}
-
-
-if (menuClose) {
-  menuClose.addEventListener(
-    "click",
-    closeStudyMenu
-  );
-}
-
-
-if (menuOverlay) {
-  menuOverlay.addEventListener(
-    "click",
-    closeStudyMenu
-  );
-}
-
-
-document.addEventListener(
-  "keydown",
-  function (event) {
-
+  document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
-      closeStudyMenu();
+      closeMenu();
     }
+  });
 
-  }
-);
-
-
-/* =======================================================
-   CLOSE MENU AFTER NAVIGATION
-======================================================= */
-
-document
-  .querySelectorAll(".menu-link")
-  .forEach(function (link) {
-
-    link.addEventListener(
-      "click",
-      closeStudyMenu
-    );
-
+  document.querySelectorAll(".menu-link").forEach(function (link) {
+    link.addEventListener("click", closeMenu);
   });
 
 
-/* =======================================================
-   NEET 2027 COUNTDOWN
-   Target:
-   02 MAY 2027 — India Standard Time
-======================================================= */
+  /* =====================================================
+     NEET 2027 COUNTDOWN
+     Fixed: 02 May 2027 — India Standard Time
+  ===================================================== */
 
-const examDate =
-  new Date("2027-05-02T00:00:00+05:30");
+  const target =
+    new Date("2027-05-02T00:00:00+05:30").getTime();
 
-
-const daysElement =
-  document.getElementById("days");
-
-const hoursElement =
-  document.getElementById("hours");
-
-const minutesElement =
-  document.getElementById("minutes");
-
-const secondsElement =
-  document.getElementById("secondsBox");
+  const els = {
+    days: document.getElementById("days"),
+    hours: document.getElementById("hours"),
+    minutes: document.getElementById("minutes"),
+    seconds: document.getElementById("secondsBox")
+  };
 
 
-function padNumber(number, length) {
-
-  return String(number).padStart(
-    length,
-    "0"
-  );
-
-}
-
-
-/* =======================================================
-   COUNTDOWN TICK EFFECT
-======================================================= */
-
-function setCountdownValue(
-  element,
-  value
-) {
-
-  if (!element) {
-    return;
-  }
-
-  const changed =
-    element.textContent !== value;
-
-  element.textContent = value;
-
-  if (!changed) {
-    return;
-  }
-
-  const box =
-    element.closest(".count-box");
-
-  if (!box) {
-    return;
-  }
-
-  box.classList.remove(
-    "is-ticking"
-  );
-
-  /*
-   * Force reflow so the animation
-   * can replay every second.
-   */
-  void box.offsetWidth;
-
-  box.classList.add(
-    "is-ticking"
-  );
-
-  window.setTimeout(
-    function () {
-
-      box.classList.remove(
-        "is-ticking"
-      );
-
-    },
-    450
-  );
-
-}
-
-
-/* =======================================================
-   UPDATE COUNTDOWN
-======================================================= */
-
-function updateCountdown() {
-
-  const difference =
-    examDate.getTime() -
-    Date.now();
-
-
-  /* Exam date reached */
-
-  if (difference <= 0) {
-
-    setCountdownValue(
-      daysElement,
-      "000"
-    );
-
-    setCountdownValue(
-      hoursElement,
-      "00"
-    );
-
-    setCountdownValue(
-      minutesElement,
-      "00"
-    );
-
-    setCountdownValue(
-      secondsElement,
-      "00"
-    );
-
-    return;
+  function pad(value, size) {
+    return String(value).padStart(size, "0");
   }
 
 
-  const totalSeconds =
-    Math.floor(
-      difference / 1000
-    );
+  function tick(element, value) {
 
+    if (!element) {
+      return;
+    }
 
-  const days =
-    Math.floor(
-      totalSeconds / 86400
-    );
+    const changed =
+      element.textContent !== value;
 
+    element.textContent = value;
 
-  const hours =
-    Math.floor(
-      (totalSeconds % 86400) /
-      3600
-    );
+    if (!changed) {
+      return;
+    }
 
+    const box =
+      element.closest(".count-box");
 
-  const minutes =
-    Math.floor(
-      (totalSeconds % 3600) /
-      60
-    );
+    if (!box) {
+      return;
+    }
 
+    box.classList.remove("is-ticking");
 
-  const seconds =
-    totalSeconds % 60;
+    /*
+     * Force reflow so the animation
+     * can replay every second.
+     */
+    void box.offsetWidth;
 
+    box.classList.add("is-ticking");
 
-  setCountdownValue(
-    daysElement,
-    padNumber(days, 3)
-  );
-
-
-  setCountdownValue(
-    hoursElement,
-    padNumber(hours, 2)
-  );
-
-
-  setCountdownValue(
-    minutesElement,
-    padNumber(minutes, 2)
-  );
-
-
-  setCountdownValue(
-    secondsElement,
-    padNumber(seconds, 2)
-  );
-
-}
-
-
-updateCountdown();
-
-
-window.setInterval(
-  updateCountdown,
-  1000
-);
-
-
-/* =======================================================
-   LIVE PROGRESS SNAPSHOT
-======================================================= */
-
-function updateProgressSnapshot() {
-
-  /*
-   * Existing progress system.
-   * Nothing is removed or overwritten.
-   */
-
-  const summary =
-    window.SrineetProgress &&
-    typeof window.SrineetProgress.getSummary === "function"
-      ? window.SrineetProgress.getSummary()
-      : null;
-
-
-  const streak =
-    window.SrineetStreak &&
-    typeof window.SrineetStreak.getStreak === "function"
-      ? Number(
-          window.SrineetStreak.getStreak()
-        ) || 0
-      : 0;
-
-
-  if (!summary) {
-    return;
+    window.setTimeout(function () {
+      box.classList.remove("is-ticking");
+    }, 450);
   }
 
 
-  const testsTaken =
-    Number(
-      summary.testsTaken
-    ) || 0;
+  function updateCountdown() {
 
+    let difference =
+      target - Date.now();
 
-  const accuracy =
-    Math.max(
-      0,
-      Math.min(
-        100,
-        Number(
-          summary.averageAccuracy
-        ) || 0
-      )
-    );
-
-
-  /*
-   * Visual target only.
-   * Actual test count is never changed.
-   */
-
-  const testsTarget = 150;
-
-
-  const testsPercent =
-    Math.max(
-      0,
-      Math.min(
-        100,
-        (
-          testsTaken /
-          testsTarget
-        ) * 100
-      )
-    );
-
-
-  /*
-   * Visual streak scale.
-   * Actual streak remains untouched.
-   */
-
-  const streakPercent =
-    Math.max(
-      0,
-      Math.min(
-        100,
-        (
-          streak /
-          30
-        ) * 100
-      )
-    );
-
-
-  const testsLabel =
-    document.getElementById(
-      "prepTestsAttempted"
-    );
-
-
-  const accuracyLabel =
-    document.getElementById(
-      "prepAccuracy"
-    );
-
-
-  const streakLabel =
-    document.getElementById(
-      "prepStreakDays"
-    );
-
-
-  const testsBar =
-    document.getElementById(
-      "prepTestsBar"
-    );
-
-
-  const accuracyBar =
-    document.getElementById(
-      "prepAccuracyBar"
-    );
-
-
-  const streakBar =
-    document.getElementById(
-      "prepStreakBar"
-    );
-
-
-  /* Tests */
-
-  if (testsLabel) {
-
-    testsLabel.textContent =
-      `${testsTaken} / ${testsTarget}`;
-
-  }
-
-
-  /* Accuracy */
-
-  if (accuracyLabel) {
-
-    accuracyLabel.textContent =
-      `${accuracy}%`;
-
-  }
-
-
-  /* Streak */
-
-  if (streakLabel) {
-
-    streakLabel.textContent =
-      `${streak} ${
-        streak === 1
-          ? "day"
-          : "days"
-      }`;
-
-  }
-
-
-  /* Progress bars */
-
-  if (testsBar) {
-
-    testsBar.style.width =
-      `${testsPercent}%`;
-
-  }
-
-
-  if (accuracyBar) {
-
-    accuracyBar.style.width =
-      `${accuracy}%`;
-
-  }
-
-
-  if (streakBar) {
-
-    streakBar.style.width =
-      `${streakPercent}%`;
-
-  }
-
-
-  /* Header streak */
-
-  const headerStreak =
-    document.getElementById(
-      "headerStreakCount"
-    );
-
-
-  if (headerStreak) {
-
-    headerStreak.textContent =
-      String(streak);
-
-  }
-
-}
-
-
-/*
- * Run immediately.
- */
-
-updateProgressSnapshot();
-
-
-/*
- * Small delayed sync in case the
- * existing progress modules finish
- * initializing after main.js.
- */
-
-window.setTimeout(
-  updateProgressSnapshot,
-  120
-);
-
-
-/*
- * Additional sync after page load.
- */
-
-window.addEventListener(
-  "load",
-  function () {
-
-    updateProgressSnapshot();
-
-  }
-);
-
-
-/* =======================================================
-   CONTINUE WHERE YOU LEFT OFF
-======================================================= */
-
-function updateContinueBanner() {
-
-  const banner =
-    document.getElementById(
-      "continueBanner"
-    );
-
-
-  if (!banner) {
-    return;
-  }
-
-
-  /*
-   * Existing continue system.
-   */
-
-  const lastAttempt =
-    window.SrineetContinue &&
-    typeof window.SrineetContinue.getLastAttempt === "function"
-      ? window.SrineetContinue.getLastAttempt()
-      : null;
-
-
-  /*
-   * If there is no attempt,
-   * simply hide the banner.
-   */
-
-  if (!lastAttempt) {
-
-    banner.classList.remove(
-      "is-visible"
-    );
-
-    return;
-  }
-
-
-  const title =
-    document.getElementById(
-      "continueBannerTitle"
-    );
-
-
-  const sub =
-    document.getElementById(
-      "continueBannerSub"
-    );
-
-
-  if (title) {
-
-    title.textContent =
-      lastAttempt.title ||
-      "Last Test";
-
-  }
-
-
-  if (sub) {
-
-    const score =
-      Number(
-        lastAttempt.score
-      ) || 0;
-
+    if (difference < 0) {
+      difference = 0;
+    }
 
     const total =
-      Number(
-        lastAttempt.totalMarks
-      ) || 0;
+      Math.floor(difference / 1000);
+
+    const days =
+      Math.floor(total / 86400);
+
+    const hours =
+      Math.floor(
+        (total % 86400) / 3600
+      );
+
+    const minutes =
+      Math.floor(
+        (total % 3600) / 60
+      );
+
+    const seconds =
+      total % 60;
 
 
-    const accuracy =
-      Number(
-        lastAttempt.accuracy
-      ) || 0;
+    tick(
+      els.days,
+      pad(days, 3)
+    );
 
+    tick(
+      els.hours,
+      pad(hours, 2)
+    );
 
-    if (total > 0) {
+    tick(
+      els.minutes,
+      pad(minutes, 2)
+    );
 
-      sub.textContent =
-        `${score}/${total} marks • ${accuracy}% accuracy`;
-
-    } else {
-
-      sub.textContent =
-        `${accuracy}% accuracy`;
-
-    }
-
+    tick(
+      els.seconds,
+      pad(seconds, 2)
+    );
   }
 
 
-  banner.classList.add(
-    "is-visible"
+  updateCountdown();
+
+  window.setInterval(
+    updateCountdown,
+    1000
   );
 
-}
+
+  /* =====================================================
+     EXISTING LOCAL PROGRESS SYSTEM
+     Read-only integration
+  ===================================================== */
+
+  function updateProgress() {
+
+    const summary =
+      window.SrineetProgress?.getSummary?.();
+
+    const streak =
+      Number(
+        window.SrineetStreak?.getStreak?.() || 0
+      );
+
+    if (!summary) {
+      return;
+    }
 
 
-updateContinueBanner();
+    const tests =
+      Number(summary.testsTaken) || 0;
+
+    const accuracy =
+      Math.max(
+        0,
+        Math.min(
+          100,
+          Number(summary.averageAccuracy) || 0
+        )
+      );
 
 
-window.addEventListener(
-  "load",
-  function () {
+    const testPercent =
+      Math.max(
+        0,
+        Math.min(
+          100,
+          (tests / 150) * 100
+        )
+      );
 
-    updateContinueBanner();
 
+    const streakPercent =
+      Math.max(
+        0,
+        Math.min(
+          100,
+          (streak / 30) * 100
+        )
+      );
+
+
+    const testLabel =
+      document.getElementById(
+        "prepTestsAttempted"
+      );
+
+    const accuracyLabel =
+      document.getElementById(
+        "prepAccuracy"
+      );
+
+    const streakLabel =
+      document.getElementById(
+        "prepStreakDays"
+      );
+
+
+    const testBar =
+      document.getElementById(
+        "prepTestsBar"
+      );
+
+    const accuracyBar =
+      document.getElementById(
+        "prepAccuracyBar"
+      );
+
+    const streakBar =
+      document.getElementById(
+        "prepStreakBar"
+      );
+
+
+    if (testLabel) {
+      testLabel.textContent =
+        `${tests} / 150`;
+    }
+
+
+    if (accuracyLabel) {
+      accuracyLabel.textContent =
+        `${accuracy}%`;
+    }
+
+
+    if (streakLabel) {
+      streakLabel.textContent =
+        `${streak} ${
+          streak === 1
+            ? "day"
+            : "days"
+        }`;
+    }
+
+
+    if (testBar) {
+      testBar.style.width =
+        `${testPercent}%`;
+    }
+
+
+    if (accuracyBar) {
+      accuracyBar.style.width =
+        `${accuracy}%`;
+    }
+
+
+    if (streakBar) {
+      streakBar.style.width =
+        `${streakPercent}%`;
+    }
   }
-);
 
 
-/* =======================================================
-   CARD KEYBOARD ACCESSIBILITY
-======================================================= */
+  updateProgress();
 
-document
-  .querySelectorAll(
-    ".feature-card"
-  )
-  .forEach(function (card) {
 
-    card.addEventListener(
-      "keydown",
-      function (event) {
+  window.addEventListener(
+    "load",
+    function () {
 
-        if (
-          event.key === "Enter" ||
-          event.key === " "
-        ) {
+      updateProgress();
 
-          event.preventDefault();
+      window.setTimeout(
+        updateProgress,
+        250
+      );
 
-          card.click();
+    }
+  );
 
+
+  /* =====================================================
+     INVITE A FRIEND
+     Original sharing behaviour preserved
+  ===================================================== */
+
+  const invite =
+    document.getElementById(
+      "inviteFriendBtn"
+    );
+
+
+  invite?.addEventListener(
+    "click",
+    async function () {
+
+      const shareData = {
+        title:
+          "SRINEET — Complete NEET Preparation",
+
+        text:
+          "Maine SRINEET use kiya NEET prep ke liye — test series, PYQs, sab free mein. Tum bhi try karo:",
+
+        url:
+          window.location.origin +
+          window.location.pathname.replace(
+            "index.html",
+            ""
+          )
+      };
+
+
+      if (navigator.share) {
+
+        try {
+
+          await navigator.share(
+            shareData
+          );
+
+        } catch (_) {
+          /* User cancelled */
         }
 
-      }
-    );
+      } else {
 
-  });
+        const url =
+          "https://wa.me/?text=" +
+          encodeURIComponent(
+            `${shareData.text} ${shareData.url}`
+          );
 
-
-/* =======================================================
-   PREMIUM REVEAL FALLBACK
-======================================================= */
-
-function initRevealFallback() {
-
-  const elements =
-    document.querySelectorAll(
-      ".reveal:not(.is-visible):not(.revealed)"
-    );
-
-
-  if (!elements.length) {
-    return;
-  }
-
-
-  const reduceMotion =
-    window.matchMedia &&
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-
-  /*
-   * Accessibility:
-   * If reduced motion is enabled,
-   * show everything immediately.
-   */
-
-  if (
-    reduceMotion ||
-    !("IntersectionObserver" in window)
-  ) {
-
-    elements.forEach(
-      function (element) {
-
-        element.classList.add(
-          "is-visible"
+        window.open(
+          url,
+          "_blank",
+          "noopener,noreferrer"
         );
+      }
+    }
+  );
 
-        element.classList.add(
+
+  /* =====================================================
+     LIGHTWEIGHT REVEAL
+     premium.js remains loaded separately.
+  ===================================================== */
+
+  function initRevealFallback() {
+
+    const items =
+      document.querySelectorAll(
+        ".reveal:not(.is-visible):not(.revealed)"
+      );
+
+
+    if (!items.length) {
+      return;
+    }
+
+
+    const reduce =
+      window.matchMedia?.(
+        "(prefers-reduced-motion: reduce)"
+      )?.matches;
+
+
+    if (
+      reduce ||
+      !("IntersectionObserver" in window)
+    ) {
+
+      items.forEach(function (item) {
+
+        item.classList.add(
+          "is-visible",
           "revealed"
         );
 
+      });
+
+      return;
+    }
+
+
+    const observer =
+      new IntersectionObserver(
+        function (entries) {
+
+          entries.forEach(
+            function (entry) {
+
+              if (
+                !entry.isIntersecting
+              ) {
+                return;
+              }
+
+
+              entry.target.classList.add(
+                "is-visible",
+                "revealed"
+              );
+
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+          );
+
+        },
+        {
+          threshold: 0.08,
+          rootMargin:
+            "0px 0px -25px 0px"
+        }
+      );
+
+
+    items.forEach(
+      function (item) {
+
+        observer.observe(item);
+
       }
     );
-
-    return;
   }
 
 
-  const observer =
-    new IntersectionObserver(
-      function (entries) {
-
-        entries.forEach(
-          function (entry) {
-
-            if (!entry.isIntersecting) {
-              return;
-            }
+  initRevealFallback();
 
 
-            entry.target.classList.add(
-              "is-visible"
-            );
-
-
-            entry.target.classList.add(
-              "revealed"
-            );
-
-
-            observer.unobserve(
-              entry.target
-            );
-
-          }
-        );
-
-      },
-      {
-        threshold: 0.08,
-
-        rootMargin:
-          "0px 0px -25px 0px"
-      }
-    );
-
-
-  elements.forEach(
-    function (element) {
-
-      observer.observe(
-        element
-      );
-
-    }
+  document.documentElement.classList.add(
+    "srineet-ready"
   );
 
-}
-
-
-initRevealFallback();
-
-
-/* =======================================================
-   CTA / NAVIGATION INTERACTIONS
-======================================================= */
-
-document
-  .querySelectorAll(
-    ".hero-cta, .hub-view-all"
-  )
-  .forEach(function (link) {
-
-    link.addEventListener(
-      "click",
-      function () {
-
-        closeStudyMenu();
-
-      }
-    );
-
-  });
-
-
-/* =======================================================
-   CLOSE MENU WHEN CLICKING A PAGE LINK
-======================================================= */
-
-document
-  .querySelectorAll(
-    "a[href]"
-  )
-  .forEach(function (link) {
-
-    link.addEventListener(
-      "click",
-      function () {
-
-        /*
-         * Only closes the mobile drawer.
-         * Does not interfere with navigation.
-         */
-
-        if (
-          document.body.classList.contains(
-            "menu-open"
-          )
-        ) {
-
-          closeStudyMenu();
-
-        }
-
-      }
-    );
-
-  });
-
-
-/* =======================================================
-   PREMIUM READY STATE
-======================================================= */
-
-document.documentElement.classList.add(
-  "srineet-ready"
-);
-
-
-document.documentElement.classList.add(
-  "srineet-fast-motion"
-);
-
-
-document.documentElement.classList.add(
-  "srineet-medium-motion"
-);
-
-
-/* =======================================================
-   FINAL SAFETY SYNC
-======================================================= */
-
-window.setTimeout(
-  function () {
-
-    updateProgressSnapshot();
-    updateContinueBanner();
-
-  },
-  500
-);
+})();
