@@ -153,8 +153,8 @@ const hoursElement =
 const minutesElement =
   document.getElementById("minutes");
 
-const secondsText =
-  document.getElementById("secondsText");
+const secondsBox =
+  document.getElementById("secondsBox");
 
 
 function padNumber(
@@ -193,9 +193,8 @@ function updateCountdown() {
       minutesElement.textContent = "00";
     }
 
-    if (secondsText) {
-      secondsText.textContent =
-        "NEET 2027 has arrived";
+    if (secondsBox) {
+      secondsBox.textContent = "00";
     }
 
     return;
@@ -254,10 +253,10 @@ function updateCountdown() {
   }
 
 
-  if (secondsText) {
+  if (secondsBox) {
 
-    secondsText.textContent =
-      `${padNumber(seconds, 2)} seconds remaining`;
+    secondsBox.textContent =
+      padNumber(seconds, 2);
 
   }
 
