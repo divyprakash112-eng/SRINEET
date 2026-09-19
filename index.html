@@ -171,17 +171,6 @@
           </button>
 
 
-          <!-- Recently Added + Upcoming Tests -->
-
-          <button
-            class="tg-button calendar-button"
-            type="button"
-            aria-label="Recently added and upcoming tests"
-          >
-            🗓️
-          </button>
-
-
           <!-- My Progress + Streak -->
 
           <a
@@ -338,6 +327,7 @@
         <a
           href="pyq.html"
           class="menu-link"
+          data-coming-soon="PYQ Chapterwise"
         >
 
           <span
@@ -360,6 +350,7 @@
         <a
           href="notes.html"
           class="menu-link"
+          data-coming-soon="Smart Notes"
         >
 
           <span
@@ -382,6 +373,7 @@
         <a
           href="practice.html"
           class="menu-link"
+          data-coming-soon="Chapterwise Practice"
         >
 
           <span
@@ -892,6 +884,50 @@
 
 
       <!-- =================================================
+           RECENTLY ADDED + UPCOMING TESTS
+           (data/tests.json se — addedDate / status:"upcoming"
+           wale fields se apne aap bharta hai)
+      ================================================== -->
+
+      <section
+        class="banner-section"
+        aria-label="Recently added and upcoming tests"
+      >
+
+        <div class="coming-cards" id="comingCards">
+
+          <div class="coming-card">
+
+            <div class="coming-card-heading">
+              <span>✨ RECENTLY ADDED</span>
+            </div>
+
+            <div class="coming-card-list" id="recentCardList">
+              <div class="coming-card-empty">Loading...</div>
+            </div>
+
+          </div>
+
+
+          <div class="coming-card">
+
+            <div class="coming-card-heading">
+              <span>⏳ UPCOMING TESTS</span>
+            </div>
+
+            <div class="coming-card-list" id="upcomingCardList">
+              <div class="coming-card-empty">Loading...</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =================================================
            PREPARATION HUB
       ================================================== -->
 
@@ -1022,6 +1058,7 @@
           <a
             href="pyq.html"
             class="feature-card card-pyq reveal"
+            data-coming-soon="PYQ Chapterwise"
             aria-label="Open PYQ Chapterwise"
           >
 
@@ -1092,6 +1129,7 @@
           <a
             href="notes.html"
             class="feature-card card-notes reveal"
+            data-coming-soon="Smart Notes"
             aria-label="Open Smart Notes"
           >
 
@@ -1162,6 +1200,7 @@
           <a
             href="practice.html"
             class="feature-card card-practice reveal"
+            data-coming-soon="Chapterwise Practice"
             aria-label="Open Chapterwise Practice"
           >
 
