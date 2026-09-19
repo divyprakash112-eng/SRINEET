@@ -82,53 +82,72 @@
       <div class="header-inner">
 
 
-        <!-- Hamburger Menu -->
+        <!-- Left group: Hamburger + Brand -->
 
-        <button
-          class="menu-button"
-          id="menuButton"
-          type="button"
-          aria-label="Open study menu"
-          aria-expanded="false"
-          aria-controls="studyMenu"
-        >
+        <div class="header-left">
 
-          <span></span>
-          <span></span>
-          <span></span>
+          <!-- Hamburger Menu -->
 
-        </button>
-
-
-        <!-- SRINEET BRAND -->
-
-        <a
-          href="index.html"
-          class="brand"
-          aria-label="SRINEET Home"
-        >
-
-          <span
-            class="brand-logo"
-            aria-hidden="true"
+          <button
+            class="menu-button"
+            id="menuButton"
+            type="button"
+            aria-label="Open study menu"
+            aria-expanded="false"
+            aria-controls="studyMenu"
           >
-            S
-          </span>
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+          </button>
 
 
-          <span class="brand-text">
+          <!-- SRINEET BRAND -->
 
-            <strong>
-              SRINEET
-            </strong>
+          <a
+            href="index.html"
+            class="brand"
+            aria-label="SRINEET Home"
+          >
 
-            <small>
-              COMPLETE NEET PREPARATION
-            </small>
+            <span
+              class="brand-logo"
+              aria-hidden="true"
+            >
+              S
+            </span>
 
-          </span>
 
-        </a>
+            <span class="brand-text">
+
+              <strong>
+                SRINEET
+              </strong>
+
+              <small>
+                COMPLETE NEET PREPARATION
+              </small>
+
+            </span>
+
+          </a>
+
+        </div>
+
+
+        <!-- Desktop navigation (visual addition — hamburger menu still
+             drives all navigation/behaviour on mobile; links below just
+             point to the same existing pages) -->
+
+        <nav class="header-nav" aria-label="Primary">
+          <a href="index.html" class="header-nav-link active">Home</a>
+          <a href="test-series.html" class="header-nav-link">Test Series</a>
+          <a href="notes.html" class="header-nav-link" data-coming-soon="Smart Notes">Notes</a>
+          <a href="pyq.html" class="header-nav-link" data-coming-soon="PYQ Chapterwise">PYQ</a>
+          <a href="practice.html" class="header-nav-link" data-coming-soon="Chapterwise Practice">Practice</a>
+        </nav>
 
 
         <!-- Header Actions: Telegram + Notification Bell -->
@@ -187,6 +206,48 @@
       </div>
 
     </header>
+
+
+
+    <!-- ===================================================
+         ANNOUNCEMENT / MOTIVATION BAR
+         (Visual only — no functionality attached. Content
+         mirrors the existing DR SRISHTI banner messaging.)
+    ==================================================== -->
+
+    <div class="announce-bar" aria-label="Announcement">
+
+      <div class="announce-track">
+
+        <span class="announce-item">
+          <strong>DR SRISHTI</strong> &nbsp;·&nbsp; Dream • Study • Achieve
+        </span>
+
+        <span class="announce-sep" aria-hidden="true">|</span>
+
+        <span class="announce-item">NEET 2027</span>
+
+        <span class="announce-sep" aria-hidden="true">|</span>
+
+        <span class="announce-item">AIIMS is not a dream, it's a plan.</span>
+
+        <span class="announce-sep" aria-hidden="true">|</span>
+
+        <span class="announce-item">
+          <strong>DR SRISHTI</strong> &nbsp;·&nbsp; Dream • Study • Achieve
+        </span>
+
+        <span class="announce-sep" aria-hidden="true">|</span>
+
+        <span class="announce-item">NEET 2027</span>
+
+        <span class="announce-sep" aria-hidden="true">|</span>
+
+        <span class="announce-item">AIIMS is not a dream, it's a plan.</span>
+
+      </div>
+
+    </div>
 
 
 
@@ -492,6 +553,8 @@
 
         <div class="hero-inner">
 
+          <div class="hero-text-col">
+
 
           <!-- HERO COPY -->
 
@@ -630,7 +693,73 @@
 
               </div>
 
+
+              <div
+                class="count-separator"
+                aria-hidden="true"
+              >
+                :
+              </div>
+
+
+              <!-- SECONDS (visual-only addition; value comes from the
+                   same countdown loop that already runs in main.js) -->
+
+              <div class="count-box">
+
+                <strong id="secondsBox">
+                  00
+                </strong>
+
+                <span>
+                  SEC
+                </span>
+
+              </div>
+
             </div>
+
+          </div>
+
+          </div>
+
+
+          <!-- DECORATIVE MEDICAL VISUAL (inline SVG, no external image —
+               purely presentational, desktop only) -->
+
+          <div class="hero-visual" aria-hidden="true">
+
+            <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" class="hero-visual-svg">
+
+              <!-- ECG line -->
+              <polyline points="10,190 90,190 115,140 145,240 175,190 360,190"
+                fill="none" stroke="#20C4E8" stroke-width="4"
+                stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+
+              <!-- Books stack -->
+              <g>
+                <rect x="150" y="205" width="180" height="26" rx="4" fill="#0B4FD8"/>
+                <rect x="160" y="179" width="160" height="26" rx="4" fill="#1687FF"/>
+                <rect x="150" y="153" width="180" height="26" rx="4" fill="#20C4E8"/>
+                <text x="240" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#F6F9FD">NEET</text>
+                <text x="240" y="196" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#04132F">BIOLOGY</text>
+                <text x="240" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#04132F">PHYSICS</text>
+              </g>
+
+              <!-- Stethoscope -->
+              <g fill="none" stroke="#EAF3FF" stroke-width="5" stroke-linecap="round">
+                <path d="M70 60 C70 100, 70 120, 105 130 C135 138, 150 120, 150 95 L150 75"/>
+                <path d="M70 60 C70 40, 90 40, 90 60"/>
+                <circle cx="150" cy="70" r="10" fill="#EAF3FF" stroke="none"/>
+                <circle cx="105" cy="150" r="16" fill="none" stroke="#EAF3FF"/>
+                <circle cx="105" cy="150" r="8" fill="#EAF3FF" stroke="none"/>
+              </g>
+
+              <!-- Subtle rings -->
+              <circle cx="105" cy="150" r="60" fill="none" stroke="#1687FF" stroke-width="1" opacity="0.35"/>
+              <circle cx="105" cy="150" r="90" fill="none" stroke="#20C4E8" stroke-width="1" opacity="0.2"/>
+
+            </svg>
 
           </div>
 
@@ -1570,6 +1699,17 @@
             preparation resources together in a simple,
             focused and student-friendly experience.
           </p>
+
+
+          <!-- Footer navigation (visual addition, mirrors header nav) -->
+
+          <nav class="footer-nav" aria-label="Footer">
+            <a href="index.html">Home</a>
+            <a href="test-series.html">Test Series</a>
+            <a href="notes.html" data-coming-soon="Smart Notes">Notes</a>
+            <a href="pyq.html" data-coming-soon="PYQ Chapterwise">PYQ</a>
+            <a href="practice.html" data-coming-soon="Chapterwise Practice">Practice</a>
+          </nav>
 
 
 
