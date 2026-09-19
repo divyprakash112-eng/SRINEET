@@ -16,1205 +16,1734 @@
 
   <meta
     name="theme-color"
-    content="#061A40"
+    content="#0B3B34"
   >
 
   <title>SRINEET | Complete NEET Preparation</title>
 
+
+  <!-- =====================================================
+       GOOGLE FONTS
+  ====================================================== -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css">
+
+  <!-- =====================================================
+       PWA MANIFEST
+  ====================================================== -->
+
+  <link rel="manifest" href="manifest.json">
+
+
+  <!-- =====================================================
+       MAIN CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="theme.css"
+  >
 
 </head>
 
+
 <body>
 
-<!-- =====================================================
-     PREMIUM BACKGROUND
-====================================================== -->
+  <!-- =====================================================
+       SITE WRAPPER
+  ====================================================== -->
 
-<div class="site-bg">
-  <div class="bg-grid"></div>
-  <div class="bg-orb bg-orb-one"></div>
-  <div class="bg-orb bg-orb-two"></div>
-  <div class="bg-orb bg-orb-three"></div>
-</div>
+  <div class="site">
 
 
-<!-- =====================================================
-     HEADER
-====================================================== -->
+    <!-- ===================================================
+         HEADER
+    ==================================================== -->
 
-<header class="site-header" id="siteHeader">
+    <header class="site-header">
 
-  <div class="header-inner">
+      <div class="header-inner">
 
-    <button
-      class="menu-button"
-      id="menuButton"
-      aria-label="Open menu"
+
+        <!-- Hamburger Menu -->
+
+        <button
+          class="menu-button"
+          id="menuButton"
+          type="button"
+          aria-label="Open study menu"
+          aria-expanded="false"
+          aria-controls="studyMenu"
+        >
+
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </button>
+
+
+        <!-- SRINEET BRAND -->
+
+        <a
+          href="index.html"
+          class="brand"
+          aria-label="SRINEET Home"
+        >
+
+          <span
+            class="brand-logo"
+            aria-hidden="true"
+          >
+            S
+          </span>
+
+
+          <span class="brand-text">
+
+            <strong>
+              SRINEET
+            </strong>
+
+            <small>
+              COMPLETE NEET PREPARATION
+            </small>
+
+          </span>
+
+        </a>
+
+
+        <!-- Header Actions: Telegram + Notification Bell -->
+
+        <div class="header-actions">
+
+          <!-- Telegram Join -->
+
+          <a
+            href="https://t.me/srineetofficial"
+            class="tg-button"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Join SRINEET on Telegram"
+          >
+
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21.5 4.5L2.75 11.9c-1 .4-1 1.86.05 2.14l4.3 1.16 1.66 5.1c.3.9 1.5 1.1 2.1.35l2.4-2.95 4.55 3.35c.85.6 2.05.14 2.28-.87l3.1-14.2c.26-1.2-.98-2.15-2.14-1.53z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M8.7 14.9L18.3 7.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+
+          </a>
+
+
+          <!-- Notification Bell -->
+
+          <button
+            class="bell-button"
+            type="button"
+            aria-label="Notifications"
+          >
+
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3a5 5 0 0 0-5 5v3.3c0 .55-.2 1.08-.57 1.5L5 14.8c-.6.68-.13 1.75.78 1.75h12.44c.9 0 1.38-1.07.78-1.75l-1.43-1.99a2.3 2.3 0 0 1-.57-1.5V8a5 5 0 0 0-5-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M9.5 18.5a2.5 2.5 0 0 0 5 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+
+            <span class="bell-dot" aria-hidden="true"></span>
+
+          </button>
+
+
+          <!-- My Progress + Streak -->
+
+          <a
+            href="progress.html"
+            class="streak-pill"
+            id="headerStreakPill"
+            aria-label="My Progress"
+          >
+            🔥 <span id="headerStreakCount">0</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- ===================================================
+         MENU OVERLAY
+    ==================================================== -->
+
+    <div
+      class="menu-overlay"
+      id="menuOverlay"
+      aria-hidden="true"
+    ></div>
+
+
+
+    <!-- ===================================================
+         STUDY MENU
+    ==================================================== -->
+
+    <aside
+      class="study-menu"
+      id="studyMenu"
+      aria-hidden="true"
     >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
 
 
-    <a href="index.html" class="brand">
+      <!-- Menu Header -->
 
-      <div class="brand-mark">
-        <span>S</span>
+      <div class="study-menu-header">
+
+        <div>
+
+          <span class="menu-kicker">
+            SRINEET
+          </span>
+
+          <h2>
+            Study Menu
+          </h2>
+
+        </div>
+
+
+        <button
+          class="menu-close"
+          id="menuClose"
+          type="button"
+          aria-label="Close study menu"
+        >
+          ×
+        </button>
+
       </div>
 
-      <div class="brand-copy">
-        <strong>SRINEET</strong>
-        <small>COMPLETE NEET PREPARATION</small>
+
+      <div class="menu-line"></div>
+
+
+
+      <!-- GLOBAL SEARCH -->
+
+      <div class="global-search-box">
+
+        <span class="search-icon" aria-hidden="true">🔍</span>
+
+        <input
+          type="text"
+          class="search-input"
+          id="globalSearchInput"
+          placeholder="Search institutes, tests..."
+          autocomplete="off"
+        >
+
       </div>
 
-    </a>
+      <div
+        class="global-search-results"
+        id="globalSearchResults"
+      ></div>
 
 
-    <nav class="desktop-nav">
 
-      <a href="index.html" class="active">
-        Home
-      </a>
+      <!-- Navigation -->
 
-      <!-- Deliberately removed:
-           Test Series
-           Notes
-           PYQ
-           Practice
-      -->
-
-    </nav>
+      <nav
+        class="menu-nav"
+        id="menuNav"
+        aria-label="Study navigation"
+      >
 
 
-    <div class="header-actions">
+        <!-- HOME -->
+
+        <a
+          href="index.html"
+          class="menu-link active"
+        >
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            ⌂
+          </span>
+
+          <span>
+            Home
+          </span>
+
+        </a>
+
+
+
+        <!-- TEST SERIES -->
+
+        <a
+          href="test-series.html"
+          class="menu-link"
+        >
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            □
+          </span>
+
+          <span>
+            Test Series
+          </span>
+
+        </a>
+
+
+
+        <!-- PYQ -->
+
+        <a
+          href="pyq.html"
+          class="menu-link"
+          data-coming-soon="PYQ Chapterwise"
+        >
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            ◇
+          </span>
+
+          <span>
+            PYQ Chapterwise
+          </span>
+
+        </a>
+
+
+
+        <!-- NOTES -->
+
+        <a
+          href="notes.html"
+          class="menu-link"
+          data-coming-soon="Smart Notes"
+        >
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            ▤
+          </span>
+
+          <span>
+            Notes
+          </span>
+
+        </a>
+
+
+
+        <!-- PRACTICE -->
+
+        <a
+          href="practice.html"
+          class="menu-link"
+          data-coming-soon="Chapterwise Practice"
+        >
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            ✓
+          </span>
+
+          <span>
+            Chapterwise Practice
+          </span>
+
+        </a>
+
+
+
+        <!-- MY PROGRESS -->
+
+        <a
+          href="progress.html"
+          class="menu-link"
+        >
+
+          <span
+            class="menu-link-icon"
+            aria-hidden="true"
+          >
+            🔥
+          </span>
+
+          <span>
+            My Progress
+          </span>
+
+        </a>
+
+      </nav>
+
+
+
+      <!-- DARK MODE TOGGLE (sidebar) -->
 
       <button
-        class="notification-button"
-        id="notificationButton"
-        aria-label="Notifications"
+        type="button"
+        class="menu-link theme-menu-toggle"
+        id="themeToggle"
       >
-        <span class="notification-icon">♧</span>
+
         <span
-          class="notification-count"
-          id="notificationCount"
+          class="menu-link-icon"
+          id="themeToggleIcon"
+          aria-hidden="true"
         >
-          3
+          🌙
         </span>
+
+        <span>
+          Dark Mode
+        </span>
+
+        <span
+          class="menu-toggle-switch"
+          id="themeToggleSwitch"
+          aria-hidden="true"
+        ></span>
+
       </button>
 
 
-      <a
-        href="#"
-        class="telegram-button"
-        id="telegramHeaderButton"
-        aria-label="Telegram"
-      >
-        <span>➤</span>
-      </a>
 
-    </div>
+      <!-- Menu Bottom -->
 
-  </div>
-
-</header>
-
-
-<!-- =====================================================
-     MOBILE SIDE MENU
-====================================================== -->
-
-<div
-  class="menu-overlay"
-  id="menuOverlay"
-></div>
-
-
-<aside
-  class="mobile-menu"
-  id="mobileMenu"
->
-
-  <button
-    class="menu-close"
-    id="menuClose"
-    aria-label="Close menu"
-  >
-    ×
-  </button>
-
-
-  <div class="mobile-brand">
-
-    <div class="brand-mark">
-      <span>S</span>
-    </div>
-
-    <div>
-      <strong>SRINEET</strong>
-      <small>Complete NEET Preparation</small>
-    </div>
-
-  </div>
-
-
-  <nav class="mobile-nav">
-
-    <a href="index.html" class="active">
-      <span>⌂</span>
-      Home
-    </a>
-
-    <a href="test-series.html">
-      <span>▣</span>
-      Test Series
-    </a>
-
-    <a href="notes.html">
-      <span>▤</span>
-      Notes
-    </a>
-
-    <a href="pyq.html">
-      <span>◈</span>
-      PYQ
-    </a>
-
-    <a href="practice.html">
-      <span>◎</span>
-      Practice
-    </a>
-
-  </nav>
-
-
-  <div class="mobile-menu-bottom">
-
-    <p>
-      Dream • Study • Achieve
-    </p>
-
-  </div>
-
-</aside>
-
-
-<!-- =====================================================
-     HERO / DR SRISHTI PREMIUM BANNER
-====================================================== -->
-
-<section
-  class="srishti-hero"
-  id="srishtiHero"
->
-
-  <div class="hero-particles"></div>
-
-  <div class="hero-glow hero-glow-left"></div>
-  <div class="hero-glow hero-glow-right"></div>
-
-
-  <div class="hero-medical-lines">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-
-  <div class="srishti-content">
-
-    <div class="srishti-copy">
-
-      <div class="eyebrow">
-
-        <span class="eyebrow-line"></span>
+      <div class="menu-bottom">
 
         <span>
-          NEET 2027
+          Focused preparation.
         </span>
 
-      </div>
-
-
-      <h1>
-        DR
-        <span>SRISHTI</span>
-      </h1>
-
-
-      <p>
-        Study with purpose.
-        <br>
-        Prepare with confidence.
-      </p>
-
-
-      <div class="srishti-badge">
-        NEET 2027
-      </div>
-
-
-      <a
-        href="#quickAccess"
-        class="premium-button"
-      >
-        Explore Now
-        <span>→</span>
-      </a>
-
-    </div>
-
-
-    <div class="srishti-visual">
-
-      <div class="visual-ring ring-one"></div>
-      <div class="visual-ring ring-two"></div>
-      <div class="visual-ring ring-three"></div>
-
-
-      <div class="medical-building">
-
-        <div class="building-glow"></div>
-
-        <div class="building">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-      </div>
-
-
-      <div class="doctor-3d">
-
-        <div class="doctor-head"></div>
-
-        <div class="doctor-hair"></div>
-
-        <div class="doctor-body">
-
-          <div class="doctor-coat"></div>
-
-          <div class="doctor-stethoscope">
-            <span></span>
-            <span></span>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="floating-plus plus-one">+</div>
-      <div class="floating-plus plus-two">+</div>
-      <div class="floating-plus plus-three">+</div>
-
-    </div>
-
-
-    <div class="srishti-side-text">
-      <strong>
-        Dream
-        <br>
-        Study
-        <br>
-        Achieve
-      </strong>
-
-      <span></span>
-    </div>
-
-  </div>
-
-
-  <div class="hero-dots">
-    <span class="active"></span>
-    <span></span>
-    <span></span>
-  </div>
-
-
-  <button
-    class="hero-arrow hero-prev"
-    id="heroPrev"
-  >
-    ‹
-  </button>
-
-  <button
-    class="hero-arrow hero-next"
-    id="heroNext"
-  >
-    ›
-  </button>
-
-</section>
-
-
-<!-- =====================================================
-     ANNOUNCEMENT
-====================================================== -->
-
-<section class="announcement-wrap">
-
-  <div class="announcement-bar">
-
-    <div class="announcement-label">
-      <span>♢</span>
-      WHAT'S NEW
-    </div>
-
-    <div
-      class="announcement-track"
-      id="announcementTrack"
-    >
-      <span>
-        NEET 2027 — Stay focused. Your dream is valid.
-      </span>
-
-      <i></i>
-
-      <span>
-        Dream • Study • Achieve
-      </span>
-
-      <i></i>
-
-      <span>
-        AIIMS is not a dream, it's a plan.
-      </span>
-    </div>
-
-    <div class="announcement-arrows">
-      <button id="announcementPrev">‹</button>
-      <button id="announcementNext">›</button>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     COUNTDOWN
-====================================================== -->
-
-<section class="countdown-section">
-
-  <div class="countdown-background"></div>
-
-
-  <div class="countdown-content">
-
-    <div class="countdown-copy">
-
-      <div class="eyebrow">
-
-        <span class="eyebrow-line"></span>
-
-        <span>
-          NEET 2027
-        </span>
-
-      </div>
-
-
-      <h2>
-        Time is your
-        <span>advantage.</span>
-      </h2>
-
-
-      <p class="countdown-subtitle">
-        Make every day count.
-      </p>
-
-
-      <p class="countdown-message">
-        <span class="pulse-dot"></span>
-        Keep going. Your preparation compounds.
-      </p>
-
-    </div>
-
-
-    <!-- IMPORTANT:
-         Existing countdown ID preserved.
-    -->
-
-    <div
-      class="countdown-card"
-      id="countdown"
-    >
-
-      <div class="countdown-date">
-        <span>▣</span>
-        <strong id="countdownDate">
-          02 MAY 2027
+        <strong>
+          S R I N E E T
         </strong>
-      </div>
-
-
-      <div class="countdown-values">
-
-        <div class="countdown-value">
-
-          <strong id="days">
-            224
-          </strong>
-
-          <span>
-            DAYS
-          </span>
-
-        </div>
-
-
-        <i>:</i>
-
-
-        <div class="countdown-value">
-
-          <strong id="hours">
-            12
-          </strong>
-
-          <span>
-            HRS
-          </span>
-
-        </div>
-
-
-        <i>:</i>
-
-
-        <div class="countdown-value">
-
-          <strong id="minutes">
-            21
-          </strong>
-
-          <span>
-            MIN
-          </span>
-
-        </div>
-
-
-        <i>:</i>
-
-
-        <div class="countdown-value">
-
-          <strong id="seconds">
-            05
-          </strong>
-
-          <span>
-            SEC
-          </span>
-
-        </div>
 
       </div>
 
-    </div>
+    </aside>
 
-  </div>
 
-</section>
 
+    <!-- ===================================================
+         MAIN CONTENT
+    ==================================================== -->
 
-<!-- =====================================================
-     QUICK ACCESS
-====================================================== -->
+    <main>
 
-<section
-  class="quick-section"
-  id="quickAccess"
->
 
-  <div class="section-heading">
+      <!-- =================================================
+           HERO / COUNTDOWN
+      ================================================== -->
 
-    <div>
-
-      <div class="eyebrow">
-
-        <span class="eyebrow-line"></span>
-
-        <span>
-          QUICK ACCESS
-        </span>
-
-      </div>
-
-
-      <h2>
-        Your Study.
-        <span>Just a Click Away.</span>
-      </h2>
-
-    </div>
-
-
-    <a
-      href="#"
-      class="view-all"
-      id="quickAccessViewAll"
-    >
-      View All →
-    </a>
-
-  </div>
-
-
-  <div class="quick-grid">
-
-
-    <a
-      href="test-series.html"
-      class="quick-card"
-    >
-
-      <div class="quick-icon">
-        ▤
-      </div>
-
-      <div class="quick-card-content">
-
-        <small>
-          EXAM PRACTICE
-        </small>
-
-        <h3>
-          Test Series
-        </h3>
-
-        <p>
-          Attempt institute & batch
-          wise test papers.
-        </p>
-
-      </div>
-
-      <span class="card-arrow">
-        ↗
-      </span>
-
-    </a>
-
-
-    <a
-      href="pyq.html"
-      class="quick-card"
-    >
-
-      <div class="quick-icon">
-        ?
-      </div>
-
-      <div class="quick-card-content">
-
-        <small>
-          PREVIOUS YEARS
-        </small>
-
-        <h3>
-          PYQ
-        </h3>
-
-        <p>
-          Learn from the questions
-          that actually matter.
-        </p>
-
-      </div>
-
-      <span class="card-arrow">
-        ↗
-      </span>
-
-    </a>
-
-
-    <a
-      href="notes.html"
-      class="quick-card"
-    >
-
-      <div class="quick-icon">
-        ▱
-      </div>
-
-      <div class="quick-card-content">
-
-        <small>
-          STUDY MATERIAL
-        </small>
-
-        <h3>
-          Notes
-        </h3>
-
-        <p>
-          NCERT, handwritten and
-          premium study material.
-        </p>
-
-      </div>
-
-      <span class="card-arrow">
-        ↗
-      </span>
-
-    </a>
-
-
-    <a
-      href="practice.html"
-      class="quick-card"
-    >
-
-      <div class="quick-icon">
-        ◎
-      </div>
-
-      <div class="quick-card-content">
-
-        <small>
-          CONCEPT BUILDER
-        </small>
-
-        <h3>
-          Chapterwise Practice
-        </h3>
-
-        <p>
-          Strengthen concepts
-          with focused MCQs.
-        </p>
-
-      </div>
-
-      <span class="card-arrow">
-        ↗
-      </span>
-
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     PREPARATION
-====================================================== -->
-
-<section
-  class="preparation-section"
-  id="preparationSection"
->
-
-  <div class="preparation-inner">
-
-    <div class="preparation-heading">
-
-      <div>
-
-        <div class="eyebrow">
-
-          <span class="eyebrow-line"></span>
-
-          <span>
-            YOUR PREPARATION
-          </span>
-
-        </div>
-
-
-        <h2>
-          Track your progress.
-          <span>Stay consistent. Achieve more.</span>
-        </h2>
-
-      </div>
-
-
-      <a
-        href="progress.html"
-        class="view-all"
+      <section
+        class="hero"
+        aria-label="NEET 2027 countdown"
       >
-        View Details →
-      </a>
 
-    </div>
+        <div
+          class="hero-glow hero-glow-left"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="hero-glow hero-glow-right"
+          aria-hidden="true"
+        ></div>
 
 
-    <div class="stats-grid">
+        <div class="hero-inner">
 
 
-      <div class="stat-item">
+          <!-- HERO COPY -->
 
-        <div class="stat-icon">
-          ▥
-        </div>
+          <div class="hero-copy">
 
-        <div class="stat-copy">
 
-          <span>
-            Tests Attempted
-          </span>
+            <div class="hero-kicker">
 
-          <strong id="testsAttempted">
-            0 / 150
-          </strong>
+              <span aria-hidden="true"></span>
 
-          <div class="stat-progress">
-            <span
-              id="testsProgress"
-              style="width:0%"
-            ></span>
+              NEET 2027
+
+            </div>
+
+
+
+            <h1>
+
+              Time is your
+
+              <span>
+                advantage.
+              </span>
+
+            </h1>
+
+
+
+            <p>
+              Make every day count.
+            </p>
+
+
+
+            <div class="hero-status">
+
+              <span
+                class="status-dot"
+                aria-hidden="true"
+              ></span>
+
+              <span id="secondsText">
+                09 seconds remaining
+              </span>
+
+              <i aria-hidden="true"></i>
+
+              <span>
+                Keep going.
+              </span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- COUNTDOWN -->
+
+          <div class="countdown-area">
+
+
+            <div class="exam-date">
+              02 MAY 2027
+            </div>
+
+
+
+            <div
+              class="countdown"
+              aria-label="Time remaining until NEET 2027"
+            >
+
+
+              <!-- DAYS -->
+
+              <div class="count-box">
+
+                <strong id="days">
+                  000
+                </strong>
+
+                <span>
+                  DAYS
+                </span>
+
+              </div>
+
+
+
+              <div
+                class="count-separator"
+                aria-hidden="true"
+              >
+                :
+              </div>
+
+
+
+              <!-- HOURS -->
+
+              <div class="count-box">
+
+                <strong id="hours">
+                  00
+                </strong>
+
+                <span>
+                  HRS
+                </span>
+
+              </div>
+
+
+
+              <div
+                class="count-separator"
+                aria-hidden="true"
+              >
+                :
+              </div>
+
+
+
+              <!-- MINUTES -->
+
+              <div class="count-box">
+
+                <strong id="minutes">
+                  00
+                </strong>
+
+                <span>
+                  MIN
+                </span>
+
+              </div>
+
+            </div>
+
           </div>
 
         </div>
 
-      </div>
+      </section>
 
 
-      <div class="stat-divider"></div>
+
+      <!-- =================================================
+           SRISHTI MEDICAL BANNER
+      ================================================== -->
+
+      <section
+        class="banner-section"
+        aria-label="SRISHTI medical banner"
+      >
+
+        <div class="srishti-banner">
 
 
-      <div class="stat-item">
+          <!-- Background Grid -->
 
-        <div class="stat-icon">
-          ◎
-        </div>
+          <div
+            class="banner-grid"
+            aria-hidden="true"
+          ></div>
 
-        <div class="stat-copy">
 
-          <span>
-            Accuracy
+          <!-- Decorative Orbits -->
+
+          <div
+            class="banner-orbit orbit-a"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="banner-orbit orbit-b"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="banner-orbit orbit-c"
+            aria-hidden="true"
+          ></div>
+
+
+          <!-- Medical Plus Symbols -->
+
+          <span
+            class="banner-plus plus-a"
+            aria-hidden="true"
+          >
+            +
           </span>
 
-          <strong id="accuracy">
-            0%
-          </strong>
+          <span
+            class="banner-plus plus-b"
+            aria-hidden="true"
+          >
+            +
+          </span>
 
-          <div class="stat-progress">
+
+
+          <!-- Banner Content -->
+
+          <div class="banner-content">
+
+
+            <div class="banner-label">
+
+              <span aria-hidden="true"></span>
+
+              MEDICAL EXCELLENCE
+
+            </div>
+
+
+
+            <div class="banner-small-title">
+              DREAM • DISCIPLINE • DESTINATION
+            </div>
+
+
+
+            <div class="doctor-name">
+
+              <small>
+                DR
+              </small>
+
+              <strong>
+                SRISHTI
+              </strong>
+
+            </div>
+
+
+
+            <div class="banner-line"></div>
+
+
+
+            <p>
+              Study with purpose.<br>
+              Prepare with confidence.
+            </p>
+
+          </div>
+
+
+
+          <!-- ECG GRAPHIC -->
+
+          <div
+            class="ecg-area"
+            aria-hidden="true"
+          >
+
+            <svg
+              class="ecg"
+              viewBox="0 0 500 180"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+
+              <path
+                d="M5 95
+                   H120
+                   L155 95
+                   L180 45
+                   L205 142
+                   L235 95
+                   H300"
+                stroke="currentColor"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+            </svg>
+
+
+
+            <div class="ecg-plus">
+              +
+            </div>
+
+
+
+            <div class="ecg-node node-one"></div>
+
+            <div class="ecg-node node-two"></div>
+
+          </div>
+
+
+
+          <!-- FOCUS BADGE -->
+
+          <div class="focus-badge">
+
             <span
-              id="accuracyProgress"
-              style="width:0%"
+              class="focus-dot"
+              aria-hidden="true"
             ></span>
+
+
+            <div>
+
+              <strong>
+                FOCUS
+              </strong>
+
+              <small>
+                ON YOUR DREAM
+              </small>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- BANNER FOOTER -->
+
+          <div class="banner-footer-left">
+            SRINEET
+          </div>
+
+          <div class="banner-footer-right">
+            COMPLETE NEET PREPARATION
           </div>
 
         </div>
 
-      </div>
+      </section>
 
 
-      <div class="stat-divider"></div>
 
+      <!-- =================================================
+           CONTINUE WHERE YOU LEFT OFF
+           (SrineetContinue.getLastAttempt() se bharta hai;
+           agar koi test attempt nahi mila to hidden rehta hai)
+      ================================================== -->
 
-      <div class="stat-item">
+      <section
+        class="banner-section"
+        aria-label="Continue where you left off"
+      >
 
-        <div class="stat-icon flame">
-          🔥
+        <div
+          class="continue-banner"
+          id="continueBanner"
+        >
+
+          <div>
+
+            <span class="continue-banner-kicker">
+              CONTINUE WHERE YOU LEFT OFF
+            </span>
+
+            <div
+              class="continue-banner-title"
+              id="continueBannerTitle"
+            >
+              Test
+            </div>
+
+            <div
+              class="continue-banner-sub"
+              id="continueBannerSub"
+            >
+              Score details
+            </div>
+
+          </div>
+
+          <a
+            href="progress.html"
+            class="continue-banner-button"
+          >
+            View Progress →
+          </a>
+
         </div>
 
-        <div class="stat-copy">
+      </section>
+
+
+
+      <!-- =================================================
+           RECENTLY ADDED + UPCOMING TESTS
+           (data/tests.json se — addedDate / status:"upcoming"
+           wale fields se apne aap bharta hai)
+      ================================================== -->
+
+      <section
+        class="banner-section"
+        aria-label="Recently added and upcoming tests"
+      >
+
+        <div class="coming-cards" id="comingCards">
+
+          <div class="coming-card">
+
+            <div class="coming-card-heading">
+              <span>✨ RECENTLY ADDED</span>
+            </div>
+
+            <div class="coming-card-list" id="recentCardList">
+              <div class="coming-card-empty">Loading...</div>
+            </div>
+
+          </div>
+
+
+          <div class="coming-card">
+
+            <div class="coming-card-heading">
+              <span>⏳ UPCOMING TESTS</span>
+            </div>
+
+            <div class="coming-card-list" id="upcomingCardList">
+              <div class="coming-card-empty">Loading...</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =================================================
+           PREPARATION HUB
+      ================================================== -->
+
+      <section
+        class="hub-section"
+        aria-label="SRINEET preparation resources"
+      >
+
+
+        <!-- Heading -->
+
+        <div class="hub-heading">
+
+          <span class="section-kicker">
+            YOUR PREPARATION HUB
+          </span>
+
+
+          <h2>
+
+            Everything you need.
+
+            <span>
+              Nothing you don't.
+            </span>
+
+          </h2>
+
+
+          <div
+            class="heading-decoration"
+            aria-hidden="true"
+          >
+
+            <span></span>
+
+            <i></i>
+
+            <b></b>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FEATURE CARDS
+        ================================================== -->
+
+        <div class="feature-grid">
+
+
+          <!-- =================================================
+               CARD 01 — TEST SERIES
+          ================================================== -->
+
+          <a
+            href="test-series.html"
+            class="feature-card card-test reveal"
+            aria-label="Open Test Series"
+          >
+
+
+            <div class="card-number">
+              01
+            </div>
+
+
+            <div
+              class="card-arrow"
+              aria-hidden="true"
+            >
+              ↗
+            </div>
+
+
+            <div
+              class="feature-icon"
+              aria-hidden="true"
+            >
+              ▤
+            </div>
+
+
+            <div class="feature-content">
+
+              <span class="feature-label">
+                EXAM PRACTICE
+              </span>
+
+
+              <h3>
+                Test
+                <br>
+                Series
+              </h3>
+
+
+              <p>
+                Premium CBT-style tests
+                for focused preparation.
+              </p>
+
+            </div>
+
+
+            <div class="feature-bottom">
+
+              <span>
+                START TESTING
+              </span>
+
+              <strong aria-hidden="true">
+                →
+              </strong>
+
+            </div>
+
+          </a>
+
+
+
+          <!-- =================================================
+               CARD 02 — PYQ
+          ================================================== -->
+
+          <a
+            href="pyq.html"
+            class="feature-card card-pyq reveal"
+            data-coming-soon="PYQ Chapterwise"
+            aria-label="Open PYQ Chapterwise"
+          >
+
+
+            <div class="card-number">
+              02
+            </div>
+
+
+            <div
+              class="card-arrow"
+              aria-hidden="true"
+            >
+              ↗
+            </div>
+
+
+            <div
+              class="feature-icon question-icon"
+              aria-hidden="true"
+            >
+              ?
+            </div>
+
+
+            <div class="feature-content">
+
+              <span class="feature-label">
+                PREVIOUS YEARS
+              </span>
+
+
+              <h3>
+                PYQ
+                <br>
+                Chapterwise
+              </h3>
+
+
+              <p>
+                Learn from the questions
+                that actually matter.
+              </p>
+
+            </div>
+
+
+            <div class="feature-bottom">
+
+              <span>
+                EXPLORE PYQs
+              </span>
+
+              <strong aria-hidden="true">
+                →
+              </strong>
+
+            </div>
+
+          </a>
+
+
+
+          <!-- =================================================
+               CARD 03 — SMART NOTES
+          ================================================== -->
+
+          <a
+            href="notes.html"
+            class="feature-card card-notes reveal"
+            data-coming-soon="Smart Notes"
+            aria-label="Open Smart Notes"
+          >
+
+
+            <div class="card-number">
+              03
+            </div>
+
+
+            <div
+              class="card-arrow"
+              aria-hidden="true"
+            >
+              ↗
+            </div>
+
+
+            <div
+              class="feature-icon notes-icon"
+              aria-hidden="true"
+            >
+              ▤
+            </div>
+
+
+            <div class="feature-content">
+
+              <span class="feature-label">
+                REVISION MATERIAL
+              </span>
+
+
+              <h3>
+                Smart
+                <br>
+                Notes
+              </h3>
+
+
+              <p>
+                Keep your important concepts
+                ready for revision.
+              </p>
+
+            </div>
+
+
+            <div class="feature-bottom">
+
+              <span>
+                OPEN NOTES
+              </span>
+
+              <strong aria-hidden="true">
+                →
+              </strong>
+
+            </div>
+
+          </a>
+
+
+
+          <!-- =================================================
+               CARD 04 — PRACTICE ZONE
+          ================================================== -->
+
+          <a
+            href="practice.html"
+            class="feature-card card-practice reveal"
+            data-coming-soon="Chapterwise Practice"
+            aria-label="Open Chapterwise Practice"
+          >
+
+
+            <div class="card-number">
+              04
+            </div>
+
+
+            <div
+              class="card-arrow"
+              aria-hidden="true"
+            >
+              ↗
+            </div>
+
+
+            <div
+              class="feature-icon check-icon"
+              aria-hidden="true"
+            >
+              ✓
+            </div>
+
+
+            <div class="feature-content">
+
+              <span class="feature-label">
+                CHAPTERWISE
+              </span>
+
+
+              <h3>
+                Practice
+                <br>
+                Zone
+              </h3>
+
+
+              <p>
+                Build accuracy chapter
+                by chapter.
+              </p>
+
+            </div>
+
+
+            <div class="feature-bottom">
+
+              <span>
+                PRACTICE NOW
+              </span>
+
+              <strong aria-hidden="true">
+                →
+              </strong>
+
+            </div>
+
+          </a>
+
+
+
+          <!-- =================================================
+               CARD 05 — MY PROGRESS
+          ================================================== -->
+
+          <a
+            href="progress.html"
+            class="feature-card card-progress reveal"
+            aria-label="Open My Progress"
+          >
+
+
+            <div class="card-number">
+              05
+            </div>
+
+
+            <div
+              class="card-arrow"
+              aria-hidden="true"
+            >
+              ↗
+            </div>
+
+
+            <div
+              class="feature-icon progress-icon"
+              aria-hidden="true"
+            >
+              🔥
+            </div>
+
+
+            <div class="feature-content">
+
+              <span class="feature-label">
+                LOCAL ANALYTICS
+              </span>
+
+
+              <h3>
+                My
+                <br>
+                Progress
+              </h3>
+
+
+              <p>
+                Track your scores, accuracy
+                and streak — on this device.
+              </p>
+
+            </div>
+
+
+            <div class="feature-bottom">
+
+              <span>
+                VIEW PROGRESS
+              </span>
+
+              <strong aria-hidden="true">
+                →
+              </strong>
+
+            </div>
+
+          </a>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =================================================
+           WHY SRINEET
+      ================================================== -->
+
+      <section
+        class="why-section"
+        aria-label="Why choose SRINEET"
+      >
+
+        <div class="why-card reveal">
+
+
+          <!-- Heading -->
+
+          <div class="why-heading">
+
+            <span>
+              WHY SRINEET
+            </span>
+
+            <h2>
+              Built for serious preparation.
+            </h2>
+
+          </div>
+
+
+
+          <!-- Benefits -->
+
+          <div class="why-list">
+
+
+            <!-- Focused -->
+
+            <div class="why-item">
+
+              <div
+                class="why-icon"
+                aria-hidden="true"
+              >
+                ✓
+              </div>
+
+
+              <div>
+
+                <strong>
+                  Focused
+                </strong>
+
+                <small>
+                  No unnecessary clutter
+                </small>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Organised -->
+
+            <div class="why-item">
+
+              <div
+                class="why-icon"
+                aria-hidden="true"
+              >
+                ◇
+              </div>
+
+
+              <div>
+
+                <strong>
+                  Organised
+                </strong>
+
+                <small>
+                  Resources in one place
+                </small>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Fast -->
+
+            <div class="why-item">
+
+              <div
+                class="why-icon"
+                aria-hidden="true"
+              >
+                ⚡
+              </div>
+
+
+              <div>
+
+                <strong>
+                  Fast
+                </strong>
+
+                <small>
+                  Made for mobile learning
+                </small>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =================================================
+           ABOUT SRINEET
+      ================================================== -->
+
+      <section
+        class="about-section reveal"
+        aria-label="About SRINEET"
+      >
+
+        <div class="about-card">
 
           <span>
-            Streak
+            ABOUT SRINEET
           </span>
+
+          <h2>
+            Built by a student, for students.
+          </h2>
+
+          <p>
+            SRINEET was started to bring scattered NEET
+            preparation resources — test series, PYQs,
+            notes and practice — into one simple, focused
+            place. No unnecessary noise, no clutter. Just
+            what a serious NEET aspirant actually needs.
+          </p>
+
+          <div class="privacy-note">
+            🔒 Your test scores and progress stay only on
+            your device — never uploaded anywhere.
+          </div>
+
+          <br>
+
+          <a
+            href="https://t.me/srineetofficial"
+            class="about-support"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            💬 Need help? Message us on Telegram
+          </a>
+
+          <button
+            type="button"
+            class="about-support"
+            id="inviteFriendBtn"
+          >
+            🤝 Invite a Friend
+          </button>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+
+    <!-- ===================================================
+         FOOTER
+    ==================================================== -->
+
+    <footer class="site-footer">
+
+
+      <div class="footer-inner">
+
+
+        <!-- Footer Main -->
+
+        <div class="footer-main">
+
+
+          <!-- Footer Brand -->
+
+          <div class="footer-brand">
+
+            <span
+              class="footer-logo"
+              aria-hidden="true"
+            >
+              S
+            </span>
+
+
+            <div>
+
+              <strong>
+                S R I N E E T
+              </strong>
+
+              <small>
+                Complete NEET Preparation
+              </small>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Description -->
+
+          <p>
+            SRINEET is designed to bring essential NEET
+            preparation resources together in a simple,
+            focused and student-friendly experience.
+          </p>
+
+
+
+          <!-- Footer Pills -->
+
+          <div class="footer-pills">
+
+            <span>
+              ✓ Focused preparation
+            </span>
+
+            <span>
+              ✓ Organised resources
+            </span>
+
+            <span>
+              ✓ Fast learning experience
+            </span>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Footer Message -->
+
+        <div class="footer-message">
 
           <strong>
-            <span id="streakCount">
-              0
-            </span>
-            days
+            Prepare smart.
           </strong>
 
-          <div class="stat-progress">
-            <span
-              id="streakProgress"
-              style="width:0%"
-            ></span>
-          </div>
+          <span>
+            Practice consistently.
+          </span>
 
         </div>
 
       </div>
 
-    </div>
 
-  </div>
 
-</section>
+      <!-- Footer Bottom -->
 
-
-<!-- =====================================================
-     TELEGRAM
-====================================================== -->
-
-<section class="telegram-section">
-
-  <div class="telegram-inner">
-
-    <div class="telegram-icon">
-      ➤
-    </div>
-
-    <div class="telegram-copy">
-
-      <h2>
-        Join our Telegram Community
-      </h2>
-
-      <p>
-        Get updates, motivation,
-        free resources & more.
-      </p>
-
-    </div>
-
-
-    <a
-      href="#"
-      class="telegram-join"
-      id="telegramJoin"
-    >
-      Join Now →
-    </a>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     RECENTLY ADDED
-====================================================== -->
-
-<section class="updates-section">
-
-  <div class="updates-card">
-
-    <div class="eyebrow">
-      <span>✨</span>
-      <span>RECENTLY ADDED</span>
-    </div>
-
-    <div
-      id="recentlyAdded"
-      class="updates-list"
-    >
-      <p>
-        Koi naya test nahi hai abhi.
-      </p>
-    </div>
-
-  </div>
-
-
-  <div class="updates-card">
-
-    <div class="eyebrow">
-      <span>⌛</span>
-      <span>UPCOMING</span>
-    </div>
-
-    <div
-      id="upcomingTests"
-      class="updates-list"
-    >
-      <p>
-        Koi upcoming test schedule nahi hai.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     WHY SRINEET
-====================================================== -->
-
-<section class="why-section">
-
-  <div class="why-card">
-
-    <div class="why-heading">
-
-      <div class="eyebrow">
-        <span class="eyebrow-line"></span>
-        <span>WHY SRINEET</span>
-      </div>
-
-      <h2>
-        Built for serious preparation.
-      </h2>
-
-      <p>
-        Simple. Focused. Powerful.
-      </p>
-
-    </div>
-
-
-    <div class="why-grid">
-
-      <div class="why-item">
-
-        <div class="why-icon">
-          ◉
-        </div>
-
-        <div>
-          <strong>Focused</strong>
-          <span>No unnecessary clutter</span>
-        </div>
-
-      </div>
-
-
-      <div class="why-item">
-
-        <div class="why-icon">
-          ◈
-        </div>
-
-        <div>
-          <strong>Organised</strong>
-          <span>Resources in one place</span>
-        </div>
-
-      </div>
-
-
-      <div class="why-item">
-
-        <div class="why-icon">
-          ⚡
-        </div>
-
-        <div>
-          <strong>Fast</strong>
-          <span>Made for mobile learning</span>
-        </div>
-
-      </div>
-
-
-      <div class="why-medical">
-
-        <div class="stethoscope">
-          ◯
-        </div>
-
-        <div class="why-note">
-          Small steps
-          <br>
-          every day.
-          <br>
-          Big results
-          <br>
-          tomorrow.
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     ABOUT
-====================================================== -->
-
-<section class="about-section">
-
-  <div class="about-card">
-
-    <div class="about-content">
-
-      <div class="eyebrow">
-
-        <span class="eyebrow-line"></span>
+      <div class="footer-bottom">
 
         <span>
-          ABOUT SRINEET
+          © 2026 SRINEET
+        </span>
+
+        <span>
+          Made for NEET Aspirants
         </span>
 
       </div>
 
-
-      <h2>
-        Built by a student,
-        <span>for students.</span>
-      </h2>
-
-
-      <p>
-        SRINEET was started to bring scattered
-        NEET preparation resources — test series,
-        PYQs, notes and practice — into one simple,
-        focused place. No unnecessary noise,
-        no clutter. Just what a serious NEET
-        aspirant actually needs.
-      </p>
-
-    </div>
-
-
-    <div class="about-visual">
-
-      <div class="about-building">
-
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-
-      </div>
-
-      <div class="about-ecg">
-        ──╱╲────╱╲──
-      </div>
-
-    </div>
-
-
-    <div class="privacy-strip">
-
-      <span>
-        🔒
-      </span>
-
-      <p>
-        Your test scores and progress stay only
-        on your device — never uploaded anywhere.
-      </p>
-
-    </div>
+    </footer>
 
   </div>
 
-</section>
 
 
-<!-- =====================================================
-     FOOTER
-====================================================== -->
+  <!-- =====================================================
+       MAIN JAVASCRIPT
+  ====================================================== -->
 
-<footer class="site-footer">
+  <script src="progress-tracker.js"></script>
+  <script src="streak.js"></script>
+  <script src="theme.js"></script>
+  <script src="pwa.js"></script>
+  <script src="premium.js"></script>
+  <script src="updates.js"></script>
+  <script src="whats-coming.js"></script>
+  <script src="global-search.js"></script>
+  <script src="main.js"></script>
 
-  <div class="footer-inner">
+  <script>
+    "use strict";
 
+    document.addEventListener("DOMContentLoaded", () => {
 
-    <div class="footer-brand">
+      const headerStreakCount =
+        document.getElementById("headerStreakCount");
 
-      <div class="brand-mark">
-        <span>S</span>
-      </div>
+      if (headerStreakCount && window.SrineetStreak) {
 
-      <div>
-        <strong>
-          SRINEET
-        </strong>
+        headerStreakCount.textContent =
+          String(window.SrineetStreak.getStreak());
 
-        <small>
-          Complete NEET Preparation
-        </small>
-      </div>
-
-    </div>
-
-
-    <div class="footer-social">
-
-      <span>
-        Follow Us
-      </span>
-
-      <div>
-
-        <a href="#" aria-label="Telegram">
-          ➤
-        </a>
-
-        <a href="#" aria-label="YouTube">
-          ▶
-        </a>
-
-        <a href="#" aria-label="Instagram">
-          ◎
-        </a>
-
-      </div>
-
-    </div>
+      }
 
 
-    <div class="footer-neet">
+      /* Continue Where You Left Off */
 
-      <strong>
-        NEET 2027
-      </strong>
+      const continueBanner =
+        document.getElementById("continueBanner");
 
-      <span>
-        Dream
-        •
-        Study
-        •
-        Achieve
-      </span>
+      const continueBannerTitle =
+        document.getElementById("continueBannerTitle");
 
-    </div>
+      const continueBannerSub =
+        document.getElementById("continueBannerSub");
 
-  </div>
+      if (continueBanner && window.SrineetContinue) {
 
-</footer>
+        const lastAttempt =
+          window.SrineetContinue.getLastAttempt();
+
+        if (lastAttempt) {
+
+          if (continueBannerTitle) {
+
+            continueBannerTitle.textContent =
+              lastAttempt.title;
+
+          }
+
+          if (continueBannerSub) {
+
+            continueBannerSub.textContent =
+              `Last score: ${lastAttempt.score} / ${lastAttempt.totalMarks} • ${lastAttempt.accuracy}% accuracy`;
+
+          }
+
+          continueBanner.classList.add("is-visible");
+
+        }
+
+      }
 
 
-<!-- =====================================================
-     EXISTING SCRIPTS
-====================================================== -->
+      /* Invite a Friend */
 
-<script src="main.js"></script>
+      const inviteFriendBtn =
+        document.getElementById("inviteFriendBtn");
 
-<script src="premium.js"></script>
-<script src="updates.js"></script>
-<script src="whats-coming.js"></script>
-<script src="global-search.js"></script>
-<script src="progress-tracker.js"></script>
-<script src="streak.js"></script>
-<script src="theme.js"></script>
-<script src="pwa.js"></script>
+      if (inviteFriendBtn) {
+
+        inviteFriendBtn.addEventListener(
+          "click",
+          async () => {
+
+            const shareData = {
+              title: "SRINEET — Complete NEET Preparation",
+              text: "Maine SRINEET use kiya NEET prep ke liye — test series, PYQs, sab free mein. Tum bhi try karo:",
+              url: window.location.origin + window.location.pathname.replace("index.html", "")
+            };
+
+            if (navigator.share) {
+
+              try {
+                await navigator.share(shareData);
+              } catch (error) {
+                /* user cancelled share, ignore */
+              }
+
+            } else {
+
+              const whatsappUrl =
+                "https://wa.me/?text=" +
+                encodeURIComponent(shareData.text + " " + shareData.url);
+
+              window.open(whatsappUrl, "_blank");
+
+            }
+
+          }
+        );
+
+      }
+
+    });
+  </script>
 
 </body>
 </html>
