@@ -165,8 +165,105 @@ window.SrineetSearch = (function () {
 
 
 /* =====================================================
-   3) CONTINUE WHERE YOU LEFT OFF
+   4) COMING SOON POPUP
+   Kisi bhi <a data-coming-soon="Feature Name"> par
+   click karte hi cute popup khulega, page navigate
+   nahi hogi (kyunki wo page abhi bana hi nahi).
 ===================================================== */
+
+(function () {
+
+  let modalEl =
+    null;
+
+  function buildModal() {
+
+    if (modalEl) {
+      return modalEl;
+    }
+
+    modalEl =
+      document.createElement("div");
+
+    modalEl.className =
+      "coming-soon-modal";
+
+    modalEl.innerHTML = `
+      <div class="coming-soon-backdrop"></div>
+      <div class="coming-soon-box">
+        <div class="coming-soon-emoji">🚧</div>
+        <span class="coming-soon-kicker">COMING SOON</span>
+        <h2 class="coming-soon-title" id="comingSoonTitle">This feature</h2>
+        <p>Hum isko abhi bana rahe hain, pyaar se! Jaise hi ready hoga, bell 🔔 se pata chal jayega.</p>
+        <div class="coming-soon-actions">
+          <a href="https://t.me/srineetofficial" target="_blank" rel="noopener noreferrer" class="coming-soon-button primary">
+            🔔 Telegram pe update pao
+          </a>
+          <button type="button" class="coming-soon-button" id="comingSoonClose">
+            Theek hai
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modalEl);
+
+    const close =
+      () => modalEl.classList.remove("is-open");
+
+    modalEl
+      .querySelector(".coming-soon-backdrop")
+      .addEventListener("click", close);
+
+    modalEl
+      .querySelector("#comingSoonClose")
+      .addEventListener("click", close);
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          modalEl.classList.contains("is-open")
+        ) {
+          close();
+        }
+
+      }
+    );
+
+    return modalEl;
+
+  }
+
+  document.addEventListener(
+    "click",
+    event => {
+
+      const trigger =
+        event.target.closest("[data-coming-soon]");
+
+      if (!trigger) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const modal =
+        buildModal();
+
+      modal.querySelector("#comingSoonTitle").textContent =
+        trigger.dataset.comingSoon || "This feature";
+
+      requestAnimationFrame(() => {
+        modal.classList.add("is-open");
+      });
+
+    }
+  );
+
+})();
 
 window.SrineetContinue = (function () {
 
