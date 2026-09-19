@@ -5,17 +5,17 @@
 }
 
 :root {
-  --wine: #0B3B34;
-  --wine-2: #12564C;
-  --wine-3: #1B7364;
-  --gold: #B9853F;
-  --gold-soft: #D4AF6A;
-  --gold-hi: #F3E3B8;
-  --ivory: #FAF6EE;
-  --ivory-deep: #F1E8D8;
-  --ink: #231C1E;
-  --ink-dim: #6B5F5C;
-  --card-edge: #E9DFC9;
+  --wine: #0b4b40;
+  --wine-2: #14685b;
+  --wine-3: #2a7668;
+  --gold: #c49a52;
+  --gold-soft: #e0bd7a;
+  --gold-hi: #f1ddb0;
+  --ivory: #f7f2e8;
+  --ivory-deep: #efe5d2;
+  --ink: #1e2925;
+  --ink-dim: #6d756e;
+  --card-edge: #e4d5bb;
   --white: #ffffff;
 }
 
@@ -24,7 +24,7 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   color: var(--ink);
   background: var(--ivory);
   overflow-x: hidden;
@@ -92,7 +92,7 @@ button {
   place-items: center;
   border-radius: 14px;
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-size: 20px;
   font-weight: 700;
   background: conic-gradient(from 45deg, var(--gold-soft), var(--gold), var(--gold-hi), var(--gold), var(--gold-soft));
@@ -105,7 +105,7 @@ button {
 
 .brand-text strong {
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: 16px;
   letter-spacing: .16em;
@@ -154,7 +154,7 @@ button {
 .progress-hero h1 {
   margin-top: 12px;
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: clamp(28px, 5vw, 42px);
 }
@@ -192,7 +192,7 @@ button {
 }
 
 .streak-badge strong {
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-size: 18px;
 }
 
@@ -238,10 +238,44 @@ button {
   padding: 22px;
 
   border: 1px solid var(--card-edge);
-  border-radius: 18px;
+  border-radius: 20px;
 
-  background: var(--white);
+  background: rgba(255, 255, 255, .7);
   text-align: center;
+
+  transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  background: #fffdfa;
+  box-shadow: 0 14px 28px rgba(32, 46, 40, .08);
+}
+
+.stat-icon {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 12px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  font-size: 20px;
+  color: #fff;
+}
+
+.icon-green {
+  background: var(--wine);
+}
+
+.icon-wine {
+  background: #7b2e42;
+}
+
+.icon-olive {
+  background: #78621f;
 }
 
 .stat-label {
@@ -258,7 +292,7 @@ button {
 
   color: var(--wine);
 
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: 28px;
 }
@@ -282,7 +316,7 @@ button {
 
 .history-heading h2 {
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: clamp(22px, 3.5vw, 30px);
 }
@@ -332,7 +366,7 @@ button {
 
 .history-card-title {
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: 15px;
 }
@@ -350,7 +384,7 @@ button {
 .history-card-score strong {
   display: block;
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-size: 18px;
 }
 
@@ -400,7 +434,7 @@ button {
 
 .badges-section h2 {
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: clamp(22px, 3.5vw, 30px);
 }
@@ -443,7 +477,7 @@ button {
 
 .badge-name {
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: 12px;
 }
@@ -467,7 +501,7 @@ button {
 
 .trend-section h2 {
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: clamp(22px, 3.5vw, 30px);
 }
@@ -503,7 +537,7 @@ button {
 
 .weak-section h2 {
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: clamp(22px, 3.5vw, 30px);
 }
@@ -535,7 +569,7 @@ button {
 
 .weak-item-subject {
   color: var(--wine);
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: 14px;
 }
@@ -598,7 +632,7 @@ button {
   border-radius: 12px;
   color: var(--wine);
   background: linear-gradient(145deg, var(--gold-soft), var(--gold));
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 700;
 }
 
@@ -608,7 +642,7 @@ button {
 }
 
 .footer-brand strong {
-  font-family: "Fraunces", serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-size: 12px;
   letter-spacing: .2em;
