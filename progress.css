@@ -91,11 +91,11 @@ button {
   display: grid;
   place-items: center;
   border-radius: 14px;
-  color: var(--wine);
+  color: #f2ddb1;
   font-family: "Playfair Display", serif;
   font-size: 20px;
   font-weight: 700;
-  background: conic-gradient(from 45deg, var(--gold-soft), var(--gold), var(--gold-hi), var(--gold), var(--gold-soft));
+  background: linear-gradient(145deg, #0d5a4d, #063b33);
 }
 
 .brand-text strong,
@@ -470,7 +470,7 @@ button {
   place-items: center;
 
   border-radius: 14px;
-  background: linear-gradient(145deg, var(--gold-soft), var(--gold));
+  background: linear-gradient(145deg, #0d5a4d, #063b33);
 
   font-size: 22px;
 }
@@ -630,8 +630,8 @@ button {
   display: grid;
   place-items: center;
   border-radius: 12px;
-  color: var(--wine);
-  background: linear-gradient(145deg, var(--gold-soft), var(--gold));
+  color: #f2ddb1;
+  background: linear-gradient(145deg, #0d5a4d, #063b33);
   font-family: "Playfair Display", serif;
   font-weight: 700;
 }
