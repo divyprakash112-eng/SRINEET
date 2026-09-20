@@ -107,13 +107,13 @@ a {
 
   border-radius: 14px;
 
-  color: var(--wine);
+  color: #f2ddb1;
 
   font-family: "Playfair Display", serif;
   font-size: 20px;
   font-weight: 700;
 
-  background: conic-gradient(from 45deg, var(--gold-soft), var(--gold), var(--gold-hi), var(--gold), var(--gold-soft));
+  background: linear-gradient(145deg, #0d5a4d, #063b33);
 
   box-shadow:
     0 10px 22px rgba(185, 133, 63, 0.28),
@@ -290,7 +290,7 @@ a {
   font-size: 20px;
   font-weight: 700;
 
-  background: conic-gradient(from 45deg, var(--gold-soft), var(--gold), var(--gold-hi), var(--gold), var(--gold-soft));
+  background: linear-gradient(145deg, #0d5a4d, #063b33);
 
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.28),
@@ -898,8 +898,8 @@ a {
 
   border-radius: 12px;
 
-  background: linear-gradient(145deg, var(--gold-soft), var(--gold));
-  color: var(--wine);
+  background: linear-gradient(145deg, #0d5a4d, #063b33);
+  color: #f2ddb1;
 
   font-family: "Playfair Display", serif;
   font-weight: 700;
