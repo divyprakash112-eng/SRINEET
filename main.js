@@ -170,6 +170,40 @@
      Read-only integration
   ===================================================== */
 
+  let totalAvailableTests =
+    null;
+
+
+  function loadTotalTestCount() {
+
+    fetch("data/tests.json", { cache: "no-store" })
+      .then(response => response.ok ? response.json() : [])
+      .then(data => {
+
+        if (!Array.isArray(data)) {
+          return;
+        }
+
+        totalAvailableTests =
+          data.filter(
+            test => test.status !== "upcoming" && test.status !== "hidden"
+          ).length;
+
+        updateProgress();
+
+      })
+      .catch(error => {
+
+        console.error(
+          "SRINEET Test Count Error:",
+          error
+        );
+
+      });
+
+  }
+
+
   function updateProgress() {
 
     const summary =
@@ -198,12 +232,15 @@
       );
 
 
+    const totalTests =
+      totalAvailableTests || 1;
+
     const testPercent =
       Math.max(
         0,
         Math.min(
           100,
-          (tests / 150) * 100
+          (tests / totalTests) * 100
         )
       );
 
@@ -251,8 +288,12 @@
 
 
     if (testLabel) {
+
       testLabel.textContent =
-        `${tests} / 150`;
+        totalAvailableTests === null
+          ? `${tests} / ...`
+          : `${tests} / ${totalAvailableTests}`;
+
     }
 
 
@@ -292,6 +333,8 @@
 
 
   updateProgress();
+
+  loadTotalTestCount();
 
 
   window.addEventListener(
