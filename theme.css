@@ -1065,3 +1065,125 @@ a.coming-row:hover {
   font-size: 11px;
   text-align: center;
 }
+
+
+/* =========================================================
+   COMING SOON POPUP (cute) — pehle isse yahan add nahi
+   kiya gaya tha, isliye modal fixed-overlay ki jagah
+   plain page content ki tarah bottom mein dikh raha tha.
+========================================================= */
+
+.coming-soon-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+
+.coming-soon-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.coming-soon-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 59, 52, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.coming-soon-box {
+  position: relative;
+  z-index: 1;
+
+  width: min(380px, 100%);
+  padding: 38px 28px 30px;
+  text-align: center;
+
+  border: 1px solid var(--gold-2, #e0bd7a);
+  border-radius: 26px;
+
+  background: var(--cream, #f7f2e8);
+  box-shadow: 0 35px 80px rgba(0, 0, 0, .35);
+
+  transform: translateY(20px) scale(0.9) rotate(-1deg);
+  transition: transform .4s cubic-bezier(.2, .9, .3, 1.4);
+}
+
+.coming-soon-modal.is-open .coming-soon-box {
+  transform: translateY(0) scale(1) rotate(0deg);
+}
+
+.coming-soon-emoji {
+  font-size: 52px;
+  animation: comingSoonBounce 1.6s ease-in-out infinite;
+}
+
+@keyframes comingSoonBounce {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-8px) rotate(4deg); }
+}
+
+.coming-soon-kicker {
+  display: block;
+  margin-top: 10px;
+  color: var(--gold, #c49a52);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+
+.coming-soon-title {
+  margin-top: 8px;
+  color: var(--wine, #0b4b40);
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: 21px;
+}
+
+.coming-soon-box p {
+  margin-top: 12px;
+  color: var(--ink-dim, var(--muted, #6d756e));
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+.coming-soon-actions {
+  margin-top: 22px;
+  display: grid;
+  gap: 10px;
+}
+
+.coming-soon-button {
+  padding: 13px;
+  border: 1px solid var(--card-edge, var(--cream-3, #e4d5bb));
+  border-radius: 12px;
+
+  background: var(--white, #ffffff);
+  color: var(--wine, #0b4b40);
+
+  font-size: 11.5px;
+  font-weight: 800;
+  font-family: inherit;
+
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+
+.coming-soon-button:hover {
+  transform: translateY(-2px);
+}
+
+.coming-soon-button.primary {
+  border: none;
+  background: linear-gradient(150deg, var(--wine, #0b4b40), var(--green-2, #14685b));
+  color: var(--gold-pale, #f1ddb0);
+}
