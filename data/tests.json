@@ -1,19 +1,21 @@
-{
-  "id": "pw-yakeen-1-0-test-01",
-  "instituteId": "pw",
-  "batchId": "pw-yakeen-1-0",
-  "number": 1,
-  "title": "Short Practice Test 1",
-  "questions": 48,
-  "duration": 60,
-  "date": "3 May 2026",
-  "category": "full",
-  "status": "available",
-  "syllabus": [
-    "Physics: Mathematical Tools, Basic Maths Calculation, Logarithms, Trigonometry, etc.",
-    "Chemistry: Some Basic Concept of Chemistry, Importance of Chemistry, Nature of Matter, etc.",
-    "Botany: Cell – The Unit of Life",
-    "Zoology: Animal Kingdom"
-  ],
-  "pdf": "https://drive.fasta.cloud/s/a76b9f0df168687e722063d934ba7e91d451e73994eacecf"
-}
+[
+  {
+    "id": "pw-yakeen-1-0-test-01",
+    "instituteId": "pw",
+    "batchId": "pw-yakeen-1-0",
+    "number": 1,
+    "title": "Short Practice Test 1",
+    "questions": 48,
+    "duration": 60,
+    "date": "3 May 2026",
+    "category": "full",
+    "status": "available",
+    "syllabus": [
+      "Physics: Mathematical Tools, Basic Maths Calculation, Logarithms, Trigonometry, etc.",
+      "Chemistry: Some Basic Concept of Chemistry, Importance of Chemistry, Nature of Matter, etc.",
+      "Botany: Cell – The Unit of Life",
+      "Zoology: Animal Kingdom"
+    ],
+    "pdf": "https://drive.fasta.cloud/s/a76b9f0df168687e722063d934ba7e91d451e73994eacecf"
+  }
+]
