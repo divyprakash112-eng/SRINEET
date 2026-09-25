@@ -99,15 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
       year: "2027",
       description:
         "NEET 2027 test practice. New tests will be added as they are uploaded.",
-      /*
-       * Planner banner ke liye PDF ka path/link.
-       * Jab tak yahan value nahi hogi, banner
-       * apne aap hide rahega. PDF ko tests/pw/yakeen-1-0/
-       * folder mein daal kar yahan uska relative path
-       * de sakte ho, ya kisi bhi direct PDF link (Drive/
-       * hosted) ko bhi seedha yahan paste kar sakte ho.
-       */
-      plannerPdf: "tests/pw/yakeen-1-0/test-planner.pdf"
+
+      plannerPdf:
+        "tests/pw/yakeen-1-0/test-planner.pdf"
     },
 
     "pw-yakeen-2-0": {
@@ -116,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
       year: "2027",
       description:
         "NEET 2027 test practice.",
+
       plannerPdf: null
     },
 
@@ -125,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
       year: "2027",
       description:
         "Focused NEET preparation and test practice.",
+
       plannerPdf: null
     },
 
@@ -134,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       year: "2027",
       description:
         "Real exam-style NEET practice.",
+
       plannerPdf: null
     }
 
@@ -143,9 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const batch = batches[batchId];
 
 
-  /*
-   * Unknown batch
-   */
+  /* =====================================================
+     UNKNOWN BATCH
+  ===================================================== */
 
   if (!batch) {
 
@@ -201,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (batchMeta) {
 
     batchMeta.textContent =
-      `NEET ${batch.year} • CBT Practice`;
+      `NEET ${batch.year} • Test Series`;
 
   }
 
@@ -211,8 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
      TEST PLANNER BANNER
-     (always shown above the test list, if the batch
-     has a plannerPdf configured above)
   ===================================================== */
 
   function renderPlannerBanner(currentBatch) {
@@ -221,17 +216,19 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+
     if (!currentBatch.plannerPdf) {
 
       plannerBanner.style.display =
         "none";
 
       return;
-
     }
+
 
     plannerBannerButton.href =
       currentBatch.plannerPdf;
+
 
     if (plannerBannerTitle) {
 
@@ -239,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `${currentBatch.name} Test Planner`;
 
     }
+
 
     plannerBanner.style.display =
       "flex";
@@ -248,8 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
      SYLLABUS MODAL
-     (shared popup opened by the "View Syllabus"
-     button on any test card)
   ===================================================== */
 
   function openSyllabusModal(test) {
@@ -257,6 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!syllabusModal) {
       return;
     }
+
 
     if (syllabusModalTitle) {
 
@@ -266,15 +263,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
     if (syllabusModalList) {
 
       syllabusModalList.innerHTML =
         "";
 
+
       const topics =
         Array.isArray(test.syllabus)
           ? test.syllabus
           : [];
+
 
       if (topics.length === 0) {
 
@@ -284,7 +284,9 @@ document.addEventListener("DOMContentLoaded", () => {
         empty.textContent =
           "Syllabus will be added soon.";
 
-        syllabusModalList.appendChild(empty);
+        syllabusModalList.appendChild(
+          empty
+        );
 
       } else {
 
@@ -297,7 +299,9 @@ document.addEventListener("DOMContentLoaded", () => {
             item.textContent =
               topic;
 
-            syllabusModalList.appendChild(item);
+            syllabusModalList.appendChild(
+              item
+            );
 
           }
         );
@@ -305,6 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
     }
+
 
     syllabusModal.hidden =
       false;
@@ -372,8 +377,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+
     paperError.textContent =
       message;
+
 
     paperError.style.display =
       "block";
@@ -388,8 +395,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function showEmpty(message) {
 
     if (testList) {
-      testList.innerHTML = "";
+
+      testList.innerHTML =
+        "";
+
     }
+
 
     if (testEmpty) {
 
@@ -432,7 +443,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "test-card reveal";
 
 
-    /* Number */
+    /* =================================================
+       TEST NUMBER
+    ================================================= */
 
     const number =
       document.createElement("div");
@@ -444,7 +457,9 @@ document.addEventListener("DOMContentLoaded", () => {
       String(test.number).padStart(2, "0");
 
 
-    /* Content */
+    /* =================================================
+       TEST CONTENT
+    ================================================= */
 
     const content =
       document.createElement("div");
@@ -488,7 +503,9 @@ document.addEventListener("DOMContentLoaded", () => {
     content.appendChild(info);
 
 
-    /* Action */
+    /* =================================================
+       ACTION AREA
+    ================================================= */
 
     const action =
       document.createElement("div");
@@ -496,6 +513,10 @@ document.addEventListener("DOMContentLoaded", () => {
     action.className =
       "test-action";
 
+
+    /* =================================================
+       COMPLETED BADGE
+    ================================================= */
 
     if (isCompleted(test.id)) {
 
@@ -508,20 +529,16 @@ document.addEventListener("DOMContentLoaded", () => {
       badge.textContent =
         "Completed";
 
-      action.appendChild(badge);
+      action.appendChild(
+        badge
+      );
 
     }
 
 
-    /*
-     * VIEW SYLLABUS BUTTON
-     *
-     * Har test card par hamesha dikhta hai.
-     * tests.json mein us test ke "syllabus" array
-     * (topics ki list) se popup bharta hai. Agar
-     * syllabus field nahi diya, to popup mein
-     * "Syllabus will be added soon" dikhega.
-     */
+    /* =================================================
+       VIEW SYLLABUS BUTTON
+    ================================================= */
 
     const syllabusButton =
       document.createElement("button");
@@ -535,50 +552,69 @@ document.addEventListener("DOMContentLoaded", () => {
     syllabusButton.textContent =
       "View Syllabus";
 
+
     syllabusButton.addEventListener(
       "click",
-      () => openSyllabusModal(test)
+      () => {
+
+        openSyllabusModal(test);
+
+      }
     );
 
-    action.appendChild(syllabusButton);
+
+    action.appendChild(
+      syllabusButton
+    );
 
 
-    /*
-     * CBT HTML LINK
-     *
-     * This is the important part.
-     *
-     * Tum jis HTML file ka path JSON mein doge,
-     * wahi open hoga.
-     */
+    /* =================================================
+       VIEW TEST PDF BUTTON
+    ================================================= */
 
-    if (test.file) {
+    if (test.pdf) {
 
-      const button =
+      const pdfButton =
         document.createElement("a");
 
-      button.className =
+      pdfButton.className =
         "start-button";
 
-      button.href =
-        test.file;
+      pdfButton.href =
+        test.pdf;
 
-      button.textContent =
-        isCompleted(test.id)
-          ? "Review Test"
-          : "Start Test";
+      pdfButton.target =
+        "_blank";
+
+      pdfButton.rel =
+        "noopener noreferrer";
+
+      pdfButton.textContent =
+        "View Test PDF";
 
 
-      action.appendChild(button);
+      action.appendChild(
+        pdfButton
+      );
 
     }
 
 
-    card.appendChild(number);
+    /* =================================================
+       FINAL CARD
+    ================================================= */
 
-    card.appendChild(content);
+    card.appendChild(
+      number
+    );
 
-    card.appendChild(action);
+    card.appendChild(
+      content
+    );
+
+    card.appendChild(
+      action
+    );
 
 
     return card;
@@ -600,7 +636,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    testList.innerHTML = "";
+    testList.innerHTML =
+      "";
 
 
     let tests =
@@ -609,6 +646,10 @@ document.addEventListener("DOMContentLoaded", () => {
           test.status !== "hidden"
       );
 
+
+    /* =================================================
+       FULL TEST FILTER
+    ================================================= */
 
     if (filter === "full") {
 
@@ -621,6 +662,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* =================================================
+       CHAPTER TEST FILTER
+    ================================================= */
+
     if (filter === "chapter") {
 
       tests =
@@ -632,9 +677,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /*
-     * No real uploaded tests
-     */
+    /* =================================================
+       EMPTY STATE
+    ================================================= */
 
     if (tests.length === 0) {
 
@@ -643,6 +688,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       return;
+
     }
 
 
@@ -654,6 +700,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* =================================================
+       CREATE ALL TEST CARDS
+    ================================================= */
+
     tests.forEach(
       test => {
 
@@ -664,15 +714,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     );
 
+
+    /* =================================================
+       EXISTING SRINEET REVEAL SYSTEM
+    ================================================= */
+
     if (window.SrineetReveal) {
-      window.SrineetReveal.observe(testList);
+
+      window.SrineetReveal.observe(
+        testList
+      );
+
     }
 
   }
 
 
   /* =====================================================
-     LOAD REAL TEST DATA
+     LOAD TEST DATA
   ===================================================== */
 
   async function loadTests() {
@@ -710,9 +769,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 
-      /*
-       * ONLY tests belonging to current batch
-       */
+      /* =================================================
+         CURRENT BATCH TESTS
+      ================================================= */
 
       const batchTests =
         data.filter(
@@ -721,18 +780,26 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-      /*
-       * Actual available count
-       */
+      /* =================================================
+         TOTAL TEST COUNT
+      ================================================= */
 
       if (totalTests) {
 
         totalTests.textContent =
-          String(batchTests.length)
-            .padStart(2, "0");
+          String(
+            batchTests.length
+          ).padStart(
+            2,
+            "0"
+          );
 
       }
 
+
+      /* =================================================
+         INITIAL RENDER
+      ================================================= */
 
       renderTests(
         batchTests,
@@ -740,9 +807,9 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-      /*
-       * Filters
-       */
+      /* =================================================
+         FILTER BUTTONS
+      ================================================= */
 
       filterButtons.forEach(
         button => {
@@ -794,8 +861,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       showEmpty(
-        "No tests available yet. Upload a CBT test to make it available here."
+        "No tests available yet. New tests will appear here when they are uploaded."
       );
+
 
       showError(
         ""
