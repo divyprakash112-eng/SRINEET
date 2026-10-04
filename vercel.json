@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/test/1",
+      "destination": "https://nt.lrnt.ccwu.cc/"
+    }
+  ]
+}
